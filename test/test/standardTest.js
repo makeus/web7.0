@@ -66,7 +66,7 @@ testCases(test,
         },
 
 	function shouldReturnGreenForCountDivisibleBy3Plus1() {
-            aValue = 10;
+            aValue = 12;
             assert.that(controller.colouring(), eq(controller.green));
         },
 
