@@ -49,7 +49,7 @@ testCases(test,
 	
 	function defaultStringIsJohnAndMary() {
 		shouldThrowAssertException(function () {
-			assert.that(anObject.defaultString, eq("john isn't mary"));
+			assert.that(anObject.defaultString, eq("john huhu isn't mary"));
 		});
 	},
 	
