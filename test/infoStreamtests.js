@@ -1,4 +1,4 @@
-test( "infostream test", function() {
+test( "infostream test own id correct token", function() {
 
     var userId="1234";
     var authToken="test1234test";
