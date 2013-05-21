@@ -65,3 +65,22 @@ test( "rest login test 4", function() {
 	$.mockjaxClear();
 
 	});
+test( "rest login test", function() {
+
+
+    var username="test";
+    var password="test";
+	$.mockjax({
+		url: "*",
+		responseText: {
+			DL_id: "1234",
+			authtoken: "test1234test",
+			staff: null
+		}
+	});
+	loginRest(username,password);
+	equal(getDL_id(),"1234");
+
+	$.mockjaxClear();
+
+	});
