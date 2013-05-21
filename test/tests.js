@@ -32,6 +32,6 @@ asyncTest( "resttest", function() {
 
 	});
 
-
+	$.mockjaxClear();
 });
 
