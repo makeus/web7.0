@@ -1,9 +1,13 @@
 var url =  "https://www.dliv.in/rest/";
 function saveToken(data){
-	localStorage.setItem('authtoken',data.authtoken);
+	if(data.success!="0"){
+		localStorage.setItem('authtoken',data.authtoken);
+	}
 }
 function saveDL_id(data){
-	localStorage.setItem('DL_id',data.DL_id);
+	if(data.success!="0"){
+		localStorage.setItem('DL_id',data.DL_id);
+	}
 }
 function loginRest(username, password){
 	localStorage.removeItem('authtoken');
