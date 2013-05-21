@@ -4,8 +4,9 @@ $(document).ready(function() {
 		var username = document.getElementById('loginUsername').value;
 		var password = document.getElementById('loginPassword').value;
 		loginRest(username, password);
-		window.location.replace('frontpage.html');
-
+		if(getToken()!=null){
+			window.location.replace('frontpage.html');
+		}
 	});
 	
 	$("#loginUsername").keyup(function(event){
