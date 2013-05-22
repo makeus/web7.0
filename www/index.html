@@ -7,11 +7,16 @@
 
   <!--our own js -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="javascripts/authFunctions.js"></script>
   <script src="javascripts/loginForm.js"></script>
   <script src="javascripts/restFunctions.js"></script>
 
+
   <!--our own css -->
 
+  <!--bootstrap stuff -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <script src="js/bootstrap.min.js"></script>
 
   <!-- steroids related -->
   <link rel="stylesheet" href="/stylesheets/ratchet-steroids.css" />
@@ -23,8 +28,11 @@
 
 </head>
 <body onload="">
-  <input type="text" id="loginUsername" autofocus><br>
-  <input type="password" id="loginPassword"><br>
-  <button id="loginButton">Login</button>
+  <div id="loginDiv">
+    <input type="text" id="loginUsername" autofocus><br>
+    <input type="password" id="loginPassword"><br>
+    <button id="loginButton">Login</button>
+    <p id="failLogin" hidden>Wrong user or password</p>
+  </div>
 </body>
 </html>

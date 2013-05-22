@@ -11,7 +11,7 @@ test( "rest login correct username and password", function() {
 			staff: null
 		}
 	});
-	loginRest(username,password);
+	login(username,password);
 	equal(getToken(),"test1234test");
 
 	$.mockjaxClear();
@@ -32,7 +32,7 @@ test( "rest login long response time", function() {
 			staff: null
 		}
 	});
-	loginRest(username,password);
+	login(username,password);
 	equal(getToken(),"test1234test");
 
 	$.mockjaxClear();
@@ -53,7 +53,7 @@ test( "rest login timeout!", function() {
 			staff: null
 		}
 	});
-	loginRest(username,password);
+	login(username,password);
 	equal(getToken(),null);
 
 	$.mockjaxClear();
@@ -78,7 +78,7 @@ test( "rest login getDL_id", function() {
 			staff: null
 		}
 	});
-	loginRest(username,password);
+	login(username,password);
 	equal(getDL_id(),"1234");
 
 	$.mockjaxClear();
@@ -96,8 +96,8 @@ test( "rest login wrong username and password", function() {
 			success: "0"
 		}
 	});
-	loginRest(username,password);
-	equal(getToken(),"undefined");
+	login(username,password);
+	equal(getToken(),null);
 
 	$.mockjaxClear();
 

@@ -3,11 +3,16 @@ $(document).ready(function() {
 	$("#loginButton").click(function(){
 		var username = document.getElementById('loginUsername').value;
 		var password = document.getElementById('loginPassword').value;
-		loginRest(username, password);
-		if(getToken()!=null){
+		alert(username);
+		alert(password);
+		login(username, password);
+		if( (getToken()!=null) && (getToken()!="undefined") ){
 			window.location.replace('frontpage.html');
 		}
-	});
+
+		$("#failLogin").removeAttr("hidden");
+
+});
 	
 	$("#loginUsername").keyup(function(event){
     if(event.keyCode == 13){
