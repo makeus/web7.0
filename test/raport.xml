@@ -10,10 +10,16 @@
   <div id="qunit-fixture"></div>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="qunit.js"></script>
+  <script src="qunit-reporter-junit.js"></script>
   <script src="jquery.mockjax.js"></script>
   <script src="tests.js"></script>
   <script src="../www/javascripts/restFunctions.js"></script>
+  <script src="loginTests.js"></script>
   <script src="infoStreamtests.js"></script>
-  <script src="activityTests.js"></script>
+  <script type="text/javascript">
+  	QUnit.jUnitReport = function(report) {
+    	console.log(report.xml);
+	};
+  </script>
 </body>
 </html>

@@ -47,3 +47,13 @@ function getActivityStream(userId,authToken){
 	});
 	return infoStream;
 }
+
+function addActivity(uid, auth, to_dl_id, from_dl_id, type, subject, link) {
+	$.ajax(
+	{
+		url: url+"addactivity2",
+		type: "POST",
+		async: false,
+		data: {uid: uid, auth: auth, to_dl_id: to_dl_id, from_dl_id: from_dl_id, type: type, subject: subject, link: link}
+	});
+}
