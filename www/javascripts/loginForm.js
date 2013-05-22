@@ -4,10 +4,13 @@ $(document).ready(function() {
 		var username = document.getElementById('loginUsername').value;
 		var password = document.getElementById('loginPassword').value;
 		loginRest(username, password);
-		if(getToken()!=null){
+		if( (getToken()!=null) && (getToken()!="undefined") ){
 			window.location.replace('frontpage.html');
 		}
-	});
+
+		$("#failLogin").removeAttr("hidden");
+
+});
 	
 	$("#loginUsername").keyup(function(event){
     if(event.keyCode == 13){
