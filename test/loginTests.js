@@ -1,5 +1,3 @@
-
-
 test( "rest login correct username and password", function() {
 
     var username="test";

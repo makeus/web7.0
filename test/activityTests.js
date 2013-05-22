@@ -24,13 +24,13 @@ test( "addActivity REST test", function() {
 			'link'
 		],
 		response: function(settings) {
-			equal(userId, settings.data.uid, "Userid ei muutu");
-			equal(authtoken, settings.data.auth, "Auth ei muutu");
-			equal(to_dl_id, settings.data.to_dl_id, "TO_DL_ID ei muutu");
-			equal(from_dl_id, settings.data.from_dl_id, "From_DL_ID ei muutu");
-			equal(type, settings.data.type, "Type ei muutu");
-			equal(subject, settings.data.subject, "Subject ei muutu");
-			equal(link, settings.data.link, "Link ei muutu");
+			equal(settings.data.uid, userId, "Userid ei muutu");
+			equal(settings.data.auth, authtoken, "Auth ei muutu");
+			equal(settings.data.to_dl_id, to_dl_id, "TO_DL_ID ei muutu");
+			equal(settings.data.from_dl_id, from_dl_id, "From_DL_ID ei muutu");
+			equal(settings.data.type, type, "Type ei muutu");
+			equal(settings.data.subject, subject, "Subject ei muutu");
+			equal(settings.data.link, link, settings.data.link, "Link ei muutu");
 		}
 		
 	});
@@ -42,7 +42,6 @@ test( "addActivity REST test", function() {
 	});
 
 test( "addMessage test", function() {
-	expect(0);
 	
 	$.mockjax({
 		url: url + "Authtoken",
@@ -66,18 +65,18 @@ test( "addMessage test", function() {
 			'link'
 		],
 		response: function(settings) {
-			equal(userId, settings.data.uid, "Userid ei muutu");
-			equal(authtoken, settings.data.auth, "Auth ei muutu");
-			equal(to_dl_id, settings.data.to_dl_id, "TO_DL_ID ei muutu");
-			equal(from_dl_id, settings.data.from_dl_id, "From_DL_ID ei muutu");
-			equal(type, settings.data.type, "Type ei muutu");
-			equal(subject, settings.data.subject, "Subject ei muutu");
-			equal(link, settings.data.link, "Link ei muutu");
+			equal(settings.data.uid, userId, "Userid ei muutu");
+			equal(settings.data.auth, authtoken, "Auth ei muutu");
+			equal(settings.data.to_dl_id, to_dl_id, "TO_DL_ID ei muutu");
+			equal(settings.data.from_dl_id, from_dl_id, "From_DL_ID ei muutu");
+			equal(settings.data.type, type, "Type ei muutu");
+			equal(settings.data.subject, subject, "Subject ei muutu");
+			equal(settings.data.link, link, settings.data.link, "Link ei muutu");
 		}
 		
 	});
 
-
+	login(username, password);
 	addMessage(to_dl_id, from_dl_id, subject, link);
 
 	$.mockjaxClear();
