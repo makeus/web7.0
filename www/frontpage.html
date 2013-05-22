@@ -9,6 +9,7 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="javascripts/authFunctions.js"></script>
   <script src="javascripts/restFunctions.js"></script>
+  <script src="javascripts/writeMessageFunctions.js"></script>
 
   <!--our own css -->
 
@@ -26,6 +27,14 @@
 
 
 </head>
-<p>asdasdsad</p>
-<button onclick="alert(getToken())">Token BUAAA</button>
+<body>
+  <div class="form-horizontal">
+    <p>Write messages here</p>
+    <div class="form-inline">
+      <input type="text" id="messageField">
+      <a class="btn" href="#" id="sendMessage"><i class="icon-plus"></i></a>
+    </div>
+  </div>
+  <button onclick="alert(getToken())">Token BUAAA</button>
+</body>
 </html>
