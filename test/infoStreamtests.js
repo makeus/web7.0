@@ -31,3 +31,38 @@ test( "infostream test own id correct token", function() {
 	$.mockjaxClear();
 
 	});
+
+test( "infostream test own id wrong token", function() {
+
+    var userId="1234";
+    var authToken="wrongtoken";
+	$.mockjax({
+		url: "*",
+		responseText: {
+			ErrorCode: 401,
+			ErrorMessage: "Unauthorized"
+		}
+	});
+	equal(getActivityStream(userId,authToken).ErrorMessage,"Unauthorized");
+
+	$.mockjaxClear();
+
+	});
+
+test( "infostream test wrong id right token", function() {
+
+    var userId="1234";
+    var authToken="test1234test";
+	$.mockjax({
+		url: "*",
+		responseText: {
+			ErrorCode: 401,
+			ErrorMessage: "Unauthorized"
+		}
+	});
+	equal(getActivityStream(userId,authToken).ErrorMessage,"Unauthorized");
+
+	$.mockjaxClear();
+
+	});
+
