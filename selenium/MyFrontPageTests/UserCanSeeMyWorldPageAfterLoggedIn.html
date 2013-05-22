@@ -4,12 +4,12 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://88.114.122.139:8080/job/web7.0/ws/www/index.html" />
-<title>userCanNotLoginWithCorrectUsernameAndIncorrectPassword</title>
+<title>UserCanSeeMyWorldPageAfterLoggedIn</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">userCanNotLoginWithCorrectUsernameAndIncorrectPassword</td></tr>
+<tr><td rowspan="1" colspan="3">UserCanSeeMyWorldPageAfterLoggedIn</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -24,12 +24,12 @@
 <tr>
 	<td>type</td>
 	<td>id=loginPassword</td>
-	<td>somePassword</td>
+	<td>roki014</td>
 </tr>
 <tr>
 	<td>click</td>
 	<td>id=loginButton</td>
-	<td></td>
+	<td>true</td>
 </tr>
 <tr>
 	<td>pause</td>
@@ -37,18 +37,23 @@
 	<td></td>
 </tr>
 <tr>
+	<td>waitForTitle</td>
+	<td>Welcome</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTitle</td>
+	<td>Welcome</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Write messages here</td>
+	<td></td>
+</tr>
+<tr>
 	<td>verifyTextPresent</td>
-	<td>Wrong user or password</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=loginUsername</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=loginPassword</td>
+	<td>Write messages here</td>
 	<td></td>
 </tr>
 </tbody></table>
