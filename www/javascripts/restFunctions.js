@@ -12,13 +12,13 @@ function loginRest(username, password){
 }
 
 var infoStream;
-function getActivityStream(userId,authToken,offset,limit){
+function getActivityStream(userId,authToken,offset,limit,types){
 	$.ajax(
 	{
 		url: url+"stream",
 		dataType: "json",
 		async: false,
-		data: {uid: userId, auth: authToken, offset: offset, limit: limit},
+		data: {uid: userId, auth: authToken, offset: offset, limit: limit, types: types},
 		success: function(data){
 			infoStream=data;
 		}
