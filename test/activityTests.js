@@ -39,7 +39,7 @@ test( "addActivity REST test", function() {
 
 	$.mockjaxClear();
 
-	});
+});
 
 test( "addMessage test", function() {
 	
@@ -81,5 +81,5 @@ test( "addMessage test", function() {
 
 	$.mockjaxClear();
 
-	});
+});
 

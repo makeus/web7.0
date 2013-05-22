@@ -1,3 +1,31 @@
+test( "InforStream REST test", function() {
+	var userId = "1234";
+    var authToken = "test1234test";
+    var offset = 10;
+    var limit = 10;
+
+	$.mockjax({
+		url: /https:\/\/www.dliv.in\/rest\/stream/,
+		urlParams: [
+			'uid',
+			'auth',
+			'offset',
+			'limit'
+		],
+		response: function(settings) {
+			equal(settings.data.uid, userId, "Username ei muutu");
+			equal(settings.data.auth, authToken, "Auth ei muutu");
+			equal(settings.data.offset, offset, "Offset ei muutu");
+			equal(settings.data.limit, limit, "Limit ei muutu");
+		}
+	});
+
+	getActivityStream(userId, authToken, offset, limit);
+	
+	$.mockjaxClear();
+
+});
+
 test( "infostream test own id correct token", function() {
 
     var userId="1234";
