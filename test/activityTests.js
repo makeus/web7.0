@@ -42,6 +42,17 @@ test( "addActivity REST test", function() {
 	});
 
 test( "addMessage test", function() {
+	expect(0);
+	
+	$.mockjax({
+		url: url + "Authtoken",
+		responseText: {
+			DL_id: userId,
+			authtoken: authtoken,
+			staff: null
+		}
+
+	})
 
 	$.mockjax({
 		url: /https:\/\/www.dliv.in\/rest\/addactivity2/,
@@ -66,7 +77,7 @@ test( "addMessage test", function() {
 		
 	});
 
-	
+
 	addMessage(to_dl_id, from_dl_id, subject, link);
 
 	$.mockjaxClear();
