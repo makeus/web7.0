@@ -97,7 +97,7 @@ test( "rest login wrong username and password", function() {
 		}
 	});
 	loginRest(username,password);
-	equal(getToken(),"undefined");
+	equal(getToken(),null);
 
 	$.mockjaxClear();
 
