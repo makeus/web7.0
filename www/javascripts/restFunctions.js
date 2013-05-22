@@ -12,14 +12,13 @@ function loginRest(username, password){
 }
 
 var infoStream;
-//todo add limit & offset when they work
-function getActivityStream(userId,authToken){
+function getActivityStream(userId,authToken,offset,limit){
 	$.ajax(
 	{
 		url: url+"stream",
 		dataType: "json",
 		async: false,
-		data: {uid: userId, auth: authToken},
+		data: {uid: userId, auth: authToken, offset: offset, limit: limit},
 		success: function(data){
 			infoStream=data;
 		}
