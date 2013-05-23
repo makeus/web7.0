@@ -20,6 +20,11 @@ document.addEventListener("DOMContentLoaded", function() {
 		} else if (res == 1) {
 			var webView = new steroids.views.WebView("views/frontpage/index.html");
 			steroids.layers.push(webView);
+
+			if(navigator.userAgent == "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36") {
+				window.location.replace("../frontpage/index.html");
+			}
+
 		} else {
 			alert("ERROR " + res);
 		}
