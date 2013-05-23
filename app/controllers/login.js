@@ -12,22 +12,17 @@ document.addEventListener("DOMContentLoaded", function() {
 		* 1 onnistunut kirjautuminen
 		* MUUT, kuten 404, 500 jne. ovat http error codejen mukaisia virheitä
 		*/
-		alert(res);
-		switch(res) {
-			case(-1) {
+
+		switch(true) {
+			case (res == -1):
 				$("#failLogin").removeAttr("hidden");
-			}
-			case(0) {
+			case (res == 0):
 				alert("Timeout!");
-			}
-			case(1) {
+			case (res == 1):
 				var webView = new steroids.views.WebView("views/frontpage/index.html");
 				steroids.layers.push(webView);
-			}
-			default() {
+			case (res > 1):
 				alert("ERROR");
-			}
-
 		}
 
 	});
