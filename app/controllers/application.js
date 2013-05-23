@@ -26,10 +26,8 @@ function getActivityStream(userId,authToken,offset,limit,types){
 			limit: limit, 
 			types: types
 		},
-		success: function(data){
-			infoStream=data;
-		},
-		error: status = 0
+		success: getStreamSuccess,
+		error: getStreamFail
 	});
 	return infoStream;
 }

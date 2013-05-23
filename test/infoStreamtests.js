@@ -1,3 +1,5 @@
+var url = "https://www.dliv.in/rest/";
+
 test( "InforStream REST test", function() {
 	var userId = "1234";
     var authToken = "test1234test";
@@ -20,6 +22,7 @@ test( "InforStream REST test", function() {
 		}
 	});
 
+	equal(status, 1);
 	getActivityStream(userId, authToken, offset, limit);
 	
 	$.mockjaxClear();
@@ -31,7 +34,7 @@ test( "infostream test own id correct token", function() {
     var userId="1234";
     var authToken="test1234test";
 	$.mockjax({
-		url: "*",
+		url: url + "stream",
 		responseText: [{
 			id: "1234",
 			type: "note",
@@ -54,25 +57,29 @@ test( "infostream test own id correct token", function() {
 
 		}]
 	});
+
 	equal(getActivityStream(userId,authToken)[0].subject,"anna testi data");
+	equal(status, 1);
 
 	$.mockjaxClear();
 
-	});
+});
 
 test( "infostream test own id wrong token", function() {
 
     var userId="1234";
     var authToken="wrongtoken";
 	$.mockjax({
-		url: "*",
+		url: url + "stream",
+		status: 401,
+		statusText: "Unauthorized",
 		responseText: {
 			ErrorCode: 401,
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	equal(getActivityStream(userId,authToken).ErrorMessage,"Unauthorized");
-
+	getActivityStream(userId,authToken);
+	equal(status, 401);
 	$.mockjaxClear();
 
 	});
@@ -82,15 +89,88 @@ test( "infostream test wrong id right token", function() {
     var userId="1234";
     var authToken="test1234test";
 	$.mockjax({
-		url: "*",
+		url: url + "stream",
+		status: 401,
+		statusText: "Unauthorized",
 		responseText: {
 			ErrorCode: 401,
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	equal(getActivityStream(userId,authToken).ErrorMessage,"Unauthorized");
-
+	getActivityStream(userId,authToken);
+	equal(status, 401);
 	$.mockjaxClear();
 
-	});
+});
 
+
+test( "getStream test", function() {
+
+    var userId="1234";
+    var authToken="test1234test";
+	$.mockjax({
+		url: url + "stream",
+		responseText: [{
+			id: "1234",
+			type: "note",
+			sub_type: "",
+			DL_id: "4321",
+			from_DL_id: "1234",
+			subject: "anna testi data",
+			link: "",
+			content: "",
+			locatio: "",
+			time_from: "0000-00-00 00:00:00",
+			time_to: "0000-00-00 00:00:00",
+			acl: "read",
+			whitelist_dlid: "",
+			completed: null,
+			completed_by: null,
+			created: "2013-05-17 11:10:31",
+			comments: "",
+			relations: ""
+
+		}]
+	});
+	getStream("note");
+	equal(getStatus(), 1);
+	$.mockjaxClear();
+
+});
+
+test( "getStream Unauthorized", function() {
+
+    var userId="1234";
+    var authToken="test1234test";
+	$.mockjax({
+		url: url + "stream",
+		status: 401,
+		statusText: "Unauthorized",
+		responseText: {
+			ErrorCode: 401,
+			ErrorMessage: "Unauthorized"
+		}
+	});
+	getStream("note");
+	equal(getStatus(), 401);
+	$.mockjaxClear();
+
+});
+
+test( "getStream fail method test", function() {
+
+	$.mockjax({
+		url: url + "stream",
+		status: 405,
+		statusText: "Method not allowed",
+		responseText: {
+			ErrorCode: 405,
+			ErrorMessage: "Method not allowed"
+		}
+	});
+	
+	getStream("note");
+	equal(getStatus(), 405);
+
+	$.mockjaxClear();
+});

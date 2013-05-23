@@ -11,10 +11,17 @@ function getStream(types) {
     var items =[];
     
     var stream=getActivityStream(uid,token,'0','100', types);
-	  //error retrieving the activity stream
-    if(stream=="") {
+
+    if(stream="") {
+      items.push(parseNothing());
+    } else if(status == 0) {
+      alert("Timeout");
+      items.push(parseNothing());
+    } else if (status > 2) {
+      alert("ERROR " + status);
       items.push(parseNothing());
     }
+	  //error retrieving the activity stream
     //parse stream
     else {
   	  //parse and push each json entry into its own <li> block
@@ -90,4 +97,19 @@ function datetimetoDate(date) {
 
 function datetimetoTime(date) {
 	return date.substr(11,5);
+}
+
+var status = 0;
+
+function getStreamSuccess(data) {
+  infoStream=data;
+  status = 1;
+}
+
+function getStreamFail(data) {
+  status = data.status;
+}
+
+function getStatus() {
+  return status;
 }
