@@ -41,6 +41,41 @@ test( "addActivity REST test", function() {
 
 });
 
+test( "addActivity unauthorized", function() {
+
+	$.mockjax({
+		url: url + "addactivity2",
+		status: 401,
+		statusText: "Unauthorized",
+		responseText: {
+			ErrorCode: 401,
+			ErrorMessage: "Unauthorized"
+		}
+	});
+	addActivity(userId, authtoken, to_dl_id, from_dl_id, type, subject, link);
+	equal(status, 401);
+
+	$.mockjaxClear();
+});
+
+test( "addActivity fail method test", function() {
+
+	$.mockjax({
+		url: url + "addactivity2",
+		status: 405,
+		statusText: "Method not allowed",
+		responseText: {
+			ErrorCode: 405,
+			ErrorMessage: "Method not allowed"
+		}
+	});
+	
+	addActivity(userId, authtoken, to_dl_id, from_dl_id, type, subject, link);
+	equal(status, 405);
+
+	$.mockjaxClear();
+});
+
 test( "addMessage test", function() {
 	
 	$.mockjax({
@@ -82,4 +117,3 @@ test( "addMessage test", function() {
 	$.mockjaxClear();
 
 });
-
