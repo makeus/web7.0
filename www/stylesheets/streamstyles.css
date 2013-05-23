@@ -19,3 +19,11 @@ form {
     display: block;
     height: 40px;
 }
+
+#thelist li
+{
+    position: relative;
+    list-style: none;
+    display: block;
+    height: 45px;
+}
