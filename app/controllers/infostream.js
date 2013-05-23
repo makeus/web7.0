@@ -1,7 +1,7 @@
 //document ready function, print the activity stream into specified container (#thelist)
 $(document).ready(function() {
   var stream=getStream('message,cal,note');
-  $(container).append( stream.join('') );
+  $("#thelist").append( stream.join('') );
 });
 
 function getStream(types) {
@@ -44,7 +44,7 @@ function getStream(types) {
 }
 
 function parseCalEntry(item) {
-	var entry = "<li><ul class='event'><li id='date'>" + datetimetoDate(item.time_from) + "/<li>"
+	var entry = "<li><ul class='event'><li id='date'>" + datetimetoDate(item.time_from) + "</li>"
 				+ "<li id='subject'>" + item.subject + "</li>" 
 				+ "<li>" + datetimetoTime(item.time_from) + "</li>"
 				+ "</li></ul></li>";
@@ -54,7 +54,7 @@ function parseCalEntry(item) {
 function parseMessage(item) {
 	var entry = "<li><ul class='message'><li>" + item.from_DL_id 
 				+ "</li><li> to </li><li>" + item.DL_id 
-				+ "</li>  <li id='subject'>" + item.subject 
+				+ "</li><li id='subject'>" + item.subject 
 				+ "</li><li>: </li><li id='content'>" + item.content 
 				+"</li></ul></li>";
     return entry;
@@ -71,7 +71,7 @@ function parseNotification(item) {
 function parseNote(item) {
     var entry = "<li><ul class='note'><li>" + item.from_DL_id 
           + "</li><li> to </li><li>" + item.DL_id 
-    			+ "</li> <li id='subject'>" + item.subject 
+    			+ "</li><li id='subject'>" + item.subject 
     			+ "</li><li>: </li><li id='content'>" + item.content 
     			+"</li></ul></li>";
     return entry;
