@@ -117,3 +117,37 @@ test( "addMessage test", function() {
 	$.mockjaxClear();
 
 });
+
+test( "addMessage unauthorized", function() {
+
+	$.mockjax({
+		url: url + "addactivity2",
+		status: 401,
+		statusText: "Unauthorized",
+		responseText: {
+			ErrorCode: 401,
+			ErrorMessage: "Unauthorized"
+		}
+	});
+	equal(addMessage(to_dl_id, from_dl_id, subject, link), 401);
+
+	$.mockjaxClear();
+});
+
+test( "addMessage fail method test", function() {
+
+	$.mockjax({
+		url: url + "addactivity2",
+		status: 405,
+		statusText: "Method not allowed",
+		responseText: {
+			ErrorCode: 405,
+			ErrorMessage: "Method not allowed"
+		}
+	});
+	
+	equal(addMessage(to_dl_id, from_dl_id, subject, link), 405);
+
+	$.mockjaxClear();
+});
+

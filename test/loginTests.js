@@ -37,6 +37,7 @@ test( "rest login correct username and password", function() {
 			staff: null
 		}
 	});
+	
 	login(username,password);
 	equal(getToken(),"test1234test");
 
