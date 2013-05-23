@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		var username = document.getElementById('loginUsername').value;
 		var password = document.getElementById('loginPassword').value;
 		
-		if(login(username, password != -1 )){
+		if(login(username, password) == 1 ){
 			//window.location.replace('frontpage.html');
 			var webView = new steroids.views.WebView("views/frontpage/index.html");
 			steroids.layers.push(webView);
@@ -32,18 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 var status = 0;
 
-function saveToken(data){
-	localStorage.setItem('authtoken',data.authtoken);
-}
-function saveDL_id(data){
-	localStorage.setItem('DL_id',data.DL_id);
-}
-function getToken(){
-	return localStorage.getItem('authtoken');
-}
-function getDL_id(){
-	return localStorage.getItem('DL_id');
-}
+
 function login(username, password){
 	if(username == null || password == null) {
 		return status = -1;
