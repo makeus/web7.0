@@ -1,19 +1,3 @@
-test( "getStreamTest no stream retrieved", function() {
-    var userId="1234";
-    var authToken="test1234test";
-    var expected='<li class="empty_li"></li>';
-
-    $.mockjax({
-        url: "*",
-        responseText: ""
-    });    
-	
-    equal(getStream("message,cal,note"),expected);
-
-    $.mockjaxClear();
-});
-
-
 test( "parseMessagetest", function() {
     var userId="1234";
     var authToken="test1234test";
@@ -159,6 +143,7 @@ test( "parseNotificationTest", function() {
         }]
     });
 	var expected = "<li>1: 1234: message_body to 4321</li>";
+
 
 	equal(parseNotification(getActivityStream(userId,authToken)[0]),expected);
 

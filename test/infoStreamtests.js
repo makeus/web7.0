@@ -1,6 +1,7 @@
 var url = "https://www.dliv.in/rest/";
 
 test( "InforStream REST test", function() {
+
 	var userId = "1234";
     var authToken = "test1234test";
     var offset = 10;
@@ -22,9 +23,9 @@ test( "InforStream REST test", function() {
 		}
 	});
 
-	equal(status, 1);
-	getActivityStream(userId, authToken, offset, limit);
 	
+	getActivityStream(userId, authToken, offset, limit);
+
 	$.mockjaxClear();
 
 });

@@ -8,6 +8,7 @@ function getStream(types) {
   	//loginrest
     var token=getToken();
   	var uid=getDL_id();
+    alert(token);
     var items =[];
     
     var stream=getActivityStream(uid,token,'0','100', types);
@@ -20,6 +21,7 @@ function getStream(types) {
     } else if (status > 2) {
       alert("ERROR " + status);
       items.push(parseNothing());
+
     }
 	  //error retrieving the activity stream
     //parse stream
