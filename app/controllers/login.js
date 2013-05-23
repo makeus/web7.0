@@ -13,16 +13,15 @@ document.addEventListener("DOMContentLoaded", function() {
 		* MUUT, kuten 404, 500 jne. ovat http error codejen mukaisia virheitä
 		*/
 
-		switch(true) {
-			case (res == -1):
-				$("#failLogin").removeAttr("hidden");
-			case (res == 0):
-				alert("Timeout!");
-			case (res == 1):
-				var webView = new steroids.views.WebView("views/frontpage/index.html");
-				steroids.layers.push(webView);
-			case (res > 1):
-				alert("ERROR");
+		if(res == -1) {
+			$("#failLogin").removeAttr("hidden");
+		} else if (res == 0) {
+			alert("Timeout!");
+		} else if (res == 1) {
+			var webView = new steroids.views.WebView("views/frontpage/index.html");
+			steroids.layers.push(webView);
+		} else {
+			alert("ERROR " + res);
 		}
 
 	});
