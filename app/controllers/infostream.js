@@ -8,12 +8,14 @@ function getStream(types) {
   	//loginrest
     var token=getToken();
   	var uid=getDL_id();
+    alert(token);
     var items =[];
     
     var stream=getActivityStream(uid,token,'0','100', types);
 	  //error retrieving the activity stream
-    if(stream=="") {
-      items.push(parseNothing());
+    if(stream=="" || stream=="{") {
+      //items.push(parseNothing());
+      items.push("<li>MORORRORORODOOR ISKEE</li>");
     }
     //parse stream
     else {

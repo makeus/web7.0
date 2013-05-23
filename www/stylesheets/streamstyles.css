@@ -7,3 +7,15 @@ form {
 	float:right;
 	margin-right:20px;
 }
+
+.event li,
+.message li,
+.notification li,
+.note li
+{
+    position: relative;
+    list-style: none;
+    float: left;
+    display: block;
+    height: 40px;
+}
