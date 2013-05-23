@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		var username = document.getElementById('loginUsername').value;
 		var password = document.getElementById('loginPassword').value;
 		
-		if(login(username, password == -1 )){
+		if(login(username, password != -1 )){
 			//window.location.replace('frontpage.html');
 			var webView = new steroids.views.WebView("views/frontpage/index.html");
 			steroids.layers.push(webView);
