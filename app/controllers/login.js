@@ -60,16 +60,3 @@ function login(username, password){
 	return status;
 
 }
-function checkLogin(data){
-	if(data.success != 0) {
-		status = 1;
-		saveToken(data);
-		saveDL_id(data);
-		return;
-	}
-	status = -1;
-}
-
-function failLogin(data) {
-	status = data.status;
-}

@@ -1,8 +1,17 @@
+var url = "https://www.dliv.in/rest/";
+var userId = "1234";
+var authToken = "test1234test";
+var offset = 10;
+var limit = 10;
+	
 test( "parseMessagetest", function() {
-    var userId="1234";
-    var authToken="test1234test";
+
+	$.mockjaxClear();
+	  
+
+	
     $.mockjax({
-        url: "*",
+        url: url + "stream",
         responseText: [{
             id: "1234",
             type: "message",
@@ -22,7 +31,6 @@ test( "parseMessagetest", function() {
             created: "2013-05-17 11:10:31",
             comments: "",
             relations: ""
-
         }]
     });
 	var expected = "<li><ul class='message'><li>1234</li>" 
@@ -32,15 +40,20 @@ test( "parseMessagetest", function() {
 				+ "<li>: </li>"
 				+ "<li id='content'>message_body</li>" 
 				+ "</ul></li>";
-
-	equal(parseMessage(getActivityStream(userId,authToken)[0]),expected);
+	
+	items = getActivityStream(userId, authToken, offset, limit);
+	
+	equal(parseMessage(items[0]), expected);
+	equal(getStatus(), 1);
 
     $.mockjaxClear();
+	
 });
 
 test( "parseNotetest", function() {
-    var userId="1234";
-    var authToken="test1234test";
+
+	$.mockjaxClear();
+
     $.mockjax({
         url: "*",
         responseText: [{
@@ -73,14 +86,18 @@ test( "parseNotetest", function() {
 				+ "<li id='content'>message_body</li>" 
 				+ "</ul></li>";
 
-	equal(parseNote(getActivityStream(userId,authToken)[0]),expected);
+	items = getActivityStream(userId, authToken, offset, limit);
+	
+	equal(parseNote(items[0]), expected);
+	equal(getStatus(), 1);
 
     $.mockjaxClear();
 });
 
 test( "parseCaltest", function() {
-    var userId="1234";
-    var authToken="test1234test";
+
+	$.mockjaxClear();
+	
     $.mockjax({
         url: "*",
         responseText: [{
@@ -110,14 +127,18 @@ test( "parseCaltest", function() {
 				+ "<li>04:05</li>"
 				+ "</li></ul></li>";
 
-	equal(parseCalEntry(getActivityStream(userId,authToken)[0]),expected);
+	items = getActivityStream(userId, authToken, offset, limit);
+	
+	equal(parseCalEntry(items[0]), expected);
+	equal(getStatus(), 1);
 
     $.mockjaxClear();
 });
 
 test( "parseNotificationTest", function() {
-    var userId="1234";
-    var authToken="test1234test";
+
+	$.mockjaxClear();
+	
     $.mockjax({
         url: "*",
         responseText: [{
@@ -142,10 +163,13 @@ test( "parseNotificationTest", function() {
 
         }]
     });
-	var expected = "<li>1: 1234: message_body to 4321</li>";
+	var expected = "<li>1234: 1234: message_body to 4321</li>";
+	
 
-
-	equal(parseNotification(getActivityStream(userId,authToken)[0]),expected);
+	items = getActivityStream(userId, authToken, offset, limit);
+	
+	equal(parseNotification(items[0]), expected);
+	equal(getStatus(), 1);
 
     $.mockjaxClear();
 });
@@ -154,10 +178,10 @@ test( "dateTimeToDateTest", function() {
 	var date = "1000-02-03 04:05:00";
 	var expected = "03.02.1000";
 	equal(datetimetoDate(date), expected);
-})
+});
 
 test( "dateTimeToTimeTest", function() {
 	var date = "1000-02-03 04:05:00";
 	var expected = "04:05";
 	equal(datetimetoTime(date), expected);
-})
+});

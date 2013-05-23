@@ -1,18 +1,29 @@
 var url =  "https://www.dliv.in/rest/";
+var status = 0;
+
 function loginRest(username, password){
+	status = 0;
 	$.ajax(
 	{
 		url: url+"Authtoken",
 		dataType: "json",
 		async: false,
 		data: {u: username, p: password},
-		success: checkLogin,
-		error: failLogin
+		success: function(data){
+			success(data);
+			if(getStatus() == 1) {
+					saveToken(data);
+					saveDL_id(data);
+			}
+		},
+		error: error
 	});
 }
 
 var infoStream;
+
 function getActivityStream(userId,authToken,offset,limit,types){
+	status = 0;
 	infoStream="";
 	$.ajax(
 	{
@@ -26,13 +37,20 @@ function getActivityStream(userId,authToken,offset,limit,types){
 			limit: limit, 
 			types: types
 		},
-		success: getStreamSuccess,
-		error: getStreamFail
+		success: function(data) {
+			infoStream = data;
+			success(data);
+		},
+		error: function(data) {
+			infoStream = data;
+			error(data);
+		}
 	});
 	return infoStream;
 }
 
 function addActivity(uid, auth, to_dl_id, from_dl_id, type, subject, link) {
+	status = 0;
 	$.ajax(
 	{
 		url: url+"addactivity2",
@@ -47,13 +65,26 @@ function addActivity(uid, auth, to_dl_id, from_dl_id, type, subject, link) {
 			subject: subject, 
 			link: link
 		},
-		success: successActivity,
-		error: failActivity
+		success: success,
+		error: error
 	});
 }
 
+function success(data) {
+	if(data != undefined && data.success != 0) {
+		status = 1;
+	} else {
+		status = -1;
+	}
+}
 
+function error(data) {
+	status = data.status;
+}
 
+function getStatus() {
+  return status;
+}
 
 function saveToken(data){
 	localStorage.setItem('authtoken',data.authtoken);

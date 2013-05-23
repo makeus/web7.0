@@ -2,6 +2,8 @@ var url = "https://www.dliv.in/rest/";
 
 test( "login REST test", function() {
 
+	$.mockjaxClear();
+	
     var username="test";
     var password="test";
 
@@ -27,6 +29,8 @@ test( "login REST test", function() {
 
 test( "rest login correct username and password", function() {
 
+	$.mockjaxClear();
+	
     var username="test";
     var password="test";
 	$.mockjax({
@@ -47,6 +51,7 @@ test( "rest login correct username and password", function() {
 
 test( "rest login long response time", function() {
 
+	$.mockjaxClear();
 
     var username="test";
     var password="test";
@@ -69,6 +74,7 @@ test( "rest login long response time", function() {
 
 test( "rest login timeout!", function() {
 
+	$.mockjaxClear();
 
     var username="test";
     var password="test";
@@ -85,7 +91,8 @@ test( "rest login timeout!", function() {
 
 test( "rest login 500", function() {
 
-
+	$.mockjaxClear();
+	
     var username="test";
     var password="test";
 	$.mockjax({
@@ -101,7 +108,8 @@ test( "rest login 500", function() {
 
 test( "rest login 404", function() {
 
-
+	$.mockjaxClear();
+	
     var username="test";
     var password="test";
 	$.mockjax({
@@ -118,7 +126,8 @@ test( "rest login 404", function() {
 
 test( "rest login 501", function() {
 
-
+	$.mockjaxClear();
+	
     var username="test";
     var password="test";
 	$.mockjax({
@@ -134,7 +143,8 @@ test( "rest login 501", function() {
 
 test( "rest login getDL_id", function() {
 
-
+	$.mockjaxClear();
+	
     var username="test";
     var password="test";
 	$.mockjax({
@@ -154,6 +164,7 @@ test( "rest login getDL_id", function() {
 
 test( "rest login wrong username and password", function() {
 
+	$.mockjaxClear();
 
     var username="test";
     var password="test";

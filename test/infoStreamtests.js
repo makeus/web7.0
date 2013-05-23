@@ -1,7 +1,8 @@
 var url = "https://www.dliv.in/rest/";
 
 test( "InforStream REST test", function() {
-
+	$.mockjaxClear();
+	
 	var userId = "1234";
     var authToken = "test1234test";
     var offset = 10;
@@ -23,7 +24,6 @@ test( "InforStream REST test", function() {
 		}
 	});
 
-	
 	getActivityStream(userId, authToken, offset, limit);
 
 	$.mockjaxClear();
@@ -32,8 +32,14 @@ test( "InforStream REST test", function() {
 
 test( "infostream test own id correct token", function() {
 
+	$.mockjaxClear();
+	
     var userId="1234";
-    var authToken="test1234test";
+    var authToken="wrongtoken";
+	var offset="10";
+	var limit="10";
+	var types="note";
+	
 	$.mockjax({
 		url: url + "stream",
 		responseText: [{
@@ -58,8 +64,8 @@ test( "infostream test own id correct token", function() {
 
 		}]
 	});
-
-	equal(getActivityStream(userId,authToken)[0].subject,"anna testi data");
+	
+	getActivityStream(userId,authToken,offset,limit,types);
 	equal(status, 1);
 
 	$.mockjaxClear();
@@ -68,8 +74,14 @@ test( "infostream test own id correct token", function() {
 
 test( "infostream test own id wrong token", function() {
 
+	$.mockjaxClear();
+	
     var userId="1234";
     var authToken="wrongtoken";
+	var offset="10";
+	var limit="10";
+	var types="note";
+	
 	$.mockjax({
 		url: url + "stream",
 		status: 401,
@@ -79,7 +91,8 @@ test( "infostream test own id wrong token", function() {
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	getActivityStream(userId,authToken);
+	
+	getActivityStream(userId,authToken,offset,limit,types);
 	equal(status, 401);
 	$.mockjaxClear();
 
@@ -87,8 +100,11 @@ test( "infostream test own id wrong token", function() {
 
 test( "infostream test wrong id right token", function() {
 
+	$.mockjaxClear();
+	
     var userId="1234";
     var authToken="test1234test";
+	
 	$.mockjax({
 		url: url + "stream",
 		status: 401,
@@ -107,6 +123,8 @@ test( "infostream test wrong id right token", function() {
 
 test( "getStream test", function() {
 
+	$.mockjaxClear();
+	
     var userId="1234";
     var authToken="test1234test";
 	$.mockjax({
@@ -141,6 +159,8 @@ test( "getStream test", function() {
 
 test( "getStream Unauthorized", function() {
 
+	$.mockjaxClear();
+	
     var userId="1234";
     var authToken="test1234test";
 	$.mockjax({
@@ -160,6 +180,8 @@ test( "getStream Unauthorized", function() {
 
 test( "getStream fail method test", function() {
 
+	$.mockjaxClear();
+	
 	$.mockjax({
 		url: url + "stream",
 		status: 405,

@@ -18,16 +18,8 @@ function addMessage(to_dl_id, from_dl_id, subject, link) {
 	var auth = getToken();
 	var type = "message";
 	addActivity(uid, auth, to_dl_id, from_dl_id, type, subject, link);
-	return status;
 }
 
-function successActivity(data) {
-	return status = 1;
-}
-
-function failActivity(data) {
-	status = data.status;
-}
 
 function getStream(types) {
   	//loginrest
@@ -36,17 +28,11 @@ function getStream(types) {
     var items =[];
     
     var stream=getActivityStream(uid,token,'0','10', types);
+	
     //error retrieving the activity stream
     if(stream=="") {
       items.push(parseNothing());
-    } else if(status == 0) {
-      alert("Timeout");
-      items.push(parseNothing());
-    } else if (status > 2) {
-      alert("ERROR " + status);
-      items.push(parseNothing());
-    }
-    else {
+    } else {
   	  //parse and push each json entry into its own <li> block
   	  $.each(stream, function(i, item) {
     	  switch(item.type) {
@@ -95,6 +81,7 @@ function parseNotification(item) {
         + ": " + item.content 
         + " to " + item.DL_id 
         + '</li>';
+	return entry;
 }
 
 function parseNote(item) {
@@ -121,18 +108,5 @@ function datetimetoTime(date) {
 	return date.substr(11,5);
 }
 
-var status = 0;
 
-function getStreamSuccess(data) {
-  infoStream=data;
-  status = 1;
-}
-
-function getStreamFail(data) {
-  status = data.status;
-}
-
-function getStatus() {
-  return status;
-}
 
