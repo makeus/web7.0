@@ -40,6 +40,13 @@ function getStream(types) {
     //error retrieving the activity stream
     if(stream=="") {
       items.push(parseNothing());
+    } else if(status == 0) {
+      alert("Timeout");
+      items.push(parseNothing());
+    } else if (status > 2) {
+      alert("ERROR " + status);
+      items.push(parseNothing());
+
     } else {
   	  //parse and push each json entry into its own <li> block
   	  $.each(stream, function(i, item) {
