@@ -7,6 +7,7 @@ function loginRest(username, password){
 	{
 		url: url+"Authtoken",
 		dataType: "json",
+		global: false,
 		async: false,
 		data: {u: username, p: password},
 		success: function(data){
@@ -29,6 +30,7 @@ function getActivityStream(userId,authToken,offset,limit,types){
 	{
 		url: url+"stream",
 		dataType: "json",
+		global: false,
 		async: false,
 		data: {
 			uid: userId, 
@@ -55,7 +57,9 @@ function addActivity(uid, auth, to_dl_id, from_dl_id, type, subject, link) {
 	{
 		url: url+"addactivity2",
 		type: "POST",
+		global: false,
 		async: false,
+		dataType: 'JSON', 
 		data: {
 			uid: uid, 
 			auth: auth, 
@@ -78,12 +82,21 @@ function success(data) {
 	}
 }
 
-function error(data) {
+function error(data, t, m) {
+	if(t == "timeout") {
+		alert("TIMEOUT");
+	} else {
+		alert("ERROR " + t + ": " + m);
+	}
 	status = data.status;
 }
 
 function getStatus() {
   return status;
+}
+
+function setStatus(uusi) {
+	status = uusi;
 }
 
 function saveToken(data){

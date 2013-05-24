@@ -15,8 +15,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		if(getStatus() == -1) {
 			$("#failLogin").removeAttr("hidden");
-		} else if (getStatus() == 0) {
-			alert("Timeout!");
 		} else if (getStatus() == 1) {
 			var webView = new steroids.views.WebView("views/frontpage/index.html");
 			steroids.layers.push(webView);
@@ -28,8 +26,6 @@ document.addEventListener("DOMContentLoaded", function() {
 				window.location.replace("../frontpage/index.html");
 			}
 
-		} else {
-			alert("ERROR " + res);
 		}
 
 	});
@@ -50,16 +46,15 @@ document.addEventListener("DOMContentLoaded", function() {
 	});
 });
 
-var status = 0;
 
 
 function login(username, password){
 	if(username == null || password == null) {
-		return status = -1;
+		setStatus(-1);
+		return;
 	}
 	localStorage.removeItem('authtoken');
 	localStorage.removeItem('DL_id');
 	loginRest(username, password);
-	return status;
 
 }

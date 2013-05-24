@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	$("#loginButton").click(function(){
 		var username = document.getElementById('loginUsername').value;
 		var password = document.getElementById('loginPassword').value;
-		var res = login(username, password);
+		login(username, password);
 
 		/*
 		* Res saa arvoja, mikä tilanne on
@@ -13,20 +13,19 @@ document.addEventListener("DOMContentLoaded", function() {
 		* MUUT, kuten 404, 500 jne. ovat http error codejen mukaisia virheitä
 		*/
 
-		if(res == -1) {
+		if(getStatus() == -1) {
 			$("#failLogin").removeAttr("hidden");
-		} else if (res == 0) {
-			alert("Timeout!");
-		} else if (res == 1) {
+		} else if (getStatus() == 1) {
 			var webView = new steroids.views.WebView("views/frontpage/index.html");
 			steroids.layers.push(webView);
 
-			if(navigator.userAgent == "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36") {
+
+
+			if(navigator.userAgent == "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36" ||
+				navigator.userAgent == "Mozilla/5.0 (Unknown; Linux i686) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.0 Safari/534.34") {
 				window.location.replace("../frontpage/index.html");
 			}
 
-		} else {
-			alert("ERROR " + res);
 		}
 
 	});
@@ -47,16 +46,15 @@ document.addEventListener("DOMContentLoaded", function() {
 	});
 });
 
-var status = 0;
 
 
 function login(username, password){
 	if(username == null || password == null) {
-		return status = -1;
+		setStatus(-1);
+		return;
 	}
 	localStorage.removeItem('authtoken');
 	localStorage.removeItem('DL_id');
 	loginRest(username, password);
-	return status;
 
 }

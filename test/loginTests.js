@@ -82,7 +82,8 @@ test( "rest login timeout!", function() {
 		url: url + "Authtoken",
 		isTimeout: true,
 	});
-	equal(login(username,password), 0);
+	login(username,password);
+	equal(getStatus(), 0);
 	equal(getToken(),null);
 
 	$.mockjaxClear();
@@ -99,7 +100,8 @@ test( "rest login 500", function() {
 		url: url + "Authtoken",
 		status: 500
 	});
-	equal(login(username,password), 500);
+	login(username,password);
+	equal(getStatus(), 500);
 	equal(getToken(),null);
 
 	$.mockjaxClear();
@@ -117,7 +119,8 @@ test( "rest login 404", function() {
 		status: 404
 	});
 	
-	equal(login(username,password), 404);
+	login(username,password);
+	equal(getStatus(), 404);
 	equal(getToken(),null);
 
 	$.mockjaxClear();
@@ -134,7 +137,8 @@ test( "rest login 501", function() {
 		url: url + "Authtoken",
 		status: 501
 	});
-	equal(login(username,password), 501);
+	login(username,password);
+	equal(getStatus(), 501);
 	equal(getToken(),null);
 
 	$.mockjaxClear();
@@ -155,7 +159,8 @@ test( "rest login getDL_id", function() {
 			staff: null
 		}
 	});
-	equal(login(username,password), 1);
+	login(username,password);
+	equal(getStatus(), 1);
 	equal(getDL_id(),"1234");
 
 	$.mockjaxClear();
@@ -174,7 +179,8 @@ test( "rest login wrong username and password", function() {
 			success: "0"
 		}
 	});
-	equal(login(username,password), -1);
+	login(username,password);
+	equal(getStatus(), -1);
 	equal(getToken(),null);
 
 	$.mockjaxClear();
