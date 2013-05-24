@@ -1,0 +1,29 @@
+footer {
+	position:absolute;
+	bottom:49px;
+}
+
+form {
+	float:right;
+	margin-right:20px;
+}
+
+.event li,
+.message li,
+.notification li,
+.note li
+{
+    position: relative;
+    list-style: none;
+    float: left;
+    display: block;
+    height: 40px;
+}
+
+#thelist li
+{
+    position: relative;
+    list-style: none;
+    display: block;
+    height: 45px;
+}
