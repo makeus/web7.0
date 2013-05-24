@@ -9,7 +9,7 @@ function pushView(name, page) {
 		var webView = new steroids.views.WebView("views/"+name+"/"+page);
 		steroids.layers.push(webView);
 	} else {
-		window.location.replace("../"+name+"/"+page);
+		window.location.href = "../"+name+"/"+page;
 	}
 }
 
