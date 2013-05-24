@@ -33,7 +33,9 @@ test( "parseMessagetest", function() {
             relations: ""
         }]
     });
-	var expected = "<li><ul class='message'><li>1234</li>" 
+	var expected = "<li><ul class='message'>"
+                + "<li>Message--</li>"
+                + "<li>1234</li>" 
 				+ "<li> to </li>" 
 				+ "<li>4321</li>"  
 				+ "<li id='subject'>message</li>" 
@@ -78,7 +80,9 @@ test( "parseNotetest", function() {
 
         }]
     });
-	var expected = "<li><ul class='note'><li>1234</li>" 
+	var expected = "<li><ul class='note'>"
+                + "<li>Note--</li>"
+                + "<li>1234</li>" 
 				+ "<li> to </li>" 
 				+ "<li>4321</li>"  
 				+ "<li id='subject'>message</li>" 
@@ -122,7 +126,9 @@ test( "parseCaltest", function() {
 
         }]
     });
-	var expected = "<li><ul class='event'><li id='date'>03.02.1000</li>"
+	var expected = "<li><ul class='event'>"
+                + "<li>Event--</li>"
+                + "<li id='date'>03.02.1000</li>"
 				+ "<li id='subject'>message</li>" 
 				+ "<li>04:05</li>"
 				+ "</li></ul></li>";
@@ -163,7 +169,7 @@ test( "parseNotificationTest", function() {
 
         }]
     });
-	var expected = "<li>1234: 1234: message_body to 4321</li>";
+	var expected = "<li>Notification--</li><li>1234: 1234: message_body to 4321</li>";
 	
 
 	items = getActivityStream(userId, authToken, offset, limit);
