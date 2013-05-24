@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	$("#loginButton").click(function(){
 		var username = document.getElementById('loginUsername').value;
 		var password = document.getElementById('loginPassword').value;
-		var res = login(username, password);
+		login(username, password);
 
 		/*
 		* Res saa arvoja, mikä tilanne on
@@ -13,11 +13,11 @@ document.addEventListener("DOMContentLoaded", function() {
 		* MUUT, kuten 404, 500 jne. ovat http error codejen mukaisia virheitä
 		*/
 
-		if(res == -1) {
+		if(getStatus() == -1) {
 			$("#failLogin").removeAttr("hidden");
-		} else if (res == 0) {
+		} else if (getStatus() == 0) {
 			alert("Timeout!");
-		} else if (res == 1) {
+		} else if (getStatus() == 1) {
 			var webView = new steroids.views.WebView("views/frontpage/index.html");
 			steroids.layers.push(webView);
 
