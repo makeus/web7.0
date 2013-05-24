@@ -35,7 +35,7 @@ function getStream(types) {
   	var uid=getDL_id();
     var items =[];
     
-    var stream=getActivityStream(uid,token,'0','10', types);
+    var stream=getActivityStream(uid,token,'0','50', types);
 	
     //error retrieving the activity stream
     if(stream=="") {
@@ -67,7 +67,9 @@ function getStream(types) {
 }
 
 function parseCalEntry(item) {
-	var entry = "<li><ul class='event'><li id='date'>" + datetimetoDate(item.time_from) + "</li>"
+	var entry = "<li><ul class='event'>"
+                + "<li>Event--</li>"
+                + "<li id='date'>" + datetimetoDate(item.time_from) + "</li>"
 				+ "<li id='subject'>" + item.subject + "</li>" 
 				+ "<li>" + datetimetoTime(item.time_from) + "</li>"
 				+ "</li></ul></li>";
@@ -75,7 +77,9 @@ function parseCalEntry(item) {
 }
 
 function parseMessage(item) {
-	var entry = "<li><ul class='message'><li>" + item.from_DL_id 
+	var entry = "<li><ul class='message'>"
+                + "<li>Message--</li>"
+                + "<li>" + item.from_DL_id 
 				+ "</li><li> to </li><li>" + item.DL_id 
 				+ "</li><li id='subject'>" + item.subject 
 				+ "</li><li>: </li><li id='content'>" + item.content 
@@ -84,7 +88,8 @@ function parseMessage(item) {
 }
 
 function parseNotification(item) {
-	var entry = "<li>" + item.id
+	var entry = "<li>Notification--</li>"
+        + "<li>" +item.id 
         + ": " + item.from_DL_id 
         + ": " + item.content 
         + " to " + item.DL_id 
@@ -93,8 +98,10 @@ function parseNotification(item) {
 }
 
 function parseNote(item) {
-    var entry = "<li><ul class='note'><li>" + item.from_DL_id 
-          + "</li><li> to </li><li>" + item.DL_id 
+    var entry = "<li><ul class='note'>"
+                + "<li>Note--</li>"
+                + "<li>" + item.from_DL_id 
+                + "</li><li> to </li><li>" + item.DL_id 
     			+ "</li><li id='subject'>" + item.subject 
     			+ "</li><li>: </li><li id='content'>" + item.content 
     			+"</li></ul></li>";
