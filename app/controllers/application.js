@@ -1,6 +1,18 @@
 var url =  "https://www.dliv.in/rest/";
 var status = 0;
 
+function pushView(name, page) {
+	if (page == undefined)
+		page = "index.html";
+
+	if (isSteroids()) {
+		var webView = new steroids.views.WebView("views/"+name+"/"+page);
+		steroids.layers.push(webView);
+	} else {
+		window.location.replace("../"+name+"/"+page);
+	}
+}
+
 function loginRest(username, password){
 	status = 0;
 	$.ajax(
