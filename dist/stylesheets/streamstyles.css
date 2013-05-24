@@ -18,6 +18,7 @@ form {
     float: left;
     display: block;
     height: 40px;
+    padding-right:2px;
 }
 
 #thelist li
@@ -26,4 +27,5 @@ form {
     list-style: none;
     display: block;
     height: 45px;
+    border-bottom:solid gray 1px;
 }
