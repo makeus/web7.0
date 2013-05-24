@@ -16,8 +16,18 @@ document.addEventListener("DOMContentLoaded", function() {
 		if(getStatus() == -1) {
 			$("#failLogin").removeAttr("hidden");
 		} else if (getStatus() == 1) {
-			pushView("frontpage");
+			var webView = new steroids.views.WebView("views/frontpage/index.html");
+			steroids.layers.push(webView);
+
+
+
+			if(navigator.userAgent == "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36" ||
+				navigator.userAgent == "Mozilla/5.0 (Unknown; Linux i686) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.0 Safari/534.34") {
+				window.location.replace("../frontpage/index.html");
+			}
+
 		}
+
 	});
 	
 	$("#loginUsername").keyup(function(event){
@@ -31,7 +41,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 	});
 
-	createAdeleButton();
+	$("#nappi").hammer().on("tap", function() {
+		alert("Herp");
+	});
 });
 
 
