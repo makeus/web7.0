@@ -35,10 +35,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 	});
 
-	$("#nappi").hammer().on("tap", function() {
-		alert("Herp");
-	});
-
 	createAdeleButton();
 });
 
