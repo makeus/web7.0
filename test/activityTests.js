@@ -15,7 +15,7 @@ test( "addActivity REST test", function() {
 	$.mockjaxClear();
 	
 	$.mockjax({
-		url: /https:\/\/www.dliv.in\/rest\/addactivity2/,
+		url: /https:\/\/www.dliv.in\/rest\/stream/,
 		urlParams: [
 			'uid',
 			'auth',
@@ -37,7 +37,7 @@ test( "addActivity REST test", function() {
 		
 	});
 
-	addActivity(userId, authtoken, to_dl_id, from_dl_id, type, subject, link);
+	addActivity({'uid':userId, 'auth':authtoken, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject':subject, 'link':link});
 
 	$.mockjaxClear();
 
@@ -48,7 +48,7 @@ test( "addActivity unauthorized", function() {
 	$.mockjaxClear();
 	
 	$.mockjax({
-		url: url + "addactivity2",
+		url: url + "stream",
 		status: 401,
 		statusText: "Unauthorized",
 		responseText: {
@@ -56,7 +56,7 @@ test( "addActivity unauthorized", function() {
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	addActivity(userId, authtoken, to_dl_id, from_dl_id, type, subject, link);
+	addActivity({'userId':userId, 'authtoken':authtoken, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject':subject, 'link':link});
 	equal(status, 401);
 
 	$.mockjaxClear();
@@ -67,7 +67,7 @@ test( "addActivity fail method test", function() {
 	$.mockjaxClear();
 	
 	$.mockjax({
-		url: url + "addactivity2",
+		url: url + "stream",
 		status: 405,
 		statusText: "Method not allowed",
 		responseText: {
@@ -76,7 +76,8 @@ test( "addActivity fail method test", function() {
 		}
 	});
 	
-	addActivity(userId, authtoken, to_dl_id, from_dl_id, type, subject, link);
+	addActivity({'userId':userId, 'authtoken':authtoken, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject':subject, 'link':link});
+
 	equal(status, 405);
 
 	$.mockjaxClear();
@@ -97,7 +98,7 @@ test( "addMessage test", function() {
 	})
 
 	$.mockjax({
-		url: /https:\/\/www.dliv.in\/rest\/addactivity2/,
+		url: /https:\/\/www.dliv.in\/rest\/stream/,
 		urlParams: [
 			'uid',
 			'auth',
@@ -105,7 +106,6 @@ test( "addMessage test", function() {
 			'from_dl_id',
 			'type',
 			'subject',
-			'link'
 		],
 		response: function(settings) {
 			equal(settings.data.uid, userId, "Userid ei muutu");
@@ -114,13 +114,12 @@ test( "addMessage test", function() {
 			equal(settings.data.from_dl_id, from_dl_id, "From_DL_ID ei muutu");
 			equal(settings.data.type, type, "Type ei muutu");
 			equal(settings.data.subject, subject, "Subject ei muutu");
-			equal(settings.data.link, link, settings.data.link, "Link ei muutu");
 		}
 		
 	});
 
 	login(username, password);
-	addMessage(to_dl_id, from_dl_id, subject, link);
+	addMessage(to_dl_id, from_dl_id, subject);
 
 	$.mockjaxClear();
 
@@ -131,7 +130,7 @@ test( "addMessage unauthorized", function() {
 	$.mockjaxClear();
 	
 	$.mockjax({
-		url: url + "addactivity2",
+		url: url + "stream",
 		status: 401,
 		statusText: "Unauthorized",
 		responseText: {
@@ -150,7 +149,7 @@ test( "addMessage fail method test", function() {
 	$.mockjaxClear();
 	
 	$.mockjax({
-		url: url + "addactivity2",
+		url: url + "stream",
 		status: 405,
 		statusText: "Method not allowed",
 		responseText: {

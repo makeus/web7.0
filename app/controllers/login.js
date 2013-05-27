@@ -5,14 +5,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		var password = document.getElementById('loginPassword').value;
 		login(username, password);
 
-		/*
-		* Res saa arvoja, mikä tilanne on
-		* -1 väärät tunnukset
-		* 0 timeout
-		* 1 onnistunut kirjautuminen
-		* MUUT, kuten 404, 500 jne. ovat http error codejen mukaisia virheitä
-		*/
-
 		if(getStatus() == -1) {
 			$("#failLogin").removeAttr("hidden");
 		} else if (getStatus() == 1) {
