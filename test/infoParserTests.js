@@ -191,3 +191,60 @@ test( "dateTimeToTimeTest", function() {
 	var expected = "04:05";
 	equal(datetimetoTime(date), expected);
 });
+
+test( "Show messages test found message", function() {
+
+    $.mockjaxClear();
+    
+    $.mockjax({
+        url: url + "stream",
+        responseText: [{
+            id: "1234",
+            type: "message",
+            sub_type: "",
+            DL_id: "4321",
+            from_DL_id: "1234",
+            subject: "message",
+            link: "",
+            content: "message_body",
+            locatio: "",
+            time_from: "0000-00-00 00:00:00",
+            time_to: "0000-00-00 00:00:00",
+            acl: "read",
+            whitelist_dlid: "",
+            completed: null,
+            completed_by: null,
+            created: "2013-05-17 11:10:31",
+            comments: "",
+            relations: ""
+        }]
+    });
+
+    var expected = "<li><ul class='message'><li>Message--</li>"
+                + "<li>1234</li><li> to </li>"
+                + "<li>4321</li>"
+                + "<li id='subject'>message</li>"
+                + "<li>: </li><li id='content'>message_body</li>" 
+                + "</ul></li>";
+    
+    equal(showMessages(),expected);
+    equal(getStatus(),1);
+    $.mockjaxClear();
+});
+
+test( "Show messages test no results", function() {
+
+    $.mockjaxClear();
+    
+    $.mockjax({
+        url: url + "stream",
+        status:201,
+        responseText: ""
+    });
+
+    var expected = "";
+    
+    equal(showMessages(),expected);
+    equal(getStatus(),201);
+    $.mockjaxClear();
+});

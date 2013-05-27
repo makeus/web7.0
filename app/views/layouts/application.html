@@ -28,20 +28,12 @@
   <script src="../../models/models.js"></script>
 
   <script src="../../javascripts/debug.js"></script>
-  <script src="../../controllers/application.js"></script>
+  <script src="../../controllers/global/application.js"></script>
+  <script src="../../controllers/global/rest.js"></script>
+  <script src="../../controllers/global/view.js"></script>
   <script src="../../controllers/<%= yield.controller %>.js"></script>
-
-
-
-  <!--our own js -->
-   <!--
- 
-  <script src="javascripts/authFunctions.js"></script>
-  <script src="javascripts/loginForm.js"></script>
-  <script src="javascripts/restFunctions.js"></script>
-  -->
-
 </head>
+
 <body>
   
   <%= yield.view %>
