@@ -71,6 +71,7 @@ function showMessages() {
     if (messages !="") {
         $("#thelist").replaceWith("<ul id ='thelist'>" + messages.join('') + "</ul>")
     }
+    return messages;
 }
 
 function parseCalEntry(item) {
