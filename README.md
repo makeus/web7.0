@@ -1,4 +1,4 @@
-//"*~~Brand new web 7.0~~*"\\
+(\\-//"*~~Brand new web 7.0~~*"\\-//)
 
 1. Install nvm & steroids 
 
@@ -6,3 +6,4 @@
 
 3. Enjoy web 7.0!
 
+/( :) )\
