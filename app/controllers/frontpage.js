@@ -18,14 +18,14 @@ document.addEventListener("DOMContentLoaded",function(){
 
 var status = 0;
 
-function addMessage(to_dl_id, from_dl_id, subject, link) {
+function addMessage(to_dl_id, from_dl_id, subject, link, content) {
 	if(to_dl_id == null || from_dl_id == null || subject == null) {
 		return -1;
 	}
 	var uid = getDL_id();
 	var auth = getToken();
 	var type = "message";
-	addActivity(uid, auth, to_dl_id, from_dl_id, type, subject, link);
+	addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 'content':content, 'link':link});
 }
 
 
@@ -40,13 +40,6 @@ function getStream(types) {
     //error retrieving the activity stream
     if(stream=="") {
       items.push(parseNothing());
-    } else if(status == 0) {
-      alert("Timeout");
-      items.push(parseNothing());
-    } else if (status > 2) {
-      alert("ERROR " + status);
-      items.push(parseNothing());
-
     } else {
   	  //parse and push each json entry into its own <li> block
   	  $.each(stream, function(i, item) {

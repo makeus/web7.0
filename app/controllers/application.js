@@ -63,24 +63,16 @@ function getActivityStream(userId,authToken,offset,limit,types){
 	return infoStream;
 }
 
-function addActivity(uid, auth, to_dl_id, from_dl_id, type, subject, link) {
+function addActivity(opts) {
 	status = 0;
 	$.ajax(
 	{
-		url: url+"addactivity2",
+		url: url+"stream",
 		type: "POST",
 		global: false,
 		async: false,
 		dataType: 'JSON', 
-		data: {
-			uid: uid, 
-			auth: auth, 
-			to_dl_id: to_dl_id, 
-			from_dl_id: from_dl_id, 
-			type: type, 
-			subject: subject, 
-			link: link
-		},
+		data: opts,
 		success: success,
 		error: error
 	});
