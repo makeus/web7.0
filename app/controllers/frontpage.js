@@ -1,12 +1,13 @@
 document.addEventListener("DOMContentLoaded",function(){
 	$("#sendMessage").hammer().on("tap", function() {
         if(getToken != 'null' && getToken != 'undefiend') {
-                addMessage(getDL_id(), getDL_id(), $("#messageField")[0].value, "");
+                addMessage(getDL_id(), getDL_id(), $("#messageField")[0].value, $("#linkField")[0].value, $("#contentField")[0].value );
         } else {
                 alert("UNAUTHORISED");
-        }   
-
+        }
 	});
+
+
     if(getToken != 'null' && getToken != 'undefiend') {
         var stream=getStream('message,cal,note');
         $("#thelist").append( stream.join('') );

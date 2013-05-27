@@ -1,14 +1,20 @@
 <section class="well">
   <h1>Welcome!</h1>
-  <!--
   <div class="form-horizontal">
     <p>Write messages here</p>
     <div class="form-inline">
-      <input type="text" id="messageField">
-      <a class="btn" href="#" id="sendMessage"><i class="icon-plus"></i></a>
+      <div id="message">
+        <input type="text" id="messageField"/>
+        <a class="btn" href="#" id="sendMessage"><i class="icon-plus"></i></a>
+      </div>
+      <div id="message-toggle-area" hidden>
+        <label>Link</label>
+        <input type="url" id="linkField" />
+        <label>Long Content</label>
+        <textarea rows="20" style="width: 100%;" id="contentField" ></textarea>
+      </div>
     </div>
   </div>
-  -->
   <div id="wrapper">
   	<div id="scroller">
   		<ul id="thelist">
