@@ -1,19 +1,24 @@
 document.addEventListener("DOMContentLoaded",function(){
 	$("#sendMessage").hammer().on("tap", function() {
-        if(getToken != 'null' && getToken != 'undefiend') {
+        if(isToken()) {
                 addMessage(getDL_id(), getDL_id(), $("#messageField")[0].value, "");
         } else {
                 alert("UNAUTHORISED");
         }   
 
 	});
-    if(getToken != 'null' && getToken != 'undefiend') {
+    if(isToken()) {
         var stream=getStream('message,cal,note');
         $("#thelist").append( stream.join('') );
     } else {
         alert("UNAUTHORISED");
     }
 
+    if(isToken()) {
+        $("#searchButton").hammer().on("tap", function() {
+            showModal("search");
+        });
+    }
 });
 
 var status = 0;
