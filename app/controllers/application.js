@@ -12,6 +12,30 @@ function pushView(name, page) {
 		window.location.href = "../"+name+"/"+page;
 	}
 }
+var userInfo;
+function getUserInfoRest(opts){
+	status = 0;
+	userInfo="";
+	$.ajax(
+	{
+		url: url+"dlid",
+		dataType: "json",
+		global: false,
+		async: false,
+		data: opts,
+		success: function(data) {
+			userInfo = data;
+			success(data);
+		},
+		error: function(data) {
+			userInfo = data;
+			error(data);
+		}
+	});
+	return userInfo;
+}
+
+
 
 function loginRest(username, password){
 	status = 0;
