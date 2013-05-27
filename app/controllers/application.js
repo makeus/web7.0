@@ -1,6 +1,11 @@
 var url =  "https://www.dliv.in/rest/";
 var status = 0;
 
+
+function getURLParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+}
+
 function pushView(name, page) {
 	if (page == undefined)
 		page = "index.html";
