@@ -96,7 +96,7 @@ function parseMessage(item) {
                 + "<li>" + item.from_DL_id 
 				+ "</li><li> to </li><li>" + item.DL_id 
 				+ "</li><li id='subject'>" + item.subject 
-				+ "</li><li>: </li><li id='content'>" + item.content.substr(0,20) + 
+				+ "</li><li>: </li><li id='content'>" + item.content.substr(0,20) 
 				+"</li></ul></li>";
     return entry;
 }
