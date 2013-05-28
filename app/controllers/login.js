@@ -35,6 +35,18 @@ function login(username, password){
 	}
 	localStorage.removeItem('authtoken');
 	localStorage.removeItem('DL_id');
-	loginRest(username, password);
+	var url = "Authtoken";
+	var opts = {'u': username, 'p': password};
+	rest(opts,url,
+		function(data){
+			success(data);
+			if(getStatus() == 1) {
+					saveToken(data);
+					saveDL_id(data);
+			}
+		},
+		function(data,t,m){
+			error(data,t,m)
+		});
 
 }

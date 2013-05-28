@@ -6,6 +6,8 @@ test( "login REST test", function() {
 	
     var username="test";
     var password="test";
+    var url = "Authtoken";
+	var opts = {'u': username, 'p': password};
 
 	$.mockjax({
 		url: /https:\/\/www.dliv.in\/rest\/Authtoken/,
@@ -21,7 +23,17 @@ test( "login REST test", function() {
 		
 	});
 
-	loginRest(username, password);
+	rest(opts,url,
+		function(data){
+			success(data);
+			if(getStatus() == 1) {
+					saveToken(data);
+					saveDL_id(data);
+			}
+		},
+		function(data,t,m){
+			error(data,t,m)
+		});
 
 	$.mockjaxClear();
 
