@@ -70,10 +70,11 @@ function addMessage(to_dl_id, from_dl_id, subject, link, content) {
 }
 
 
-function getStream(types) {
+function getStream(types,dlid) {
     var items =[];
-    
-    var stream=getActivityStream('0','50', types);
+    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types,'dlid':dlid};
+
+    var stream=getActivityStream(opts);
 	
     //error retrieving the activity stream
     if(stream=="") {

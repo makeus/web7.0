@@ -75,14 +75,7 @@ test( "infostream test own id correct token", function() {
 		}]
 	});
 	
-	rest(opts,url,function(data) {
-			result = data;
-			success(data);
-		},
-		function(data) {
-			result = data;
-			error(data);
-		});
+	getActivityStream(opts);
 	equal(status, 1);
 
 	$.mockjaxClear();
@@ -111,14 +104,7 @@ test( "infostream test own id wrong token", function() {
 		}
 	});
 	
-	rest(opts,url,function(data) {
-			result = data;
-			success(data);
-		},
-		function(data) {
-			result = data;
-			error(data);
-		});
+	getActivityStream(opts);
 	equal(status, 401);
 	$.mockjaxClear();
 
@@ -144,14 +130,7 @@ test( "infostream test wrong id right token", function() {
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	rest(opts,url,function(data) {
-			result = data;
-			success(data);
-		},
-		function(data) {
-			result = data;
-			error(data);
-		});
+	getActivityStream(opts);
 	equal(status, 401);
 	$.mockjaxClear();
 
