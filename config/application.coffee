@@ -18,7 +18,8 @@ steroids.config.location = "http://localhost/views/login/index.html"
 # E.g. by adding mobileapp.example.com to the list, http://mobileapp.example.com/index.html will be served locally, just like http://localhost/index.html.
 # Default: []
 #
-# steroids.config.hosts = ["mobileapp.example.com", "m.example.net"]
+
+#steroids.config.hosts = ["dliv.in/rest/", "dliv.in", "www.dliv.in/rest", "www.dliv.in"]
 
 # -- Enabling tabs --
 #

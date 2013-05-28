@@ -1,7 +1,25 @@
 document.addEventListener("DOMContentLoaded",function(){
 	$("#sendMessage").hammer().on("tap", function() {
         if(isToken()) {
-                addMessage(getDL_id(), getDL_id(), $("#messageField")[0].value, $("#linkField")[0].value, $("#contentField")[0].value );
+                var subject = $("#messageField")[0].value;
+                var link = $("#linkField")[0].value;
+                var content = $("#contentField")[0].value;
+
+                addMessage(getDL_id(), getDL_id(), subject, link , content);
+
+                var message = parseMessage(
+                {
+                    'from_DL_id': getDL_id(), 
+                    'DL_id': getDL_id(), 
+                    'to_DL_id': getDL_id(),
+                    'subject': subject, 
+                    'link': link, 
+                    'content': content
+                });
+
+                resetMessageFields();
+
+                $("#thelist").prepend(message);
         } else {
                 alert("UNAUTHORISED");
         }
@@ -10,6 +28,13 @@ document.addEventListener("DOMContentLoaded",function(){
     $("#messageField").focus(function() {
         $("#message-toggle-area").removeAttr("hidden");
     });
+
+    /*
+    $("#formi").focusout(function() {
+        hideMessageFields();
+    });
+    -->
+    */
 
     if(isToken()) {
         var stream=getStream('message,cal,note');
@@ -25,7 +50,16 @@ document.addEventListener("DOMContentLoaded",function(){
     }
 });
 
-var status = 0;
+function hideMessageFields() {
+    $("#message-toggle-area").attr("hidden", "hidden");
+}
+
+function resetMessageFields() {
+    $("#messageField")[0].value = "";
+    $("#linkField")[0].value = "";
+    $("#contentField")[0].value = "";
+    hideMessageFields();
+}
 
 function addMessage(to_dl_id, from_dl_id, subject, link, content) {
 	if(to_dl_id == null || from_dl_id == null || subject == null) {
