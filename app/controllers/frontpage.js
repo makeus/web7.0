@@ -25,16 +25,14 @@ document.addEventListener("DOMContentLoaded",function(){
         }
 	});
 
-    $("#messageField").focus(function() {
-        $("#message-toggle-area").removeAttr("hidden");
-    });
+    // $("#messageField").focus(function() {
+    //     $("#message-toggle-area").removeAttr("hidden");
+    // });
 
-    /*
+    
     $("#formi").focusout(function() {
         hideMessageFields();
     });
-    -->
-    */
 
     if(isToken()) {
         var stream=getStream('message,cal,note');
@@ -73,12 +71,9 @@ function addMessage(to_dl_id, from_dl_id, subject, link, content) {
 
 
 function getStream(types) {
-  	//loginrest
-    var token=getToken();
-  	var uid=getDL_id();
     var items =[];
     
-    var stream=getActivityStream(uid,token,'0','50', types);
+    var stream=getActivityStream('0','50', types);
 	
     //error retrieving the activity stream
     if(stream=="") {

@@ -1,4 +1,3 @@
-var url = "https://www.dliv.in/rest/";
 
 test( "InforStream REST test", function() {
 	$.mockjaxClear();
@@ -7,6 +6,8 @@ test( "InforStream REST test", function() {
     var authToken = "test1234test";
     var offset = 10;
     var limit = 10;
+    var opts = {'uid': userId, 'auth': authToken, 'offset': offset, 'limit': limit};
+	var url = "stream";
 
 	$.mockjax({
 		url: /https:\/\/www.dliv.in\/rest\/stream/,
@@ -24,7 +25,14 @@ test( "InforStream REST test", function() {
 		}
 	});
 
-	getActivityStream(userId, authToken, offset, limit);
+	rest(opts,url,function(data) {
+			result = data;
+			success(data);
+		},
+		function(data) {
+			result = data;
+			error(data);
+		});
 
 	$.mockjaxClear();
 
@@ -39,9 +47,11 @@ test( "infostream test own id correct token", function() {
 	var offset="10";
 	var limit="10";
 	var types="note";
+	var opts = {'uid': userId, 'auth': authToken, 'offset': offset, 'limit': limit};
+	var url = "stream";
 	
 	$.mockjax({
-		url: url + "stream",
+		url: /https:\/\/www.dliv.in\/rest\/stream/,
 		responseText: [{
 			id: "1234",
 			type: "note",
@@ -65,7 +75,14 @@ test( "infostream test own id correct token", function() {
 		}]
 	});
 	
-	getActivityStream(userId,authToken,offset,limit,types);
+	rest(opts,url,function(data) {
+			result = data;
+			success(data);
+		},
+		function(data) {
+			result = data;
+			error(data);
+		});
 	equal(status, 1);
 
 	$.mockjaxClear();
@@ -81,9 +98,11 @@ test( "infostream test own id wrong token", function() {
 	var offset="10";
 	var limit="10";
 	var types="note";
+	var opts = {'uid': userId, 'auth': authToken, 'offset': offset, 'limit': limit};
+	var url = "stream";
 	
 	$.mockjax({
-		url: url + "stream",
+		url: /https:\/\/www.dliv.in\/rest\/stream/,
 		status: 401,
 		statusText: "Unauthorized",
 		responseText: {
@@ -92,7 +111,14 @@ test( "infostream test own id wrong token", function() {
 		}
 	});
 	
-	getActivityStream(userId,authToken,offset,limit,types);
+	rest(opts,url,function(data) {
+			result = data;
+			success(data);
+		},
+		function(data) {
+			result = data;
+			error(data);
+		});
 	equal(status, 401);
 	$.mockjaxClear();
 
@@ -104,9 +130,13 @@ test( "infostream test wrong id right token", function() {
 	
     var userId="1234";
     var authToken="test1234test";
+    var offset="10";
+    var limit="10";
+    var opts = {'uid': userId, 'auth': authToken, 'offset': offset, 'limit': limit};
+	var url = "stream";
 	
 	$.mockjax({
-		url: url + "stream",
+		url: /https:\/\/www.dliv.in\/rest\/stream/,
 		status: 401,
 		statusText: "Unauthorized",
 		responseText: {
@@ -114,7 +144,14 @@ test( "infostream test wrong id right token", function() {
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	getActivityStream(userId,authToken);
+	rest(opts,url,function(data) {
+			result = data;
+			success(data);
+		},
+		function(data) {
+			result = data;
+			error(data);
+		});
 	equal(status, 401);
 	$.mockjaxClear();
 
@@ -128,7 +165,7 @@ test( "getStream test", function() {
     var userId="1234";
     var authToken="test1234test";
 	$.mockjax({
-		url: url + "stream",
+		url: /https:\/\/www.dliv.in\/rest\/stream/,
 		responseText: [{
 			id: "1234",
 			type: "note",
@@ -164,7 +201,7 @@ test( "getStream Unauthorized", function() {
     var userId="1234";
     var authToken="test1234test";
 	$.mockjax({
-		url: url + "stream",
+		url: /https:\/\/www.dliv.in\/rest\/stream/,
 		status: 401,
 		statusText: "Unauthorized",
 		responseText: {
@@ -183,7 +220,7 @@ test( "getStream fail method test", function() {
 	$.mockjaxClear();
 	
 	$.mockjax({
-		url: url + "stream",
+		url: /https:\/\/www.dliv.in\/rest\/stream/,
 		status: 405,
 		statusText: "Method not allowed",
 		responseText: {

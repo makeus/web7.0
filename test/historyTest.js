@@ -6,6 +6,7 @@ test( "history REST test", function() {
 	var uid = "1234";
     var authToken = "test1234test";
     var dl_id = "4321";
+    var url="gethistory";
 
 	$.mockjax({
 		url: /https:\/\/www.dliv.in\/rest\/gethistory/,
@@ -21,7 +22,15 @@ test( "history REST test", function() {
 		}
 	});
 
-	getHistoryRest({'dl_id':dl_id,'auth':authToken,'uid':uid});
+	rest({'dl_id':dl_id,'auth':authToken,'uid':uid},url,
+		function(data) {
+			searchResult = data;
+			success(data);
+		},
+		function(data) {
+			searchResult = data;
+			error(data);
+		});
 
 	$.mockjaxClear();
 
@@ -35,6 +44,7 @@ test( "history correct id and token", function() {
     var uid = "1234";
     var authToken = "test1234test";
     var dl_id = "4321";
+    var url="gethistory";
 	
 	$.mockjax({
 		url: /https:\/\/www.dliv.in\/rest\/gethistory/,
@@ -57,7 +67,15 @@ test( "history correct id and token", function() {
 		}]
 	});
 	
-	getHistoryRest({'dl_id':dl_id,'auth':authToken,'uid':uid});
+	rest({'dl_id':dl_id,'auth':authToken,'uid':uid},url,
+		function(data) {
+			searchResult = data;
+			success(data);
+		},
+		function(data) {
+			searchResult = data;
+			error(data);
+		});
 	equal(status, 1);
 
 	$.mockjaxClear();
@@ -71,6 +89,7 @@ test( "history correct token, uid, no permission to view page", function() {
     var uid = "1234";
     var authToken = "test1234test";
     var dl_id = "4321";
+    var url="gethistory";
 	
 	$.mockjax({
 		url: /https:\/\/www.dliv.in\/rest\/gethistory/,
@@ -85,7 +104,15 @@ test( "history correct token, uid, no permission to view page", function() {
 		}]
 	});
 	
-	getHistoryRest({'dl_id':dl_id,'auth':authToken,'uid':uid});
+	rest({'dl_id':dl_id,'auth':authToken,'uid':uid},url,
+		function(data) {
+			searchResult = data;
+			success(data);
+		},
+		function(data) {
+			searchResult = data;
+			error(data);
+		});
 	equal(status, 1);
 
 	$.mockjaxClear();
@@ -99,6 +126,7 @@ test( "history test wrong token, correct uid", function() {
     var uid = "1234";
     var authToken = "tokenWoken";
     var dl_id = "4321";
+    var url="gethistory";
 	
 	$.mockjax({
 		url: /https:\/\/www.dliv.in\/rest\/gethistory/,
@@ -114,7 +142,15 @@ test( "history test wrong token, correct uid", function() {
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	getHistoryRest({'dl_id':dl_id,'auth':authToken,'uid':uid});
+	rest({'dl_id':dl_id,'auth':authToken,'uid':uid},url,
+		function(data) {
+			searchResult = data;
+			success(data);
+		},
+		function(data) {
+			searchResult = data;
+			error(data);
+		});
 	equal(status, 401);
 
 	
@@ -128,6 +164,7 @@ test( "history test correct token, wrong uid", function() {
     var uid = "007";
     var authToken = "1234test4321";
     var dl_id = "4321";
+    var url="gethistory";
 	
 	$.mockjax({
 		url: /https:\/\/www.dliv.in\/rest\/gethistory/,
@@ -143,7 +180,15 @@ test( "history test correct token, wrong uid", function() {
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	getHistoryRest({'dl_id':dl_id,'auth':authToken,'uid':uid});
+	rest({'dl_id':dl_id,'auth':authToken,'uid':uid},url,
+		function(data) {
+			searchResult = data;
+			success(data);
+		},
+		function(data) {
+			searchResult = data;
+			error(data);
+		});
 	equal(status, 401);
 
 	
@@ -159,6 +204,7 @@ test( "getHistory test", function() {
     var uid = "1234";
     var authToken = "test1234test";
     var dl_id = "4321";
+    var url="gethistory";
 	
 	$.mockjax({
 		url: /https:\/\/www.dliv.in\/rest\/gethistory/,
