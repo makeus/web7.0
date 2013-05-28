@@ -6,17 +6,14 @@
 
 <section class="well" id="formi">
   <h1>Welcome!</h1>
-    <p>Write messages here</p>
-    <div>
-      <div class=".form-inline" id="message">
-        <input type="text" id="messageField"/>
-        <a href="#" id="sendMessage"><i class="icon-plus"></i></a>
+    <div id="message">
+      <div id="message-shown">
+        <input type="text" id="messageField" placeholder="What are you working on?"/>
+        <button id="sendMessage">+</button>
       </div>
-      <div id="message-toggle-area" hidden>
-        <label>Link</label>
-        <input type="url" id="linkField" />
-        <label>Long Content</label>
-        <textarea rows="10" style="width: 100%;" id="contentField" ></textarea>
+      <div id="message-hidden" hidden>
+        <label>Link</label><br/>
+        <input type="url" id="linkField" placeholder="http://" />
        </div>
     </div>
 </section>

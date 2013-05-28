@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded",function(){
 	});
 
     $("#messageField").focus(function() {
-        $("#message-toggle-area").removeAttr("hidden");
+        $("#message-hidden").removeAttr("hidden");
     });
 
     
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded",function(){
 });
 
 function hideMessageFields() {
-    $("#message-toggle-area").attr("hidden", "hidden");
+    $("#message-hidden").attr("hidden", "hidden");
 }
 
 function resetMessageFields() {
