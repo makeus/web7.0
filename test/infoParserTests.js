@@ -1,18 +1,26 @@
-var url = "https://www.dliv.in/rest/";
-var userId = "1234";
+test( "parseMessagetest", function() {
+    var userId = "1234";
 var authToken = "test1234test";
 var offset = 10;
 var limit = 10;
-	
-test( "parseMessagetest", function() {
+var types="note,cal,message";
+var opts = {'uid': userId, 'auth': authToken, 'offset': offset, 'limit': limit, 'types':types};
+var url = "stream";
 
 	$.mockjaxClear();
 	  
 
 	
     $.mockjax({
-        url: url + "stream",
-        responseText: [{
+        url: /https:\/\/www.dliv.in\/rest\/stream/,
+        urlParams: [
+            'uid',
+            'auth',
+            'offset',
+            'limit',
+            'types'
+        ],
+        responseText: {
             id: "1234",
             type: "message",
             sub_type: "",
@@ -31,7 +39,7 @@ test( "parseMessagetest", function() {
             created: "2013-05-17 11:10:31",
             comments: "",
             relations: ""
-        }]
+        }
     });
 	var expected = "<li><ul class='message'>"
                 + "<li>Message--</li>"
@@ -43,9 +51,18 @@ test( "parseMessagetest", function() {
 				+ "<li id='content'>message_body</li>" 
 				+ "</ul></li>";
 	
-	items = getActivityStream(userId, authToken, offset, limit);
+	var items = rest(opts,url,function(data) {
+            result = data;
+            success(data);
+        },
+        function(data) {
+            result = data;
+            error(data);
+        });
+    console.log("wtf");
+    console.log(items);
 	
-	equal(parseMessage(items[0]), expected);
+	equal(parseMessage(items), expected);
 	equal(getStatus(), 1);
 
     $.mockjaxClear();
@@ -53,11 +70,25 @@ test( "parseMessagetest", function() {
 });
 
 test( "parseNotetest", function() {
+    var userId = "1234";
+var authToken = "test1234test";
+var offset = 10;
+var limit = 10;
+var types="note,cal,message";
+var opts = {'uid': userId, 'auth': authToken, 'offset': offset, 'limit': limit, 'types':types};
+var url = "stream";
 
 	$.mockjaxClear();
 
     $.mockjax({
-        url: "*",
+        url: /https:\/\/www.dliv.in\/rest\/stream/,
+        urlParams: [
+            'uid',
+            'auth',
+            'offset',
+            'limit',
+            'types'
+        ],
         responseText: [{
             id: "1234",
             type: "note",
@@ -90,7 +121,14 @@ test( "parseNotetest", function() {
 				+ "<li id='content'>message_body</li>" 
 				+ "</ul></li>";
 
-	items = getActivityStream(userId, authToken, offset, limit);
+	items = rest(opts,url,function(data) {
+            result = data;
+            success(data);
+        },
+        function(data) {
+            result = data;
+            error(data);
+        });
 	
 	equal(parseNote(items[0]), expected);
 	equal(getStatus(), 1);
@@ -99,11 +137,25 @@ test( "parseNotetest", function() {
 });
 
 test( "parseCaltest", function() {
+    var userId = "1234";
+var authToken = "test1234test";
+var offset = 10;
+var limit = 10;
+var types="note,cal,message";
+var opts = {'uid': userId, 'auth': authToken, 'offset': offset, 'limit': limit, 'types':types};
+var url = "stream";
 
 	$.mockjaxClear();
 	
     $.mockjax({
-        url: "*",
+        url: /https:\/\/www.dliv.in\/rest\/stream/,
+        urlParams: [
+            'uid',
+            'auth',
+            'offset',
+            'limit',
+            'types'
+        ],
         responseText: [{
             id: "1234",
             type: "cal",
@@ -133,7 +185,14 @@ test( "parseCaltest", function() {
 				+ "<li>04:05</li>"
 				+ "</li></ul></li>";
 
-	items = getActivityStream(userId, authToken, offset, limit);
+	items = rest(opts,url,function(data) {
+            result = data;
+            success(data);
+        },
+        function(data) {
+            result = data;
+            error(data);
+        });
 	
 	equal(parseCalEntry(items[0]), expected);
 	equal(getStatus(), 1);
@@ -142,11 +201,25 @@ test( "parseCaltest", function() {
 });
 
 test( "parseNotificationTest", function() {
+    var userId = "1234";
+var authToken = "test1234test";
+var offset = 10;
+var limit = 10;
+var types="note,cal,message";
+var opts = {'uid': userId, 'auth': authToken, 'offset': offset, 'limit': limit, 'types':types};
+var url = "stream";
 
 	$.mockjaxClear();
 	
     $.mockjax({
-        url: "*",
+        url: /https:\/\/www.dliv.in\/rest\/stream/,
+        urlParams: [
+            'uid',
+            'auth',
+            'offset',
+            'limit',
+            'types'
+        ],
         responseText: [{
             id: "1234",
             type: "notification",
@@ -172,7 +245,14 @@ test( "parseNotificationTest", function() {
 	var expected = "<li>Notification--</li><li>1234: 1234: message_body to 4321</li>";
 	
 
-	items = getActivityStream(userId, authToken, offset, limit);
+	items = rest(opts,url,function(data) {
+            result = data;
+            success(data);
+        },
+        function(data) {
+            result = data;
+            error(data);
+        });
 	
 	equal(parseNotification(items[0]), expected);
 	equal(getStatus(), 1);
@@ -193,11 +273,25 @@ test( "dateTimeToTimeTest", function() {
 });
 
 test( "Show messages test found message", function() {
+    var userId = "1234";
+var authToken = "test1234test";
+var offset = 10;
+var limit = 10;
+var types="note,cal,message";
+var opts = {'uid': userId, 'auth': authToken, 'offset': offset, 'limit': limit, 'types':types};
+var url = "stream";
 
     $.mockjaxClear();
     
     $.mockjax({
-        url: url + "stream",
+        url: /https:\/\/www.dliv.in\/rest\/stream/,
+        urlParams: [
+            'uid',
+            'auth',
+            'offset',
+            'limit',
+            'types'
+        ],
         responseText: [{
             id: "1234",
             type: "message",
@@ -237,7 +331,14 @@ test( "Show messages test no results", function() {
     $.mockjaxClear();
     
     $.mockjax({
-        url: url + "stream",
+        url: /https:\/\/www.dliv.in\/rest\/stream/,
+        urlParams: [
+            'uid',
+            'auth',
+            'offset',
+            'limit',
+            'types'
+        ],
         status:201,
         responseText: ""
     });

@@ -6,6 +6,7 @@ test( "search REST test", function() {
 	var uid = "1234";
     var authToken = "test1234test";
     var search = "ade";
+    var url="search";
 
 	$.mockjax({
 		url: /https:\/\/www.dliv.in\/rest\/search/,
@@ -21,7 +22,15 @@ test( "search REST test", function() {
 		}
 	});
 
-	searchRest({'q':search,'auth':authToken,'uid':uid});
+	rest({'q':search,'auth':authToken,'uid':uid},url,
+		function(data) {
+			searchResult = data;
+			success(data);
+		},
+		function(data) {
+			searchResult = data;
+			error(data);
+		});
 
 	$.mockjaxClear();
 
@@ -35,6 +44,7 @@ test( "search correct id token", function() {
     var uid = "1234";
     var authToken = "test1234test";
     var search = "ade";
+    var url="search";
 	
 	$.mockjax({
 		url: /https:\/\/www.dliv.in\/rest\/search/,
@@ -107,7 +117,15 @@ test( "search correct id token", function() {
 		]
 	});
 	
-	searchRest({'q':search,'auth':authToken,'uid':uid});
+	rest({'q':search,'auth':authToken,'uid':uid},url,
+		function(data) {
+			searchResult = data;
+			success(data);
+		},
+		function(data) {
+			searchResult = data;
+			error(data);
+		});
 	equal(status, 1);
 
 	$.mockjaxClear();
@@ -121,6 +139,7 @@ test( "search correct token, uid, cant find anything", function() {
     var uid = "1234";
     var authToken = "test1234test";
     var search = "ade";
+    var url="search";
 	
 	$.mockjax({
 		url: /https:\/\/www.dliv.in\/rest\/search/,
@@ -134,7 +153,15 @@ test( "search correct token, uid, cant find anything", function() {
 		}
 	});
 	
-	searchRest({'q':search,'auth':authToken,'uid':uid});
+	rest({'q':search,'auth':authToken,'uid':uid},url,
+		function(data) {
+			searchResult = data;
+			success(data);
+		},
+		function(data) {
+			searchResult = data;
+			error(data);
+		});
 	equal(status, 1);
 
 	$.mockjaxClear();
@@ -146,6 +173,7 @@ test( "search wrong token, correct uid", function() {
     var uid = "1234";
     var authToken = "tokenWoken";
     var search = "ade";
+    var url="search";
 	
 	$.mockjax({
 		url: /https:\/\/www.dliv.in\/rest\/search/,
@@ -162,7 +190,15 @@ test( "search wrong token, correct uid", function() {
 		}
 	});
 	
-	searchRest({'q':search,'auth':authToken,'uid':uid});
+	rest({'q':search,'auth':authToken,'uid':uid},url,
+		function(data) {
+			searchResult = data;
+			success(data);
+		},
+		function(data) {
+			searchResult = data;
+			error(data);
+		});
 	equal(status, 401);
 
 	$.mockjaxClear();
@@ -175,6 +211,7 @@ test( "search test correct token, wrong uid", function() {
     var uid = "007";
     var authToken = "1234test1234";
     var search = "ade";
+    var url="search";
 	
 	$.mockjax({
 		url: /https:\/\/www.dliv.in\/rest\/search/,
@@ -191,7 +228,15 @@ test( "search test correct token, wrong uid", function() {
 		}
 	});
 	
-	searchRest({'q':search,'auth':authToken,'uid':uid});
+	rest({'q':search,'auth':authToken,'uid':uid},url,
+		function(data) {
+			searchResult = data;
+			success(data);
+		},
+		function(data) {
+			searchResult = data;
+			error(data);
+		});
 	equal(status, 401);
 
 	$.mockjaxClear();
@@ -206,6 +251,7 @@ test( "search test", function() {
     var uid = "1234";
     var authToken = "test1234test";
     var query = "ade";
+    var url="search";
 	
 	$.mockjax({
 		url: /https:\/\/www.dliv.in\/rest\/search/,

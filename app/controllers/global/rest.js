@@ -1,141 +1,34 @@
-var url =  "https://www.dliv.in/rest/";
+var restUrl =  "https://www.dliv.in/rest/";
 var status = 0;
 
-var searchResult;
-function searchRest(opts){
+var result;
+function rest(opts,url, success, error){
 	status = 0;
-	searchResult="";
+	result="";
 	$.ajax(
 	{
-		url: url+"search",
+		url: restUrl+url,
 		dataType: "json",
 		global: false,
 		async: false,
 		data: opts,
-		success: function(data) {
-			searchResult = data;
-			success(data);
-		},
-		error: function(data) {
-			searchResult = data;
-			error(data);
-		}
+		success: success,
+		error: error
 	});
-	return searchResult;
+	return result;
 }
 
-
-
-
-var history;
-function getHistoryRest(opts){
-	status = 0;
-	history="";
-	$.ajax(
-	{
-		url: url+"gethistory",
-		dataType: "json",
-		global: false,
-		async: false,
-		data: opts,
-		success: function(data) {
-			history = data;
-			success(data);
-		},
-		error: function(data) {
-			history = data;
-			error(data);
-		}
-	});
-	return history;
-}
 
 
 function getURLParameter(name) {
     return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 }
 
-
-var userInfo;
-function getUserInfoRest(opts){
-	status = 0;
-	userInfo="";
-	$.ajax(
-	{
-		url: url+"dlid",
-		dataType: "json",
-		global: false,
-		async: false,
-		data: opts,
-		success: function(data) {
-			userInfo = data;
-			success(data);
-		},
-		error: function(data) {
-			userInfo = data;
-			error(data);
-		}
-	});
-	return userInfo;
-}
-
-
-
-function loginRest(username, password){
-	status = 0;
-	$.ajax(
-	{
-		url: url+"Authtoken",
-		dataType: "json",
-		global: false,
-		async: false,
-		data: {u: username, p: password},
-		success: function(data){
-			success(data);
-			if(getStatus() == 1) {
-					saveToken(data);
-					saveDL_id(data);
-			}
-		},
-		error: error
-	});
-}
-
-var infoStream;
-
-function getActivityStream(userId,authToken,offset,limit,types){
-	status = 0;
-	infoStream="";
-	$.ajax(
-	{
-		url: url+"stream",
-		dataType: "json",
-		global: false,
-		async: false,
-		data: {
-			uid: userId, 
-			auth: authToken, 
-			offset: offset, 
-			limit: limit, 
-			types: types
-		},
-		success: function(data) {
-			infoStream = data;
-			success(data);
-		},
-		error: function(data) {
-			infoStream = data;
-			error(data);
-		}
-	});
-	return infoStream;
-}
-
 function addActivity(opts) {
 	status = 0;
 	$.ajax(
 	{
-		url: url+"stream",
+		url: restUrl+"stream",
 		type: "POST",
 		global: false,
 		async: false,
