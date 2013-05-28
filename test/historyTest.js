@@ -92,7 +92,7 @@ test( "history correct token, uid, no permission to view page", function() {
 	});
 
 
-test( "user info test wrong token, correct uid", function() {
+test( "history test wrong token, correct uid", function() {
 
 	$.mockjaxClear();
 	
@@ -167,7 +167,7 @@ test( "getHistory test", function() {
 			'auth',
 			'uid'
 		],
-		responseText: {
+		responseText: [{
 			'dlid-1231': '1369646561',
 			'dlid-1232': '1368789250',
 			'dlid-1233': '1369646645',
@@ -178,9 +178,9 @@ test( "getHistory test", function() {
 			'dlid-1238': '1368789315',
 			'dlid-1239': '1368788734'
 
-		}
+		}]
 	});
-	var expected = {
+	var expected = [{
 	  'dlid-1231': '1369646561',
 	  'dlid-1232': '1368789250',
 	  'dlid-1233': '1369646645',
@@ -190,9 +190,9 @@ test( "getHistory test", function() {
 	  'dlid-1237': '1368789261',
 	  'dlid-1238': '1368789315',
 	  'dlid-1239': '1368788734'
-	};
-	var result = getHistory(uid,dl_id,authToken);
-	equal(result[0],expected[0]);
+	}];
+	var result = getHistory(dl_id);
+	equal(result.name,expected.name);
 
 	$.mockjaxClear();
 
