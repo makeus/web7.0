@@ -4,23 +4,18 @@
   </div>
 </header>
 
-<section class="well">
+<section class="well" id="formi">
   <h1>Welcome!</h1>
-  <div class="form-horizontal">
-    <p>Write messages here</p>
-    <div class="form-inline" id="formi">
-      <div id="message">
-        <input type="text" id="messageField"/>
-        <button id="sendMessage"><i class="icon-plus"></i></button>
+    <div id="message">
+      <div id="message-shown">
+        <input type="text" id="messageField" placeholder="What are you working on?"/>
+        <button id="sendMessage">+</button>
       </div>
-      <div id="message-toggle-area" hidden>
-        <label>Link</label>
-        <input type="url" id="linkField" />
-        <label>Long Content</label>
-        <textarea rows="10" style="width: 100%;" id="contentField" ></textarea>
-      </div>
+      <div id="message-hidden" hidden>
+        <label>Link</label><br/>
+        <input type="url" id="linkField" placeholder="http://" />
+       </div>
     </div>
-  </div>
 </section>
 <section class="well">
   <div id="wrapper">

@@ -14,3 +14,30 @@ textarea {
 p {
   	margin: 1em 0em;
 }
+div#message {
+	margin: 10px;
+	border: thin solid black;
+}
+
+div#message-hidden {
+	margin: 10px;
+}
+
+div#message-shown > input {
+	border-left: 0;
+	border-top: 0;
+	margin-left: 0;
+	width: 90%;
+}
+
+button#sendmessage  {
+	background: white;
+	border: thin solid black;
+	width: 10%;
+	height: 100%;
+}
+
+div#message-hidden > label, div #message-hidden > input {
+	margin: 1px;
+	width: 80%;
+}
