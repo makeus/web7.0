@@ -31,17 +31,7 @@ function getURLParameter(name) {
     return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 }
 
-function pushView(name, page) {
-	if (page == undefined)
-		page = "index.html";
 
-	if (isSteroids()) {
-		var webView = new steroids.views.WebView("views/"+name+"/"+page);
-		steroids.layers.push(webView);
-	} else {
-		window.location.href = "../"+name+"/"+page;
-	}
-}
 var userInfo;
 function getUserInfoRest(opts){
 	status = 0;
