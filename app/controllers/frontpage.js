@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded",function(){
-	$("#sendMessage").hammer().on("tap", function() {
+	$("#sendMessage").click(function() {
         if(isToken()) {
                 var subject = $("#messageField")[0].value;
                 var link = $("#linkField")[0].value;
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded",function(){
     }
 
     if(isToken()) {
-        $("#searchButton").hammer().on("tap", function() {
+        $("#searchButton").click(function() {
             showModal("search");
         });
     }
