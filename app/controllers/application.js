@@ -1,31 +1,6 @@
 var url =  "https://www.dliv.in/rest/";
 var status = 0;
-var history;
-function getHistoryRest(opts){
-	status = 0;
-	history="";
-	$.ajax(
-	{
-		url: url+"gethistory",
-		dataType: "json",
-		global: false,
-		async: false,
-		data: opts,
-		success: function(data) {
-			history = data;
-			success(data);
-		},
-		error: function(data) {
-			history = data;
-			error(data);
-		}
-	});
-	return history;
-}
 
-function isToken() {
-	return getToken != 'null' && getToken != 'undefiend';
-}
 
 function getURLParameter(name) {
     return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
