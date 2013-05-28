@@ -25,14 +25,14 @@ document.addEventListener("DOMContentLoaded",function(){
         }
 	});
 
-    // $("#messageField").focus(function() {
-    //     $("#message-toggle-area").removeAttr("hidden");
-    // });
+    $("#messageField").focus(function() {
+        $("#message-toggle-area").removeAttr("hidden");
+    });
 
     
-    $("#formi").focusout(function() {
+    /*$("#formi").focusout(function() {
         hideMessageFields();
-    });
+    });*/
 
     if(isToken()) {
         var stream=getStream('message,cal,note');
