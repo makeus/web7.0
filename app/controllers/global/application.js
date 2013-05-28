@@ -25,8 +25,7 @@ function search(searchWord){
 		});
 }
 
-function getActivityStream(offset,limit,types) {
-	var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': offset, 'limit': limit, 'types': types};
+function getActivityStream(opts) {
 	var url = "stream";
 	return rest(opts,url,function(data) {
 			result = data;
