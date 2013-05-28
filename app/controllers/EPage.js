@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded",function(){
     setEntityInformation(getDL_id(),getURLParameter("dlid"),getToken());
+    if(isToken()) {
+        var stream=getStream('message',getURLParameter("dlid"));
+        $("#entity_stream").append( stream.join('') );
+    } else {
+        alert("UNAUTHORISED");
+    }
 });
 
 function setEntityInformation(dl_id){
