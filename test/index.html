@@ -18,6 +18,10 @@
       url: "https://www.dliv.in/rest/stream",
       responseText: console.log("index.html mock response")
     });
+    $.mockjax({
+      url: "https://www.dliv.in/rest/dlid",
+      responseText: console.log("index.html mock response")
+    });
     alert = function() {};
   </script>
 
@@ -35,5 +39,6 @@
   <script src="activityTests.js"></script>
   <script src="infoParserTests.js"></script>
   <script src="userInfoTest.js"></script>
+  <script src="historyTest.js"></script>
 </body>
 </html>
