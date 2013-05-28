@@ -6,6 +6,11 @@ document.addEventListener("DOMContentLoaded",function(){
                 alert("UNAUTHORISED");
         }
 	});
+
+    $("#messageField").focus(function() {
+        $("#message-toggle-area").removeAttr("hidden");
+    });
+
     if(isToken()) {
         var stream=getStream('message,cal,note');
         $("#thelist").append( stream.join('') );
