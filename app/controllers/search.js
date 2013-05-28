@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded",function(){
 	if (isToken()) {
 		$("#searchText").focus();
 
-		$("#back").hammer().on("tap", function() {
+		$("#back").click(function() {
 			hideModal();
 		});
 	}

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded",function(){
-	$("#sendMessage").hammer().on("tap", function() {
+	$("#sendMessage").click(function() {
         if(isToken()) {
                 var subject = $("#messageField")[0].value;
                 var link = $("#linkField")[0].value;
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded",function(){
     }
 
     if(isToken()) {
-        $("#searchButton").hammer().on("tap", function() {
+        $("#searchButton").click(function() {
             showModal("search");
         });
     }
@@ -71,12 +71,9 @@ function addMessage(to_dl_id, from_dl_id, subject, link, content) {
 
 
 function getStream(types) {
-  	//loginrest
-    var token=getToken();
-  	var uid=getDL_id();
     var items =[];
     
-    var stream=getActivityStream(uid,token,'0','50', types);
+    var stream=getActivityStream('0','50', types);
 	
     //error retrieving the activity stream
     if(stream=="") {
