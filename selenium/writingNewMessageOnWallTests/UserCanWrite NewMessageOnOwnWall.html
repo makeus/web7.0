@@ -7,7 +7,8 @@
 <title>User can write new message on own wall</title>
 </head>
 <body>
-<table cellpadding="1" cellspacing="1" border="1">
+
+<table id="myTable" cellpadding="1" cellspacing="1" border="1" >
 <thead>
 <tr><td rowspan="1" colspan="3">User can write new message on own wall</td></tr>
 </thead><tbody>
@@ -19,7 +20,8 @@
 <tr>
 	<td>type</td>
 	<td>id=messageField</td>
-	<td>message writing test-3</td>
+	<td id="set">
+	</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -33,10 +35,20 @@
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>message writing test-3</td>
+	<td id="find">
+	</td>
 	<td></td>
 </tr>
 
-</tbody></table>
+</tbody></table><script>
+ var d = new Date();
+var x = ""+ d.getMinutes()+ d.getSeconds()+d.getMilliseconds();
+document.write(x);
+document.write("value on: ");
+var a=document.getElementById('myTable');
+a.rows[2].cells[2].innerHTML=x;
+a.rows[5].cells[2].innerHTML=x;
+</script>
 </body>
+ 
 </html>
