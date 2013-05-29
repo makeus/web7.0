@@ -14,6 +14,29 @@ textarea {
 p {
   	margin: 1em 0em;
 }
+
+#sendMessageBox {
+	padding: 6px;
+	font-size: 20px;
+	margin-top: 8px;
+	vertical-align: top;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	border: thin solid rgba(0, 0, 0, .2);
+	max-width: 60px;
+	text-align: center;
+	cursor: hand; cursor: pointer;
+}
+
+#closelink {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+}
 div#message {
 	margin: 10px;
 	border: thin solid black;
@@ -21,23 +44,30 @@ div#message {
 
 div#message-hidden {
 	margin: 10px;
+	margin-bottom: 0;
 }
 
 div#message-shown > input {
+	font-size: 13px;
 	border-left: 0;
 	border-top: 0;
+	margin: 0;
 	margin-left: 0;
-	width: 90%;
 }
 
-button#sendmessage  {
-	background: white;
-	border: thin solid black;
-	width: 10%;
-	height: 100%;
-}
+
 
 div#message-hidden > label, div #message-hidden > input {
+	margin-top: 8px;
 	margin: 1px;
 	width: 80%;
+}
+
+
+
+.clear {
+	clear:both;
+}
+.floatL {
+	float:left;
 }

@@ -1,15 +1,3 @@
-
-function hideMessageFields() {
-    $("#message-toggle-area").attr("hidden", "hidden");
-}
-
-function resetMessageFields() {
-    $("#messageField")[0].value = "";
-    $("#linkField")[0].value = "";
-    $("#contentField")[0].value = "";
-    hideMessageFields();
-}
-
 function addMessage(to_dl_id, from_dl_id, subject, link, content) {
 	if(to_dl_id == null || from_dl_id == null || subject == null) {
 		return -1;
@@ -107,9 +95,14 @@ function parseMessage(item, userHash) {
                 + "<li>Message--</li>"
                 + "<li>" + item.from_DL_id
 				+ "</li><li> to </li><li>" + item.DL_id 
-				+ "</li><li id='subject'>" + item.subject 
-				+ "</li><li>: </li><li id='content'>" + item.content.substr(0,20) 
-				+"</li></ul></li>";
+				+ "</li><li id='subject'>" + item.subject;
+
+    if(item.content != null && item.content != undefined) {
+        entry += "</li><li>: </li><li id='content'>" + item.content.substr(0,20);
+    }
+
+    entry += "</li></ul></li>";
+
     return entry;
 }
 

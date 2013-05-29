@@ -4,43 +4,49 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://88.114.122.139:8080/job/web7.0/ws/dist/views/frontpage/index.html" />
-<title>User can see my world page after hi has loggedIn</title>
+<title>User can not post empty message on wall</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">User can see my world page after hi has loggedIn</td></tr>
+<tr><td rowspan="1" colspan="3">User can not post empty message on wall</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>http://88.114.122.139:8080/job/web7.0/ws/dist/views/frontpage/index.html</td>
+	<td>/job/web7.0/ws/dist/views/frontpage/index.html</td>
 	<td></td>
 </tr>
 <tr>
-	<td>pause</td>
-	<td>2000</td>
+	<td>storeBodyText</td>
+	<td>c</td>
 	<td></td>
 </tr>
 <tr>
-	<td>verifyElementPresent</td>
-	<td>id=showMessages</td>
+	<td>storeEval</td>
+	<td>storedVars['c'].length</td>
+	<td>a</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=sendMessage</td>
 	<td></td>
 </tr>
 <tr>
-	<td>verifyElementPresent</td>
-	<td>id=searchButton</td>
+	<td>storeBodyText</td>
+	<td>d</td>
 	<td></td>
 </tr>
 <tr>
-	<td>verifyElementPresent</td>
-	<td>id=messageField</td>
-	<td></td>
+	<td>storeEval</td>
+	<td>storedVars['c'].length</td>
+	<td>b</td>
 </tr>
 <tr>
-	<td>verifyTextPresent</td>
-	<td>Welcome!</td>
-	<td></td>
+	<td>verifyExpression</td>
+	<td>${a}</td>
+	<td>${b}</td>
 </tr>
+
 </tbody></table>
 </body>
 </html>

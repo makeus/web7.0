@@ -1,35 +1,15 @@
 document.addEventListener("DOMContentLoaded",function(){
-	$("#sendMessage").click(function() {
-        if(isToken()) {
-                var subject = $("#messageField")[0].value;
-                var link = $("#linkField")[0].value;
-                var content = $("#contentField")[0].value;
-
-                addMessage(getDL_id(), getDL_id(), subject, link , content);
-
-                var message = parseMessage(
-                {
-                    'from_DL_id': getDL_id(), 
-                    'DL_id': getDL_id(), 
-                    'to_DL_id': getDL_id(),
-                    'subject': subject, 
-                    'link': link, 
-                    'content': content
-                });
-
-                resetMessageFields();
-
-                $("#thelist").prepend(message);
-        } else {
-                alert("UNAUTHORISED");
-        }
-	});
+	$("#sendMessage").click(sendMessageClickEvent);
+    $("#sendMessageBox").click(sendMessageClickEvent);
 
     $("#messageField").focus(function() {
         $("#message-hidden").removeAttr("hidden");
     });
 
-    
+    $("#close").click(function(){
+        hideMessageFields();
+    });
+
     /*$("#formi").focusout(function() {
         hideMessageFields();
     });*/
@@ -48,6 +28,34 @@ document.addEventListener("DOMContentLoaded",function(){
     }
 });
 
+function sendMessageClickEvent() {
+        if(isToken()) {
+                var subject = $("#messageField")[0].value;
+                var link = $("#linkField")[0].value;
+
+                if(subject == "") {
+                    return;
+                }
+
+                addMessage(getDL_id(), getDL_id(), subject, link);
+
+                var message = parseMessage(
+                {
+                    'from_DL_id': getDL_id(), 
+                    'DL_id': getDL_id(), 
+                    'to_DL_id': getDL_id(),
+                    'subject': subject, 
+                    'link': link
+                });
+
+                resetMessageFields();
+
+                $("#thelist").prepend(message);
+        } else {
+                alert("UNAUTHORISED");
+        }
+}
+
 function hideMessageFields() {
     $("#message-hidden").attr("hidden", "hidden");
 }
@@ -55,6 +63,5 @@ function hideMessageFields() {
 function resetMessageFields() {
     $("#messageField")[0].value = "";
     $("#linkField")[0].value = "";
-    $("#contentField")[0].value = "";
     hideMessageFields();
 }
