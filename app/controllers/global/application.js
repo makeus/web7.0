@@ -37,6 +37,19 @@ function getActivityStream(opts) {
 		});
 }
 
+function getUserArray(opts) {
+	var url = "dlid";
+    return rest(opts, url, function(data) {
+        result=data;
+        success(data);
+    },
+    function(data) {
+        result=data;
+        error(data);
+    });
+}
+
+
 
 function isToken() {
 	return getToken != 'null' && getToken != 'undefiend';
