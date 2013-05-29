@@ -33,14 +33,25 @@
   <script src="../../javascripts/debug.js"></script>
   <script src="../../controllers/global/application.js"></script>
   <script src="../../controllers/global/rest.js"></script>
+  <script src="../../controllers/global/bar.js"></script>
   <script src="../../controllers/global/view.js"></script>
   <script src="../../controllers/global/parseandmessage.js"></script>
   <script src="../../controllers/<%= yield.controller %>.js"></script>
 </head>
 
 <body>
-  
-  <%= yield.view %>
+  <div id="bar" hidden>
+    <div id="logoArea">
+      <img src="../../resources/images/logo-login.jpg" />
+    </div>
+    <div id="searchArea">
+      <input id="searchInput" type="text" placeholder="Search" />
+    </div>
+  </div>
+
+  <div id="main">
+    <%= yield.view %>
+  </div>
 
 </body>
 </html>

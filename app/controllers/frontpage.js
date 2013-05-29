@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded",function(){
+    setPage({
+        bar: true
+    });
+
 	$("#sendMessage").click(function() {
         if(isToken()) {
                 var subject = $("#messageField")[0].value;
@@ -39,12 +43,6 @@ document.addEventListener("DOMContentLoaded",function(){
         $("#thelist").append( stream.join('') );
     } else {
         alert("UNAUTHORISED");
-    }
-
-    if(isToken()) {
-        $("#searchButton").click(function() {
-            showModal("search");
-        });
     }
 });
 
