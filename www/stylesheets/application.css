@@ -15,7 +15,7 @@ p {
   	margin: 1em 0em;
 }
 
-#sendmessagebox {
+#sendMessageBox {
 	padding: 6px;
 	font-size: 20px;
 	margin-top: 8px;
@@ -27,6 +27,7 @@ p {
 	border: thin solid rgba(0, 0, 0, .2);
 	max-width: 60px;
 	text-align: center;
+	cursor: hand; cursor: pointer;
 }
 
 #closelink {
