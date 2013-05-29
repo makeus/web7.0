@@ -94,6 +94,14 @@ video {
   border: 0;
 }
 
+#searchBar {
+    position: fixed;
+    top: 0px;
+    height: 20px;
+    width: 100%;
+    background: green;
+}
+
 /* Prevents iOS text size adjust after orientation change, without disabling (Thanks to @necolas) */
 html {
   -webkit-text-size-adjust: 100%;

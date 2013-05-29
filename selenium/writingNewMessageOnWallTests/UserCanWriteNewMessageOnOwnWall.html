@@ -20,7 +20,7 @@
 <tr>
 	<td>type</td>
 	<td>id=messageField</td>
-	<td><br />	</td>
+	<td></td>
 </tr>
 <tr>
 	<td>click</td>
@@ -30,14 +30,15 @@
 <tr>
 	<td>verifyValue</td>
 	<td>id=messageField</td>
-	<td>	</td>
+	<td></td>
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td><br />	</td>
+	<td></td>
 	<td></td>
 </tr>
 </tbody></table><script>
+
 var months = new Array('January','February','March','April','May',
 'June','July','August','September','October','November','December');
 var date = new Date();
@@ -46,6 +47,11 @@ var month = date.getMonth() + 1;
 var yy = date.getYear();
 var year = (yy < 1000) ? yy + 1900 : yy;
 var x = "Date: " + day + " " + months[month] + " " + year + " Selenium test message "+ date.getMinutes()+ date.getSeconds()+date.getMilliseconds();
+var d = new Date();
+var x = ""+ d.getMinutes()+ d.getSeconds()+d.getMilliseconds();
+document.write(x);
+document.write("value on: ");
+
 var a=document.getElementById('myTable');
 a.rows[2].cells[2].innerHTML=x;
 a.rows[5].cells[1].innerHTML=x;

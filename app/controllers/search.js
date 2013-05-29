@@ -1,9 +1,11 @@
-document.addEventListener("DOMContentLoaded",function(){
-	if (isToken()) {
-		$("#searchText").focus();
+document.addEventListener("DOMContentLoaded", function() {
+	setPage({
+		bar: true
+	});
 
-		$("#back").click(function() {
-			hideModal();
-		});
-	}
+	$("#searchInput").focus();
+
+	$("#back").click(function() {
+		popView();
+	});
 });

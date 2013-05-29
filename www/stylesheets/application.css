@@ -1,3 +1,41 @@
+#main {
+  position: relative;
+  /* top defined in /controllers/global/bar.js */
+}
+
+#bar {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  display: none;
+  border-bottom-style: solid;
+  border-bottom-color: black;
+  border-bottom-width: 3px;
+  /* height defined in /controllers/global/bar.js */
+}
+
+#logoArea {
+  float: left;
+  margin-top: 8px;
+  margin-left: 8px;
+}
+
+#searchArea {
+  position: relative;
+  margin: auto;
+  width: 50%;
+  padding-top: 20px;
+}
+
+#searchInput {
+  width: 100%;
+}
+
+
+
 * {
   	-webkit-user-select: none; 
    /* Disable selection/Copy of UIWebView when tapping for a long time */
@@ -15,7 +53,8 @@ p {
   	margin: 1em 0em;
 }
 
-#sendmessagebox {
+
+#sendMessageBox {
 	padding: 6px;
 	font-size: 20px;
 	margin-top: 8px;
@@ -27,6 +66,7 @@ p {
 	border: thin solid rgba(0, 0, 0, .2);
 	max-width: 60px;
 	text-align: center;
+	cursor: hand; cursor: pointer;
 }
 
 #closelink {
@@ -36,6 +76,7 @@ p {
 	margin-left: 0;
 	margin-right: 0;
 }
+
 div#message {
 	margin: 10px;
 	border: thin solid black;
@@ -54,13 +95,45 @@ div#message-shown > input {
 	margin-left: 0;
 }
 
+#faillogin {
+	color: red;
+}
 
+#loginDiv {
+	margin-top: 20%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	max-width: 400px;
+	text-align: center;
+	border-radius: 5px;
+}
+
+#loginImg {
+	width: 60%;
+	max-width: 300px;
+	margin-bottom: 20px;
+}
+
+#loginButton {
+	border: thin solid rgba(0, 0, 0, .2);
+	text-align: center;
+	cursor: hand; cursor: pointer;
+	background: whitesmoke;
+	padding: 15px;
+	font-size: 16px;
+	border-radius: 5px;
+}
+
+#loginsection {
+}
 
 div#message-hidden > label, div #message-hidden > input {
 	margin-top: 8px;
 	margin: 1px;
 	width: 80%;
 }
+
 
 
 

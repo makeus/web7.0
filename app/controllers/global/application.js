@@ -1,3 +1,20 @@
+function setPage(settings) {
+	if (settings === undefined)
+		settings = {};
+	
+	// Default values
+	if (settings.bar === undefined)
+		settings.bar = false;
+
+
+	if (settings.bar)
+		bar.show();
+	else
+		bar.hide();
+}
+
+
+
 function getHistory(dl_id){
 	var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
 	var url="gethistory";
