@@ -8,11 +8,14 @@ document.addEventListener("DOMContentLoaded",function(){
 
 	$("#sendMessage").click(function() {
         if(isToken()) {
-                var subject = $("#messageField")[0].value;
-                var link = $("#linkField")[0].value;
-                var content = $("#contentField")[0].value;
+                var subject = $("#messageField").val();
+                var link = $("#linkField").val();
 
-                addMessage(getDL_id(), getDL_id(), subject, link , content);
+                if(subject == "") {
+                    return;
+                }
+
+                addMessage(getDL_id(), getDL_id(), subject, link);
 
                 var message = parseMessage(
                 {
@@ -21,7 +24,6 @@ document.addEventListener("DOMContentLoaded",function(){
                     'to_DL_id': getDL_id(),
                     'subject': subject, 
                     'link': link, 
-                    'content': content
                 });
 
                 resetMessageFields();
