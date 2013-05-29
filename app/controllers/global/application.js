@@ -15,8 +15,8 @@ function setPage(settings) {
 
 
 
-function getHistory(dl_id){
-	var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
+function getHistory(){
+	var opts={'dl_id':getDL_id(),'auth':getToken(),'uid':getDL_id()};
 	var url="gethistory";
 	return rest(opts,url,
 		function(data) {
@@ -28,30 +28,6 @@ function getHistory(dl_id){
 			error(data);
 		});
 }
-
-
-function updateSearchResults(results){
-	//TODO add code here that updates search page ::))
-}
-
-var timeout;
-var searchWordCheck;
-function processResult(searchWord){
-	var results = search(searchWord);
-	if(searchWordCheck==searchWord){ updateSearchResults(results);}
-	else{ console.log("NO!!!!!!!!");}
-}
-function timedSearch(searchWord){
-	searchWordCheck=searchWord;
-	if(timeout){clearTimeout(timeout);}
-	timeout=setTimeout(function(){
-		processResult(searchWord);
-	},5000);
-}
-
-
-
-
 
 
 function search(searchWord){
