@@ -1,4 +1,3 @@
-//$(document).ready(function() {
 document.addEventListener("DOMContentLoaded", function() {
 	setPage({
         bar: false
