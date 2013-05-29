@@ -11,6 +11,32 @@ function getHistory(dl_id){
 			error(data);
 		});
 }
+
+
+function updateSearchResults(results){
+	//TODO add code here that updates search page ::))
+}
+
+var timeout;
+var searchWordCheck;
+function processResult(searchWord){
+	var results = search(searchWord);
+	if(searchWordCheck==searchWord){ updateSearchResults(results);}
+	else{ console.log("NO!!!!!!!!");}
+}
+function timedSearch(searchWord){
+	searchWordCheck=searchWord;
+	if(timeout){clearTimeout(timeout);}
+	timeout=setTimeout(function(){
+		processResult(searchWord);
+	},5000);
+}
+
+
+
+
+
+
 function search(searchWord){
 	var opts={'q':searchWord,'auth':getToken(),'uid':getDL_id()};
 	var url="search";
