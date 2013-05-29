@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded",function(){
-    setEntityInformation(getDL_id(),getURLParameter("dlid"),getToken());
+    setEntityInformation(getURLParameter("dlid"));
+    console.log(getURLParameter("dlid"));
     if(isToken()) {
         var stream=getStream('message',getURLParameter("dlid"));
-        $("#entity_stream").append( stream.join('') );
+        $("#thelist").append( stream.join('') );
     } else {
         alert("UNAUTHORISED");
     }
@@ -17,11 +18,11 @@ function setEntityInformation(dl_id){
 			success(data);
 		},
 		function(data) {
-			result = data;
+			result = data; 
 			error(data);
 		});
-    //$("#entityImg").attr('src',info.img);
-    //$("#entityImg").attr('alt',info.name);
+    $("#entityImg").attr('src',info.img);
+    $("#entityImg").attr('alt',info.name);
     $("#entityRole").text(info.type);
     $("#entityName").text(info.name);
 }

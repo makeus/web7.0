@@ -41,3 +41,12 @@ div#message-hidden > label, div #message-hidden > input {
 	margin: 1px;
 	width: 80%;
 }
+
+
+
+.clear {
+	clear:both;
+}
+.floatL {
+	float:left;
+}
