@@ -2,6 +2,38 @@ document.addEventListener("DOMContentLoaded",function(){
 	$("#sendMessage").click(sendMessageClickEvent);
     $("#sendMessageBox").click(sendMessageClickEvent);
 
+    setPage({
+        bar: true
+    });
+
+	$("#sendMessage").click(function() {
+        if(isToken()) {
+                var subject = $("#messageField").val();
+                var link = $("#linkField").val();
+
+                if(subject == "") {
+                    return;
+                }
+
+                addMessage(getDL_id(), getDL_id(), subject, link);
+
+                var message = parseMessage(
+                {
+                    'from_DL_id': getDL_id(), 
+                    'DL_id': getDL_id(), 
+                    'to_DL_id': getDL_id(),
+                    'subject': subject, 
+                    'link': link, 
+                });
+
+                resetMessageFields();
+
+                $("#thelist").prepend(message);
+        } else {
+                alert("UNAUTHORISED");
+        }
+	});
+
     $("#messageField").focus(function() {
         $("#message-hidden").removeAttr("hidden");
     });
@@ -19,12 +51,6 @@ document.addEventListener("DOMContentLoaded",function(){
         $("#thelist").append( stream.join('') );
     } else {
         alert("UNAUTHORISED");
-    }
-
-    if(isToken()) {
-        $("#searchButton").click(function() {
-            showModal("search");
-        });
     }
 });
 
