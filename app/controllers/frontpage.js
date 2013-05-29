@@ -3,7 +3,10 @@ document.addEventListener("DOMContentLoaded",function(){
         if(isToken()) {
                 var subject = $("#messageField")[0].value;
                 var link = $("#linkField")[0].value;
-                var content = $("#contentField")[0].value;
+
+                if(subject == "") {
+                    return;
+                }
 
                 addMessage(getDL_id(), getDL_id(), subject, link , content);
 
@@ -29,7 +32,10 @@ document.addEventListener("DOMContentLoaded",function(){
         $("#message-hidden").removeAttr("hidden");
     });
 
-    
+    $("#close").click(function(){
+        hideMessageFields();
+    });
+
     /*$("#formi").focusout(function() {
         hideMessageFields();
     });*/
@@ -55,6 +61,5 @@ function hideMessageFields() {
 function resetMessageFields() {
     $("#messageField")[0].value = "";
     $("#linkField")[0].value = "";
-    $("#contentField")[0].value = "";
     hideMessageFields();
 }
