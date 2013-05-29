@@ -1,3 +1,41 @@
+#main {
+  position: relative;
+  /* top defined in /controllers/global/bar.js */
+}
+
+#bar {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  display: none;
+  border-bottom-style: solid;
+  border-bottom-color: black;
+  border-bottom-width: 3px;
+  /* height defined in /controllers/global/bar.js */
+}
+
+#logoArea {
+  float: left;
+  margin-top: 8px;
+  margin-left: 8px;
+}
+
+#searchArea {
+  position: relative;
+  margin: auto;
+  width: 50%;
+  padding-top: 20px;
+}
+
+#searchInput {
+  width: 100%;
+}
+
+
+
 * {
   	-webkit-user-select: none; 
    /* Disable selection/Copy of UIWebView when tapping for a long time */
@@ -14,6 +52,7 @@ textarea {
 p {
   	margin: 1em 0em;
 }
+
 
 #sendMessageBox {
 	padding: 6px;
@@ -37,6 +76,7 @@ p {
 	margin-left: 0;
 	margin-right: 0;
 }
+
 div#message {
 	margin: 10px;
 	border: thin solid black;
@@ -93,6 +133,7 @@ div#message-hidden > label, div #message-hidden > input {
 	margin: 1px;
 	width: 80%;
 }
+
 
 
 

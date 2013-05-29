@@ -1,5 +1,8 @@
-//$(document).ready(function() {
 document.addEventListener("DOMContentLoaded", function() {
+	setPage({
+        bar: false
+    });
+
 	$("#loginButton").click(function(){
 		var username = document.getElementById('loginUsername').value;
 		var password = document.getElementById('loginPassword').value;
