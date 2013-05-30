@@ -15,8 +15,8 @@ function setPage(settings) {
 
 
 
-function getHistory(dl_id){
-	var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
+function getHistory(){
+	var opts={'dl_id':getDL_id(),'auth':getToken(),'uid':getDL_id()};
 	var url="gethistory";
 	return rest(opts,url,
 		function(data) {
@@ -28,6 +28,8 @@ function getHistory(dl_id){
 			error(data);
 		});
 }
+
+
 function search(searchWord){
 	var opts={'q':searchWord,'auth':getToken(),'uid':getDL_id()};
 	var url="search";

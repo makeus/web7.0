@@ -51,7 +51,6 @@ function getStream(types,dlid) {
     	  		items.push(parseItem(item, userHash, item.type));
     	  		break;
     	  	default:
-    	  		console.log("default");
     	  		break;
     	  }
 	  });
