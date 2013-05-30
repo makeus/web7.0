@@ -15,14 +15,18 @@ section {
   width: 100%;
   background: white;
   display: none;
+  border-top-style: solid;
+  border-top-color: black;
+  border-top-width: 5px;
   border-bottom-style: solid;
   border-bottom-color: black;
-  border-bottom-width: 3px;
+  border-bottom-width: 5px;
   /* height defined in /controllers/global/bar.js */
 }
 
 #logoArea {
   float: left;
+  width: 1%;
   margin-top: 8px;
   margin-left: 8px;
 }
