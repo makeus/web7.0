@@ -48,9 +48,6 @@ var yy = date.getYear();
 var year = (yy < 1000) ? yy + 1900 : yy;
 var x = "Date: " + day + " " + months[month] + " " + year + " Selenium test message "+ date.getMinutes()+ date.getSeconds()+date.getMilliseconds();
 var d = new Date();
-var x = ""+ d.getMinutes()+ d.getSeconds()+d.getMilliseconds();
-document.write(x);
-document.write("value on: ");
 
 var a=document.getElementById('myTable');
 a.rows[2].cells[2].innerHTML=x;
