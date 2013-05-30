@@ -16,6 +16,10 @@ bar = {
 	},
 
 	initListeners: function() {
+		$("#barLogo").click(function() {
+			
+		});
+
 		$("#searchInput").click(function() {
 			if (!bar.isSearchPage()) {
 				$("#searchInput").blur();

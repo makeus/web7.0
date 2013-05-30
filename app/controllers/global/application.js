@@ -13,9 +13,7 @@ function setPage(settings) {
 		bar.hide();
 }
 
-function getURLParameter(name) {
-    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
-}
+
 
 function getHistory(dl_id){
 	var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};

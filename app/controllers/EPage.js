@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded",function(){
     setEntityInformation(getURLParameter("dlid"));
-    $("#sendMessage").click(sendMessageClickEvent);
-    $("#sendMessageBox").click(sendMessageClickEvent);
-
     console.log(getURLParameter("dlid"));
     if(isToken()) {
         var stream=getStream('message',getURLParameter("dlid"));
@@ -10,16 +7,8 @@ document.addEventListener("DOMContentLoaded",function(){
     } else {
         alert("UNAUTHORISED");
     }
-
-    $("#messageField").focus(function() {
-        $("#message-hidden").removeAttr("hidden");
-    });
-
-    $("#close").click(function(){
-        hideMessageFields();
-    });
-
 });
+
 
 function sendMessageClickEvent() {
         if(isToken()) {
