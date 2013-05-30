@@ -140,6 +140,32 @@ div#message-hidden > label, div #message-hidden > input {
 
 
 
+section#searchResults {
+	padding: 10px;
+	vertical-align: middle;
+}
+
+section#searchResults > h1 {
+	text-align: center;
+	margin: 5px;
+}
+
+.searchCategory > li > p {	
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 10%;
+	width: 55%;
+}
+
+.searchCategory {
+	width: 95%;
+	padding: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	list-style: none;
+	border: thin solid black;
+	max-width: 500px;
+}
 
 .clear {
 	clear:both;
@@ -148,8 +174,13 @@ div#message-hidden > label, div #message-hidden > input {
 	float:left;
 }
 .searchImages,.emptySearchImages{
-	width:5%;
+	display: inline-block;
+	vertical-align: middle;
+	border: thin solid black;
+	width:20%;
+	margin: 2px;
+	max-width: 300px;
 }
-.emptySearchImages{
+/*.emptySearchImages{
 	border:solid black;
-}
+}*/
