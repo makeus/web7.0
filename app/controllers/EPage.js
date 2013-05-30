@@ -9,6 +9,48 @@ document.addEventListener("DOMContentLoaded",function(){
     }
 });
 
+
+function sendMessageClickEvent() {
+        if(isToken()) {
+                var subject = $("#messageField").val();
+                var link = $("#linkField").val();
+                var content = $("#contentField").val();
+
+                if(subject == "") {
+                    return;
+                }
+
+                addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content);
+
+                var message = parseMessage(
+                {
+                    'from_DL_id': getDL_id(), 
+                    'DL_id': getURLParameter("dlid"), 
+                    'subject': subject, 
+                    'link': link,
+                    'content': content
+                });
+
+                resetMessageFields();
+
+                $("#thelist").prepend(message);
+        } else {
+                alert("UNAUTHORISED");
+        }
+}
+
+function hideMessageFields() {
+    $("#message-hidden").attr("hidden", "hidden");
+}
+
+function resetMessageFields() {
+    $("#messageField").val("");
+    $("#linkField").val("");
+    $("#contentField").val("");
+    hideMessageFields();
+}
+
+
 function setEntityInformation(dl_id){
     var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
     var url="dlid"
