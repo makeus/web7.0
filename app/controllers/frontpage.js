@@ -16,11 +16,29 @@ document.addEventListener("DOMContentLoaded",function(){
 
     if(isToken()) {
         var stream=getStream('message,cal,note');
+        info = getInfo(getDL_id());
+        $("#appTitle").text(info.name);
         $("#thelist").append( stream.join('') );
+
     } else {
         alert("UNAUTHORISED");
     }
 });
+
+function getInfo(dl_id){
+    var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
+    var url="dlid"
+    var info=rest(opts,url,
+        function(data) {
+            result = data;
+            success(data);
+        },
+        function(data) {
+            result = data; 
+            error(data);
+        });
+    return info;
+}
 
 function sendMessageClickEvent() {
         if(isToken()) {
