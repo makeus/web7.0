@@ -151,5 +151,5 @@ div#message-hidden > label, div #message-hidden > input {
 	width:5%;
 }
 .emptySearchImages{
-	border:1;
+	border:solid black;
 }

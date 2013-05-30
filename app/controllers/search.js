@@ -21,9 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function updateSearchResults(results){
 	$("#searchResults").empty();
-	console.log(results);
 	if(results.success==1){
-		console.log(results);
 		return;
 	}
 	$.each(results,function(item){
@@ -44,6 +42,11 @@ function processResult(searchWord){
 	else{ console.log("NO!!!!!!!!");}
 }
 function timedSearch(searchWord){
+	if(searchWord==""){
+		updateSearchResults(historyTemp());
+		if(timeout){clearTimeout(timeout);}
+		return;
+	}
 	searchWordCheck=searchWord;
 	if(timeout){clearTimeout(timeout);}
 	timeout=setTimeout(function(){
