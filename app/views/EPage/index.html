@@ -1,20 +1,26 @@
-	<header>
-
-	</header>
 <section>
 	<div id="picturebar">
-		<div class="floatL">
+		<div>
 		<img id="entityImg"></img>
 		</div>
-		<div class="floatL">
+		<div>
 		<h1 id="entityName"></h2>
 		<h2 id="entityRole"></h1>
-		</div>
-		
-
+	</div>		
+    <div id="message">
+      <div id="message-shown">
+        <input type="text" id="messageField" placeholder="Leave a message here"/>
+      </div>
+      <div id="message-hidden" hidden>
+      	<label>Link</label><br/>
+        <input type="url" id="linkField" placeholder="http://"/><br/>
+        <label>Long Content</label><br/>
+        <textarea id="contentField"></textarea>
+        <div id="sendMessageBox"><a id="sendMessage" href="#">+</a></div>
+        <div id="closelink"><a id="close" href="#">close</a></div>
+      </div>
+    </div>
 	</div>
-</section>
-<section class="clear">
 	<div>
 		<ul id="thelist">
 		</ul>
