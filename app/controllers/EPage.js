@@ -25,7 +25,7 @@ function sendMessageClickEvent() {
         if(isToken()) {
                 var subject = $("#messageField").val();
                 var link = $("#linkField").val();
-                var content = $("contentField").val()
+                var content = $("#contentField").val();
 
                 if(subject == "") {
                     return;
@@ -36,8 +36,7 @@ function sendMessageClickEvent() {
                 var message = parseMessage(
                 {
                     'from_DL_id': getDL_id(), 
-                    'DL_id': getDL_id(), 
-                    'to_DL_id': getURLParameter("dlid"),
+                    'DL_id': getURLParameter("dlid"), 
                     'subject': subject, 
                     'link': link,
                     'content': content
