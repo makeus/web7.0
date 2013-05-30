@@ -149,7 +149,7 @@ test( "getStream test", function() {
 			id: "1234",
 			type: "note",
 			sub_type: "",
-			DL_id: "4321",
+			DL_id: "1234",
 			from_DL_id: "1234",
 			subject: "anna testi data",
 			link: "",
@@ -171,7 +171,7 @@ test( "getStream test", function() {
 	{
 		url:/https:\/\/www.dliv.in\/rest\/dlid/,
 		responseText: [{
-        	DL_id: "8653",
+        	DL_id: "1234",
         	type: "user",
         	sub_type: "",
 	        relations: "7795:,8658",

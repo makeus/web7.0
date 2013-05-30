@@ -37,22 +37,7 @@ function getStream(types,dlid) {
 
       //parse and push each json entry into its own <li> block
   	  $.each(stream, function(i, item) {
-    	  switch(item.type) {
-    	  	case 'cal':
-    		  	items.push(parseItem(item, userHash, item.type));
-    		  	break;
-    		  case 'message':
-   		  		items.push(parseItem(item, userHash, item.type));
-    	  		break;
-    	  	case 'notification': 
-    	  		items.push(parseItem(item, userHash, item.type));
-    	  		break;
-    	  	case 'note':
-    	  		items.push(parseItem(item, userHash, item.type));
-    	  		break;
-    	  	default:
-    	  		break;
-    	  }
+            items.push(parseItem(item, userHash, item.type));
 	  });
     }     
 	//append <li> blocks to appropriate container

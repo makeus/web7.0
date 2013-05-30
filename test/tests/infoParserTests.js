@@ -1,4 +1,4 @@
-test( "parseMessagetest", function() {
+/*test( "parseMessagetest", function() {
     var userId = "1234";
 var authToken = "test1234test";
 var offset = 10;
@@ -67,7 +67,7 @@ var url = "stream";
 
     $.mockjaxClear();
 	
-});
+});*/
 
 test( "parseNotetest", function() {
     var userId = "1234";
@@ -297,7 +297,7 @@ var url = "stream";
             type: "message",
             sub_type: "",
             DL_id: "4321",
-            from_DL_id: "1234",
+            from_DL_id: "4321",
             subject: "message",
             link: "",
             content: "message_body",
@@ -323,7 +323,7 @@ var url = "stream";
             sub_type: "",
             relations: "7795:,8658",
             name: "Adele Vuohi",
-            img: "https://dlfwwwfiles.s3.amazonaws.com/images/8653/thumb_303657-goats-picture.gif",
+            img: "img.png",
             edited: "2013-05-22 07:31:55",
             created: "2013-05-21 13:55:43",
             created_by: "4321",
@@ -331,12 +331,12 @@ var url = "stream";
         }]
     });
 
-    var expected = "<li><ul class='message'><li>Message--</li>"
-                + "<li>1234</li><li> to </li>"
-                + "<li>4321</li>"
-                + "<li id='subject'>message</li>"
-                + "<li>: </li><li id='content'>message_body</li>" 
-                + "</ul></li>";
+
+    var expected = "<li><section class=message ><img src=img.png alt='pic' />" 
+                  +"<p class='user_name'>Adele Vuohi"
+                  +"<section class='message_content'></p>"
+                  +"<p class='subject'>message: </p>"
+                  +"<p class='content'>message_body</p></section></section></li>";
     
     equal(showMessages(),expected);
     equal(getStatus(),1);
