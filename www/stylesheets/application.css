@@ -143,3 +143,9 @@ div#message-hidden > label, div #message-hidden > input {
 .floatL {
 	float:left;
 }
+.searchImages,.emptySearchImages{
+	width:5%;
+}
+.emptySearchImages{
+	border:1;
+}
