@@ -35,7 +35,6 @@ function getStream(types,dlid) {
     	  		items.push(parseNote(item));
     	  		break;
     	  	default:
-    	  		console.log("default");
     	  		break;
     	  }
 	  });

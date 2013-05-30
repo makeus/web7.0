@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	});
 
 	//tähän tilalle history() kun hölmöydet on korjattu restistä
+	//eli ei koskaan!
 	updateSearchResults(historyTemp());
 	$("#searchInput").bind('input',function(){
 		timedSearch($("#searchInput").val())
