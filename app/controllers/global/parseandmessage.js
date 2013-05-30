@@ -15,9 +15,10 @@ function getStream(types,dlid) {
 
     var stream=getActivityStream(opts);
     var dlids= [];
+    var userHash={};
 
     //error retrieving the activity stream
-    if(stream=="") {
+    if(getStatus()!=1) {
       items.push(parseNothing());
     } else {
       /*
@@ -32,7 +33,7 @@ function getStream(types,dlid) {
       //Retrieve user data
       var users = {'uid': getDL_id(), 'auth': getToken(), 'dl_ids': dlids.join()};
       var json = getUserArray(users);
-      var userHash=myHash(json);
+      userHash=myHash(json);
       //alert (userHash['8618'].name);
       //alert (userHash['8653'].name);
       //parse and push each json entry into its own <li> block

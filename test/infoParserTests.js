@@ -277,7 +277,7 @@ test( "Show messages test found message", function() {
 var authToken = "test1234test";
 var offset = 10;
 var limit = 10;
-var types="note,cal,message";
+var types="message";
 var opts = {'uid': userId, 'auth': authToken, 'offset': offset, 'limit': limit, 'types':types};
 var url = "stream";
 
@@ -314,6 +314,23 @@ var url = "stream";
         }]
     });
 
+    $.mockjax(
+    {
+        url:/https:\/\/www.dliv.in\/rest\/dlid/,
+        responseText: [{
+            DL_id: "4321",
+            type: "user",
+            sub_type: "",
+            relations: "7795:,8658",
+            name: "Adele Vuohi",
+            img: "https://dlfwwwfiles.s3.amazonaws.com/images/8653/thumb_303657-goats-picture.gif",
+            edited: "2013-05-22 07:31:55",
+            created: "2013-05-21 13:55:43",
+            created_by: "4321",
+            edited_by: "4321"
+        }]
+    });
+
     var expected = "<li><ul class='message'><li>Message--</li>"
                 + "<li>1234</li><li> to </li>"
                 + "<li>4321</li>"
@@ -327,6 +344,12 @@ var url = "stream";
 });
 
 test( "Show messages test no results", function() {
+    var userId = "1234";
+    var authToken = "test1234test";
+    var offset = 10;
+    var limit = 10;
+    var types="message";
+    var opts = {'uid': userId, 'auth': authToken, 'offset': offset, 'limit': limit, 'types':types, 'dlid':1234};
 
     $.mockjaxClear();
     
@@ -342,8 +365,7 @@ test( "Show messages test no results", function() {
         status:201,
         responseText: ""
     });
-
-    var expected = "";
+    var expected = '<li class="empty_li"></li>';
     
     equal(showMessages(),expected);
     equal(getStatus(),201);
