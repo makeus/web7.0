@@ -63,6 +63,7 @@ function parseCalEntry(item) {
 }
 
 function parseMessage(item) {
+    console.log(item.to_dl_id);
 	var entry = "<li><ul class='message'>"
                 + "<li>Message--</li>"
                 + "<li>" + item.from_DL_id 
