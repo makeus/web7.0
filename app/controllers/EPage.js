@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded",function(){
+    $("#sendMessage").click(sendMessageClickEvent);
+    $("#sendMessageBox").click(sendMessageClickEvent);
+
     setEntityInformation(getURLParameter("dlid"));
     console.log(getURLParameter("dlid"));
     if(isToken()) {
@@ -7,6 +10,15 @@ document.addEventListener("DOMContentLoaded",function(){
     } else {
         alert("UNAUTHORISED");
     }
+
+    $("#messageField").focus(function() {
+        $("#message-hidden").removeAttr("hidden");
+    });
+
+    $("#close").click(function(){
+        hideMessageFields();
+    });
+
 });
 
 
