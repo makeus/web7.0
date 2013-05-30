@@ -20,6 +20,13 @@ function createDebugButtons() {
 		username: "kristian.pulkkinen@cs.helsinki.fi",
 		password: "stalin"
 	});
+	
+	createButton({
+		id: "Sampo",
+		name: "Sampo",
+		username: "sampo.laurila@gmail.com",
+		password: "vuohi3"
+	});
 }
 
 

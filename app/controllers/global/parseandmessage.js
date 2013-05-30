@@ -11,7 +11,7 @@ function addMessage(to_dl_id, from_dl_id, subject, link, content) {
 
 function getStream(types,dlid) {
     var items =[];
-    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types,'dlid':dlid};
+    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types, 'stream': true, 'dlid':dlid};
 
     var stream=getActivityStream(opts);
     var dlids= [];
@@ -36,19 +36,19 @@ function getStream(types,dlid) {
       userHash=myHash(json);
 
       //parse and push each json entry into its own <li> block
-  	  $.each(stream, function(i, item, userHash) {
+  	  $.each(stream, function(i, item) {
     	  switch(item.type) {
     	  	case 'cal':
-    		  	items.push(parseCalEntry(item, userHash));
+    		  	items.push(parseItem(item, userHash, item.type));
     		  	break;
     		  case 'message':
-   		  		items.push(parseMessage(item, userHash));
+   		  		items.push(parseItem(item, userHash, item.type));
     	  		break;
     	  	case 'notification': 
-    	  		items.push(parseNotification(item, userHash));
+    	  		items.push(parseItem(item, userHash, item.type));
     	  		break;
     	  	case 'note':
-    	  		items.push(parseNote(item, userHash));
+    	  		items.push(parseItem(item, userHash, item.type));
     	  		break;
     	  	default:
     	  		console.log("default");
@@ -87,18 +87,25 @@ function parseCalEntry(item, userHash) {
 	return entry;
 }
 
-function parseMessage(item, userHash) {
-	var entry = "<li><ul class='message'>"
-                + "<li>Message--</li>"
-                + "<li>" + item.from_DL_id
-				+ "</li><li> to </li><li>" + item.DL_id 
-				+ "</li><li id='subject'>" + item.subject;
 
-    if(item.content != null && item.content != undefined) {
-        entry += "</li><li>: </li><li id='content'>" + item.content.substr(0,20);
+function parseItem(item, userHash, type) {
+
+    var entry = "<li><section class=" + type +" >"
+                + "<img src=" + userHash[item.from_DL_id].img + " alt='pic' />"
+                + "<p class='user_name'>" +userHash[item.from_DL_id].name;
+    
+    if(item.DL_id != null && item.DL_id != undefined && item.DL_id != "" && item.DL_id != item.from_DL_id) {
+        entry += " </p><p class='to_name'>>> " + userHash[item.DL_id].name;
     }
 
-    entry += "</li></ul></li>";
+    entry += "<section class='message_content'>"
+          + "</p><p class='subject'>" + item.subject;
+
+    if(item.content != null && item.content != undefined) {
+        entry += ": </p><p class='content'>" + item.content.substr(0,20);
+    }
+
+    entry += "</p></section></section></li>";
 
     return entry;
 }

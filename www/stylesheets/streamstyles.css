@@ -8,24 +8,65 @@ form {
 	margin-right:20px;
 }
 
-.event li,
-.message li,
-.notification li,
-.note li
+.event p,
+.message p,
+.notification p,
+.note p
 {
-    position: relative;
-    list-style: none;
-    float: left;
     display: block;
     height: 40px;
     padding-right:2px;
 }
 
+
 #thelist li
 {
+    height:90px;
+    overflow:hidden;
     position: relative;
     list-style: none;
     display: block;
-    height: 45px;
     border-bottom:solid gray 1px;
+    font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+#thelist img {
+    position:relative;
+    top:0;
+    left:0;
+    height:45px;
+}
+
+#thelist p {
+    margin:0;
+    padding:0;
+    position:absolute;
+}
+.user_name {
+ 
+    top: 0;
+    left: 50px;
+    font-size:25px;
+    line-height:30px;
+    color: #444444;
+}
+.to_name {
+    top:30px;
+    left:50px;
+    font-size:15px;
+    line-height:15px;
+}
+
+.message_content {
+    left: 50px;
+    top: 50px;
+}
+
+.subject {
+    top:50px;
+    line-height: 10px;
+}
+
+.content {
+    top:60px;
 }
