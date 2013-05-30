@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 	});
 
-	createAdeleButton();
+	createDebugButtons();
 });
 
 
