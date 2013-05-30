@@ -6,34 +6,6 @@ document.addEventListener("DOMContentLoaded",function(){
         bar: true
     });
 
-	$("#sendMessage").click(function() {
-        if(isToken()) {
-                var subject = $("#messageField").val();
-                var link = $("#linkField").val();
-
-                if(subject == "") {
-                    return;
-                }
-
-                addMessage(getDL_id(), getDL_id(), subject, link);
-
-                var message = parseMessage(
-                {
-                    'from_DL_id': getDL_id(), 
-                    'DL_id': getDL_id(), 
-                    'to_DL_id': getDL_id(),
-                    'subject': subject, 
-                    'link': link, 
-                });
-
-                resetMessageFields();
-
-                $("#thelist").prepend(message);
-        } else {
-                alert("UNAUTHORISED");
-        }
-	});
-
     $("#messageField").focus(function() {
         $("#message-hidden").removeAttr("hidden");
     });
@@ -56,8 +28,8 @@ document.addEventListener("DOMContentLoaded",function(){
 
 function sendMessageClickEvent() {
         if(isToken()) {
-                var subject = $("#messageField")[0].value;
-                var link = $("#linkField")[0].value;
+                var subject = $("#messageField").val();
+                var link = $("#linkField").val();
 
                 if(subject == "") {
                     return;

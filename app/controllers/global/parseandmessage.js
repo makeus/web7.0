@@ -18,7 +18,7 @@ function getStream(types,dlid) {
     var userHash={};
 
     //error retrieving the activity stream
-    if(getStatus()!=1) {
+    if(getStatus()!=1 || stream=="") {
       items.push(parseNothing());
     } else {
       /*
@@ -29,13 +29,12 @@ function getStream(types,dlid) {
             dlids.push(item.from_DL_id);
       });
       dlids = $.unique(dlids);
-      //alert (dlids);
+
       //Retrieve user data
       var users = {'uid': getDL_id(), 'auth': getToken(), 'dl_ids': dlids.join()};
       var json = getUserArray(users);
       userHash=myHash(json);
-      //alert (userHash['8618'].name);
-      //alert (userHash['8653'].name);
+
       //parse and push each json entry into its own <li> block
   	  $.each(stream, function(i, item, userHash) {
     	  switch(item.type) {
@@ -64,12 +63,9 @@ function getStream(types,dlid) {
 function myHash(json) {
     var hash = {};
     $.each(json, function(i, item) {
-        //alert (item.DL_id);
         hash[item.DL_id]=item;
-        //alert (hash[item.DL_id].DL_id);
     });
-    //alert (hash['8653'].DL_id);
-    //alert (hash['8618'].DL_id);
+
     return hash;
 }
 
