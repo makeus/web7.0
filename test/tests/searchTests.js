@@ -304,17 +304,17 @@ test( "search test", function() {
 
 test("searhlistParse with image  TEst", function(){
 
-	var item={name:"Test",img:"http://test.kuva.png"}
+	var item={name:"Test",img:"http://test.kuva.png",DL_id:"1234"}
 	var result = searchListParse(item);
-	var expected = "<li><img class=\"searchImages\" src=\"http://test.kuva.png\"\" alt=\"kuva\"></img><p>Test</p></li>"
+	var expected = "<li id=\"searchLink1234\"><img class=\"searchImages\" src=\"http://test.kuva.png\"\" alt=\"kuva\"></img><p>Test</p></li>"
 	equal(result,expected);
 });
 
-test("searhlistParse with image  TEst", function(){
+test("searhlistParse without image  TEst", function(){
 
-	var item={name:"Test",img:""}
+	var item={name:"Test",img:"",DL_id:"1234"}
 	var result = searchListParse(item);
-	var expected = "<li><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\"\" alt=\"kuva\"></img><p>Test</p></li>"
+	var expected = "<li id=\"searchLink1234\"><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\"\" alt=\"kuva\"></img><p>Test</p></li>"
 	equal(result,expected);
 });
 
@@ -324,7 +324,7 @@ test("updateSearchResults test",function(){
 	$("body").append('<div id="searchResults"></div>');
 	updateSearchResults(items);
 	var result = $("#searchResults").html();
-	var expected = "<h1>Other</h1><ul id=\"searchResultsDefault\" class=\"searchCategory\"><li><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\" \"=\"\" alt=\"kuva\"><p>Test1</p></li><li><img class=\"searchImages\" src=\"http://test.com.tyhja.png\" \"=\"\" alt=\"kuva\"><p>Test2</p></li></ul>";
+	var expected = "<h1>Other</h1><ul id=\"searchResultsDefault\" class=\"searchCategory\"><li id=\"searchLinkundefined\"><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\" \"=\"\" alt=\"kuva\"><p>Test1</p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"http://test.com.tyhja.png\" \"=\"\" alt=\"kuva\"><p>Test2</p></li></ul>";
 	equal(result,expected);
 	$("#searchResults").remove();
 	
@@ -426,7 +426,7 @@ test( "processResult test", function() {
 	processResult(searchWord);
 	
 	var result = $("#searchResults").html();
-	var expected = "<h1>Persons</h1><ul id=\"searchResultsUser\" class=\"searchCategory\"><li><img class=\"searchImages\" src=\"https://dlfwwwfiles.s3.amazonaws.com/images/8653/thumb_303657-goats-picture.gif\" \"=\"\" alt=\"kuva\"><p>Adele Vuohi</p></li></ul><h1>Things</h1><ul id=\"searchResultsThing\" class=\"searchCategory\"><li><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\" \"=\"\" alt=\"kuva\"><p>Sadeantura 1GS00</p></li><li><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\" \"=\"\" alt=\"kuva\"><p>Sadevesikaivo SVK1</p></li><li><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\" \"=\"\" alt=\"kuva\"><p>Sadevesikaivo SVK2</p></li></ul><h1>Projects</h1><ul id=\"searchResultsProject\" class=\"searchCategory\"><li><img class=\"searchImages\" src=\"https://dlfwwwfiles.s3.amazonaws.com/images/7610/thumb_top.jpg\" \"=\"\" alt=\"kuva\"><p>JADE</p></li></ul>";
+	var expected = "<h1>Persons</h1><ul id=\"searchResultsUser\" class=\"searchCategory\"><li id=\"searchLink8653\"><img class=\"searchImages\" src=\"https://dlfwwwfiles.s3.amazonaws.com/images/8653/thumb_303657-goats-picture.gif\" \"=\"\" alt=\"kuva\"><p>Adele Vuohi</p></li></ul><h1>Things</h1><ul id=\"searchResultsThing\" class=\"searchCategory\"><li id=\"searchLink7559\"><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\" \"=\"\" alt=\"kuva\"><p>Sadeantura 1GS00</p></li><li id=\"searchLink8654\"><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\" \"=\"\" alt=\"kuva\"><p>Sadevesikaivo SVK1</p></li><li id=\"searchLink8655\"><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\" \"=\"\" alt=\"kuva\"><p>Sadevesikaivo SVK2</p></li></ul><h1>Projects</h1><ul id=\"searchResultsProject\" class=\"searchCategory\"><li id=\"searchLink7610\"><img class=\"searchImages\" src=\"https://dlfwwwfiles.s3.amazonaws.com/images/7610/thumb_top.jpg\" \"=\"\" alt=\"kuva\"><p>JADE</p></li></ul>";
 	equal(result,expected);
 	$("#searchResults").remove();
 	$.mockjaxClear();
@@ -612,7 +612,7 @@ asyncTest("timedSearch test",function(){
 		var result="";
 		result = $("#searchResults").html();
 
-		var expected = "<h1>Other</h1><ul id=\"searchResultsDefault\" class=\"searchCategory\"><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p>undefined</p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p>undefined</p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p>undefined</p></li><li><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p>undefined</p></li></ul>";
+		var expected = "<h1>Other</h1><ul id=\"searchResultsDefault\" class=\"searchCategory\"><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p>undefined</p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p>undefined</p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p>undefined</p></li><li id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p>undefined</p></li></ul>";
 		equal(result,expected);
 		$("#searchResults").remove();
 		start();
