@@ -73,7 +73,9 @@ function parseCalEntry(item, userHash) {
 
 
 function parseItem(item, userHash, type) {
-
+    if(item==undefined || item==null || item=="" || userHash==undefined || userHash==null || userHash=="" || type==undefined || type==null || type=="" ) {
+      return "";
+    }
     var entry = "<li><section class=" + type +" >"
                 + "<img src=" + userHash[item.from_DL_id].img + " alt='pic' />"
                 + "<p class='user_name'>" +userHash[item.from_DL_id].name;
