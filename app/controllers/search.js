@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function searchListParse(item){
 	if(item.img!=""){
-		return '<li id="searchLink' +item.DL_id+ '">'+'<img class="searchImages" src="'+item.img+'"" alt="kuva"></img>'+'<p>'+item.name+'</p>'+'</li>';
+		return '<li name="'+item.name+'" id="searchLink' +item.DL_id+ '">'+'<img class="searchImages" src="'+item.img+'"" alt="kuva"></img>'+'<p>'+item.name+'</p>'+'</li>';
 	}else{
-		return '<li id="searchLink' +item.DL_id+ '">'+'<img class="emptySearchImages" src="'+'../../resources/images/tyhja.png'+'"" alt="kuva"></img>'+'<p>'+item.name+'</p>'+'</li>';
+		return '<li name="'+item.name+'" id="searchLink' +item.DL_id+ '">'+'<img class="emptySearchImages" src="'+'../../resources/images/tyhja.png'+'"" alt="kuva"></img>'+'<p>'+item.name+'</p>'+'</li>';
 	}
 }
 function updateSearchResults(results){
@@ -113,7 +113,7 @@ function timedSearch(searchWord){
 	if(timeout){clearTimeout(timeout);}
 	timeout=setTimeout(function(){
 		processResult(searchWord);
-	},500);
+	},200);
 }
 
 
