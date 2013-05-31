@@ -1,11 +1,18 @@
 document.addEventListener("DOMContentLoaded",function(){
+    setPage({
+        bar:true
+    });
     $("#sendMessage").click(sendMessageClickEvent);
     $("#sendMessageBox").click(sendMessageClickEvent);
 
     setEntityInformation(getURLParameter("dlid"));
-    console.log(getURLParameter("dlid"));
     if(isToken()) {
         var stream=getStream('message',getURLParameter("dlid"));
+
+        if(stream == "") {
+            $("#message").attr("hidden", "hidden");
+        }
+
         $("#thelist").append( stream.join('') );
     } else {
         alert("UNAUTHORISED");
@@ -18,6 +25,10 @@ document.addEventListener("DOMContentLoaded",function(){
     $("#close").click(function(){
         hideMessageFields();
     });
+
+    if($("#entityImg").width() == 200) {
+        $("#entityImg").css('margin-left', '-100px');
+    }
 
 });
 
@@ -34,7 +45,7 @@ function sendMessageClickEvent() {
 
                 addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content);
 
-                 var stream=getStream('message,cal,note');
+                 var stream=getStream('message',getURLParameter("dlid"));
                 $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
 
 
@@ -70,6 +81,7 @@ function setEntityInformation(dl_id){
 			result = data; 
 			error(data);
 		});
+    console.log(info);
     $("#entityImg").attr('src',info.img);
     $("#entityImg").attr('alt',info.name);
     $("#entityRole").text(info.type);
