@@ -60,17 +60,6 @@ function showMessages() {
     }
     return messages;
 }
-/*
-function parseCalEntry(item, userHash) {
-	var entry = "<li><ul class='event'>"
-                + "<li>Event--</li>"
-                + "<li id='date'>" + datetimetoDate(item.time_from) + "</li>"
-				+ "<li id='subject'>" + item.subject + "</li>" 
-				+ "<li>" + datetimetoTime(item.time_from) + "</li>"
-				+ "</li></ul></li>";
-	return entry;
-}
-*/
 
 function parseItem(item, userHash, type) {
     if(item==undefined || item==null || item=="" || $.isEmptyObject(userHash) || type==undefined || type==null || type=="" ) {
@@ -96,31 +85,6 @@ function parseItem(item, userHash, type) {
     return entry;
 }
 
-/*function parseNotification(item, userHash) {
-	var entry = "<li>Notification--</li>"
-        + "<li>" +item.id 
-        + ": " + item.from_DL_id 
-        + ": " + item.content 
-        + " to " + item.DL_id 
-        + '</li>';
-	return entry;
-}
-
-function parseNote(item, userHash) {
-    var entry = "<li><ul class='note'>"
-                + "<li>Note--</li>"
-                + "<li>" + item.from_DL_id 
-                + "</li><li> to </li><li>" + item.DL_id 
-    			+ "</li><li id='subject'>" + item.subject 
-    			+ "</li><li>: </li><li id='content'>" + item.content 
-    			+"</li></ul></li>";
-    return entry;
-}
-
-function parseNothing() {
-    return '<li class="empty_li"></li>';
-}
-*/
 function datetimetoDate(date) {
 	var year = date.substr(0,4);
 	var month = date.substr(5,2);
