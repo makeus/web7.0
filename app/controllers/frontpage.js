@@ -51,14 +51,9 @@ function sendMessageClickEvent() {
 
                 addMessage(getDL_id(), getDL_id(), subject, link);
 
-                var message = parseMessage(
-                {
-                    'from_DL_id': getDL_id(), 
-                    'DL_id': getDL_id(), 
-                    'to_DL_id': getDL_id(),
-                    'subject': subject, 
-                    'link': link
-                });
+                var stream=getStream('message,cal,note');
+                $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+
 
                 resetMessageFields();
 
