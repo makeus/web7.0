@@ -234,3 +234,33 @@ section#searchResults > h1 {
 /*.emptySearchImages{
 	border:solid black;
 }*/
+
+
+.unandmsg {
+	display:inline-block;
+	vertical-align: middle;
+	width: 80%;
+	margin-left: -3%;
+}
+.message > img {
+	display:inline-block;
+	width: 15%;
+	max-width: 300px;
+	vertical-align: middle;
+	margin: 0.5%;
+}
+.user_name {
+	margin-left: 5%;
+	font-size: 0.8em;
+	font-weight: bolder;
+}
+.message_content {
+	margin-left: 5%;
+}
+#thelist > li {
+	border: thin solid grey;
+	margin: 0.5%;
+}
+#wrapper {
+	margin:10px;
+}

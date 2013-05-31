@@ -19,7 +19,7 @@ function getStream(types,dlid) {
 
     //error retrieving the activity stream
     if(getStatus()!=1 || stream=="") {
-      items.push(parseNothing());
+      return items;
     } else {
       /*
       Capture unique dlids from stream for retrieval of user data.
@@ -60,7 +60,7 @@ function showMessages() {
     }
     return messages;
 }
-
+/*
 function parseCalEntry(item, userHash) {
 	var entry = "<li><ul class='event'>"
                 + "<li>Event--</li>"
@@ -70,13 +70,15 @@ function parseCalEntry(item, userHash) {
 				+ "</li></ul></li>";
 	return entry;
 }
-
+*/
 
 function parseItem(item, userHash, type) {
-
+    if(item==undefined || item==null || item=="" || $.isEmptyObject(userHash) || type==undefined || type==null || type=="" ) {
+      return "";
+    }
     var entry = "<li><section class=" + type +" >"
                 + "<img src=" + userHash[item.from_DL_id].img + " alt='pic' />"
-                + "<p class='user_name'>" +userHash[item.from_DL_id].name;
+                + "<div class='unandmsg'><p class='user_name'>" +userHash[item.from_DL_id].name;
     
     if(item.DL_id != null && item.DL_id != undefined && item.DL_id != "" && item.DL_id != item.from_DL_id) {
         entry += " </p><p class='to_name'>>> " + userHash[item.DL_id].name;
@@ -89,12 +91,12 @@ function parseItem(item, userHash, type) {
         entry += ": </p><p class='content'>" + item.content.substr(0,20);
     }
 
-    entry += "</p></section></section></li>";
+    entry += "</p></section></div></section></li>";
 
     return entry;
 }
 
-function parseNotification(item, userHash) {
+/*function parseNotification(item, userHash) {
 	var entry = "<li>Notification--</li>"
         + "<li>" +item.id 
         + ": " + item.from_DL_id 
@@ -118,7 +120,7 @@ function parseNote(item, userHash) {
 function parseNothing() {
     return '<li class="empty_li"></li>';
 }
-
+*/
 function datetimetoDate(date) {
 	var year = date.substr(0,4);
 	var month = date.substr(5,2);
