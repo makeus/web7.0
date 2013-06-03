@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded",function(){
         bar: true
     });
 
+    
+
     $("#messageField").focus(function() {
         $("#message-hidden").show();
     });
@@ -18,7 +20,13 @@ document.addEventListener("DOMContentLoaded",function(){
         var stream=getStream('message,cal,note');
         info = getInfo(getDL_id());
         $("#appTitle").text(info.name);
-        $("#thelist").append( stream.join('') );
+        $("#thelist").append(stream.join('') );
+        $("li").click(function(){
+            var id = $(this).attr('id');
+            var listElement= $(this);
+            view.push("IPage", "index.html?iPageID=" + id);
+            return false; 
+        });
 
     } else {
         alert("UNAUTHORISED");
@@ -58,3 +66,7 @@ function resetMessageFields() {
     $("#linkField").val("");
     hideMessageFields();
 }
+
+
+
+
