@@ -242,7 +242,7 @@ section#searchResults > h1 {
 	width: 80%;
 	margin-left: -3%;
 }
-.message > img {
+.eventElem > img {
 	display:inline-block;
 	width: 15%;
 	max-width: 300px;
