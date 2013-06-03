@@ -65,7 +65,7 @@ function parseItem(item, userHash, type) {
     if(item==undefined || item==null || item=="" || $.isEmptyObject(userHash) || type==undefined || type==null || type=="" ) {
       return "";
     }
-    var entry = "<li id='itemid_" +item.id+ "''><section class='eventElem' >"
+    var entry = "<li class='listEL' id='" +item.id+ "'><section  class='eventElem' >"
                 + "<img src=" + userHash[item.from_DL_id].img + " alt='pic' />"
                 + "<div class='unandmsg'><p class='user_name'>" +userHash[item.from_DL_id].name+"</p>";
     

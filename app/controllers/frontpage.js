@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded",function(){
         bar: true
     });
 
+    
+
     $("#messageField").focus(function() {
         $("#message-hidden").show();
     });
@@ -19,6 +21,12 @@ document.addEventListener("DOMContentLoaded",function(){
         info = getInfo(getDL_id());
         $("#appTitle").text(info.name);
         $("#thelist").append( stream.join('') );
+        $("li").click(function(){
+            var id = $(this).attr('id');
+            var listElement= $(this);
+            view.push("IPage", "index.html?iPageID=" + id + "&listElement=" + $(this).text);
+            return false; 
+        });
 
     } else {
         alert("UNAUTHORISED");
@@ -58,3 +66,7 @@ function resetMessageFields() {
     $("#linkField").val("");
     hideMessageFields();
 }
+
+
+
+
