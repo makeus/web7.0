@@ -18,16 +18,14 @@ function getInfo(dl_id){
 function setPage(settings) {
 	if (settings === undefined)
 		settings = {};
-	
-	// Default values
-	if (settings.bar === undefined)
-		settings.bar = false;
-
 
 	if (settings.bar)
 		bar.show();
 	else
 		bar.hide();
+
+	if (settings.barBackButton)
+		bar.showBackButton();
 }
 
 
