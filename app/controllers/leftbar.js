@@ -33,7 +33,7 @@ function createLinks(dlid) {
 	links[0] = "Messages";
 	urls[0] =  baselink + "&type=message";
 	links[1] = "Tasks";
-	urls[1] =  baselink + "&type=tasks";
+	urls[1] =  baselink + "&type=cal";
 
 	$.each(links, function(i, item) {
 		$("#linklist").append("<a href=" + urls[i] + ">" + item + "</a>\n");
