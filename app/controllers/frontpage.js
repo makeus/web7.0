@@ -24,7 +24,8 @@ document.addEventListener("DOMContentLoaded",function(){
         $("li").click(function(){
             var id = $(this).attr('id');
             var listElement= $(this);
-            view.push("IPage", "index.html?iPageID=" + id);
+            var src= $(this).find('img').attr("src");
+            view.push("IPage", "index.html?iPageID=" + id + "&src=" + src);
             return false; 
         });
 
