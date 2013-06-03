@@ -1,16 +1,16 @@
-function getEntityInformation(dl_id){
-	var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
-	var url="dlid"
-	var info=rest(opts,url,
-		function(data) {
-			result = data;
-			success(data);
-		},
-		function(data) {
-			result = data; 
-			error(data);
-		});
-	return info;
+function getInfo(dl_id){
+    var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
+    var url="dlid"
+    var info=rest(opts,url,
+        function(data) {
+            result = data;
+            success(data);
+        },
+        function(data) {
+            result = data; 
+            error(data);
+        });
+    return info;
 }
 
 

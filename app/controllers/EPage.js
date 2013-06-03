@@ -80,7 +80,7 @@ function resetMessageFields() {
 
 
 function setEntityInformation(dl_id){
-    var info=getEntityInformation(dl_id);
+    var info=getInfo(dl_id);
     var image = "";
     if(info.img == "") {
         image = '../../resources/images/tyhja.png';
