@@ -78,12 +78,12 @@ function parseItem(item, userHash, type) {
     }
     var entry = "<li id='itemid_" +item.id+ "''><section class='eventElem' >"
                 + "<img src=" + userHash[item.from_DL_id].img + " alt='pic' />"
-                + "<div class='unandmsg'><p class='user_name'>" +userHash[item.from_DL_id].name+"</p>";
+                + "<div class='unandmsg'><div class='sendandre'><p class='user_name'>" +userHash[item.from_DL_id].name;
     
     if(item.DL_id != null && item.DL_id != undefined && item.DL_id != "" && item.DL_id != item.from_DL_id) {
-        entry += "<p class='to_name'>>> " + userHash[item.DL_id].name + "</p>";
+        entry += ">>> " + userHash[item.DL_id].name;
     }
-
+    entry += "</p></div>";
     if(type == "cal"){
       entry += "<p class='eventTime'>"+item.time_to+"</p>";
     }
