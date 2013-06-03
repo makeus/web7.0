@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		login(username, password);
 
 		if(getStatus() == -1) {
-			$("#failLogin").removeAttr("hidden");
+			$("#failLogin").show();
 		} else if (getStatus() == 1) {
 			pushView("frontpage");
 		}

@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded",function(){
         var stream=getStream('message',getURLParameter("dlid"));
 
         if(stream == "") {
-            $("#message").attr("hidden", "hidden");
+            $("#message").hide();
         }
 
         $("#thelist").append( stream.join('') );
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded",function(){
     }
 
     $("#messageField").focus(function() {
-        $("#message-hidden").removeAttr("hidden");
+        $("#message-hidden").show();
     });
 
     $("#close").click(function(){
@@ -58,7 +58,7 @@ function sendMessageClickEvent() {
 }
 
 function hideMessageFields() {
-    $("#message-hidden").attr("hidden", "hidden");
+    $("#message-hidden").hide();
 }
 
 function resetMessageFields() {
@@ -71,7 +71,13 @@ function resetMessageFields() {
 
 function setEntityInformation(dl_id){
     var info=getEntityInformation(dl_id);
-    $("#entityImg").attr('src',info.img);
+    var image = "";
+    if(info.img == "") {
+        image = '../../resources/images/tyhja.png';
+    } else {
+        image = info.img
+    }
+    $("#entityImg").attr('src',image);
     $("#entityImg").attr('alt',info.name);
     $("#entityRole").text(info.type);
     $("#entityName").text(info.name);
