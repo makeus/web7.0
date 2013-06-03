@@ -248,7 +248,7 @@ test( "getEntityInformation test", function() {
   "sub_type": "",
   "type": "user"
 }
-	var info=getEntityInformation(dl_id);
+	var info=getInfo(dl_id);
 	equal(info[0].name,result.name);
 
 	$.mockjaxClear();
