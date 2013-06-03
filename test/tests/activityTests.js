@@ -163,3 +163,84 @@ test( "addMessage fail method test", function() {
 	$.mockjaxClear();
 });
 
+
+test( "addEvent test", function() {
+	var type="cal";
+
+	$.mockjaxClear();
+		
+	$.mockjax({
+		url: url + "Authtoken",
+		responseText: {
+			DL_id: userId,
+			authtoken: authtoken,
+			staff: null
+		}
+
+	})
+
+	$.mockjax({
+		url: /https:\/\/www.dliv.in\/rest\/stream/,
+		urlParams: [
+			'uid',
+			'auth',
+			'to_dl_id',
+			'from_dl_id',
+			'type',
+			'subject',
+		],
+		response: function(settings) {
+			equal(settings.data.uid, userId, "Userid ei muutu");
+			equal(settings.data.auth, authtoken, "Auth ei muutu");
+			equal(settings.data.to_dl_id, to_dl_id, "TO_DL_ID ei muutu");
+			equal(settings.data.from_dl_id, from_dl_id, "From_DL_ID ei muutu");
+			equal(settings.data.type, type, "Type ei muutu");
+			equal(settings.data.subject, subject, "Subject ei muutu");
+		}
+		
+	});
+
+	login(username, password);
+	addEvent(to_dl_id, from_dl_id, subject);
+
+	$.mockjaxClear();
+
+});
+
+test( "addEvent unauthorized", function() {
+
+	$.mockjaxClear();
+	
+	$.mockjax({
+		url: url + "stream",
+		status: 401,
+		statusText: "Unauthorized",
+		responseText: {
+			ErrorCode: 401,
+			ErrorMessage: "Unauthorized"
+		}
+	});
+	addEvent(to_dl_id, from_dl_id, subject, link);
+	equal(getStatus(), 401);
+
+	$.mockjaxClear();
+});
+
+test( "addEvent fail method test", function() {
+
+	$.mockjaxClear();
+	
+	$.mockjax({
+		url: url + "stream",
+		status: 405,
+		statusText: "Method not allowed",
+		responseText: {
+			ErrorCode: 405,
+			ErrorMessage: "Method not allowed"
+		}
+	});
+	addEvent(to_dl_id, from_dl_id, subject, link);
+	equal(getStatus(), 405);
+
+	$.mockjaxClear();
+});
