@@ -27,13 +27,13 @@ bar = {
 
 	initListeners: function() {
 		$("#barLogo").click(function() {
-			alert("herp");
+			
 		});
 
 		$("#searchInput").click(function() {
 			if (!bar.isSearchPage()) {
 				$("#searchInput").blur();
-				pushView("search");
+				view.push("search");
         	}
         });
 	},

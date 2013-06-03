@@ -40,7 +40,7 @@ function createButton(info) {
 		} else if (getStatus() == 0) {
 			alert("Timeout!");
 		} else if (getStatus() == 1) {
-			pushView("frontpage");
+			view.push("frontpage");
 		} else {
 			alert("ERROR " + res);
 		}

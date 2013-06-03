@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		if(getStatus() == -1) {
 			$("#failLogin").show();
 		} else if (getStatus() == 1) {
-			pushView("frontpage");
+			view.push("frontpage");
 		}
 	});
 	
