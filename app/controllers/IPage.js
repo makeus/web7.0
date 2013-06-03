@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded",function(){
     });
     if(isToken()) {
         var iPageID =getURLParameter("iPageID");
-        getInfo(iPageID);
         $("#messageContent").replaceWith("Message id is: "+iPageID);
         
         } else {
@@ -14,6 +13,4 @@ document.addEventListener("DOMContentLoaded",function(){
         }
 
 });
-function getIPageId(id){
-    return getInfo(id)
-}
+

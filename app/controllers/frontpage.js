@@ -20,11 +20,11 @@ document.addEventListener("DOMContentLoaded",function(){
         var stream=getStream('message,cal,note');
         info = getInfo(getDL_id());
         $("#appTitle").text(info.name);
-        $("#thelist").append( stream.join('') );
+        $("#thelist").append(stream.join('') );
         $("li").click(function(){
             var id = $(this).attr('id');
             var listElement= $(this);
-            view.push("IPage", "index.html?iPageID=" + id + "&listElement=" + $(this).text);
+            view.push("IPage", "index.html?iPageID=" + id);
             return false; 
         });
 
