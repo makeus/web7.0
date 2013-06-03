@@ -4,40 +4,61 @@
 }
 
 #bar {
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: white;
-  display: none;
-  border-top-style: solid;
-  border-top-color: black;
-  border-top-width: 5px;
-  border-bottom-style: solid;
-  border-bottom-color: black;
-  border-bottom-width: 5px;
-  /* height defined in /controllers/global/bar.js */
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: white;
+	display: none;
+	/* height defined in /controllers/global/bar.js */
 }
 
+#betweenBlackLines {
+	height: 100%;
+	margin-top: 3px;
+	background: white;
+	border-top-style: solid;
+	border-top-color: black;
+	border-top-width: 5px;
+	border-bottom-style: solid;
+	border-bottom-color: black;
+	border-bottom-width: 5px;
+}
+
+.barCell {
+	height: 100%;
+}
+
+
 #logoArea {
-  float: left;
-  width: 1%;
-  margin-top: 8px;
-  margin-left: 8px;
+	position: absolute;
+	left: 0px;
+	/* width defined in /controllers/global/bar.js */
+}
+
+#barLogo {
+	height: 100%;
+	width: 100%;
 }
 
 #searchArea {
-  position: relative;
-  margin: auto;
-  width: 50%;
-  padding-top: 20px;
+	position: absolute;
+	padding-left: 5%;
+	padding-right: 5%;
+	/* left and right defined in /controllers/global/bar.js */
 }
 
 #searchInput {
-  width: 100%;
+	margin-top: 17px;
 }
 
+#buttonArea {
+	position: absolute;
+	right: 0px;
+	background-color: gray;
+	/* width defined in /controllers/global/bar.js */
+}
 
 
 * {
@@ -242,7 +263,7 @@ section#searchResults > h1 {
 	width: 80%;
 	margin-left: -3%;
 }
-.message > img {
+.eventElem > img {
 	display:inline-block;
 	width: 15%;
 	max-width: 300px;

@@ -38,56 +38,56 @@ function updateSearchResults(results){
 				if (!$("#searchResultsUser").length){$("#searchResults").append('<h1>Persons</h1><ul id="searchResultsUser" class="searchCategory"></ul>');}
 				$("#searchResultsUser").append(searchListParse(item));
 				$("#searchLink"+item.DL_id).click(function(){
-					pushView("EPage", "index.html?dlid="+item.DL_id);
+					view.push("EPage", "index.html?dlid="+item.DL_id);
 				});
 				break;
 			case 'animal':
 				if (!$("#searchResultsAnimal").length){$("#searchResults").append('<h1>Animals</h1><ul id="searchResultsAnimal" class="searchCategory"></ul>');}
 				$("#searchResultsAnimal").append(searchListParse(item));
 				$("#searchLink"+item.DL_id).click(function(){
-					pushView("EPage", "index.html?dlid="+item.DL_id);
+					view.push("EPage", "index.html?dlid="+item.DL_id);
 				});
 				break;
 			case 'thing':
 				if (!$("#searchResultsThing").length){$("#searchResults").append('<h1>Things</h1><ul id="searchResultsThing" class="searchCategory"></ul>');}
 				$("#searchResultsThing").append(searchListParse(item));
 				$("#searchLink"+item.DL_id).click(function(){
-					pushView("EPage", "index.html?dlid="+item.DL_id);
+					view.push("EPage", "index.html?dlid="+item.DL_id);
 				});
 				break;
 			case 'project':
 				if (!$("#searchResultsProject").length){$("#searchResults").append('<h1>Projects</h1><ul id="searchResultsProject" class="searchCategory"></ul>');}
 				$("#searchResultsProject").append(searchListParse(item));
 				$("#searchLink"+item.DL_id).click(function(){
-					pushView("EPage", "index.html?dlid="+item.DL_id);
+					view.push("EPage", "index.html?dlid="+item.DL_id);
 				});
 				break;
 			case 'space':
 				if (!$("#searchResultsSpace").length){$("#searchResults").append('<h1>Places</h1><ul id="searchResultsSpace" class="searchCategory"></ul>');}
 				$("#searchResultsSpace").append(searchListParse(item));
 				$("#searchLink"+item.DL_id).click(function(){
-					pushView("EPage", "index.html?dlid="+item.DL_id);
+					view.push("EPage", "index.html?dlid="+item.DL_id);
 				});
 				break;
 			case 'group':
 				if (!$("#searchResultsGroup").length){$("#searchResults").append('<h1>Groups</h1><ul id="searchResultsGroup" class="searchCategory"></ul>');}
 				$("#searchResultsGroup").append(searchListParse(item));
 				$("#searchLink"+item.DL_id).click(function(){
-					pushView("EPage", "index.html?dlid="+item.DL_id);
+					view.push("EPage", "index.html?dlid="+item.DL_id);
 				});
 				break;
 			case 'contract':
 				if (!$("#searchResultsContract").length){$("#searchResults").append('<h1>Contracts</h1><ul id="searchResultsContract" class="searchCategory"></ul>');}
 				$("#searchResultsContract").append(searchListParse(item));
 				$("#searchLink"+item.DL_id).click(function(){
-					pushView("EPage", "index.html?dlid="+item.DL_id);
+					view.push("EPage", "index.html?dlid="+item.DL_id);
 				});
 				break;
 			default:
 				if (!$("#searchResultsDefault").length){$("#searchResults").append('<h1>Other</h1><ul id="searchResultsDefault" class="searchCategory"></ul>');}
 				$("#searchResultsDefault").append(searchListParse(item));
 				$("#searchLink"+item.DL_id).click(function(){
-					pushView("EPage", "index.html?dlid="+item.DL_id);
+					view.push("EPage", "index.html?dlid="+item.DL_id);
 				});
 				break;
 		}

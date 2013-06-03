@@ -1,18 +1,54 @@
-function preload(webView) {
-	webView.preload({}, {
-		onSuccess: function() {}
-	});
+view = {
+	push: function(name, page) {
+		if (page == undefined)
+			page = "index.html";
+
+		if (isSteroids()) {
+			var webView = createWebView(name, page);
+			steroids.layers.push(webView);
+		} else {
+			win.go(name, page);
+		}
+	},
+
+	pop: function() {
+		if (isSteroids())
+			steroids.layers.pop();
+		else
+			win.back();
+	},
+
+	preload: function(webView) {
+		webView.preload({}, {
+			onSuccess: function() {}
+		});
+	},
+
+	pushPreloaded: function(webView) {
+		steroids.layers.push(webView);
+	}
 }
 
 
-function windowGo(name, page) {
-	var path = "../"+name+"/"+page;
-	window.location.href = path;
-}
+modal = {
+	show: function(name, page) {
+		if (page == undefined)
+			page = "index.html";
 
+		if (isSteroids()) {
+			var webView = createWebView(name, page);
+			steroids.modal.show(webView);
+		} else {
+			win.go(name, page);
+		}
+	},
 
-function windowBack() {
-	window.history.go(-1);
+	hide: function() {
+		if (isSteroids())
+			steroids.modal.hide();
+		else
+			win.back();
+	}
 }
 
 
@@ -24,50 +60,15 @@ function createWebView(name, page) {
 }
 
 
-function pushView(name, page) {
-	if (page == undefined)
-		page = "index.html";
 
-	if (isSteroids()) {
-		var webView = createWebView(name, page);
-		steroids.layers.push(webView);
-	} else {
-		windowGo(name, page);
-	}
-}
+// Do not use this
+win = {
+	go: function(name, page) {
+		var path = "../"+name+"/"+page;
+		window.location.href = path;
+	},
 
-function pushPreloadedView(webView) {
-	steroids.layers.push(webView);
-}
-
-
-
-function popView() {
-	if (isSteroids()) {
-		steroids.layers.pop();
-	} else {
-		windowBack();
-	}
-}
-
-
-function showModal(name, page) {
-	if (page == undefined)
-		page = "index.html";
-
-	if (isSteroids()) {
-		var webView = createWebView(name, page);
-		steroids.modal.show(webView);
-	} else {
-		windowGo(name, page);
-	}
-}
-
-
-function hideModal() {
-	if (isSteroids()) {
-		steroids.modal.hide();
-	} else {
-		windowBack();
+	back: function() {
+		window.history.go(-1);
 	}
 }

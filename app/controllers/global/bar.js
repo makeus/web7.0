@@ -1,18 +1,28 @@
 bar = {
 	height: 80,
 	gap: 20,
+	button: {
+		width: 80
+	},
 
 	show: function() {
 		$("#bar").show();
-		$("#bar").css("height", bar.height);
-		$("#main").css("top", bar.height + bar.gap);
-
+		bar.setValues();
 		bar.initListeners();
 	},
 
 	hide: function() {
 		$("#bar").hide();
 		$("#main").css("top", 0);
+	},
+
+	showBackButton: function() {
+		var button = $("#barLogo");
+		button.attr("src", "../../resources/images/back-button.png");
+		button.unbind();
+		button.click(function() {
+			popView();
+		});
 	},
 
 	initListeners: function() {
@@ -23,7 +33,7 @@ bar = {
 		$("#searchInput").click(function() {
 			if (!bar.isSearchPage()) {
 				$("#searchInput").blur();
-				pushView("search");
+				view.push("search");
         	}
         });
 	},
@@ -33,6 +43,16 @@ bar = {
 			return true;
 		else
 			return false;
+	},
+
+	setValues: function() {
+		$("#bar").css("height", bar.height);
+		$("#main").css("top", bar.height + bar.gap);
+
+		$("#logoArea").css("width", bar.button.width);
+		$("#searchArea").css("left", bar.button.width);
+		$("#searchArea").css("right", bar.button.width);
+		$("#buttonArea").css("width", bar.button.width);
 	}
 }
 

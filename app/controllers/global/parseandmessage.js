@@ -76,22 +76,27 @@ function parseItem(item, userHash, type) {
     if(item==undefined || item==null || item=="" || $.isEmptyObject(userHash) || type==undefined || type==null || type=="" ) {
       return "";
     }
-    var entry = "<li><section class=" + type +" >"
+    var entry = "<li id='itemid_" +item.id+ "''><section class='eventElem' >"
                 + "<img src=" + userHash[item.from_DL_id].img + " alt='pic' />"
-                + "<div class='unandmsg'><p class='user_name'>" +userHash[item.from_DL_id].name;
+                + "<div class='unandmsg'><p class='user_name'>" +userHash[item.from_DL_id].name+"</p>";
     
     if(item.DL_id != null && item.DL_id != undefined && item.DL_id != "" && item.DL_id != item.from_DL_id) {
-        entry += " </p><p class='to_name'>>> " + userHash[item.DL_id].name;
+        entry += "<p class='to_name'>>> " + userHash[item.DL_id].name + "</p>";
+    }
+
+    if(type == "cal"){
+      entry += "<p class='eventTime'>"+item.time_to+"</p>";
     }
 
     entry += "<section class='message_content'>"
-          + "</p><p class='subject'>" + item.subject;
+          + "<p class='subject'>" + item.subject + "</p>";
 
     if(item.content != null && item.content != undefined) {
-        entry += ": </p><p class='content'>" + item.content.substr(0,20);
+        entry += "<p class='content'>" + item.content.substr(0,20);
     }
 
-    entry += "</p></section></div></section></li>";
+    entry += "</section></div></section></li>";
+
 
     return entry;
 }
