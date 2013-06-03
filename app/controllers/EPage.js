@@ -7,8 +7,7 @@ document.addEventListener("DOMContentLoaded",function(){
 
     setEntityInformation(getURLParameter("dlid"));
     if(isToken()) {
-        var stream=getStream('message',getURLParameter("dlid"));
-
+        var stream = getStreamUrl();
         if(stream == "") {
             $("#message").hide();
         }
@@ -32,6 +31,17 @@ document.addEventListener("DOMContentLoaded",function(){
 
 });
 
+function getStreamUrl() {
+    var type = getURLParameter("type");
+    var dlid = getURLParameter("dlid");
+    if(type == null) {
+        type = "message";
+    }
+    if(dlid == null) {
+        dlid = getDL_id();
+    }
+    return getStream(type,dlid);
+}
 
 function sendMessageClickEvent() {
         if(isToken()) {
@@ -45,7 +55,7 @@ function sendMessageClickEvent() {
 
                 addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content);
 
-                 var stream=getStream('message',getURLParameter("dlid"));
+                 var stream=getStreamUrl();
                 $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
 
 
