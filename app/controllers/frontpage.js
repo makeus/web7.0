@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded",function(){
     });
 
     $("#messageField").focus(function() {
-        $("#message-hidden").removeAttr("hidden");
+        $("#message-hidden").show();
     });
 
     $("#close").click(function(){
@@ -64,7 +64,7 @@ function sendMessageClickEvent() {
 }
 
 function hideMessageFields() {
-    $("#message-hidden").attr("hidden", "hidden");
+    $("#message-hidden").hide();
 }
 
 function resetMessageFields() {

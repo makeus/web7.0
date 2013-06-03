@@ -210,14 +210,14 @@ section#searchResults > h1 {
 	max-width: 200px;
 	position: absolute;
 	left: 50%;
-	top: 1%;
+	top: 10px;
 	margin-left: -25%;
 }
 
 #infodiv {
-	position: absolute;
+	position: relative;
 	text-align: center;
-	top: 25%;
+	top: -70px;
 	left: 50%;
 	width: 100%;
 	margin-left: -50%;
