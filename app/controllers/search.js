@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 	setPage({
-		bar: true
+		bar: true,
+		barBackButton: true
 	});
 
 	$("#searchInput").focus();
