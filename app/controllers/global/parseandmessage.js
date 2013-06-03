@@ -8,6 +8,17 @@ function addMessage(to_dl_id, from_dl_id, subject, link, content) {
 	addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 'content':content, 'link':link});
 }
 
+function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_to, location, sub_type) {
+  if(to_dl_id == null || from_dl_id == null || subject == null) {
+    return -1;
+  }
+  var uid = getDL_id();
+  var auth = getToken();
+  var type = "cal";
+  addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 
+               'content':content, 'link':link, 'time_from':time_from, 'time_to':time_to, 'location':location, 'sub_type':sub_type});
+
+}
 
 function getStream(types,dlid) {
     var items =[];
