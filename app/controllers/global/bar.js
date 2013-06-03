@@ -21,7 +21,7 @@ bar = {
 		button.attr("src", "../../resources/images/back-button.png");
 		button.unbind();
 		button.click(function() {
-			popView();
+			view.pop();
 		});
 	},
 

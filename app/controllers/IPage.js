@@ -2,7 +2,8 @@
 
 document.addEventListener("DOMContentLoaded",function(){
     setPage({
-        bar:true
+        bar:true,
+        barBackButton:true
     });
     if(isToken()) {
         var iPageID =getURLParameter("iPageID");
