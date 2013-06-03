@@ -52,7 +52,7 @@ item[0]={
 var type=item[0].type;
 
 
-var expected ="<li id='itemid_1234''><section class='eventElem' ><img src=goats-picture.gif alt='pic' /><div class='unandmsg'><p class='user_name'>Adele Vuohi</p><p class='to_name'>>> A deli goat</p><section class='message_content'><p class='subject'>message</p><p class='content'>message_body</section></div></section></li>";
+var expected ="<li class='listEL' id='1234'><section  class='eventElem' ><img src=goats-picture.gif alt='pic' /><div class='unandmsg'><div class='sendandre'><p class='user_name'>Adele Vuohi>>> A deli goat</p></div><section class='message_content'><p class='subject'>message</p><p class='content'>message_body</section></div></section></li>";
 
 equal(parseItem(item[0], userHash, type), expected);
 });
@@ -268,7 +268,7 @@ var url = "stream";
     });
 
 
-    var expected = "<li id='itemid_1234''><section class='eventElem' ><img src=img.png alt='pic' /><div class='unandmsg'><p class='user_name'>Adele Vuohi</p><section class='message_content'><p class='subject'>message</p><p class='content'>message_body</section></div></section></li>";
+    var expected = "<li class='listEL' id='1234'><section  class='eventElem' ><img src=img.png alt='pic' /><div class='unandmsg'><div class='sendandre'><p class='user_name'>Adele Vuohi</p></div><section class='message_content'><p class='subject'>message</p><p class='content'>message_body</section></div></section></li>";
     
     equal(showMessages(),expected);
     equal(getStatus(),1);
