@@ -1,3 +1,25 @@
+
+
+function getMessageInfo(id){
+	var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 25, 'types': 'cal,message,note', 'stream': true, 'dlid':getDL_id()};
+	var url = "stream";
+	var items = rest(opts,url,function(data) {
+			result = data;
+			success(data);
+		},
+		function(data) {
+			result = data;
+			error(data);
+		});
+	var value;
+	$.each(items,function(i,item){
+		if(item.id==id){
+			value=item;
+		}
+	});
+	return value;
+}
+
 function getInfo(dl_id){
     var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
     var url="dlid"

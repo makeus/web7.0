@@ -229,3 +229,60 @@ test( "getStream fail method test", function() {
 
 	$.mockjaxClear();
 });
+
+
+test( "getmessainfo test", function() {
+	//jos tää failaa niin aseta token js DL_id derpit
+
+    $.mockjaxClear();
+    
+    $.mockjax({
+        url: "*",
+        responseText: [{
+            id: "1234",
+            type: "message",
+            sub_type: "",
+            DL_id: "4321",
+            from_DL_id: "4321",
+            subject: "message",
+            link: "",
+            content: "message_body",
+            locatio: "",
+            time_from: "0000-00-00 00:00:00",
+            time_to: "0000-00-00 00:00:00",
+            acl: "read",
+            whitelist_dlid: "",
+            completed: null,
+            completed_by: null,
+            created: "2013-05-17 11:10:31",
+            comments: "",
+            relations: ""
+        }]
+    });
+
+
+    var expected = {
+  "DL_id": "4321",
+  "acl": "read",
+  "comments": "",
+  "completed": null,
+  "completed_by": null,
+  "content": "message_body",
+  "created": "2013-05-17 11:10:31",
+  "from_DL_id": "4321",
+  "id": "1234",
+  "link": "",
+  "locatio": "",
+  "relations": "",
+  "sub_type": "",
+  "subject": "message",
+  "time_from": "0000-00-00 00:00:00",
+  "time_to": "0000-00-00 00:00:00",
+  "type": "message",
+  "whitelist_dlid": ""
+};
+    var result = getMessageInfo("1234");
+    equal(result.created,expected.created);
+    equal(getStatus(),1);
+    $.mockjaxClear();
+});
