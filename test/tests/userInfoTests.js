@@ -208,7 +208,7 @@ test( "user info test correct token, wrong uid", function() {
 
 
 
-test( "setEntityInformation test", function() {
+test( "getEntityInformation test", function() {
 
 	$.mockjaxClear();
 	
@@ -236,8 +236,20 @@ test( "setEntityInformation test", function() {
 		}]
 	});
 	
-	setEntityInformation(dl_id);
-	equal(status, 1);
+	var result={
+  "DL_id": "8653",
+  "created": "2013-05-21 13:55:43",
+  "created_by": "8653",
+  "edited": "2013-05-22 07:31:55",
+  "edited_by": "8653",
+  "img": "https://dlfwwwfiles.s3.amazonaws.com/images/8653/thumb_303657-goats-picture.gif",
+  "name": "Adele Vuohi",
+  "relations": "7795:,8658",
+  "sub_type": "",
+  "type": "user"
+}
+	var info=getEntityInformation(dl_id);
+	equal(info[0].name,result.name);
 
 	$.mockjaxClear();
 
