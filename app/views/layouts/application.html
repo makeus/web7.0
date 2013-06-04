@@ -8,14 +8,21 @@
   <title id="appTitle">Dlivin app</title>
 
   <link rel="stylesheet" href="../../stylesheets/ratchet-steroids.css" />
+  <link rel="stylesheet" href="../../stylesheets/jquery.mobile-1.3.1.min.css"
 
   <script src="../../javascripts/onerror.js"></script>
   <script src="../../appgyver/cordova.js"></script>
   <script src="../../components/steroids-js/steroids.js"></script>
 
-  <script src="../../components/jquery/jquery.min.js"></script>
-  <script src="../../vendor/hammerjs/jquery.hammer.min.js"></script>
 
+  <script src="../../components/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).bind("mobileinit", function(){
+      $.mobile.allowCrossDomainPages = true;
+      $.support.cors = true;
+    });
+  </script>
+  <script src="../../components/jquery/jquery.mobile.js"></script>
 
   <!-- our stuff -->
 
@@ -28,13 +35,32 @@
   <script src="../../controllers/global/application.js"></script>
   <script src="../../controllers/global/rest.js"></script>
   <script src="../../controllers/global/bar.js"></script>
+  <script src="../../controllers/global/leftbar.js"></script>
   <script src="../../controllers/global/view.js"></script>
   <script src="../../controllers/global/parseandmessage.js"></script>
   <script src="../../controllers/<%= yield.controller %>.js"></script>
+
+  
+
 </head>
 
 <body>
-  <div id="bar" hidden>
+  <div data-role="page">
+
+    <div data-role="panel" id="leftpanel" data-display="overlay">
+      <div id="leftbar_info">
+        <img id="leftbar_img"></img>
+      <div id="leftbar_info">
+        <h1 id="leftbar_name"></h1>
+        <h2 id="leftbar_role"></h2>
+      </div>
+    </div>
+
+    <ul id="linklist"></ul>
+
+    </div>
+
+    <div id="bar" hidden>
     <div id="betweenBlackLines">
       <div class="barCell" id="logoArea">
         <img id="barLogo" src="../../resources/images/logo-login.jpg" />
@@ -47,10 +73,20 @@
       </div>
     </div>
   </div>
+	 <!-- <div data-role="header" id="header" data-theme="c">
+		<a href="#leftpanel" id="headerimg" class="ui-btn-left" ><img id="headerimg2" src="http://88.114.122.139:8080/job/web7.0/ws/dist/resources/images/logo-login.jpg" alt=""></a>
+		<div id="searchdiv">
+			<input type="search" name="search" id="searchInput" value="" data-mini="true" data-inline="true" />
+		</div>
+		<div class="ui-btn-right">
+			<a href="#" data-role="button" data-icon="home" data-iconpos="notext" data-rel="dialog">View</a>
+			<a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-rel="dialog">Menu</a>
+		</div>   
+    </div> -->
 
-
-  <div id="main">
-    <%= yield.view %>
+	<div data-role="content" id="main">
+		<%= yield.view %>
+	</div>
   </div>
 
 </body>

@@ -32,7 +32,7 @@ function createDebugButtons() {
 
 function createButton(info) {
 	$("#main").append("<button id='"+info.id+"'>"+info.name+"</button>");
-	$("#"+info.id).hammer().on("tap", function() {
+	$("#"+info.id).click(function() {
 		login(info.username, info.password);
 
 		if (getStatus() == -1) {

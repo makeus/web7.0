@@ -1,3 +1,52 @@
+document.addEventListener("DOMContentLoaded",function(){
+	if(/login/i.test(window.location.pathname)) {
+		localStorage.clear();
+	}
+	if(isToken()) {
+		var dlid = getURLParameter("dlid");
+		if(dlid == null) {
+			dlid = getDL_id();
+		}
+		var info = getInfo(dlid);
+		leftbarSetInfo(info);
+		leftbarCreateLinks(dlid);
+
+		jQuery( window ).on( "swiperight", function() {
+			$( "#leftpanel" ).panel( "open" );
+		});
+	}
+});
+function addLiListener(){
+    $("li").click(function(){
+            var id = $(this).attr('id');
+            var listElement= $(this);
+            var src= $(this).find('img').attr("src");
+            view.push("IPage", "index.html?iPageID=" + id + "&src=" + src);
+            return false; 
+        });
+}
+
+
+function getMessageInfo(id){
+	var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 100, 'types': 'cal,message,note', 'stream': true, 'dlid':getDL_id()};
+	var url = "stream";
+	var items = rest(opts,url,function(data) {
+			result = data;
+			success(data);
+		},
+		function(data) {
+			result = data;
+			error(data);
+		});
+	var value;
+	$.each(items,function(i,item){
+		if(item.id==id){
+			value=item;
+		}
+	});
+	return value;
+}
+
 function getInfo(dl_id){
     var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
     var url="dlid"
@@ -15,7 +64,7 @@ function getInfo(dl_id){
 
 
 
-function setPage(settings) {
+function setupPage(settings) {
 	if (settings === undefined)
 		settings = {};
 
@@ -86,7 +135,7 @@ function getUserArray(opts) {
 
 
 function isToken() {
-	return getToken != 'null' && getToken != 'undefiend';
+	return (getToken() != null) && (getToken() != undefined);
 }
 
 function getURLParameter(name) {

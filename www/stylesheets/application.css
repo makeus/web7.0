@@ -1,5 +1,5 @@
 #main {
-  position: relative;
+  /*position: relative;*/
   /* top defined in /controllers/global/bar.js */
 }
 
@@ -289,10 +289,36 @@ section#searchResults > h1 {
 #wrapper {
 	margin:10px;
 }
+#searchdiv {
+    width: 50%;
+    display: inline-block;
+}
+
+#headerimg {
+    width: 15%;
+    max-width: 50px;
+    float: left;
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+
+
+#headerimg2 {
+	width: 100%;
+
+}
+#header {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.headerbtn {
+    float:right;
+}
 .eventTime{
 	font-size: 0.8em;
 	font-weight: bolder;
 	margin-left: 5%;
 	margin-top:-1%;
-
 }
