@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded",function(){
     setPage({
         bar:true
     });
+
+    if(getURLParameter("type")=="cal") {
+        $()
+    }
     $("#sendMessage").click(sendMessageClickEvent);
     $("#sendMessageBox").click(sendMessageClickEvent);
 
@@ -75,6 +79,9 @@ function resetMessageFields() {
     $("#messageField").val("");
     $("#linkField").val("");
     $("#contentField").val("");
+    $("#time_from").val("");
+    $("#time_to").val("");
+    $("#location").val("");
     hideMessageFields();
 }
 
