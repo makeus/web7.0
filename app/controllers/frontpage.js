@@ -52,7 +52,7 @@ function sendMessageClickEvent() {
 
                 addMessage(getDL_id(), getDL_id(), subject, link);
 
-                var stream=getStream('message,cal,note');
+                var stream=getOwnStream('message,cal,note');
                 $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
 
 
