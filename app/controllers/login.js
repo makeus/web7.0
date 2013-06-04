@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-	setPage({
+	setupPage({
         bar: false
     });
 
