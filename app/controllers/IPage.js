@@ -77,7 +77,7 @@ function getTimeDiff(sendedTime){
     if (minutes>=2){
          vastaus += " minutes ago.";
     } else {
-        vastaus += " minut ago.";
+        vastaus += " minute ago.";
     }
     return vastaus;
 }
