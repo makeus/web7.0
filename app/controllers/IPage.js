@@ -9,18 +9,10 @@ document.addEventListener("DOMContentLoaded",function(){
         var img = getURLParameter("src");
         var content = getURLParameter("content");
         $("#image").attr('src',img);
-<<<<<<< HEAD
         } else {
                 alert("UNAUTHORISED");
         }
         parseMessage(iPageID);
-
-=======
-        $("#messageContent").replaceWith("Message id is: "+iPageID);    
-    } else {
-        alert("UNAUTHORISED");
-    }
->>>>>>> 0e4e504bc1a6ad8ea52e91eb6bf3453fa83c5cb8
 });
 
 function parseMessage(message_id){
@@ -41,15 +33,56 @@ function getSubject(info){
 function getComments(info){
     var comments = info.comments;
     var content = "<ul>";
-    //var date = new Date();
+    var currTime = (new Date()).getTime();
     $.each(comments,function(i,item){
         var sender = getInfo(item.uid);
         var imageEl = "<img src='" + sender.img + "'></img>";
-        //var minPassed = date.getMinutes() - item.created.getMinutes();
-        content += "<li>" + imageEl + "<b>" + item.name + ": </b>" + item.comment + "<p>Time: " + item.created + "</p></li>";
+        content += "<li>" + imageEl + "<b>" + item.name + ": </b>" + item.comment + "<p>Time: " + getTimeDiff(item.created) + "</p></li>";
 
     });
     content += "</ul>";
     return content;
+}
+
+function getTimeDiff(sendedTime){
+    var date = sendedTime.replace(/-/g, '/');
+    var diff = Math.abs(new Date() - new Date(date));
+    var one_day = 1000*60*60*24;
+    var one_hour = 1000*60*60;
+    var one_minute = 1000*60;
+    var days = diff/one_day;
+    var vastaus = "";
+    if (days>=1){
+        diff -= one_day*days;
+        vastaus += Math.round(days);
+        if (days>=2){
+            vastaus += " days, ";
+        } else {
+            vastaus += " day, ";
+        }
+    }
+    var hours = Math.round(diff/one_hour);
+    if (hours>=1){
+        diff -= one_hour*hours;
+        vastaus += hours;
+        if (hours>=2){
+            vastaus += " hours and ";
+        } else {
+            vastaus += " hour and ";
+        }
+
+    }
+    var minutes = Math.round(diff/one_minute);
+    if (minutes>=1){
+        vastaus += minutes;
+        if (hours>=2){
+            vastaus += " minutes ago.-";
+        } else {
+            vastaus += " minut ago.- ";
+        }
+
+    }
+    return vastaus;
+
 }
 
