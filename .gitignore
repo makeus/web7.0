@@ -1,2 +1,4 @@
 config/cloud.json
 dist/
+*/.DS_Store
+.DS_Store

@@ -22,7 +22,7 @@ function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_
 
 function getOtherStream(types,dlid) {
     var items =[];
-    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types, 'dlid':dlid};
+    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types+',', 'dlid':dlid};
 
     var stream=getActivityStream(opts);
     console.log(stream);
