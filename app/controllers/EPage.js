@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded",function(){
     if($("#entityImg").width() == 200) {
         $("#entityImg").css('margin-left', '-100px');
     }
+    addLiListener();
 
 });
 
@@ -40,7 +41,7 @@ function getStreamUrl() {
     if(dlid == null) {
         dlid = getDL_id();
     }
-    return getStream(type,dlid);
+    return getOtherStream(type,dlid);
 }
 
 function sendMessageClickEvent() {

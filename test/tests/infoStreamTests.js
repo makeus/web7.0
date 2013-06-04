@@ -184,7 +184,7 @@ test( "getStream test", function() {
     	}]
 	});
 
-	getStream("note");
+	getOwnStream("note");
 	equal(getStatus(), 1);
 	$.mockjaxClear();
 
@@ -205,7 +205,7 @@ test( "getStream Unauthorized", function() {
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	getStream("note");
+	getOwnStream("note");
 	equal(getStatus(), 401);
 	$.mockjaxClear();
 
@@ -224,7 +224,7 @@ test( "getStream fail method test", function() {
 			ErrorMessage: "Method not allowed"
 		}
 	});	
-	getStream("note");
+	getOwnStream("note");
 	equal(getStatus(), 405);
 
 	$.mockjaxClear();
