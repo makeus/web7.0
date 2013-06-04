@@ -54,14 +54,14 @@ function getTimeDiff(sendedTime){
     var vastaus = "";
     if (days>=1){
         diff -= one_day*days;
-        vastaus += Math.round(days);
+        vastaus += Math.floor(days);
         if (days>=2){
             vastaus += " days, ";
         } else {
             vastaus += " day, ";
         }
     }
-    var hours = Math.round(diff/one_hour);
+    var hours = Math.floor(diff/one_hour);
     if (hours>=1){
         diff -= one_hour*hours;
         vastaus += hours;
@@ -72,17 +72,13 @@ function getTimeDiff(sendedTime){
         }
 
     }
-    var minutes = Math.round(diff/one_minute);
-    if (minutes>=1){
-        vastaus += minutes;
-        if (hours>=2){
-            vastaus += " minutes ago.-";
-        } else {
-            vastaus += " minut ago.- ";
-        }
-
+    var minutes = Math.floor(diff/one_minute);
+    vastaus += minutes;
+    if (minutes>=2){
+         vastaus += " minutes ago.";
+    } else {
+        vastaus += " minut ago.";
     }
     return vastaus;
-
 }
 
