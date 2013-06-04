@@ -1,20 +1,26 @@
-
-
 document.addEventListener("DOMContentLoaded",function(){
-    setPage({
+    setupPage({
         bar:true,
         barBackButton:true
     });
+
     if(isToken()) {
         var iPageID =getURLParameter("iPageID");
         var img = getURLParameter("src");
         var content = getURLParameter("content");
         $("#image").attr('src',img);
+<<<<<<< HEAD
         } else {
                 alert("UNAUTHORISED");
         }
         parseMessage(iPageID);
 
+=======
+        $("#messageContent").replaceWith("Message id is: "+iPageID);    
+    } else {
+        alert("UNAUTHORISED");
+    }
+>>>>>>> 0e4e504bc1a6ad8ea52e91eb6bf3453fa83c5cb8
 });
 
 function parseMessage(message_id){

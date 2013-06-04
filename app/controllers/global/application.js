@@ -1,3 +1,12 @@
+function addLiListener(){
+    $("li").click(function(){
+            var id = $(this).attr('id');
+            var listElement= $(this);
+            var src= $(this).find('img').attr("src");
+            view.push("IPage", "index.html?iPageID=" + id + "&src=" + src);
+            return false; 
+        });
+}
 
 
 function getMessageInfo(id){
@@ -37,7 +46,7 @@ function getInfo(dl_id){
 
 
 
-function setPage(settings) {
+function setupPage(settings) {
 	if (settings === undefined)
 		settings = {};
 
