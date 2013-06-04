@@ -23,23 +23,14 @@ document.addEventListener("DOMContentLoaded",function(){
         var stream=getOwnStream('message,cal,note');
         info = getInfo(getDL_id());
         $("#appTitle").text(info.name);
-        $("#thelist").append(stream.join('') );
-        addLiListener();
-
+        $("#thelist").append(stream.join(''));
+        addLiListener();                
     } else {
         alert("UNAUTHORISED");
     }
 });
 
-function addLiListener(){
-    $("li").click(function(){
-            var id = $(this).attr('id');
-            var listElement= $(this);
-            var src= $(this).find('img').attr("src");
-            view.push("IPage", "index.html?iPageID=" + id + "&src=" + src);
-            return false; 
-        });
-}
+
 
 function sendMessageClickEvent() {
         if(isToken()) {

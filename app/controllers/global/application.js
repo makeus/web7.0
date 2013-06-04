@@ -17,13 +17,13 @@ document.addEventListener("DOMContentLoaded",function(){
 	}
 });
 function addLiListener(){
-    $("li").click(function(){
-            var id = $(this).attr('id');
-            var listElement= $(this);
-            var src= $(this).find('img').attr("src");
-            view.push("IPage", "index.html?iPageID=" + id + "&src=" + src);
-            return false; 
-        });
+    $(".listEL").click(function(){
+        var id = $(this).attr('id');
+        var listElement= $(this);
+        var src= $(this).find('img').attr("src");
+        view.push("IPage", "index.html?iPageID=" + id + "&src=" + src);
+        return false; 
+    });
 }
 
 

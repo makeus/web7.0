@@ -51,7 +51,7 @@ bar = {
 
 	setValues: function() {
 		$("#bar").css("height", bar.height);
-		$("#main").css("top", bar.height + bar.gap);
+		$("#main").css("margin-top", bar.height + bar.gap);
 
 		$("#logoArea").css("width", bar.button.width);
 		$("#searchArea").css("left", bar.button.width);
