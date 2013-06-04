@@ -3,44 +3,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://88.114.122.139:8080/job/web7.0/ws/dist/views/login/index.html" />
-<title>User can not login with correct username and without password</title>
+<link rel="selenium.base" href="http://88.114.122.139:8080/job/web7.0/ws/dist/views/search/index.html" />
+<title>i</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">User can not login with correct username and without password</td></tr>
+<tr><td rowspan="1" colspan="3">i</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>http://88.114.122.139:8080/job/web7.0/ws/dist/views/login/index.html</td>
+	<td>/job/web7.0/ws/dist/views/frontpage/index.html</td>
 	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=loginUsername</td>
-	<td>${username}</td>
+	<td>storeText</td>
+	<td>class=subject</td>
+	<td>subjectText</td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>id=loginButton</td>
+	<td>class=listEL</td>
 	<td></td>
 </tr>
 <tr>
-	<td>pause</td>
-	<td>2000</td>
+	<td>waitForElementPresent</td>
+	<td>id=subject</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>Wrong user or password</td>
+	<td>${subjectText}</td>
 	<td></td>
 </tr>
-<tr>
-	<td>type</td>
-	<td>id=loginUsername</td>
-	<td></td>
-</tr>
+
 </tbody></table>
 </body>
 </html>
