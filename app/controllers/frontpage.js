@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded",function(){
 	$("#sendMessage").click(sendMessageClickEvent);
     $("#sendMessageBox").click(sendMessageClickEvent);
 
-    setPage({
+    setupPage({
         bar: true
     });
 

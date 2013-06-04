@@ -46,7 +46,7 @@ function getInfo(dl_id){
 
 
 
-function setPage(settings) {
+function setupPage(settings) {
 	if (settings === undefined)
 		settings = {};
 
