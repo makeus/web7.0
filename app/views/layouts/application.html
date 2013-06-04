@@ -55,12 +55,25 @@
         <h2 id="leftbar_role"></h2>
       </div>
     </div>
-    
-    <ul data-role="listview" id="linklist"></ul>
+
+    <ul id="linklist"></ul>
 
     </div>
 
-	<div data-role="header" id="header" data-theme="c">
+    <div id="bar" hidden>
+    <div id="betweenBlackLines">
+      <div class="barCell" id="logoArea">
+        <img id="barLogo" src="../../resources/images/logo-login.jpg" />
+      </div>
+      <div class="barCell" id="searchArea">
+        <input id="searchInput" type="text" placeholder="Search" />
+      </div>
+      <div class="barCell" id="buttonArea">
+        <!-- -->
+      </div>
+    </div>
+  </div>
+	 <!-- <div data-role="header" id="header" data-theme="c">
 		<a href="#leftpanel" id="headerimg" class="ui-btn-left" ><img id="headerimg2" src="http://88.114.122.139:8080/job/web7.0/ws/dist/resources/images/logo-login.jpg" alt=""></a>
 		<div id="searchdiv">
 			<input type="search" name="search" id="searchInput" value="" data-mini="true" data-inline="true" />
@@ -69,7 +82,7 @@
 			<a href="#" data-role="button" data-icon="home" data-iconpos="notext" data-rel="dialog">View</a>
 			<a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-rel="dialog">Menu</a>
 		</div>   
-    </div>
+    </div> -->
 
 	<div data-role="content" id="main">
 		<%= yield.view %>

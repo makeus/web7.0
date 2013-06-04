@@ -31,7 +31,7 @@ bar = {
 
 	initListeners: function() {
 		$("#barLogo").click(function() {
-
+			$( "#leftpanel" ).panel( "open" );
 		});
 
 		$("#searchInput").click(function() {

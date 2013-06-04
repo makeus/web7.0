@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded",function(){
 		var info = getInfo(dlid);
 		leftbarSetInfo(info);
 		leftbarCreateLinks(dlid);
+
+		jQuery( window ).on( "swiperight", function() {
+			$( "#leftpanel" ).panel( "open" );
+		});
 	}
 });
 function addLiListener(){

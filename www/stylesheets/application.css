@@ -1,5 +1,5 @@
 #main {
-  position: relative;
+  /*position: relative;*/
   /* top defined in /controllers/global/bar.js */
 }
 
@@ -37,16 +37,23 @@
 	/* width defined in /controllers/global/bar.js */
 }
 
-<<<<<<< HEAD
-=======
 #barLogo {
 	margin-left: 3px;
 	max-width: 77px;
 	margin-top: 15px;
 	max-height: 65px;
 }
->>>>>>> 73e0c5221077cd73d8ff949ee7405d43c3b55ca9
 
+#searchArea {
+	position: absolute;
+	padding-left: 5%;
+	padding-right: 5%;
+	/* left and right defined in /controllers/global/bar.js */
+}
+
+#searchInput {
+	margin-top: 17px;
+}
 
 #buttonArea {
 	position: absolute;
