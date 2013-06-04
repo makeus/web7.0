@@ -37,21 +37,7 @@
 	/* width defined in /controllers/global/bar.js */
 }
 
-#barLogo {
-	height: 100%;
-	width: 100%;
-}
 
-#searchArea {
-	position: absolute;
-	padding-left: 5%;
-	padding-right: 5%;
-	/* left and right defined in /controllers/global/bar.js */
-}
-
-#searchInput {
-	margin-top: 17px;
-}
 
 #buttonArea {
 	position: absolute;
@@ -284,4 +270,31 @@ section#searchResults > h1 {
 }
 #wrapper {
 	margin:10px;
+}
+#searchdiv {
+    width: 50%;
+    display: inline-block;
+}
+
+#headerimg {
+    width: 15%;
+    max-width: 50px;
+    float: left;
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+
+
+#headerimg2 {
+	width: 100%;
+
+}
+#header {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.headerbtn {
+    float:right;
 }

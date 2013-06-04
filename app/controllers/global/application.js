@@ -1,3 +1,18 @@
+document.addEventListener("DOMContentLoaded",function(){
+	if(/login/i.test(window.location.pathname)) {
+		localStorage.clear();
+	}
+	if(isToken()) {
+		var dlid = getURLParameter("dlid");
+		if(dlid == null) {
+			dlid = getDL_id();
+		}
+		var info = getInfo(dlid);
+		leftbarSetInfo(info);
+		leftbarCreateLinks(dlid);
+	}
+});
+
 function getInfo(dl_id){
     var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
     var url="dlid"
@@ -86,7 +101,7 @@ function getUserArray(opts) {
 
 
 function isToken() {
-	return getToken != 'null' && getToken != 'undefiend';
+	return (getToken() != null) && (getToken() != undefined);
 }
 
 function getURLParameter(name) {
