@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded",function(){
 	}
 });
 function addLiListener(){
-    $("li").click(function(){
+    $(".listEl").click(function(){
             var id = $(this).attr('id');
             var listElement= $(this);
             var src= $(this).find('img').attr("src");
