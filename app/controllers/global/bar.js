@@ -19,15 +19,19 @@ bar = {
 	showBackButton: function() {
 		var button = $("#barLogo");
 		button.attr("src", "../../resources/images/back-button.png");
+		button.css("margin-top", 0);
+		button.css("height", 80);
+		button.css("max-height", 80);
+
 		button.unbind();
 		button.click(function() {
-			popView();
+			view.pop();
 		});
 	},
 
 	initListeners: function() {
 		$("#barLogo").click(function() {
-			
+
 		});
 
 		$("#searchInput").click(function() {

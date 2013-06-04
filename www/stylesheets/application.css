@@ -37,6 +37,15 @@
 	/* width defined in /controllers/global/bar.js */
 }
 
+<<<<<<< HEAD
+=======
+#barLogo {
+	margin-left: 3px;
+	max-width: 77px;
+	margin-top: 15px;
+	max-height: 65px;
+}
+>>>>>>> 73e0c5221077cd73d8ff949ee7405d43c3b55ca9
 
 
 #buttonArea {
@@ -256,7 +265,8 @@ section#searchResults > h1 {
 	vertical-align: middle;
 	margin: 0.5%;
 }
-.user_name {
+.sendandre {
+	display:inline-block;
 	margin-left: 5%;
 	font-size: 0.8em;
 	font-weight: bolder;
@@ -267,6 +277,7 @@ section#searchResults > h1 {
 #thelist > li {
 	border: thin solid grey;
 	margin: 0.5%;
+	list-style: none
 }
 #wrapper {
 	margin:10px;
@@ -297,4 +308,10 @@ section#searchResults > h1 {
 
 .headerbtn {
     float:right;
+}
+.eventTime{
+	font-size: 0.8em;
+	font-weight: bolder;
+	margin-left: 5%;
+	margin-top:-1%;
 }

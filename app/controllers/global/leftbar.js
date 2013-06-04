@@ -13,7 +13,7 @@ function leftbarSetInfo(info) {
 }
 
 function leftbarCreateLinks(dlid) {
-	var baselink = "../EPage/index.html?dlid=" + dlid;
+	var baselink = "index.html?dlid=" + dlid;
 	var links = new Array();
 	var urls = new Array();
 
@@ -23,6 +23,10 @@ function leftbarCreateLinks(dlid) {
 	urls[1] =  baselink + "&type=cal";
 
 	$.each(links, function(i, item) {
-		$("#linklist").append("<a href=" + urls[i] +  ">" + item + "</a>\n");
+		$("#linklist").append("<li id=\"linklist" + item + "\">" + item + "</li>");
+		$("#linklist" + item).click(function() {
+			view.push("EPage", urls[i]);
+
+		})	
 	});
 }
