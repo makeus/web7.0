@@ -7,18 +7,24 @@ document.addEventListener("DOMContentLoaded",function(){
     if(isToken()) {
         var iPageID =getURLParameter("iPageID");
         var img = getURLParameter("src");
-        var content = getURLParameter("content");
+        //var content = getURLParameter("content");
         $("#image").attr('src',img);
-        } else {
+    } else {
                 alert("UNAUTHORISED");
-        }
-        parseMessage(iPageID);
+    }
+    parseMessage(iPageID);
+    $(".senderName").click(function(){
+        var dlid = $(this).attr('id');
+        view.push("EPage", "index.html?dlid=" + dlid);
+    });
+
 });
 
 function parseMessage(message_id){
     info = getMessageInfo(message_id);
     $("#messageContent").append(getSubject(info));
     $("#listOfComments").append(getComments(info));
+
 }
 
 function getSubject(info){
@@ -37,9 +43,9 @@ function getComments(info){
     $.each(comments,function(i,item){
         var sender = getInfo(item.uid);
         var imageEl = "<img src='" + sender.img + "'></img>";
-        content += "<li>" + imageEl + "<b>" + item.name + ": </b>" + item.comment + "<p>Time: " + getTimeDiff(item.created) + "</p></li>";
-
+        content += "<li>" + imageEl + "<span class='senderName' id='" + item.uid + "'><b>" + item.name + ": </b></span>" + item.comment + "<p>Time: " + getTimeDiff(item.created) + "</p></li>";
     });
+
     content += "</ul>";
     return content;
 }
@@ -77,7 +83,7 @@ function getTimeDiff(sendedTime){
     if (minutes>=2){
          vastaus += " minutes ago.";
     } else {
-        vastaus += " minut ago.";
+        vastaus += " minute ago.";
     }
     return vastaus;
 }
