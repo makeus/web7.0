@@ -8,21 +8,18 @@ function isSteroids() {
 
 function createDebugButtons() {
 	createButton({
-		id: "adele",
 		name: "Adele Vuohi",
 		username: "adele.vuohi@gmail.com",
 		password: "vuori"
 	});
 
 	createButton({
-		id: "kristian",
 		name: "Kristian",
 		username: "kristian.pulkkinen@cs.helsinki.fi",
 		password: "stalin"
 	});
 	
 	createButton({
-		id: "Sampo",
 		name: "Sampo",
 		username: "sampo.laurila@gmail.com",
 		password: "vuohi3"
@@ -31,8 +28,10 @@ function createDebugButtons() {
 
 
 function createButton(info) {
-	$("#main").append("<button id='"+info.id+"'>"+info.name+"</button>");
-	$("#"+info.id).hammer().on("tap", function() {
+	var id = info.name.replace(" ", "_");
+
+	$("#main").append("<button id='"+id+"'>"+info.name+"</button>");
+	$("#"+id).click(function() {
 		login(info.username, info.password);
 
 		if (getStatus() == -1) {

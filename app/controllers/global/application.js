@@ -1,5 +1,23 @@
+document.addEventListener("DOMContentLoaded",function(){
+	if(/login/i.test(window.location.pathname)) {
+		localStorage.clear();
+	}
+	if(isToken()) {
+		var dlid = getURLParameter("dlid");
+		if(dlid == null) {
+			dlid = getDL_id();
+		}
+		var info = getInfo(dlid);
+		leftbarSetInfo(info);
+		leftbarCreateLinks(dlid);
+
+		jQuery( window ).on( "swiperight", function() {
+			$( "#leftpanel" ).panel( "open" );
+		});
+	}
+});
 function addLiListener(){
-    $("li").click(function(){
+    $(".listEl").click(function(){
             var id = $(this).attr('id');
             var listElement= $(this);
             var src= $(this).find('img').attr("src");
@@ -117,7 +135,7 @@ function getUserArray(opts) {
 
 
 function isToken() {
-	return getToken != 'null' && getToken != 'undefiend';
+	return (getToken() != null) && (getToken() != undefined);
 }
 
 function getURLParameter(name) {

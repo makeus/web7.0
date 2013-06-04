@@ -1,16 +1,4 @@
-document.addEventListener("DOMContentLoaded",function(){
-	var dlid = getURLParameter("dlid");
-	if(dlid == null) {
-		dlid = getDL_id();
-	}
-	var info = getInfo(dlid);
-	setInfo(info);
-	createLinks(dlid);
-
-
-});
-
-function setInfo(info) {
+function leftbarSetInfo(info) {
 	var image = "";
     if(info.img == "") {
         image = '../../resources/images/tyhja.png';
@@ -24,9 +12,8 @@ function setInfo(info) {
     $("#leftbar_name").text(info.name);
 }
 
-function createLinks(dlid) {
-
-	var baselink = "../EPage/index.html?dlid=" + dlid;
+function leftbarCreateLinks(dlid) {
+	var baselink = "index.html?dlid=" + dlid;
 	var links = new Array();
 	var urls = new Array();
 
@@ -36,6 +23,10 @@ function createLinks(dlid) {
 	urls[1] =  baselink + "&type=cal";
 
 	$.each(links, function(i, item) {
-		$("#linklist").append("<a href=" + urls[i] + ">" + item + "</a>\n");
+		$("#linklist").append("<li id=\"linklist" + item + "\">" + item + "</li>");
+		$("#linklist" + item).click(function() {
+			view.push("EPage", urls[i]);
+
+		})	
 	});
 }
