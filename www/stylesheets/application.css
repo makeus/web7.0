@@ -331,6 +331,7 @@ section#searchResults > h1 {
 	vertical-align: middle;
 	display: inline-block;
 	font-size: 0.8em;
+	width:70%;
 }
 #ipageMessage {
 	border: thin solid grey;
