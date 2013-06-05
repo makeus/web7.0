@@ -3,9 +3,11 @@ document.addEventListener("DOMContentLoaded",function(){
         bar:true
     });
 
+
     if(getURLParameter("type")=="cal") {
-        $()
+        $("#message").replaceWith($("#cal").show());
     }
+
     $("#sendMessage").click(sendMessageClickEvent);
     $("#sendMessageBox").click(sendMessageClickEvent);
 
@@ -36,6 +38,7 @@ document.addEventListener("DOMContentLoaded",function(){
 
 });
 
+
 function getStreamUrl() {
     var type = getURLParameter("type");
     var dlid = getURLParameter("dlid");
@@ -53,12 +56,20 @@ function sendMessageClickEvent() {
                 var subject = $("#messageField").val();
                 var link = $("#linkField").val();
                 var content = $("#contentField").val();
+                var time_from = ""+ $("#date_from").val() + " " + $("#time_from").val();
+                var time_to = ""+ $("#date_to").val() + " " + $("#date_from").val();
+                var location = $("location").val();
 
                 if(subject == "") {
                     return;
                 }
 
-                addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content);
+                if(getURLParameter("type")=="cal") {
+                    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location);
+                }
+                else {
+                    addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content);
+                }
 
                  var stream=getStreamUrl();
                 $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
@@ -71,6 +82,7 @@ function sendMessageClickEvent() {
                 alert("UNAUTHORISED");
         }
 }
+
 
 function hideMessageFields() {
     $("#message-hidden").hide();

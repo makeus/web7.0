@@ -95,7 +95,7 @@ function parseItem(item, userHash, type) {
     }
     entry += "</p></div>";
     if(type == "cal"){
-      entry += "<p class='eventTime'>"+item.time_to+"</p>";
+      entry += "<p class='eventTime'>"+item.time_from+"</p>";
     }
 
     entry += "<section class='message_content'>"

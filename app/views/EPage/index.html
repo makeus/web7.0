@@ -13,7 +13,7 @@
         <input type="text" id="messageField" placeholder="Leave a message here"/>
       </div>
       <div id="message-hidden" hidden>
-      	<label>Link</label><br/>
+        <label>Link</label><br/>
         <input type="url" id="linkField" placeholder="http://"/><br/>
         <label>Long Content</label><br/>
         <textarea id="contentField"></textarea>
@@ -29,3 +29,33 @@
 	</div>
 
 </section>
+
+
+<div id="cal" hidden>
+  <div id="message">
+      <div id="message-shown">
+        <input type="text" id="messageField" placeholder="Add a task"/>
+      </div>
+      <div id="message-hidden" hidden>
+        <label for ="date_from">Time from:</label>
+        <input type="date" name="date_from" id="date_from"></input>
+        <input type="time" name="time_from" id="time_from"></input>
+        <label for ="date_to">Time to:</label>
+        <input type="date" name="date_to" id="date_to"></input>
+        <input type="time" name="time_to" id="time_to"></input>
+        <label for ="location">Location:</label>
+        <input type="text" id="location"></input>
+        <label>Link</label><br/>
+        <input type="url" id="linkField" placeholder="http://"/><br/>
+        <label>Long Content</label><br/>
+        <textarea id="contentField"></textarea>
+        <div id="sendMessageBox"><a id="sendMessage" href="#">+</a></div>
+        <div id="closelink"><a id="close" href="#">close</a></div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
