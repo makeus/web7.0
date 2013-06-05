@@ -1,5 +1,4 @@
 var iPageID;
-
 document.addEventListener("DOMContentLoaded",function(){
     setupPage({
         bar:true,
@@ -38,9 +37,12 @@ function setAddCommentEvent(){
     $("#addComment").click(function(){
         var comm = $(".commentArea").val();
         if (comm!=""){
-            info = getMessageInfo(iPageID);
-            addCommentToMessage(iPageID, comm); 
-            $("#listOfComments").replaceWith(getComments(info));
+            addCommentToMessage(iPageID, comm);
+            var comment = "<li><p id='"+getDL_id()+"' class='commentWriter'>" + getName() + ":</p><p class='commentText'>" + comm + "</p><p class='commentTime'>Time: just now</p></li>";;
+            $("#listOfComments").append(comment);
+            $(".commentArea").val("");
+            setLinkToSenderEvent();
+            $("#ipageComments").show();
         }
     });
 }
@@ -61,7 +63,6 @@ function getSubject(info){
     var ids = info.from_DL_id + "," + info.DL_id;
     var opts={'dl_ids':ids,'auth':getToken(),'uid':getDL_id()};
     var arr = getUserArray(opts);
-
     $("#messageContent > img").attr('src',arr[0].img);
     if(arr[1]){
         var content = "<div id='ipageFromAndSubject'><h3>" + arr[0].name + " >> " + arr[1].name + "</h3><p id='ipageTime'>Time: " + info.created + "</p>";

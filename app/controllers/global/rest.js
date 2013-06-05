@@ -38,6 +38,21 @@ function addActivity(opts) {
 		error: error
 	});
 }
+function addCommentRest(opts,url, success,error) {
+	status = 0;
+	$.ajax(
+	{
+		url: restUrl+url,
+		type: "POST",
+		global: false,
+		async: false,
+		dataType: 'JSON', 
+		data: opts,
+		success: success,
+		error: error
+	});
+}
+
 
 function success(data) {
 	if(data != undefined && data.success != 0) {
@@ -75,4 +90,11 @@ function getToken(){
 }
 function getDL_id(){
 	return localStorage.getItem('DL_id');
+}
+
+function saveName(data){
+	localStorage.setItem('name',data.name);
+}
+function getName(){
+	return localStorage.getItem('name');
 }

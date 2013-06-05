@@ -21,8 +21,7 @@ document.addEventListener("DOMContentLoaded",function(){
     });
     if(isToken()) {
         var stream=getOwnStream('message,cal,note');
-        info = getInfo(getDL_id());
-        $("#appTitle").text(info.name);
+        $("#appTitle").text(getName());
         $("#thelist").append(stream.join(''));
         addLiListener();                
     } else {

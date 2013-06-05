@@ -46,6 +46,8 @@ function login(username, password){
 			if(getStatus() == 1) {
 					saveToken(data);
 					saveDL_id(data);
+					info = getInfo(getDL_id());
+					saveName(info);
 			}
 		},
 		function(data,t,m){
