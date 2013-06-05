@@ -24,7 +24,6 @@ function addLiListener(){
     });
 }
 
-
 function getMessageInfo(id){
 	var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 100, 'types': 'cal,message,note', 'stream': true, 'dlid':getDL_id()};
 	var url = "stream";
