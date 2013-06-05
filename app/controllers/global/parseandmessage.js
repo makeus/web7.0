@@ -94,7 +94,7 @@ function parseItem(item, userHash, type) {
         entry += ">>> " + userHash[item.DL_id].name;
     }
     entry += "</p></div>";
-    if(type == "cal"){
+    if(type == "cal" && item.time_to != "0000-00-00 00:00:00"){
       entry += "<p class='eventTime'>"+item.time_to+"</p>";
     }
 
