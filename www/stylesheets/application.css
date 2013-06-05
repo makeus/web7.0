@@ -1,5 +1,12 @@
-#main {
+li {
+	list-style-type: none;
+}
+
+
+#main, html, body {
   /* top defined in /controllers/global/bar.js */
+
+  background: white;
 }
 
 #bar {
@@ -250,14 +257,6 @@ section#searchResults > h1 {
 	margin-top: 0;
 }
 
-
-
-
-/*.emptySearchImages{
-	border:solid black;
-}*/
-
-
 .unandmsg {
 	display:inline-block;
 	vertical-align: middle;
@@ -367,3 +366,69 @@ section#searchResults > h1 {
 	font-size: 0.8em;
 	margin-top: -1%;
 }
+
+#leftbar_info {
+	border: 1px solid #111;
+	background: #333;
+	vertical-align: middle;
+}
+
+#leftbar_info > img, #leftbar_info > div {
+	vertical-align: middle;
+}
+
+#leftbar_info > img {
+	width: 30%;
+	padding: 5px;
+	background: #333;
+}
+
+#leftbar_name_role {
+	width: 65%;
+	display: inline-block;
+}
+
+#leftbar_name_role > h1 {
+	font-size: 20px;
+}
+
+#leftbar_name_role > h2 {
+	font-size: 14px;
+	color: lightgray;
+}
+
+#linklist {
+	margin: 0;
+}
+
+.ui-panel-inner {
+	padding: 0;
+	background-color: #F7F7F7;
+}
+
+.ui-panel {
+	position: fixed;
+	width: 22em;
+	
+}
+
+.ui-panel-animate.ui-panel-position-left.ui-panel-display-overlay, .ui-panel-animate.ui-panel-position-left.ui-panel-display-push {
+	left: 0;
+	-webkit-transform: translate3d(-22em,0,0);
+	-moz-transform: translate3d(-22em,0,0);
+	transform: translate3d(-22em,0,0);
+}
+
+.ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li {
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+.ui-body-c {
+	background: white;
+}
+
+i {
+	padding-right: 5px;
+}
+

@@ -8,7 +8,8 @@
   <title id="appTitle">Dlivin app</title>
 
   <link rel="stylesheet" href="../../stylesheets/ratchet-steroids.css" />
-  <link rel="stylesheet" href="../../stylesheets/jquery.mobile-1.3.1.min.css"
+  <link rel="stylesheet " href="../../stylesheets/jquery.mobile.black-sidebar-theme.css">
+  <link rel="stylesheet" href="../../stylesheets/jquery.mobile-1.3.1.min.css">
 
   <script src="../../javascripts/onerror.js"></script>
   <script src="../../appgyver/cordova.js"></script>
@@ -23,11 +24,10 @@
     });
   </script>
   <script src="../../components/jquery/jquery.mobile.js"></script>
-
+  <link rel="stylesheet" href="../../resources/font-awesome/css/font-awesome.min.css">
   <!-- our stuff -->
 
   <link rel="stylesheet" href="../../stylesheets/application.css" />
-
 
   <script src="../../models/models.js"></script>
 
@@ -47,16 +47,18 @@
 <body>
   <div data-role="page">
 
-    <div data-role="panel" id="leftpanel" data-display="overlay">
-      <div id="leftbar_info">
-        <img id="leftbar_img"></img>
-      <div id="leftbar_info">
-        <h1 id="leftbar_name"></h1>
-        <h2 id="leftbar_role"></h2>
-      </div>
-    </div>
+    <div data-role="panel" id="leftpanel" data-theme="g" data-display="overlay" >
 
-    <ul id="linklist"></ul>
+      <div id="leftbar_info" data-theme="g">
+        <img id="leftbar_img"></img>
+        <div id="leftbar_name_role">
+          <h1 id="leftbar_name"></h1>
+          <h2 id="leftbar_role"></h2>
+        </div>
+      </div>
+
+      <ul data-role="listview" data-theme="g" id="linklist"></ul>
+
 
     </div>
 

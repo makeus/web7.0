@@ -24,6 +24,12 @@ function createDebugButtons() {
 		username: "sampo.laurila@gmail.com",
 		password: "vuohi3"
 	});
+
+	createButton({
+		name: "Mathias",
+		username: "mathias.keus@helsinki.fi",
+		password: "pf6sg4ai"
+	});
 }
 
 

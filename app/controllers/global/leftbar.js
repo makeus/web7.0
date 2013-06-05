@@ -16,17 +16,28 @@ function leftbarCreateLinks(dlid) {
 	var baselink = "index.html?dlid=" + dlid;
 	var links = new Array();
 	var urls = new Array();
+	var icons = new Array();
 
 	links[0] = "Messages";
 	urls[0] =  baselink + "&type=message";
+	icons[0] = "<i class=\"icon-envelope\"></i>";
 	links[1] = "Tasks";
 	urls[1] =  baselink + "&type=cal";
+	icons[1] = "<i class=\"icon-calendar\"></i>";
+	links[2] = "To-Do Notes";
+	urls[2] = "#";
+	icons[2] = "<i class=\"icon-edit\"></i>";
+	links[3] = "Files";
+	urls[3] = "#";
+	icons[3] = "<i class=\"icon-file-alt\"></i>";
+
 
 	$.each(links, function(i, item) {
-		$("#linklist").append("<li id=\"linklist" + item + "\">" + item + "</li>");
+		$("#linklist").append("<li id='linklist" + item + "'><a>" + icons[i] + " " + item + "</a></li>");
 		$("#linklist" + item).click(function() {
+			$("#leftpanel").panel( "close" );
 			view.push("EPage", urls[i]);
-
-		})	
+		});
 	});
+	$("#linklist").listview("refresh");
 }
