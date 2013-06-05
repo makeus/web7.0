@@ -6,4 +6,6 @@
 
 3. Enjoy web 7.0!
 
+4. YES YES YES 30% BUFF
+
 /( :) )\
