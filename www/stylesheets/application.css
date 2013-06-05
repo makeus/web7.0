@@ -77,6 +77,7 @@ textarea {
 
 p {
   	margin: 1em 0em;
+  	word-wrap:break-word;
 }
 
 
@@ -325,11 +326,13 @@ section#searchResults > h1 {
 	vertical-align: middle;
 	display: inline-block;
 	width:15%;
+	margin: 10px;
 }
 #ipageFrom {
 	vertical-align: middle;
 	display: inline-block;
 	font-size: 0.8em;
+	width:70%;
 }
 #ipageMessage {
 	border: thin solid grey;
@@ -353,6 +356,7 @@ section#searchResults > h1 {
 }
 #ipageContent {
 	border-top: solid thin LightGray;
+	margin:10px;
 }
 .commentWriter{
 	display:inline-block;
@@ -362,6 +366,7 @@ section#searchResults > h1 {
 	display:inline-block;
 	vertical-align: middle;
 	margin-left: 1%;
+	width: 69%;
 }
 .commentTime{
 	font-size: 0.8em;
