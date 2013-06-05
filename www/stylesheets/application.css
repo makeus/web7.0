@@ -326,6 +326,7 @@ section#searchResults > h1 {
 	vertical-align: middle;
 	display: inline-block;
 	width:15%;
+	margin: 10px;
 }
 #ipageFrom {
 	vertical-align: middle;
@@ -355,6 +356,7 @@ section#searchResults > h1 {
 }
 #ipageContent {
 	border-top: solid thin LightGray;
+	margin:10px;
 }
 .commentWriter{
 	display:inline-block;
