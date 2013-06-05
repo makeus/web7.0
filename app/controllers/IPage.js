@@ -1,3 +1,5 @@
+var iPageID;
+
 document.addEventListener("DOMContentLoaded",function(){
     setupPage({
         bar:true,
@@ -5,26 +7,48 @@ document.addEventListener("DOMContentLoaded",function(){
     });
 
     if(isToken()) {
-        var iPageID =getURLParameter("iPageID");
-        var img = getURLParameter("src");
-        //var content = getURLParameter("content");
-        $("#image").attr('src',img);
+        setIPageID(getURLParameter("iPageID"));
+        showImage();
+        parseMessage();
+        setLinkToSenderEvent();
+        setAddCommentEvent();
     } else {
-                alert("UNAUTHORISED");
+        alert("UNAUTHORISED");
     }
-    parseMessage(iPageID);
+});
+
+
+function setIPageID(id){
+    iPageID = id;
+}
+
+function showImage(){
+    var img = getURLParameter("src");
+    $("#image").attr('src',img);
+}
+
+function setLinkToSenderEvent(){
     $(".senderName").click(function(){
         var dlid = $(this).attr('id');
         view.push("EPage", "index.html?dlid=" + dlid);
     });
+}
 
-});
+function setAddCommentEvent(){
+    $("#addComment").click(function(){
+        var comm = $(".commentArea").val();
+        if (comm!=""){
+            info = getMessageInfo(iPageID);
+            addCommentToMessage(iPageID, comm); 
+            $("#listOfComments").replaceWith(getComments(info));
+        }
+    });
+}
 
-function parseMessage(message_id){
-    info = getMessageInfo(message_id);
+function parseMessage(){
+    info = getMessageInfo(iPageID);
     $("#messageContent").append(getSubject(info));
     $("#listOfComments").append(getComments(info));
-
 }
 
 function getSubject(info){
@@ -45,7 +69,6 @@ function getComments(info){
         var imageEl = "<img src='" + sender.img + "'></img>";
         content += "<li>" + imageEl + "<span class='senderName' id='" + item.uid + "'><b>" + item.name + ": </b></span>" + item.comment + "<p>Time: " + getTimeDiff(item.created) + "</p></li>";
     });
-
     content += "</ul>";
     return content;
 }
