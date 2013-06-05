@@ -1,3 +1,5 @@
+var iPageID;
+
 document.addEventListener("DOMContentLoaded",function(){
     setupPage({
         bar:true,
@@ -5,22 +7,47 @@ document.addEventListener("DOMContentLoaded",function(){
     });
 
     if(isToken()) {
-        var iPageID =getURLParameter("iPageID");
-        //var content = getURLParameter("content");
+        setIPageID(getURLParameter("iPageID"));
+        showImage();
+        parseMessage();
+        setLinkToSenderEvent();
+        setAddCommentEvent();
     } else {
-                alert("unauthorized");
+        alert("UNAUTHORISED");
     }
-    parseMessage(iPageID);
-    $(".senderName").click(function(){
+});
+
+
+function setIPageID(id){
+    iPageID = id;
+}
+
+function showImage(){
+    var img = getURLParameter("src");
+    $("#image").attr('src',img);
+}
+
+function setLinkToSenderEvent(){
+    $(".commentWriter").click(function(){
         var dlid = $(this).attr('id');
         view.push("EPage", "index.html?dlid=" + dlid);
     });
+}
 
-});
+function setAddCommentEvent(){
+    $("#addComment").click(function(){
+        var comm = $(".commentArea").val();
+        if (comm!=""){
+            info = getMessageInfo(iPageID);
+            addCommentToMessage(iPageID, comm); 
+            $("#listOfComments").replaceWith(getComments(info));
+        }
+    });
+}
 
-function parseMessage(message_id){
-    info = getMessageInfo(message_id);
 
+function parseMessage(){
+    info = getMessageInfo(iPageID);
     $("#messageContent").append(getSubject(info));
     if (info.content==""){
         $("#ipageContent").hide();
@@ -28,7 +55,6 @@ function parseMessage(message_id){
         $("#ipageContent").show();
     }
     $("#listOfComments").append(getComments(info));
-
 }
 
 function getSubject(info){
@@ -38,11 +64,11 @@ function getSubject(info){
 
     $("#messageContent > img").attr('src',arr[0].img);
     if(arr[1]){
-        var content = "<div id='ipageFrom'><h3>" + arr[0].name + " >> " + arr[1].name + "</h3><p id='ipageTime'>Time: " + info.created + "</p></div>";
+        var content = "<div id='ipageFromAndSubject'><h3>" + arr[0].name + " >> " + arr[1].name + "</h3><p id='ipageTime'>Time: " + info.created + "</p>";
     }else {
-        var content = "<div id='ipageFrom'><h3>" + arr[0].name + "</h3><p id='ipageTime'>Time: " + info.created + "</p></div>";
+        var content = "<div id='ipageFromAndSubject'><h3>" + arr[0].name + "</h3><p id='ipageTime'>Time: " + info.created + "</p>";
     }
-    content += "<div id='ipageSubjectDiv'><p id = 'ipageSubject'>" + info.subject + "</p></div>";
+    content += "<p id = 'ipageSubject'>" + info.subject + "</p></div>";
     content += "<div id='ipageContent'><p>" + info.content + "</p></div>";
     return content;
 }
@@ -52,13 +78,14 @@ function getComments(info){
     var content = "";
     var currTime = (new Date()).getTime();
     $.each(comments,function(i,item){
-        content += "<li><p class='commentWriter'>" + item.name + ":</p><p class='commentText'>" + item.comment + "</p><p class='commentTime'>Time: " + getTimeDiff(item.created) + "</p></li>";
+        content += "<li><p id='"+item.uid+"' class='commentWriter'>" + item.name + ":</p><p class='commentText'>" + item.comment + "</p><p class='commentTime'>Time: " + getTimeDiff(item.created) + "</p></li>";
     });
     if (content==""){
         $("#ipageComments").hide();
     } else {
         $("#ipageComments").show();
     }
+
     return content;
 }
 
