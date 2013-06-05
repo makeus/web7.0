@@ -14,9 +14,16 @@ function addCommentToMessage(message_id, comment){
     }
     var uid = getDL_id();
     var auth = getToken();
-    var type = 'message';
-    alert(comment);
-    //addActivity({'uid': uid, 'auth':auth, 'type':type,'id':message_id, 'comment':content});
+    var opts = {uid: uid, auth: auth, comment: comment,activity_id:message_id, dl_id:uid};
+    var url = "comments";
+    addCommentRest(opts,url,function(data) {
+      result = data;
+      success(data);
+    },
+    function(data) {
+      result = data;
+      error(data);
+    });
 }
 
 function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_to, location, sub_type) {
