@@ -84,6 +84,7 @@ textarea {
 
 p {
   	margin: 1em 0em;
+  	word-wrap:break-word;
 }
 
 
@@ -321,14 +322,19 @@ section#searchResults > h1 {
 	margin-top:-1%;
 }
 #messageContent > img{
-	vertical-align: middle;
+	vertical-align: top;
 	display: inline-block;
 	width:15%;
+	margin: 10px;
 }
-#ipageFrom {
+#ipageFromAndSubject {
 	vertical-align: middle;
 	display: inline-block;
-	font-size: 0.8em;
+	width:70%;
+	margin-top: 10px;
+}
+#ipageTime {
+	font-size:0.8em;
 }
 #ipageMessage {
 	border: thin solid grey;
@@ -344,23 +350,20 @@ section#searchResults > h1 {
 #listOfComments > li {
 	margin:10px;
 }
-#ipageSubjectDiv {
-	display:inline-block;
-	vertical-align: middle;
-	margin-top:-5%;
-	margin-left:15.85%; 
-}
+
 #ipageContent {
 	border-top: solid thin LightGray;
+	margin:10px;
 }
 .commentWriter{
 	display:inline-block;
-	vertical-align: middle;
+	vertical-align: top;
 }
 .commentText{
 	display:inline-block;
 	vertical-align: middle;
 	margin-left: 1%;
+	width: 69%;
 }
 .commentTime{
 	font-size: 0.8em;

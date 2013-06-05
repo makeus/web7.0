@@ -127,15 +127,5 @@ function historyTemp(){
     });
     info3=info3.slice(0,-1);
     var opts={'dl_ids':info3,'auth':getToken(),'uid':getDL_id()};
-    var url="dlid"
-    var info=rest(opts,url,
-		function(data) {
-			result = data;
-			success(data);
-		},
-		function(data) {
-			result = data; 
-			error(data);
-		});
-    return info;
+    return getUserArray(opts);
 }

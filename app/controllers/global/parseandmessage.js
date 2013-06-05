@@ -8,6 +8,17 @@ function addMessage(to_dl_id, from_dl_id, subject, link, content) {
 	addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 'content':content, 'link':link});
 }
 
+function addCommentToMessage(message_id, comment){
+    if (comment==null || message_id==null){
+      return -1;
+    }
+    var uid = getDL_id();
+    var auth = getToken();
+    var type = 'message';
+    alert(comment);
+    //addActivity({'uid': uid, 'auth':auth, 'type':type,'id':message_id, 'comment':content});
+}
+
 function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_to, location, sub_type) {
   if(to_dl_id == null || from_dl_id == null || subject == null) {
     return -1;
@@ -94,8 +105,8 @@ function parseItem(item, userHash, type) {
         entry += ">>> " + userHash[item.DL_id].name;
     }
     entry += "</p></div>";
-    if(type == "cal"){
-      entry += "<p class='eventTime'>"+item.time_to+"</p>";
+    if(type == "cal" && item.time_from != "0000-00-00 00:00:00"){
+      entry += "<p class='eventTime'>"+item.time_from+"</p>";
     }
 
     entry += "<section class='message_content'>"
@@ -106,7 +117,6 @@ function parseItem(item, userHash, type) {
     }
 
     entry += "</section></div></section></li>";
-
 
     return entry;
 }
