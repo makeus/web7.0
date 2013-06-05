@@ -38,11 +38,11 @@ function getSubject(info){
 
     $("#messageContent > img").attr('src',arr[0].img);
     if(arr[1]){
-        var content = "<div id='ipageFrom'><h3>" + arr[0].name + " >> " + arr[1].name + "</h3><p id='ipageTime'>Time: " + info.created + "</p></div>";
+        var content = "<div id='ipageFromAndSubject'><h3>" + arr[0].name + " >> " + arr[1].name + "</h3><p id='ipageTime'>Time: " + info.created + "</p>";
     }else {
-        var content = "<div id='ipageFrom'><h3>" + arr[0].name + "</h3><p id='ipageTime'>Time: " + info.created + "</p></div>";
+        var content = "<div id='ipageFromAndSubject'><h3>" + arr[0].name + "</h3><p id='ipageTime'>Time: " + info.created + "</p>";
     }
-    content += "<div id='ipageSubjectDiv'><p id = 'ipageSubject'>" + info.subject + "</p></div>";
+    content += "<p id = 'ipageSubject'>" + info.subject + "</p></div>";
     content += "<div id='ipageContent'><p>" + info.content + "</p></div>";
     return content;
 }
