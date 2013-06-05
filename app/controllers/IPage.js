@@ -28,7 +28,7 @@ function showImage(){
 }
 
 function setLinkToSenderEvent(){
-    $(".senderName").click(function(){
+    $(".commentWriter").click(function(){
         var dlid = $(this).attr('id');
         view.push("EPage", "index.html?dlid=" + dlid);
     });
@@ -78,7 +78,7 @@ function getComments(info){
     var content = "";
     var currTime = (new Date()).getTime();
     $.each(comments,function(i,item){
-        content += "<li><p class='commentWriter'>" + item.name + ":</p><p class='commentText'>" + item.comment + "</p><p class='commentTime'>Time: " + getTimeDiff(item.created) + "</p></li>";
+        content += "<li><p id='"+item.uid+"' class='commentWriter'>" + item.name + ":</p><p class='commentText'>" + item.comment + "</p><p class='commentTime'>Time: " + getTimeDiff(item.created) + "</p></li>";
     });
     if (content==""){
         $("#ipageComments").hide();
