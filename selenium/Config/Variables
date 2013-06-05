@@ -12,9 +12,24 @@
 <tr><td rowspan="1" colspan="3">Variables</td></tr>
 </thead><tbody>
 <tr>
-	<td>echo</td>
-	<td>empty</td>
-	<td></td>
+	<td>store</td>
+	<td>searchLink8653</td>
+	<td>adeleLink</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>Pirkka Frosti</td>
+	<td>person</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>Pirkka</td>
+	<td>personSearch</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>searchLink2</td>
+	<td>personLink</td>
 </tr>
 </tbody></table>
 </body>

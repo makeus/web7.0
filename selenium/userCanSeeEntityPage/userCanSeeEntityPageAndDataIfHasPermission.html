@@ -37,18 +37,13 @@
 	<td>Adele</td>
 </tr>
 <tr>
-	<td>click</td>
-	<td>id=searchInput</td>
-	<td></td>
-</tr>
-<tr>
 	<td>fireEvent</td>
 	<td>id=searchInput</td>
 	<td>input</td>
 </tr>
 <tr>
-	<td>pause</td>
-	<td>2000</td>
+	<td>waitForElementPresent</td>
+	<td>id=${adeleLink}</td>
 	<td></td>
 </tr>
 <tr>
@@ -58,12 +53,17 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>id=searchLink8653</td>
+	<td>id=${adeleLink}</td>
 	<td></td>
 </tr>
 <tr>
-	<td>pause</td>
-	<td>4000</td>
+	<td>waitForElementPresent</td>
+	<td>id=thelist</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>class=listEL</td>
 	<td></td>
 </tr>
 <tr>
