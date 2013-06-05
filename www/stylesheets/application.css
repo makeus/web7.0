@@ -360,7 +360,7 @@ section#searchResults > h1 {
 }
 .commentWriter{
 	display:inline-block;
-	vertical-align: middle;
+	vertical-align: top;
 }
 .commentText{
 	display:inline-block;
