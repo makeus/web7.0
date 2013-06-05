@@ -6,41 +6,45 @@ document.addEventListener("DOMContentLoaded",function(){
 
     if(isToken()) {
         var iPageID =getURLParameter("iPageID");
-        var img = getURLParameter("src");
-        var content = getURLParameter("content");
-        $("#image").attr('src',img);
-        } else {
-                alert("UNAUTHORISED");
-        }
-        parseMessage(iPageID);
+        //var content = getURLParameter("content");
+    } else {
+                alert("unauthorized");
+    }
+    parseMessage(iPageID);
+    $(".senderName").click(function(){
+        var dlid = $(this).attr('id');
+        view.push("EPage", "index.html?dlid=" + dlid);
+    });
+
 });
 
 function parseMessage(message_id){
     info = getMessageInfo(message_id);
+
     $("#messageContent").append(getSubject(info));
     $("#listOfComments").append(getComments(info));
+
 }
 
 function getSubject(info){
     var from = getInfo(info.from_DL_id);
+    $("#messageContent > img").attr('src',from.img);
     var to = getInfo(info.DL_id);
-    var content = "<div id='from'><h3>" + from.name + " >> " + to.name + "</h3><p id='time'>Time: " + info.created + "</p></div>";
-    content += "<div><p id = 'subject'>" + info.subject + "</p></div>";
-    content += "<div id='content'><p>" + info.content + "</p></div>";
+    var content = "<div id='ipageFrom'><h3>" + from.name + " >> " + to.name + "</h3><p id='ipageTime'>Time: " + info.created + "</p></div>";
+    content += "<div id='ipageSubjectDiv'><p id = 'ipageSubject'>" + info.subject + "</p></div>";
+    content += "<div id='ipageContent'><p>" + info.content + "</p></div>";
     return content;
 }
 
 function getComments(info){
     var comments = info.comments;
-    var content = "<ul>";
+    var content = "";
     var currTime = (new Date()).getTime();
     $.each(comments,function(i,item){
-        var sender = getInfo(item.uid);
-        var imageEl = "<img src='" + sender.img + "'></img>";
-        content += "<li>" + imageEl + "<b>" + item.name + ": </b>" + item.comment + "<p>Time: " + getTimeDiff(item.created) + "</p></li>";
-
+        //var sender = getInfo(item.uid);
+        //var imageEl = "<img src='" + sender.img + "'></img>";
+        content += "<li><p class='commentWriter'>" + item.name + ":</p><p class='commentText'>" + item.comment + "</p><p class='commentTime'>Time: " + getTimeDiff(item.created) + "</p></li>";
     });
-    content += "</ul>";
     return content;
 }
 

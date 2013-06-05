@@ -321,3 +321,49 @@ section#searchResults > h1 {
 	margin-left: 5%;
 	margin-top:-1%;
 }
+#messageContent > img{
+	vertical-align: middle;
+	display: inline-block;
+	width:15%;
+}
+#ipageFrom {
+	vertical-align: middle;
+	display: inline-block;
+	font-size: 0.8em;
+}
+#ipageMessage {
+	border: thin solid grey;
+	margin:10px;
+}
+#ipageComments {
+	margin: 10px;
+	border:thin solid grey;
+}
+#listOfComments {
+	list-style: none;
+}
+#listOfComments > li {
+	margin:10px;
+}
+#ipageSubjectDiv {
+	display:inline-block;
+	vertical-align: middle;
+	margin-top:-5%;
+	margin-left:15.85%; 
+}
+#ipageContent {
+	border-top: solid thin LightGray;
+}
+.commentWriter{
+	display:inline-block;
+	vertical-align: middle;
+}
+.commentText{
+	display:inline-block;
+	vertical-align: middle;
+	margin-left: 1%;
+}
+.commentTime{
+	font-size: 0.8em;
+	margin-top: -1%;
+}

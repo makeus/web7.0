@@ -13,7 +13,27 @@
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/job/web7.0/ws/dist/views/search/index.html</td>
+	<td>http://88.114.122.139:8080/job/web7.0/ws/dist/views/login/index.html</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginUsername</td>
+	<td>adele.vuohi@gmail.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginPassword</td>
+	<td>vuori</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=loginButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTitle</td>
+	<td>Adele Vuohi</td>
 	<td></td>
 </tr>
 <tr>
@@ -27,23 +47,18 @@
 	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=searchInput</td>
-	<td>3. ke</td>
-</tr>
-<tr>
 	<td>pause</td>
-	<td>1500</td>
+	<td>2000</td>
 	<td></td>
 </tr>
 <tr>
-	<td>verifyTextPresent</td>
-	<td>3. kerros</td>
+	<td>waitForElementPresent</td>
+	<td>id=searchInput</td>
 	<td></td>
 </tr>
 <tr>
-	<td>click</td>
-	<td>id=searchLink254</td>
+	<td>focus</td>
+	<td>id=searchInput</td>
 	<td></td>
 </tr>
 <tr>
@@ -52,8 +67,53 @@
 	<td></td>
 </tr>
 <tr>
+	<td>type</td>
+	<td>id=searchInput</td>
+	<td>ivan</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>4000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>id=searchInput</td>
+	<td>input</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Ivan Tadic</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=searchLink8617</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=searchLink8617</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>4000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Ivan Tadic</td>
+	<td></td>
+</tr>
+<tr>
 	<td>verifyTextPresent</td>
-	<td>3. Kerros</td>
+	<td>Ivan Tadic</td>
 	<td></td>
 </tr>
 <tr>
@@ -63,4 +123,6 @@
 </tr>
 </tbody></table>
 </body>
+<script>window.document.getElementById('searchInput').oninput = window.enyo.dispatch;</script>
+
 </html>
