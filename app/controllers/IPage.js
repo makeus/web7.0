@@ -1,3 +1,5 @@
+var iPageID;
+
 document.addEventListener("DOMContentLoaded",function(){
     setupPage({
         bar:true,
@@ -5,22 +7,47 @@ document.addEventListener("DOMContentLoaded",function(){
     });
 
     if(isToken()) {
-        var iPageID =getURLParameter("iPageID");
-        //var content = getURLParameter("content");
+        setIPageID(getURLParameter("iPageID"));
+        showImage();
+        parseMessage();
+        setLinkToSenderEvent();
+        setAddCommentEvent();
     } else {
-                alert("unauthorized");
+        alert("UNAUTHORISED");
     }
-    parseMessage(iPageID);
+});
+
+
+function setIPageID(id){
+    iPageID = id;
+}
+
+function showImage(){
+    var img = getURLParameter("src");
+    $("#image").attr('src',img);
+}
+
+function setLinkToSenderEvent(){
     $(".senderName").click(function(){
         var dlid = $(this).attr('id');
         view.push("EPage", "index.html?dlid=" + dlid);
     });
+}
 
-});
+function setAddCommentEvent(){
+    $("#addComment").click(function(){
+        var comm = $(".commentArea").val();
+        if (comm!=""){
+            info = getMessageInfo(iPageID);
+            addCommentToMessage(iPageID, comm); 
+            $("#listOfComments").replaceWith(getComments(info));
+        }
+    });
+}
 
-function parseMessage(message_id){
-    info = getMessageInfo(message_id);
 
+function parseMessage(){
+    info = getMessageInfo(iPageID);
     $("#messageContent").append(getSubject(info));
     if (info.content==""){
         $("#ipageContent").hide();
@@ -28,7 +55,6 @@ function parseMessage(message_id){
         $("#ipageContent").show();
     }
     $("#listOfComments").append(getComments(info));
-
 }
 
 function getSubject(info){
@@ -59,6 +85,7 @@ function getComments(info){
     } else {
         $("#ipageComments").show();
     }
+
     return content;
 }
 
