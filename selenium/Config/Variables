@@ -12,21 +12,10 @@
 <tr><td rowspan="1" colspan="3">Variables</td></tr>
 </thead><tbody>
 <tr>
-	<td>store</td>
-	<td>ivan.tadic014@gmail.com</td>
-	<td>username</td>
+	<td>echo</td>
+	<td>empty</td>
+	<td></td>
 </tr>
-<tr>
-	<td>store</td>
-	<td>roki014</td>
-	<td>password</td>
-</tr>
-<tr>
-	<td>store</td>
-	<td>Ivan Tadic</td>
-	<td>name</td>
-</tr>
-
 </tbody></table>
 </body>
 </html>
