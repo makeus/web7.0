@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded",function(){
 		});
 	}
 });
+
+
 function addLiListener(){
     $(".listEL").click(function(){
         var id = $(this).attr('id');
@@ -26,9 +28,9 @@ function addLiListener(){
 }
 
 function getMessageInfo(id){
-	var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 100, 'types': 'cal,message,note', 'stream': true, 'dlid':getDL_id()};
+	var opts = {'uid': getDL_id(), 'auth': getToken(), activity_id:id};
 	var url = "stream";
-	var items = rest(opts,url,function(data) {
+	var item = rest(opts,url,function(data) {
 			result = data;
 			success(data);
 		},
@@ -36,13 +38,8 @@ function getMessageInfo(id){
 			result = data;
 			error(data);
 		});
-	var value;
-	$.each(items,function(i,item){
-		if(item.id==id){
-			value=item;
-		}
-	});
-	return value;
+	
+	return item;
 }
 
 function getInfo(dl_id){
