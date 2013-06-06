@@ -12,18 +12,28 @@
 <tr><td rowspan="1" colspan="3">User can see entity page without data if has not permission</td></tr>
 </thead><tbody>
 <tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
 	<td>open</td>
 	<td>http://88.114.122.139:8080/job/web7.0/ws/dist/views/frontpage/index.html</td>
 	<td></td>
 </tr>
 <tr>
 	<td>pause</td>
-	<td>${pauseAfterOpen}</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <tr>
 	<td>waitForElementPresent</td>
 	<td>id=searchInput</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <tr>
@@ -33,13 +43,18 @@
 </tr>
 <tr>
 	<td>pause</td>
-	<td>2000</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=searchInput</td>
-	<td>${personSearch}</td>
+	<td>Pirkka</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
 </tr>
 <tr>
 	<td>fireEvent</td>
@@ -48,27 +63,47 @@
 </tr>
 <tr>
 	<td>pause</td>
-	<td>2000</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <tr>
 	<td>waitForTextPresent</td>
-	<td>${person}</td>
+	<td>Pirkka Frosti</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <tr>
 	<td>waitForElementPresent</td>
-	<td>id=${personLink}</td>
+	<td>id=searchLink2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>id=${personLink}</td>
+	<td>id=searchLink2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <tr>
 	<td>waitForTextPresent</td>
-	<td>${person}</td>
+	<td>Pirkka Frosti</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 </tbody></table>

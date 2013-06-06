@@ -12,33 +12,48 @@
 <tr><td rowspan="1" colspan="3">User can see my world page after has loggedIn</td></tr>
 </thead><tbody>
 <tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
 	<td>open</td>
 	<td>http://88.114.122.139:8080/job/web7.0/ws/dist/views/login/index.html</td>
 	<td></td>
 </tr>
 <tr>
 	<td>pause</td>
-	<td>${pauseAfterOpen}</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=loginUsername</td>
-	<td>${username}</td>
+	<td>adele.vuohi@gmail.com</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=loginPassword</td>
-	<td>${password}</td>
+	<td>vuori</td>
 </tr>
 <tr>
 	<td>pause</td>
-	<td>${pauseBeforeClick}</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
 	<td>id=loginButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <tr>
@@ -48,7 +63,7 @@
 </tr>
 <tr>
 	<td>pause</td>
-	<td>2000</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <tr>
@@ -57,8 +72,18 @@
 	<td></td>
 </tr>
 <tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
 	<td>verifyElementPresent</td>
 	<td>id=searchInput</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <tr>
@@ -67,8 +92,18 @@
 	<td></td>
 </tr>
 <tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
 	<td>verifyTitle</td>
-	<td>${name}</td>
+	<td>Adele Vuohi</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 </tbody></table>
