@@ -28,6 +28,7 @@ function addLiListener(){
 
 function getMessageInfo(id){
 	var opts = {'uid': getDL_id(), 'auth': getToken(), activity_id:id};
+	console.log(opts);
 	var url = "stream";
 	var item = rest(opts,url,function(data) {
 			result = data;
@@ -37,7 +38,7 @@ function getMessageInfo(id){
 			result = data;
 			error(data);
 		});
-	
+	console.log(item);
 	return item;
 }
 

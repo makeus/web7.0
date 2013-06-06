@@ -282,7 +282,7 @@ test( "getmessainfo test", function() {
   "whitelist_dlid": ""
 };
     var result = getMessageInfo("1234");
-    equal(result.created,expected.created);
+    equal(result[0].created,expected.created);
     equal(getStatus(),1);
     $.mockjaxClear();
 });
