@@ -12,12 +12,13 @@ document.addEventListener("DOMContentLoaded",function(){
     $("#sendMessageBox").click(sendMessageClickEvent);
 
     setEntityInformation(getURLParameter("dlid"));
+    setLeftBarActiveLink();
+
     if(isToken()) {
         var stream = getStreamUrl();
         if(stream == "") {
             $("#message").hide();
         }
-
         $("#thelist").append( stream.join('') );
     } else {
         alert("UNAUTHORISED");
@@ -100,15 +101,25 @@ function resetMessageFields() {
 
 
 function setEntityInformation(dl_id){
-    var info=getInfo(dl_id);
-    var image = "";
-    if(info.img == "") {
-        image = '../../resources/images/tyhja.png';
-    } else {
-        image = info.img
+    $("#entityRole").text($("#leftbar_role").text());
+    $("#entityName").text($("#leftbar_name").text());
+}
+
+function setLeftBarActiveLink(){
+    var type = getURLParameter("type");
+
+    switch(type) {
+        case 'cal':
+            $("#entityStreamType").text("Tasks & Events");
+            $("#linklistTasks").addClass("active");
+            break;
+        case 'message':
+            $("#entityStreamType").text("Messages");
+            $("#linklistMessages").addClass("active");
+            break;
+        default:
+            $("#entityStreamType").text("Messages");
     }
-    $("#entityImg").attr('src',image);
-    $("#entityImg").attr('alt',info.name);
-    $("#entityRole").text(info.type);
-    $("#entityName").text(info.name);
+
+
 }
