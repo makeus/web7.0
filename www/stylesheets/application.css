@@ -280,14 +280,16 @@ section#searchResults > h1 {
 .message_content {
 	margin-left: 5%;
 }
+
+#thelist {
+	margin: 10px;
+}
+
 #thelist > li {
 	border: thin solid grey;
-	margin: 0.5%;
 	list-style: none
 }
-#wrapper {
-	margin:5px;
-}
+
 #searchdiv {
     width: 50%;
     display: inline-block;
