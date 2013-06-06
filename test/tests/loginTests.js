@@ -164,7 +164,7 @@ test( "rest login getDL_id", function() {
     var username="test";
     var password="test";
 	$.mockjax({
-		url: url + "Authtoken",
+		url: "*",
 		responseText: {
 			DL_id: "1234",
 			authtoken: "test1234test",
