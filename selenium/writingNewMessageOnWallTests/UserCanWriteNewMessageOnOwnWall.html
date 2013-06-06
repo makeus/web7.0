@@ -37,18 +37,23 @@ a[0].textContent = x;
 </tr>
 <tr>
 	<td>pause</td>
-	<td>4000</td>
+	<td>${pauseAfterOpen}</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>id=loginPassword</td>
-	<td>roki014</td>
+	<td>id=loginUsername</td>
+	<td>${username}</td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>id=loginUsername</td>
-	<td>ivan.tadic014@gmail.com</td>
+	<td>id=loginPassword</td>
+	<td>${password}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>${pauseBeforeClick}</td>
+	<td></td>
 </tr>
 <tr>
 	<td>click</td>
@@ -56,13 +61,13 @@ a[0].textContent = x;
 	<td></td>
 </tr>
 <tr>
-	<td>pause</td>
-	<td>4000</td>
+	<td>waitForTitle</td>
+	<td>${name}</td>
 	<td></td>
 </tr>
 <tr>
-	<td>waitForTitle</td>
-	<td>Ivan Tadic</td>
+	<td>waitForElementPresent</td>
+	<td>id=messageField</td>
 	<td></td>
 </tr>
 <tr>
@@ -73,11 +78,6 @@ a[0].textContent = x;
 <tr>
 	<td>click</td>
 	<td>id=sendMessageBox</td>
-	<td></td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>10000</td>
 	<td></td>
 </tr>
 <tr>

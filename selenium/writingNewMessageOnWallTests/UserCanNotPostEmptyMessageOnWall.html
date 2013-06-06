@@ -17,14 +17,19 @@
 	<td></td>
 </tr>
 <tr>
+	<td>pause</td>
+	<td>${pauseAfterOpen}</td>
+	<td></td>
+</tr>
+<tr>
 	<td>storeBodyText</td>
-	<td>c</td>
+	<td>bodyBefore</td>
 	<td></td>
 </tr>
 <tr>
 	<td>storeEval</td>
-	<td>storedVars['c'].length</td>
-	<td>a</td>
+	<td>storedVars['bodyBefore'].length</td>
+	<td>lengthBefore</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -33,20 +38,19 @@
 </tr>
 <tr>
 	<td>storeBodyText</td>
-	<td>d</td>
+	<td>bodyAfter</td>
 	<td></td>
 </tr>
 <tr>
 	<td>storeEval</td>
-	<td>storedVars['c'].length</td>
-	<td>b</td>
+	<td>storedVars['bodyAfter'].length</td>
+	<td>lengthAfter</td>
 </tr>
 <tr>
 	<td>verifyExpression</td>
-	<td>${a}</td>
-	<td>${b}</td>
+	<td>${lengthBefore}</td>
+	<td>${lengthAfter}</td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

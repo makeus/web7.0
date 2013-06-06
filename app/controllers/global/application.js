@@ -38,7 +38,6 @@ function getMessageInfo(id){
 			result = data;
 			error(data);
 		});
-	
 	return item;
 }
 
