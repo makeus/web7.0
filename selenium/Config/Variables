@@ -31,6 +31,16 @@
 	<td>searchLink2</td>
 	<td>personLink</td>
 </tr>
+<tr>
+	<td>store</td>
+	<td>500</td>
+	<td>pauseAfterOpen</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>1000</td>
+	<td>pauseBeforeClick</td>
+</tr>
 </tbody></table>
 </body>
 </html>
