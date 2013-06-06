@@ -1,4 +1,5 @@
 selenium/Config/SeleniumCredential
+*SeleniumCredential*
 config/cloud.json
 dist/
 */.DS_Store
