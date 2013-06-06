@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded",function(){
+
 	if(/login/i.test(window.location.pathname)) {
 		localStorage.clear();
 	}
