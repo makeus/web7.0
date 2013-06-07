@@ -74,6 +74,7 @@ function getSubject(info){
         to = arr[0];
         from = arr[1];
     }
+    
     $("#messageContent > img").attr('src',from.img);
     if(to){
         var content = "<div id='ipageFromAndSubject'><h3>" + from.name + " >> " + to.name + "</h3><p id='ipageTime'>Time: " + info.created + "</p>";
