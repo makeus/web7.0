@@ -52,6 +52,7 @@ function setAddCommentEvent(){
 
 function parseMessage(){
     info = getMessageInfo(iPageID,getURLParameter("uid"));
+    if(info==undefined){return;};
     $("#messageContent").append(getSubject(info));
     if (info.content==""){
         $("#ipageContent").hide();

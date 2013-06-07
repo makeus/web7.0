@@ -15,7 +15,7 @@
   <script src="jquery.mockjax.js"></script>
   <script type="text/javascript">
     $.mockjax({
-      url: "https://www.dliv.in/rest/stream",
+      url: "*",
       responseText: console.log("index.html mock response")
     });
     $.mockjax({
@@ -32,6 +32,7 @@
   <script src="../app/controllers/global/parseandmessage.js"></script>
   <script src="../app/controllers/global/leftbar.js"></script>
   <script src="../app/controllers/EPage.js"></script>
+  <script src="../app/controllers/IPage.js"></script>
   <script src="../app/controllers/frontpage.js"></script>
   <script src="../app/controllers/login.js"></script>
   <script src="../app/controllers/search.js"></script>
@@ -45,6 +46,7 @@
   <script src="tests/userInfoTests.js"></script>
   <script src="tests/historyTests.js"></script>
   <script src="tests/searchTests.js"></script>
+  <script src="tests/ipageTests.js"></script>
 
   <ul data-role="listview" id="linklist" hidden></ul>
 </body>
