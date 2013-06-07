@@ -1,7 +1,7 @@
 test( "ipage parsemessage test", function() {
 
 	$.mockjaxClear();
-	
+
 	$.mockjax({
 		url: "https://www.dliv.in/rest/stream",
 		responseText:[

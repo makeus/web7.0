@@ -24,6 +24,28 @@ test( "InforStream REST test", function() {
 			equal(settings.data.limit, limit, "Limit ei muutu");
 		}
 	});
+	
+	$.mockjax({
+		url: /https:\/\/www.dliv.in\/rest\/dlid/,
+		urlParams: [
+			'dl_id',
+			'auth',
+			'uid'
+		],
+		responseText: [{
+			DL_id: "8653",
+			type: "user",
+			sub_type: "",
+			relations: "7795:,8658",
+			name: "Adele Vuohi",
+			img: "https://dlfwwwfiles.s3.amazonaws.com/images/8653/thumb_303657-goats-picture.gif",
+			edited: "2013-05-22 07:31:55",
+			created: "2013-05-21 13:55:43",
+			created_by: "8653",
+			edited_by: "8653"
+
+		}]
+	});	
 
 	rest(opts,url,function(data) {
 			result = data;
@@ -75,6 +97,28 @@ test( "infostream test own id correct token", function() {
 		}]
 	});
 	
+	$.mockjax({
+		url: /https:\/\/www.dliv.in\/rest\/dlid/,
+		urlParams: [
+			'dl_id',
+			'auth',
+			'uid'
+		],
+		responseText: [{
+			DL_id: "8653",
+			type: "user",
+			sub_type: "",
+			relations: "7795:,8658",
+			name: "Adele Vuohi",
+			img: "https://dlfwwwfiles.s3.amazonaws.com/images/8653/thumb_303657-goats-picture.gif",
+			edited: "2013-05-22 07:31:55",
+			created: "2013-05-21 13:55:43",
+			created_by: "8653",
+			edited_by: "8653"
+
+		}]
+	});
+
 	getActivityStream(opts);
 	equal(status, 1);
 

@@ -351,12 +351,7 @@ test( "processResult test", function() {
     var url="search";
 	
 	$.mockjax({
-		url: /https:\/\/www.dliv.in\/rest\/search/,
-		urlParams: [
-			'q',
-			'auth',
-			'uid'
-		],
+		url: "*",
 		responseText: [
 		{
 		DL_id: "8653",
@@ -443,12 +438,7 @@ test( "processResult word has changed test", function() {
     var url="search";
 	
 	$.mockjax({
-		url: /https:\/\/www.dliv.in\/rest\/search/,
-		urlParams: [
-			'q',
-			'auth',
-			'uid'
-		],
+		url: "*",
 		responseText: [
 		{
 		DL_id: "8653",
@@ -612,16 +602,13 @@ asyncTest("timedSearch test",function(){
 		var result="";
 		result = $("#searchResults").html();
 
-		var expected = "<h1>Other</h1><ul id=\"searchResultsDefault\" class=\"searchCategory\"><li name=\"undefined\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p>undefined</p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p></p></li><li name=\"undefined\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p>undefined</p></li><li name=\"undefined\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p>undefined</p></li><li name=\"undefined\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"undefined\" \"=\"\" alt=\"kuva\"><p>undefined</p></li></ul>";
+		var expected = "<h1>Persons</h1><ul id=\"searchResultsUser\" class=\"searchCategory\"><li name=\"Adele Vuohi\" id=\"searchLink8653\"><img class=\"searchImages\" src=\"https://dlfwwwfiles.s3.amazonaws.com/images/8653/thumb_303657-goats-picture.gif\" \"=\"\" alt=\"kuva\"><p>Adele Vuohi</p></li></ul><h1>Things</h1><ul id=\"searchResultsThing\" class=\"searchCategory\"><li name=\"Sadeantura 1GS00\" id=\"searchLink7559\"><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\" \"=\"\" alt=\"kuva\"><p>Sadeantura 1GS00</p></li><li name=\"Sadevesikaivo SVK1\" id=\"searchLink8654\"><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\" \"=\"\" alt=\"kuva\"><p>Sadevesikaivo SVK1</p></li><li name=\"Sadevesikaivo SVK2\" id=\"searchLink8655\"><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\" \"=\"\" alt=\"kuva\"><p>Sadevesikaivo SVK2</p></li></ul><h1>Projects</h1><ul id=\"searchResultsProject\" class=\"searchCategory\"><li name=\"JADE\" id=\"searchLink7610\"><img class=\"searchImages\" src=\"https://dlfwwwfiles.s3.amazonaws.com/images/7610/thumb_top.jpg\" \"=\"\" alt=\"kuva\"><p>JADE</p></li></ul>";
 		equal(result,expected);
 		$("#searchResults").remove();
 		start();
 	},1000);
 	
 	start();
-
-	$.mockjaxClear();
-
 
 
 });
