@@ -27,7 +27,7 @@
 	<td>subjectText</td>
 </tr>
 <tr>
-	<td>verifyElementPresent</td>
+	<td>waitForElementPresent</td>
 	<td>class=listEL</td>
 	<td></td>
 </tr>

@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded",function(){
         parseMessage();
         setLinkToSenderEvent();
         setAddCommentEvent();
+        setCommentFocusEvent();
     } else {
         alert("UNAUTHORISED");
     }
@@ -20,7 +21,12 @@ function setIPageID(id){
     iPageID = id;
 }
 
-
+function setCommentFocusEvent() {
+    $("section#commentArea > textarea").focus(function(){
+        $("section#commentArea > textarea").attr("rows", 10);
+        $("#sendMessageBox").show();
+    });
+}
 
 function setLinkToSenderEvent(){
     $(".commentWriter").click(function(){
@@ -30,7 +36,7 @@ function setLinkToSenderEvent(){
 }
 
 function setAddCommentEvent(){
-    $("#addComment").click(function(){
+    $(".addComment").click(function(){
         var comm = $(".commentArea").val();
         if (comm!=""){
             addCommentToMessage(iPageID, comm);
