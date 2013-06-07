@@ -25,10 +25,10 @@ function leftbarCreateLinks(dlid) {
 	urls[1] =  baselink + "&type=cal";
 	icons[1] = "<i class=\"icon-calendar\"></i>";
 	links[2] = "To-Do Notes";
-	urls[2] = "#";
+	urls[2] = baselink + "#";
 	icons[2] = "<i class=\"icon-edit\"></i>";
 	links[3] = "Files";
-	urls[3] = "#";
+	urls[3] = baselink + "#";
 	icons[3] = "<i class=\"icon-file-alt\"></i>";
 
 

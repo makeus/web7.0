@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded",function(){
+
 	if(/login/i.test(window.location.pathname)) {
 		localStorage.clear();
 	}
@@ -44,6 +45,9 @@ function addLiListener(){
 function getMessageInfo(id,uid){
 	var opts = {'uid': getDL_id(), 'auth': getToken(),  'types': 'cal,message,note', 'dlid':uid};
 	var url = "stream";
+
+	var value;
+
 	var items = rest(opts,url,function(data) {
 			result = data;
 			success(data);
@@ -52,10 +56,27 @@ function getMessageInfo(id,uid){
 			result = data;
 			error(data);
 		});
-	var value;
 	$.each(items,function(i,item){
 		if(item.id==id){
-			value=item;
+			value = item;
+		}
+	});
+	if(value != undefined) {
+		return value;
+	}
+	var opts = {'uid': getDL_id(), 'auth': getToken(),  'types': 'cal,message,note', 'stream':'true'};
+	var url = "stream";
+	var items = rest(opts,url,function(data) {
+			result = data;
+			success(data);
+		},
+		function(data) {
+			result = data;
+			error(data);
+		});
+	$.each(items,function(i,item){
+		if(item.id==id){
+			value = item;
 		}
 	});
 	return value;
