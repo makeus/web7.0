@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded",function(){
 
     if(isToken()) {
         setIPageID(getURLParameter("iPageID"));
-        showImage();
         parseMessage();
         setLinkToSenderEvent();
         setAddCommentEvent();
@@ -21,10 +20,7 @@ function setIPageID(id){
     iPageID = id;
 }
 
-function showImage(){
-    var img = getURLParameter("src");
-    $("#image").attr('src',img);
-}
+
 
 function setLinkToSenderEvent(){
     $(".commentWriter").click(function(){
@@ -49,7 +45,7 @@ function setAddCommentEvent(){
 
 
 function parseMessage(){
-    info = getMessageInfo(iPageID);
+    info = getMessageInfo(iPageID,getURLParameter("uid"));
     $("#messageContent").append(getSubject(info));
     if (info.content==""){
         $("#ipageContent").hide();

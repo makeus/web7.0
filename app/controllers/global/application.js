@@ -22,12 +22,13 @@ document.addEventListener("DOMContentLoaded",function(){
 function addLiListener(){
     $(".listEL").click(function(){
         var id = $(this).attr('id');
+        var uid = $(this).attr('uid');
         var listElement= $(this);
-        view.push("IPage", "index.html?iPageID=" + id );
+        view.push("IPage", "index.html?iPageID=" + id +"&uid=" + uid);
     });
 }
 
-function getMessageInfo(id){
+/**function getMessageInfo(id){
 	var opts = {'uid': getDL_id(), 'auth': getToken(), activity_id:id};
 	var url = "stream";
 	var item = rest(opts,url,function(data) {
@@ -39,7 +40,28 @@ function getMessageInfo(id){
 			error(data);
 		});
 	return item;
+}**/
+
+function getMessageInfo(id,uid){
+	var opts = {'uid': getDL_id(), 'auth': getToken(),  'types': 'cal,message,note', 'dlid':uid};
+	var url = "stream";
+	var items = rest(opts,url,function(data) {
+			result = data;
+			success(data);
+		},
+		function(data) {
+			result = data;
+			error(data);
+		});
+	var value;
+	$.each(items,function(i,item){
+		if(item.id==id){
+			value=item;
+		}
+	});
+	return value;
 }
+
 
 function getInfo(dl_id){
     var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
