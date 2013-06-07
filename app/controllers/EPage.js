@@ -72,19 +72,24 @@ function sendMessageClickEvent() {
                 }
 
                 if(getURLParameter("type")=="cal") {
-                    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location);
+                    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location,null,function(){
+                        getStreamUrl(function(stream){
+                            $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                            resetMessageFields();
+                 });
+                    });
                 }
                 else {
-                    addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content);
+                    addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content,function(){
+                        getStreamUrl(function(stream){
+                            $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                            resetMessageFields();
+                 });
+                    });
                 }
 
-                 var stream=getStreamUrl();
-                $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
-
-
-                resetMessageFields();
-
-                $("#thelist").prepend(message);
+                 
+                
         } else {
                 alert("UNAUTHORISED");
         }

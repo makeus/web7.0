@@ -31,7 +31,7 @@ function addCommentToMessage(message_id, comment){
     });
 }
 
-function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_to, location, sub_type) {
+function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_to, location, sub_type,done) {
   if(to_dl_id == null || from_dl_id == null || subject == null) {
     return -1;
   }
@@ -39,7 +39,11 @@ function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_
   var auth = getToken();
   var type = "cal";
   addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 
-               'content':content, 'link':link, 'time_from':time_from, 'time_to':time_to, 'location':location, 'sub_type':sub_type});
+               'content':content, 'link':link, 'time_from':time_from, 'time_to':time_to, 'location':location, 'sub_type':sub_type},
+               function(data){
+                success(data);
+                done();
+               });
 
 }
 
