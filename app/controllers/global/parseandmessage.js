@@ -86,7 +86,7 @@ function getOtherStream(types,dlid,done) {
 }
 
 function getOwnStream(types,done) {
-    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types, 'stream': true, 'dlid':dlid};
+    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types, 'stream': true};
     getStream(opts,done);
 
 }
