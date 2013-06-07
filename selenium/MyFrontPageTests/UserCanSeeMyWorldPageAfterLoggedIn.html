@@ -12,18 +12,13 @@
 <tr><td rowspan="1" colspan="3">User can see my world page after has loggedIn</td></tr>
 </thead><tbody>
 <tr>
-	<td>pause</td>
-	<td>5000</td>
-	<td></td>
-</tr>
-<tr>
 	<td>open</td>
 	<td>http://88.114.122.139:8080/job/web7.0/ws/dist/views/login/index.html</td>
 	<td></td>
 </tr>
 <tr>
 	<td>pause</td>
-	<td>5000</td>
+	<td>1000</td>
 	<td></td>
 </tr>
 <tr>
@@ -32,18 +27,13 @@
 	<td>adele.vuohi@gmail.com</td>
 </tr>
 <tr>
-	<td>pause</td>
-	<td>5000</td>
-	<td></td>
-</tr>
-<tr>
 	<td>type</td>
 	<td>id=loginPassword</td>
 	<td>vuori</td>
 </tr>
 <tr>
 	<td>pause</td>
-	<td>5000</td>
+	<td>2000</td>
 	<td></td>
 </tr>
 <tr>
@@ -52,8 +42,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>pause</td>
-	<td>5000</td>
+	<td>waitForElementPresent</td>
+	<td>id=showMessages</td>
 	<td></td>
 </tr>
 <tr>
@@ -62,48 +52,18 @@
 	<td></td>
 </tr>
 <tr>
-	<td>pause</td>
-	<td>5000</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyElementPresent</td>
-	<td>id=showMessages</td>
-	<td></td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>5000</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyElementPresent</td>
+	<td>waitForElementPresent</td>
 	<td>id=searchInput</td>
 	<td></td>
 </tr>
 <tr>
-	<td>pause</td>
-	<td>5000</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyElementPresent</td>
+	<td>waitForElementPresent</td>
 	<td>id=messageField</td>
 	<td></td>
 </tr>
 <tr>
-	<td>pause</td>
-	<td>5000</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyTitle</td>
+	<td>waitForTitle</td>
 	<td>Adele Vuohi</td>
-	<td></td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>5000</td>
 	<td></td>
 </tr>
 </tbody></table>
