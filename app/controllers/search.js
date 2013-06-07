@@ -11,7 +11,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	//tähän tilalle history() kun hölmöydet on korjattu restistä
 	//eli ei koskaan!
-	updateSearchResults(historyTemp());
+	historyTemp(function(data){
+		updateSearchResults(data);
+	});
 	$("#searchInput").bind('input',function(){
 		timedSearch($("#searchInput").val())
 	});
@@ -99,13 +101,17 @@ function updateSearchResults(results){
 var timeout;
 var searchWordCheck;
 function processResult(searchWord){
-	var result = search(searchWord);
-	if(searchWordCheck==searchWord){ updateSearchResults(result);}
+	search(searchWord,function(result){
+		if(searchWordCheck==searchWord){ updateSearchResults(result);}
 	else{ console.log("NO!!!!!!!!");}
+	});
+	
 }
 function timedSearch(searchWord){
 	if(searchWord==""){
-		updateSearchResults(historyTemp());
+		historyTemp(function(data){
+		updateSearchResults(data);
+		});
 		if(timeout){clearTimeout(timeout);}
 		return;
 	}
@@ -117,15 +123,16 @@ function timedSearch(searchWord){
 }
 
 
-function historyTemp(){
-	var info2 = getHistory();
-    var info3="";
-    $.each(info2,function(key,value){
+function historyTemp(done){
+	getHistory(function(info2){
+		var info3="";
+   		 $.each(info2,function(key,value){
     	if(key!='DL_id'){
     		info3=info3 + key.replace('dlid-','') + ',';
 		}
-    });
-    info3=info3.slice(0,-1);
-    var opts={'dl_ids':info3,'auth':getToken(),'uid':getDL_id()};
-    return getUserArray(opts);
+   		 });
+   		info3=info3.slice(0,-1);
+    	var opts={'dl_ids':info3,'auth':getToken(),'uid':getDL_id()};
+    	getUserArray(opts,done);
+	});
 }

@@ -10,7 +10,7 @@ function rest(opts,url, success, error){
 		url: restUrl+url,
 		dataType: "json",
 		global: false,
-		async: false,
+		async: true,
 		data: opts,
 		success: success,
 		error: error
@@ -24,14 +24,14 @@ function getURLParameter(name) {
     return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 }
 
-function addActivity(opts) {
+function addActivity(opts,success) {
 	status = 0;
 	$.ajax(
 	{
 		url: restUrl+"stream",
 		type: "POST",
 		global: false,
-		async: false,
+		async: true,
 		dataType: 'JSON', 
 		data: opts,
 		success: success,
@@ -45,7 +45,7 @@ function addCommentRest(opts,url, success,error) {
 		url: restUrl+url,
 		type: "POST",
 		global: false,
-		async: false,
+		async: true,
 		dataType: 'JSON', 
 		data: opts,
 		success: success,

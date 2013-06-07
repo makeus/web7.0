@@ -1,11 +1,16 @@
-function addMessage(to_dl_id, from_dl_id, subject, link, content) {
+function addMessage(to_dl_id, from_dl_id, subject, link, content, done) {
 	if(to_dl_id == null || from_dl_id == null || subject == null) {
 		return -1;
 	}
 	var uid = getDL_id();
 	var auth = getToken();
 	var type = "message";
-	addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 'content':content, 'link':link});
+	addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id,
+   'type':type, 'subject': subject, 'content':content, 'link':link},
+   function(data){
+      success(data);
+      done();
+  });
 }
 
 function addCommentToMessage(message_id, comment){
@@ -38,48 +43,51 @@ function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_
 
 }
 
-function getStream(opts){
-    var items =[];
-    var stream=getActivityStream(opts);
-    var dlids= [];
-    var userHash={};
+function getStream(opts,done){
+  
+    getActivityStream(opts,function(stream){
+      var items =[];
+      var dlids= [];
+      var userHash={};
 
-    //error retrieving the activity stream
-    if(getStatus()!=1 || stream=="") {
-      return items;
-    } else {
-      /*
-      Capture unique dlids from stream for retrieval of user data.
-      */
-      $.each(stream, function(i, item) {
-            dlids.push(item.DL_id);
-            dlids.push(item.from_DL_id);
-      });
-      dlids = $.unique(dlids);
+      //error retrieving the activity stream
+      if(getStatus()!=1 || stream=="") {
+        done(items);
+      } else {
+        /*
+        Capture unique dlids from stream for retrieval of user data.
+        */
+        $.each(stream, function(i, item) {
+              dlids.push(item.DL_id);
+              dlids.push(item.from_DL_id);
+        });
+        dlids = $.unique(dlids);
+        //Retrieve user data
+        var users = {'uid': getDL_id(), 'auth': getToken(), 'dl_ids': dlids.join()};
+        getUserArray(users,function(json){
+        userHash=myHash(json);
+        //parse and push each json entry into its own <li> block
+        $.each(stream, function(i, item) {
+              items.push(parseItem(item, userHash, item.type));
+        });
 
-      //Retrieve user data
-      var users = {'uid': getDL_id(), 'auth': getToken(), 'dl_ids': dlids.join()};
-      var json = getUserArray(users);
-      userHash=myHash(json);
-
-      //parse and push each json entry into its own <li> block
-      $.each(stream, function(i, item) {
-            items.push(parseItem(item, userHash, item.type));
+        done(items);
+        });
+      }     
+    //append <li> blocks to appropriate container
+      
     });
-    }     
-  //append <li> blocks to appropriate container
-    return items;
 }
 
 
-function getOtherStream(types,dlid) {
+function getOtherStream(types,dlid,done) {
     var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types+',', 'dlid':dlid};
-    return getStream(opts);
+    getStream(opts,done);
 }
 
-function getOwnStream(types,dlid) {
-    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types, 'stream': true, 'dlid':dlid};
-    return getStream(opts);
+function getOwnStream(types,done) {
+    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types, 'stream': true};
+    getStream(opts,done);
 }
 
 function myHash(json) {

@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded",function(){
 
     if(isToken()) {
         setIPageID(getURLParameter("iPageID"));
-        showImage();
         parseMessage();
         setLinkToSenderEvent();
         setAddCommentEvent();
@@ -21,10 +20,6 @@ function setIPageID(id){
     iPageID = id;
 }
 
-function showImage(){
-    var img = getURLParameter("src");
-    $("#image").attr('src',img);
-}
 
 function setLinkToSenderEvent(){
     $(".commentWriter").click(function(){
@@ -49,21 +44,23 @@ function setAddCommentEvent(){
 
 
 function parseMessage(){
-    info = getMessageInfo(iPageID);
-    $("#messageContent").append(getSubject(info));
+    getMessageInfo(iPageID,function(info){
+        getSubject(info);
     if (info.content==""){
         $("#ipageContent").hide();
     } else {
         $("#ipageContent").show();
     }
-    $("#listOfComments").append(getComments(info));
+    getComments(info);
+    });
+    
 }
 
 function getSubject(info){
     var ids = info.from_DL_id + "," + info.DL_id;
     var opts={'dl_ids':ids,'auth':getToken(),'uid':getDL_id()};
-    var arr = getUserArray(opts);
-    $("#messageContent > img").attr('src',arr[0].img);
+    getUserArray(opts,function(arr){
+        $("#messageContent > img").attr('src',arr[0].img);
     if(arr[1]){
         var content = "<div id='ipageFromAndSubject'><h3>" + arr[0].name + " >> " + arr[1].name + "</h3><p id='ipageTime'>Time: " + info.created + "</p>";
     }else {
@@ -71,7 +68,8 @@ function getSubject(info){
     }
     content += "<p id = 'ipageSubject'>" + info.subject + "</p></div>";
     content += "<div id='ipageContent'><p>" + info.content + "</p></div>";
-    return content;
+    $("#messageContent").append(content);
+    });
 }
 
 function getComments(info){
@@ -87,7 +85,7 @@ function getComments(info){
         $("#ipageComments").show();
     }
 
-    return content;
+    $("#listOfComments").append(content);
 }
 
 function getTimeDiff(sendedTime){

@@ -7,10 +7,12 @@ document.addEventListener("DOMContentLoaded",function(){
 		if(dlid == null) {
 			dlid = getDL_id();
 		}
-		var info = getInfo(dlid);
-		leftbarSetInfo(info);
-		leftbarCreateLinks(dlid);
+		getInfo(dlid,function(info){
+			leftbarSetInfo(info);
+			leftbarCreateLinks(dlid);
 
+		});
+		
 		jQuery( window ).on( "swiperight", function() {
 			$( "#leftpanel" ).panel( "open" );
 		});
@@ -26,33 +28,33 @@ function addLiListener(){
     });
 }
 
-function getMessageInfo(id){
+function getMessageInfo(id,done){
 	var opts = {'uid': getDL_id(), 'auth': getToken(), activity_id:id};
 	var url = "stream";
 	var item = rest(opts,url,function(data) {
 			result = data;
 			success(data);
+			done(data);
 		},
 		function(data) {
 			result = data;
 			error(data);
 		});
-	return item;
 }
 
-function getInfo(dl_id){
+function getInfo(dl_id,done){
     var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
     var url="dlid"
     var info=rest(opts,url,
         function(data) {
             result = data;
             success(data);
+            done(data);
         },
         function(data) {
             result = data; 
             error(data);
         });
-    return info;
 }
 
 
@@ -72,13 +74,14 @@ function setupPage(settings) {
 
 
 
-function getHistory(){
+function getHistory(done){
 	var opts={'dl_id':getDL_id(),'auth':getToken(),'uid':getDL_id()};
 	var url="gethistory";
-	return rest(opts,url,
+	rest(opts,url,
 		function(data) {
 			result = data;
 			success(data);
+			done(data);
 		},
 		function(data) {
 			result = data;
@@ -87,13 +90,14 @@ function getHistory(){
 }
 
 
-function search(searchWord){
+function search(searchWord,done){
 	var opts={'q':searchWord,'auth':getToken(),'uid':getDL_id()};
 	var url="search";
 	return rest(opts,url,
 		function(data) {
 			result = data;
 			success(data);
+			done(data);
 		},
 		function(data) {
 			result = data;
@@ -101,11 +105,12 @@ function search(searchWord){
 		});
 }
 
-function getActivityStream(opts) {
+function getActivityStream(opts,done) {
 	var url = "stream";
-	return rest(opts,url,function(data) {
+	rest(opts,url,function(data) {
 			result = data;
 			success(data);
+			done(data);
 		},
 		function(data) {
 			result = data;
@@ -113,11 +118,12 @@ function getActivityStream(opts) {
 		});
 }
 
-function getUserArray(opts) {
+function getUserArray(opts,done) {
 	var url = "dlid";
-    return rest(opts, url, function(data) {
+    rest(opts, url, function(data) {
         result=data;
         success(data);
+        done(data);
     },
     function(data) {
         result=data;
