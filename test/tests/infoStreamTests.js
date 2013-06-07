@@ -281,8 +281,9 @@ test( "getmessainfo test", function() {
   "type": "message",
   "whitelist_dlid": ""
 };
-    var result = getMessageInfo("1234");
-    equal(result[0].created,expected.created);
+    var result = getMessageInfo("1234","1234");
+    console.log(result);
+    equal(result.created,expected.created);
     equal(getStatus(),1);
     $.mockjaxClear();
 });

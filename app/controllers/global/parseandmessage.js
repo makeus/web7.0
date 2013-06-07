@@ -51,7 +51,7 @@ function getStream(opts,done){
       var userHash={};
 
       //error retrieving the activity stream
-      if(getStatus()!=1 || stream=="") {
+      if(getStatus()!=1 || stream=="" || stream.responseText=="") {
         done(items);
       } else {
         /*
@@ -86,8 +86,9 @@ function getOtherStream(types,dlid,done) {
 }
 
 function getOwnStream(types,done) {
-    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types, 'stream': true};
+    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types, 'stream': true, 'dlid':dlid};
     getStream(opts,done);
+
 }
 
 function myHash(json) {
@@ -112,7 +113,7 @@ function parseItem(item, userHash, type) {
     if(item==undefined || item==null || item=="" || $.isEmptyObject(userHash) || type==undefined || type==null || type=="" ) {
       return "";
     }
-    var entry = "<li class='listEL' id='" +item.id+ "'><section  class='eventElem' >"
+    var entry = "<li class='listEL' id='" +item.id+ "' uid='"+item.from_DL_id+"'><section  class='eventElem' >"
                 + "<img src=" + userHash[item.from_DL_id].img + " alt='pic' />"
                 + "<div class='unandmsg'><div class='sendandre'><p class='user_name'>" +userHash[item.from_DL_id].name;
     

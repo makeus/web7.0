@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded",function(){
         parseMessage();
         setLinkToSenderEvent();
         setAddCommentEvent();
+        setCommentFocusEvent();
     } else {
         alert("UNAUTHORISED");
     }
@@ -21,6 +22,13 @@ function setIPageID(id){
 }
 
 
+function setCommentFocusEvent() {
+    $("section#commentArea > textarea").focus(function(){
+        $("section#commentArea > textarea").attr("rows", 10);
+        $("#sendMessageBox").show();
+    });
+}
+
 function setLinkToSenderEvent(){
     $(".commentWriter").click(function(){
         var dlid = $(this).attr('id');
@@ -29,7 +37,7 @@ function setLinkToSenderEvent(){
 }
 
 function setAddCommentEvent(){
-    $("#addComment").click(function(){
+    $(".addComment").click(function(){
         var comm = $(".commentArea").val();
         if (comm!=""){
             addCommentToMessage(iPageID, comm);
@@ -44,8 +52,10 @@ function setAddCommentEvent(){
 
 
 function parseMessage(){
+
     getMessageInfo(iPageID,function(info){
         getSubject(info);
+
     if (info.content==""){
         $("#ipageContent").hide();
     } else {
@@ -57,14 +67,25 @@ function parseMessage(){
 }
 
 function getSubject(info){
-    var ids = info.from_DL_id + "," + info.DL_id;
+    var ids = info.DL_id + "," + info.from_DL_id;
     var opts={'dl_ids':ids,'auth':getToken(),'uid':getDL_id()};
-    getUserArray(opts,function(arr){
-        $("#messageContent > img").attr('src',arr[0].img);
-    if(arr[1]){
-        var content = "<div id='ipageFromAndSubject'><h3>" + arr[0].name + " >> " + arr[1].name + "</h3><p id='ipageTime'>Time: " + info.created + "</p>";
+
+    var arr = getUserArray(opts);
+    var from = getURLParameter("uid");
+    var to;
+    if(arr[0].DL_id == from) {
+        to = arr[1];
+        from = arr[0];
+    } else {
+        to = arr[0];
+        from = arr[1];
+    }
+    $("#messageContent > img").attr('src',from.img);
+    if(to){
+        var content = "<div id='ipageFromAndSubject'><h3>" + from.name + " >> " + to.name + "</h3><p id='ipageTime'>Time: " + info.created + "</p>";
+
     }else {
-        var content = "<div id='ipageFromAndSubject'><h3>" + arr[0].name + "</h3><p id='ipageTime'>Time: " + info.created + "</p>";
+        var content = "<div id='ipageFromAndSubject'><h3>" + from.name + "</h3><p id='ipageTime'>Time: " + info.created + "</p>";
     }
     content += "<p id = 'ipageSubject'>" + info.subject + "</p></div>";
     content += "<div id='ipageContent'><p>" + info.content + "</p></div>";

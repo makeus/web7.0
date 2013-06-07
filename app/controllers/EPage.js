@@ -6,21 +6,26 @@ document.addEventListener("DOMContentLoaded",function(){
 
     if(getURLParameter("type")=="cal") {
         $("#message").replaceWith($("#cal").show());
+        $("#msg").remove();
     }
-
+    else {
+        $("#message").replaceWith($("#msg").show());
+        $("#cal").remove();
+    }
     $("#sendMessage").click(sendMessageClickEvent);
     $("#sendMessageBox").click(sendMessageClickEvent);
 
     setEntityInformation(getURLParameter("dlid"));
+    setLeftBarActiveLink();
+
     if(isToken()) {
         getStreamUrl(function(stream){
-            if(stream == "") {
-            $("#message").hide();
+            if(stream != "") {
+            $("#thelist").append( stream.join('') );
         }
 
-        $("#thelist").append( stream.join('') );
-        });
         
+        });
     } else {
         alert("UNAUTHORISED");
     }
@@ -111,7 +116,29 @@ function setEntityInformation(dl_id){
     }
     $("#entityImg").attr('src',image);
     $("#entityImg").attr('alt',info.name);
-    $("#entityRole").text(info.type);
-    $("#entityName").text(info.name);
+    $("#entityRole").text($("#leftbar_role").text());
+    $("#entityName").text($("#leftbar_name").text());
     });
+
+    
+}
+
+function setLeftBarActiveLink(){
+    var type = getURLParameter("type");
+
+    switch(type) {
+        case 'cal':
+            $("#entityStreamType").text("Tasks & Events");
+            $("#linklistTasks").addClass("active");
+            break;
+        case 'message':
+            $("#entityStreamType").text("Messages");
+            $("#linklistMessages").addClass("active");
+            break;
+        default:
+            $("#entityStreamType").text("Messages");
+    }
+
+
+
 }

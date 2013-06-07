@@ -17,6 +17,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=loginUsername</td>
 	<td>unexisting.username@mail.com</td>
@@ -24,7 +29,12 @@
 <tr>
 	<td>type</td>
 	<td>id=loginPassword</td>
-	<td>${password}</td>
+	<td>vuori</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
 </tr>
 <tr>
 	<td>click</td>
@@ -32,23 +42,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>pause</td>
-	<td>2000</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyTextPresent</td>
+	<td>waitForTextPresent</td>
 	<td>Wrong user or password</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=loginUsername</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=loginPassword</td>
 	<td></td>
 </tr>
 </tbody></table>

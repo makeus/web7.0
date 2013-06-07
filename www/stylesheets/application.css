@@ -235,24 +235,6 @@ section#searchResults > h1 {
 	margin-right: auto;
 }
 
-#entityImg {
-	width: 50%;
-	max-width: 200px;
-	position: absolute;
-	left: 50%;
-	top: 10px;
-	margin-left: -25%;
-}
-
-#infodiv {
-	position: relative;
-	text-align: center;
-	top: -70px;
-	left: 50%;
-	width: 100%;
-	margin-left: -50%;
-}
-
 #infodiv + #message {
 	padding-top: 0;
 	margin-top: 0;
@@ -262,7 +244,7 @@ section#searchResults > h1 {
 	display:inline-block;
 	vertical-align: middle;
 	width: 80%;
-	margin-left: -3%;
+	margin-left: auto;
 }
 .eventElem > img {
 	display:inline-block;
@@ -280,14 +262,16 @@ section#searchResults > h1 {
 .message_content {
 	margin-left: 5%;
 }
+
+#thelist {
+	margin: 10px;
+}
+
 #thelist > li {
 	border: thin solid grey;
-	margin: 0.5%;
 	list-style: none
 }
-#wrapper {
-	margin:10px;
-}
+
 #searchdiv {
     width: 50%;
     display: inline-block;
@@ -435,3 +419,31 @@ i {
 	padding-right: 5px;
 }
 
+li.active {
+	background: #555;
+}
+
+#entityinfo {
+	text-align: center;
+	font-family: Helvetica, Arial, sans-serif
+}
+
+#entityinfo > h1{
+	font-size: 14px;
+}
+
+#entityinfo > h2 { 
+	font-size: 12px;
+}
+
+#entityinfo > h2 + h1 + h1 {
+	font-size: 30px;
+}
+
+section#commentArea {
+	margin: 10px;
+}
+
+section#commentArea > textarea {
+	margin-bottom: 0;
+}

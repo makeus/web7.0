@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded",function(){
+
 	if(/login/i.test(window.location.pathname)) {
 		localStorage.clear();
 	}
@@ -23,15 +24,17 @@ document.addEventListener("DOMContentLoaded",function(){
 function addLiListener(){
     $(".listEL").click(function(){
         var id = $(this).attr('id');
+        var uid = $(this).attr('uid');
         var listElement= $(this);
-        view.push("IPage", "index.html?iPageID=" + id );
+        view.push("IPage", "index.html?iPageID=" + id +"&uid=" + uid);
     });
 }
+
 
 function getMessageInfo(id,done){
 	var opts = {'uid': getDL_id(), 'auth': getToken(), activity_id:id};
 	var url = "stream";
-	var item = rest(opts,url,function(data) {
+	rest(opts,url,function(data) {
 			result = data;
 			success(data);
 			done(data);
