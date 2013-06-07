@@ -43,9 +43,8 @@ function getStream(opts){
     var stream=getActivityStream(opts);
     var dlids= [];
     var userHash={};
-
     //error retrieving the activity stream
-    if(getStatus()!=1 || stream=="") {
+    if(getStatus()!=1 || stream=="" || stream.responseText=="") {
       return items;
     } else {
       /*

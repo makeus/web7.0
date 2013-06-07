@@ -6,8 +6,12 @@ document.addEventListener("DOMContentLoaded",function(){
 
     if(getURLParameter("type")=="cal") {
         $("#message").replaceWith($("#cal").show());
+        $("#msg").remove();
     }
-
+    else {
+        $("#message").replaceWith($("#msg").show());
+        $("#cal").remove();
+    }
     $("#sendMessage").click(sendMessageClickEvent);
     $("#sendMessageBox").click(sendMessageClickEvent);
 
@@ -16,10 +20,10 @@ document.addEventListener("DOMContentLoaded",function(){
 
     if(isToken()) {
         var stream = getStreamUrl();
-        if(stream == "") {
-            $("#message").hide();
+        if(stream != "") {
+            $("#thelist").append( stream.join('') );
         }
-        $("#thelist").append( stream.join('') );
+    
     } else {
         alert("UNAUTHORISED");
     }
