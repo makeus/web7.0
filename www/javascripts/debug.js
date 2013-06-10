@@ -38,16 +38,18 @@ function createButton(info) {
 
 	$("#main").append("<button id='"+id+"'>"+info.name+"</button>");
 	$("#"+id).click(function() {
-		login(info.username, info.password);
-
-		if (getStatus() == -1) {
-			$("#failLogin").removeAttr("hidden");
-		} else if (getStatus() == 0) {
-			alert("Timeout!");
-		} else if (getStatus() == 1) {
-			view.push("frontpage");
-		} else {
-			alert("ERROR " + res);
+		login(info.username, info.password,function(){
+			if (getStatus() == -1) {
+				$("#failLogin").removeAttr("hidden");
+			} else if (getStatus() == 0) {
+				alert("Timeout!");
+			} else if (getStatus() == 1) {
+				view.push("frontpage");
+			} else {
+				alert("ERROR " + res);
 		}
+		});
+
+		
 	});
 }
