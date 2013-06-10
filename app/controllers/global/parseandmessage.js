@@ -1,14 +1,22 @@
-function addMessage(to_dl_id, from_dl_id, subject, link, content) {
+function addMessage(to_dl_id, from_dl_id, subject, link, content, done) {
 	if(to_dl_id == null || from_dl_id == null || subject == null) {
 		return -1;
 	}
 	var uid = getDL_id();
 	var auth = getToken();
 	var type = "message";
-	addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 'content':content, 'link':link});
+	addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id,
+   'type':type, 'subject': subject, 'content':content, 'link':link},
+   function(data){
+      success(data);
+      done();
+  },function(data){
+    error(data);
+    done();
+  });
 }
 
-function addCommentToMessage(message_id, comment){
+function addCommentToMessage(message_id, comment,done){
     if (comment==null || message_id==null){
       return -1;
     }
@@ -19,14 +27,17 @@ function addCommentToMessage(message_id, comment){
     addCommentRest(opts,url,function(data) {
       result = data;
       success(data);
+      done();
     },
     function(data) {
       result = data;
       error(data);
+      done();
     });
 }
 
-function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_to, location, sub_type) {
+function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_to, location, sub_type,done) {
+
   if(to_dl_id == null || from_dl_id == null || subject == null) {
     return -1;
   }
@@ -34,51 +45,65 @@ function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_
   var auth = getToken();
   var type = "cal";
   addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 
-               'content':content, 'link':link, 'time_from':time_from, 'time_to':time_to, 'location':location, 'sub_type':sub_type});
+               'content':content, 'link':link, 'time_from':time_from, 'time_to':time_to, 'location':location, 'sub_type':sub_type},
+               function(data){
+                success(data);
+                done(data);
+               },
+               function(data){
+                error(data);
+                done(data);
+               });
 
 }
 
-function getStream(opts){
-    var items =[];
-    var stream=getActivityStream(opts);
-    var dlids= [];
-    var userHash={};
-    //error retrieving the activity stream
-    if(getStatus()!=1 || stream=="" || stream.responseText=="") {
-      return items;
-    } else {
-      /*
-      Capture unique dlids from stream for retrieval of user data.
-      */
-      $.each(stream, function(i, item) {
-            dlids.push(item.DL_id);
-            dlids.push(item.from_DL_id);
-      });
-      dlids = $.unique(dlids);
+function getStream(opts,done){
+  
+    getActivityStream(opts,function(stream){
+      saveStream(stream);
+      var items =[];
+      var dlids= [];
+      var userHash={};
 
-      //Retrieve user data
-      var users = {'uid': getDL_id(), 'auth': getToken(), 'dl_ids': dlids.join()};
-      var json = getUserArray(users);
-      userHash=myHash(json);
+      //error retrieving the activity stream
+      if(getStatus()!=1 || stream=="" || stream.responseText=="") {
+        done(items);
+      } else {
+        /*
+        Capture unique dlids from stream for retrieval of user data.
+        */
+        $.each(stream, function(i, item) {
+              dlids.push(item.DL_id);
+              dlids.push(item.from_DL_id);
+        });
+        dlids = $.unique(dlids);
+        //Retrieve user data
+        var users = {'uid': getDL_id(), 'auth': getToken(), 'dl_ids': dlids.join()};
+        getUserArray(users,function(json){
+        userHash=myHash(json);
+        //parse and push each json entry into its own <li> block
+        $.each(stream, function(i, item) {
+              items.push(parseItem(item, userHash, item.type));
+        });
 
-      //parse and push each json entry into its own <li> block
-      $.each(stream, function(i, item) {
-            items.push(parseItem(item, userHash, item.type));
+        done(items);
+        });
+      }     
+    //append <li> blocks to appropriate container
+      
     });
-    }     
-  //append <li> blocks to appropriate container
-    return items;
 }
 
 
-function getOtherStream(types,dlid) {
+function getOtherStream(types,dlid,done) {
     var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types+',', 'dlid':dlid};
-    return getStream(opts);
+    getStream(opts,done);
 }
 
-function getOwnStream(types,dlid) {
-    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types+',', 'stream': true, 'dlid':dlid};
-    return getStream(opts);
+function getOwnStream(types,done) {
+    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types, 'stream': true};
+    getStream(opts,done);
+
 }
 
 function myHash(json) {
@@ -90,12 +115,14 @@ function myHash(json) {
     return hash;
 }
 
-function showMessages() {
-    var messages=getOwnStream("message");
-    if (messages !="") {
+function showMessages(done) {
+    getOwnStream("message",function(messages){
+      if (messages !="") {
         $("#thelist").replaceWith("<ul id ='thelist'>" + messages.join('') + "</ul>")
     }
-    return messages;
+    done(messages);
+    });
+    
 }
 
 
