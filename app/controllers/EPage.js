@@ -89,8 +89,7 @@ function sendMessageClickEvent() {
                     });
                 }
 
-                 
-                
+
         } else {
                 alert("UNAUTHORISED");
         }
