@@ -115,11 +115,15 @@ function setLeftBarActiveLink(){
     switch(type) {
         case 'cal':
             $("#entityStreamType").text("Tasks & Events");
-            $("#linklistTasks").addClass("active");
+            $("#linklistleftTasks").addClass("active");
             break;
         case 'message':
             $("#entityStreamType").text("Messages");
-            $("#linklistMessages").addClass("active");
+            $("#linklistleftMessages").addClass("active");
+            break;
+        case 'note':
+            $("#entityStreamType").text("To-Do Notes");
+            $("#linklistleftNotes").addClass("active");
             break;
         default:
             $("#entityStreamType").text("Messages");

@@ -354,37 +354,41 @@ section#searchResults > h1 {
 	margin-top: -1%;
 }
 
-#leftbar_info {
+#rightpanel {
+	text-align: right;
+}
+
+.bar_info {
 	border: 1px solid #111;
 	background: #333;
 	vertical-align: middle;
 }
 
-#leftbar_info > img, #leftbar_info > div {
+.bar_info > img, #leftbar_info > div {
 	vertical-align: middle;
 }
 
-#leftbar_info > img {
+.bar_info > img {
 	width: 30%;
 	padding: 5px;
 	background: #333;
 }
 
-#leftbar_name_role {
+.bar_name_role {
 	width: 65%;
 	display: inline-block;
 }
 
-#leftbar_name_role > h1 {
+.bar_name_role > h1 {
 	font-size: 20px;
 }
 
-#leftbar_name_role > h2 {
+.bar_name_role > h2 {
 	font-size: 14px;
 	color: lightgray;
 }
 
-#linklist {
+#linklistleft, #linklistright {
 	margin: 0;
 }
 
@@ -406,17 +410,35 @@ section#searchResults > h1 {
 	transform: translate3d(-22em,0,0);
 }
 
+.ui-panel-animate.ui-panel-position-right.ui-panel-display-overlay, .ui-panel-animate.ui-panel-position-right.ui-panel-display-push {
+	right: 0;
+	-webkit-transform: translate3d(22em,0,0);
+	-moz-transform: translate3d(22em,0,0);
+	transform: translate3d(22em,0,0);
+}
+
 .ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li {
     padding-top:20px;
     padding-bottom:20px;
+}
+
+#linklistright .ui-li .ui-btn-inner a.ui-link-inherit, #linklistright .ui-li-static.ui-li {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-right: 15px;
 }
 
 .ui-body-c {
 	background: white;
 }
 
+a.rightpanellink {
+	text-align: right;
+}
+
 i {
 	padding-right: 5px;
+	padding-left: 5px;
 }
 
 li.active {
