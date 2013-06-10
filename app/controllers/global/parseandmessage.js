@@ -50,6 +50,7 @@ function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_
 function getStream(opts,done){
   
     getActivityStream(opts,function(stream){
+      saveStream(stream);
       var items =[];
       var dlids= [];
       var userHash={};

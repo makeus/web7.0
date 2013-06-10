@@ -100,3 +100,9 @@ function saveName(data){
 function getName(){
 	return localStorage.getItem('name');
 }
+function saveStream(data){
+	localStorage.setItem('stream',JSON.stringify(data));
+}
+function getSavedStream(){
+	return JSON.parse(localStorage.getItem('stream'));
+}

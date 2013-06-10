@@ -31,18 +31,14 @@ function addLiListener(){
 }
 
 
-function getMessageInfo(id,done){
-	var opts = {'uid': getDL_id(), 'auth': getToken(), activity_id:id};
-	var url = "stream";
-	rest(opts,url,function(data) {
-			result = data;
-			success(data);
-			done(data);
-		},
-		function(data) {
-			result = data;
-			error(data);
-		});
+function getMessageInfo(id){
+	var itemR= "";
+	$.each(getSavedStream(),function(i,item){
+		if(item.id==id){
+			itemR=item;
+		}
+	});
+	return itemR;
 }
 
 function getInfo(dl_id,done){
