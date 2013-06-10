@@ -95,8 +95,9 @@ function ccList(dlid) {
       return;
     } 
     var relations = parseRelations(dlid.relations);
-    
+
 }
+
 function myHash(json) {
     var hash = {};
     $.each(json, function(i, item) {
