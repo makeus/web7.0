@@ -12,8 +12,8 @@
 <tr><td rowspan="1" colspan="3">User cannot post empty event</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/job/web7.0/ws/dist/views/EPage/index.html</td>
+	<td>echo</td>
+	<td>HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERP</td>
 	<td></td>
 </tr>
 </tbody></table>
