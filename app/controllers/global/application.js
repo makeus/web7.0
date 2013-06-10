@@ -9,11 +9,19 @@ document.addEventListener("DOMContentLoaded",function(){
 			dlid = getDL_id();
 		}
 		var info = getInfo(dlid);
-		leftbarSetInfo(info);
+		sidebarsSetInfo(info);
 		leftbarCreateLinks(dlid);
+		rightbarCreateLinks(dlid);
 
 		jQuery( window ).on( "swiperight", function() {
-			$( "#leftpanel" ).panel( "open" );
+			if($("#rightpanel").hasClass("ui-panel-closed")) {
+				$( "#leftpanel" ).panel( "open" );
+			}
+		});
+		jQuery( window ).on( "swipeleft", function() {
+			if($("#leftpanel").hasClass("ui-panel-closed")) {
+				$( "#rightpanel" ).panel( "open" );
+			}
 		});
 	}
 });
