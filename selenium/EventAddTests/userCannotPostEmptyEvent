@@ -56,7 +56,6 @@
 	<td>${a}</td>
 	<td>${b}</td>
 </tr>
-
 </tbody></table>
 </body>
 </html>
