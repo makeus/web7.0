@@ -121,11 +121,9 @@ function setEntityInformation(dl_id){
     }
     $("#entityImg").attr('src',image);
     $("#entityImg").attr('alt',info.name);
-    $("#entityRole").text($("#leftbar_role").text());
-    $("#entityName").text($("#leftbar_name").text());
+   $("#entityRole").text($(".bar_role").text());
+    $("#entityName").text($(".bar_name").text());
     });
-
-    
 }
 
 function setLeftBarActiveLink(){
@@ -134,11 +132,15 @@ function setLeftBarActiveLink(){
     switch(type) {
         case 'cal':
             $("#entityStreamType").text("Tasks & Events");
-            $("#linklistTasks").addClass("active");
+            $("#linklistleftTasks").addClass("active");
             break;
         case 'message':
             $("#entityStreamType").text("Messages");
-            $("#linklistMessages").addClass("active");
+            $("#linklistleftMessages").addClass("active");
+            break;
+        case 'note':
+            $("#entityStreamType").text("To-Do Notes");
+            $("#linklistleftNotes").addClass("active");
             break;
         default:
             $("#entityStreamType").text("Messages");

@@ -8,14 +8,24 @@ document.addEventListener("DOMContentLoaded",function(){
 		if(dlid == null) {
 			dlid = getDL_id();
 		}
+
 		getInfo(dlid,function(info){
-			leftbarSetInfo(info);
-			leftbarCreateLinks(dlid);
+			sidebarsSetInfo(info);
+		leftbarCreateLinks(dlid);
+		rightbarCreateLinks(dlid);
+
 
 		});
 		
 		jQuery( window ).on( "swiperight", function() {
-			$( "#leftpanel" ).panel( "open" );
+			if($("#rightpanel").hasClass("ui-panel-closed")) {
+				$( "#leftpanel" ).panel( "open" );
+			}
+		});
+		jQuery( window ).on( "swipeleft", function() {
+			if($("#leftpanel").hasClass("ui-panel-closed")) {
+				$( "#rightpanel" ).panel( "open" );
+			}
 		});
 	}
 });
