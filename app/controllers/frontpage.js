@@ -20,10 +20,12 @@ document.addEventListener("DOMContentLoaded",function(){
         addLiListener();
     });
     if(isToken()) {
-        var stream=getOwnStream('message,cal,note');
-        $("#appTitle").text(getName());
-        $("#thelist").append(stream.join(''));
-        addLiListener();                
+        getOwnStream('message,cal,note',function(stream){
+            $("#appTitle").text(getName());
+            $("#thelist").append(stream.join(''));
+            addLiListener();
+        });
+                        
     } else {
         alert("UNAUTHORISED");
     }
@@ -40,15 +42,12 @@ function sendMessageClickEvent() {
                     return;
                 }
 
-                addMessage(getDL_id(), getDL_id(), subject, link);
-
-                var stream=getOwnStream('message,cal,note');
-                $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
-
-
-                resetMessageFields();
-
-                $("#thelist").prepend(message);
+                addMessage(getDL_id(), getDL_id(), subject, link,null,function(){
+                    getOwnStream('message,cal,note',function(stream){
+                        $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                        resetMessageFields();
+                    });
+                });
         } else {
                 alert("UNAUTHORISED");
         }

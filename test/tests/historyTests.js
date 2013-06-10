@@ -1,6 +1,6 @@
 var url = "https://www.dliv.in/rest/";
 
-test( "history REST test", function() {
+asyncTest( "history REST test", function() {
 	$.mockjaxClear();
 	
 	var uid = "1234";
@@ -24,20 +24,24 @@ test( "history REST test", function() {
 
 	rest({'dl_id':dl_id,'auth':authToken,'uid':uid},url,
 		function(data) {
+			start();
 			searchResult = data;
 			success(data);
+			$.mockjaxClear();
 		},
 		function(data) {
+			start();
 			searchResult = data;
 			error(data);
+			$.mockjaxClear();
 		});
 
-	$.mockjaxClear();
+	
 
 });
 
 
-test( "history correct id and token", function() {
+asyncTest( "history correct id and token", function() {
 
 	$.mockjaxClear();
 	
@@ -69,20 +73,26 @@ test( "history correct id and token", function() {
 	
 	rest({'dl_id':dl_id,'auth':authToken,'uid':uid},url,
 		function(data) {
+			start();
 			searchResult = data;
 			success(data);
-		},
-		function(data) {
-			searchResult = data;
-			error(data);
-		});
-	equal(status, 1);
+			equal(status, 1);
 
 	$.mockjaxClear();
+		},
+		function(data) {
+			start();
+			searchResult = data;
+			error(data);
+			equal(status, 1);
+
+	$.mockjaxClear();
+		});
+	
 
 });
 
-test( "history correct token, uid, no permission to view page", function() {
+asyncTest( "history correct token, uid, no permission to view page", function() {
 
 	$.mockjaxClear();
 	
@@ -106,20 +116,26 @@ test( "history correct token, uid, no permission to view page", function() {
 	
 	rest({'dl_id':dl_id,'auth':authToken,'uid':uid},url,
 		function(data) {
+			start();
 			searchResult = data;
 			success(data);
-		},
-		function(data) {
-			searchResult = data;
-			error(data);
-		});
-	equal(status, 1);
+			equal(status, 1);
 
 	$.mockjaxClear();
+		},
+		function(data) {
+			start();
+			searchResult = data;
+			error(data);
+			equal(status, 1);
+
+	$.mockjaxClear();
+		});
+	
 	});
 
 
-test( "history test wrong token, correct uid", function() {
+asyncTest( "history test wrong token, correct uid", function() {
 
 	$.mockjaxClear();
 	
@@ -144,20 +160,27 @@ test( "history test wrong token, correct uid", function() {
 	});
 	rest({'dl_id':dl_id,'auth':authToken,'uid':uid},url,
 		function(data) {
+			start();
 			searchResult = data;
 			success(data);
-		},
-		function(data) {
-			searchResult = data;
-			error(data);
-		});
-	equal(status, 401);
+			equal(status, 401);
 
 	
 	$.mockjaxClear();
+		},
+		function(data) {
+			start(),
+			searchResult = data;
+			error(data);
+			equal(status, 401);
+
+	
+	$.mockjaxClear();
+		});
+	
 	});
 
-test( "history test correct token, wrong uid", function() {
+asyncTest( "history test correct token, wrong uid", function() {
 
 	$.mockjaxClear();
 	
@@ -182,22 +205,29 @@ test( "history test correct token, wrong uid", function() {
 	});
 	rest({'dl_id':dl_id,'auth':authToken,'uid':uid},url,
 		function(data) {
+			start();
 			searchResult = data;
 			success(data);
-		},
-		function(data) {
-			searchResult = data;
-			error(data);
-		});
-	equal(status, 401);
+			equal(status, 401);
 
 	
 	$.mockjaxClear();
+		},
+		function(data) {
+			start();
+			searchResult = data;
+			error(data);
+			equal(status, 401);
+
+	
+	$.mockjaxClear();
+		});
+	
 	});
 
 
 
-test( "getHistory test", function() {
+asyncTest( "getHistory test", function() {
 
 	$.mockjaxClear();
 	
@@ -237,9 +267,12 @@ test( "getHistory test", function() {
 	  'dlid-1238': '1368789315',
 	  'dlid-1239': '1368788734'
 	}];
-	var result = getHistory(dl_id);
-	equal(result.name,expected.name);
+	getHistory(function(result){
+		start();
+			equal(result.name,expected.name);
 
 	$.mockjaxClear();
+	});
+
 
 });

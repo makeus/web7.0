@@ -10,7 +10,7 @@ var username="test";
 var password="test";
 
 
-test( "addActivity REST test", function() {
+asyncTest( "addActivity REST test", function() {
 
 	$.mockjaxClear();
 	
@@ -37,13 +37,20 @@ test( "addActivity REST test", function() {
 		
 	});
 
-	addActivity({'uid':userId, 'auth':authtoken, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject':subject, 'link':link});
+	addActivity({'uid':userId, 'auth':authtoken, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject':subject, 'link':link},function(data){
+		start();
+			$.mockjaxClear();
+
+	},function(data){
+		start();
 
 	$.mockjaxClear();
+	});
+
 
 });
 
-test( "addActivity unauthorized", function() {
+asyncTest( "addActivity unauthorized", function() {
 
 	$.mockjaxClear();
 	
@@ -56,13 +63,23 @@ test( "addActivity unauthorized", function() {
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	addActivity({'userId':userId, 'authtoken':authtoken, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject':subject, 'link':link});
-	equal(status, 401);
+	addActivity({'userId':userId, 'authtoken':authtoken, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject':subject, 'link':link},function(data){
+		succeess(data);
+		start();
+		equal(status, 401);
 
 	$.mockjaxClear();
+	},function(data){
+		error(data);
+		start();
+		equal(status, 401);
+
+	$.mockjaxClear();
+	});
+	
 });
 
-test( "addActivity fail method test", function() {
+asyncTest( "addActivity fail method test", function() {
 
 	$.mockjaxClear();
 	
@@ -76,14 +93,24 @@ test( "addActivity fail method test", function() {
 		}
 	});
 	
-	addActivity({'userId':userId, 'authtoken':authtoken, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject':subject, 'link':link});
-
-	equal(status, 405);
+	addActivity({'userId':userId, 'authtoken':authtoken, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject':subject, 'link':link},function(data){
+		succeess(data);
+		start();
+		equal(status, 405);
 
 	$.mockjaxClear();
+	},function(data){
+		error(data);
+		start();
+		equal(status, 405);
+
+	$.mockjaxClear();
+	});
+
+	
 });
 
-test( "addMessage test", function() {
+asyncTest( "addMessage test", function() {
 
 	$.mockjaxClear();
 		
@@ -140,14 +167,19 @@ test( "addMessage test", function() {
 		}]
 	});	
 
-	login(username, password);
-	addMessage(to_dl_id, from_dl_id, subject);
+	login(username, password,function(data){
+		addMessage(to_dl_id, from_dl_id, subject,"",null,function(data){
+			start();
+			$.mockjaxClear();
+		});
 
-	$.mockjaxClear();
+	
+	});
+	
 
 });
 
-test( "addMessage unauthorized", function() {
+asyncTest( "addMessage unauthorized", function() {
 
 	$.mockjaxClear();
 	
@@ -160,13 +192,16 @@ test( "addMessage unauthorized", function() {
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	addMessage(to_dl_id, from_dl_id, subject, link);
-	equal(getStatus(), 401);
+	addMessage(to_dl_id, from_dl_id, subject, link,null,function(data){
+		start();
+		equal(getStatus(), 401);
 
 	$.mockjaxClear();
+	});
+	
 });
 
-test( "addMessage fail method test", function() {
+asyncTest( "addMessage fail method test", function() {
 
 	$.mockjaxClear();
 	
@@ -179,14 +214,17 @@ test( "addMessage fail method test", function() {
 			ErrorMessage: "Method not allowed"
 		}
 	});
-	addMessage(to_dl_id, from_dl_id, subject, link);
-	equal(getStatus(), 405);
+	addMessage(to_dl_id, from_dl_id, subject, link,null,function(data){
+		start();
+		equal(getStatus(), 405);
 
 	$.mockjaxClear();
+	});
+	
 });
 
 
-test( "addEvent test", function() {
+asyncTest( "addEvent test", function() {
 	var type="cal";
 
 	$.mockjaxClear();
@@ -244,14 +282,18 @@ test( "addEvent test", function() {
 		}]
 	});	
 
-	login(username, password);
-	addEvent(to_dl_id, from_dl_id, subject);
+	login(username, password,function(data){
+		addEvent(to_dl_id, from_dl_id, subject,"",null,"1","2","3",null,function(data){
+			start();
+				$.mockjaxClear();
 
-	$.mockjaxClear();
+		});
+
+	});
+	
 
 });
-
-test( "addEvent unauthorized", function() {
+asyncTest( "addEvent unauthorized", function() {
 
 	$.mockjaxClear();
 	
@@ -264,13 +306,16 @@ test( "addEvent unauthorized", function() {
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	addEvent(to_dl_id, from_dl_id, subject, link);
-	equal(getStatus(), 401);
+	addEvent(to_dl_id, from_dl_id, subject,"",null,"1","2","3",null,function(data){
+		start();
+		equal(getStatus(), 401);
 
 	$.mockjaxClear();
+	});
+	
 });
 
-test( "addEvent fail method test", function() {
+asyncTest( "addEvent fail method test", function() {
 
 	$.mockjaxClear();
 	
@@ -283,8 +328,11 @@ test( "addEvent fail method test", function() {
 			ErrorMessage: "Method not allowed"
 		}
 	});
-	addEvent(to_dl_id, from_dl_id, subject, link);
-	equal(getStatus(), 405);
+	addEvent(to_dl_id, from_dl_id, subject,"",null,"1","2","3",null,function(data){
+		start();
+		equal(getStatus(), 405);
 
 	$.mockjaxClear();
+	});
+	
 });

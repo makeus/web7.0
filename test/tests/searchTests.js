@@ -1,6 +1,6 @@
 var url = "https://www.dliv.in/rest/";
 
-test( "search REST test", function() {
+asyncTest( "search REST test", function() {
 	$.mockjaxClear();
 	
 	var uid = "1234";
@@ -18,26 +18,30 @@ test( "search REST test", function() {
 		response: function(settings) {
 			equal(settings.data.uid, uid, "Oma id ei muutu");
 			equal(settings.data.auth, authToken, "Auth ei muutu");
-			equal(settings.data.q, q, "haku parametri ei muutu");
+			equal(settings.data.q, search, "haku parametri ei muutu");
 		}
 	});
 
 	rest({'q':search,'auth':authToken,'uid':uid},url,
 		function(data) {
+			start();
 			searchResult = data;
 			success(data);
+			$.mockjaxClear();
 		},
 		function(data) {
+			start();
 			searchResult = data;
 			error(data);
+			$.mockjaxClear();
 		});
 
-	$.mockjaxClear();
+	
 
 });
 
 
-test( "search correct id token", function() {
+asyncTest( "search correct id token", function() {
 
 	$.mockjaxClear();
 	
@@ -119,20 +123,26 @@ test( "search correct id token", function() {
 	
 	rest({'q':search,'auth':authToken,'uid':uid},url,
 		function(data) {
+			start();
 			searchResult = data;
 			success(data);
-		},
-		function(data) {
-			searchResult = data;
-			error(data);
-		});
-	equal(status, 1);
+			equal(status, 1);
 
 	$.mockjaxClear();
+		},
+		function(data) {
+			start();
+			searchResult = data;
+			error(data);
+			equal(status, 1);
+
+	$.mockjaxClear();
+		});
+	
 
 });
 
-test( "search correct token, uid, cant find anything", function() {
+asyncTest( "search correct token, uid, cant find anything", function() {
 
 	$.mockjaxClear();
 	
@@ -155,18 +165,26 @@ test( "search correct token, uid, cant find anything", function() {
 	
 	rest({'q':search,'auth':authToken,'uid':uid},url,
 		function(data) {
+			start();
 			searchResult = data;
 			success(data);
-		},
-		function(data) {
-			searchResult = data;
-			error(data);
-		});
-	equal(status, 1);
+			equal(status, 1);
 
 	$.mockjaxClear();
+		},
+		function(data) {
+			start();
+			searchResult = data;
+			error(data);
+			equal(status, 1);
+
+	$.mockjaxClear();
+		});
+	
 });
-test( "search wrong token, correct uid", function() {
+
+
+asyncTest( "search wrong token, correct uid", function() {
 
 	$.mockjaxClear();
 	
@@ -192,19 +210,27 @@ test( "search wrong token, correct uid", function() {
 	
 	rest({'q':search,'auth':authToken,'uid':uid},url,
 		function(data) {
+			start();
 			searchResult = data;
 			success(data);
-		},
-		function(data) {
-			searchResult = data;
-			error(data);
-		});
-	equal(status, 401);
+			equal(status, 401);
 
 	$.mockjaxClear();
+		},
+		function(data) {
+			start();
+			searchResult = data;
+			error(data);
+			equal(status, 401);
+
+	$.mockjaxClear();
+		});
+	
 	});
 
-test( "search test correct token, wrong uid", function() {
+
+
+asyncTest( "search test correct token, wrong uid", function() {
 
 	$.mockjaxClear();
 	
@@ -230,21 +256,27 @@ test( "search test correct token, wrong uid", function() {
 	
 	rest({'q':search,'auth':authToken,'uid':uid},url,
 		function(data) {
+			start();
 			searchResult = data;
 			success(data);
-		},
-		function(data) {
-			searchResult = data;
-			error(data);
-		});
-	equal(status, 401);
+			equal(status, 401);
 
 	$.mockjaxClear();
+		},
+		function(data) {
+			start();
+			searchResult = data;
+			error(data);
+			equal(status, 401);
+
+	$.mockjaxClear();
+		});
+	
 	});
 
 
 
-test( "search test", function() {
+asyncTest( "search test", function() {
 
 	$.mockjaxClear();
 	
@@ -276,7 +308,6 @@ test( "search test", function() {
 		
 	});
 	
-	var result = search(query);
 	var expected=[{
 		DL_id: "8653",
 		type: "user",
@@ -289,10 +320,15 @@ test( "search test", function() {
 		created_by: "8653",
 		edited_by: "8653"
 		}];
-
-	equal(result.name,expected.name);
+	search(query,function(result){
+		start();
+equal(result.name,expected.name);
 
 	$.mockjaxClear();
+	});
+	
+
+	
 
 });
 
@@ -302,46 +338,51 @@ test( "search test", function() {
 
 
 
-test("searhlistParse with image  TEst", function(){
+asyncTest("searhlistParse with image  TEst", function(){
 
 	var item={name:"Test",img:"http://test.kuva.png",DL_id:"1234"}
 	var result = searchListParse(item);
 	var expected = "<li name=\"Test\" id=\"searchLink1234\"><img class=\"searchImages\" src=\"http://test.kuva.png\"\" alt=\"kuva\"></img><p>Test</p></li>";
+	start();
 	equal(result,expected);
 });
 
-test("searhlistParse without image  TEst", function(){
+asyncTest("searhlistParse without image  TEst", function(){
 
 	var item={name:"Test",img:"",DL_id:"1234"}
 	var result = searchListParse(item);
 	var expected = "<li name=\"Test\" id=\"searchLink1234\"><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\"\" alt=\"kuva\"></img><p>Test</p></li>";
+	start();
 	equal(result,expected);
 });
 
 
-test("updateSearchResults test",function(){
+asyncTest("updateSearchResults test",function(){
 	var items=[{name:"Test1",img:""},{name:"Test2",img:"http://test.com.tyhja.png"}];
 	$("body").append('<div id="searchResults"></div>');
 	updateSearchResults(items);
 	var result = $("#searchResults").html();
 	var expected = "<h1>Other</h1><ul id=\"searchResultsDefault\" class=\"searchCategory\"><li name=\"Test1\" id=\"searchLinkundefined\"><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\" \"=\"\" alt=\"kuva\"><p>Test1</p></li><li name=\"Test2\" id=\"searchLinkundefined\"><img class=\"searchImages\" src=\"http://test.com.tyhja.png\" \"=\"\" alt=\"kuva\"><p>Test2</p></li></ul>";
+	start();
 	equal(result,expected);
 	$("#searchResults").remove();
 	
 });
 
 
-test("updateSearchResults empty result test",function(){
+asyncTest("updateSearchResults empty result test",function(){
 	var items={success : "1"};
 	$("body").append('<div id="searchResults"></div>');
 	updateSearchResults(items);
 	var result = $("#searchResults").html();
 	var expected = "";
+	start();
 	equal(result,expected);
 	$("#searchResults").remove();
 	
 });
-test( "processResult test", function() {
+
+asyncTest( "processResult test", function() {
 
 	$.mockjaxClear();
 	
@@ -418,17 +459,20 @@ test( "processResult test", function() {
 	$("body").append('<div id="searchResults"></div>');
 	searchWordCheck=searchWord;
 
-	processResult(searchWord);
-	
-	var result = $("#searchResults").html();
+	processResult(searchWord,function(){
+		start();
+		var result = $("#searchResults").html();
 	var expected = "<h1>Persons</h1><ul id=\"searchResultsUser\" class=\"searchCategory\"><li name=\"Adele Vuohi\" id=\"searchLink8653\"><img class=\"searchImages\" src=\"https://dlfwwwfiles.s3.amazonaws.com/images/8653/thumb_303657-goats-picture.gif\" \"=\"\" alt=\"kuva\"><p>Adele Vuohi</p></li></ul><h1>Things</h1><ul id=\"searchResultsThing\" class=\"searchCategory\"><li name=\"Sadeantura 1GS00\" id=\"searchLink7559\"><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\" \"=\"\" alt=\"kuva\"><p>Sadeantura 1GS00</p></li><li name=\"Sadevesikaivo SVK1\" id=\"searchLink8654\"><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\" \"=\"\" alt=\"kuva\"><p>Sadevesikaivo SVK1</p></li><li name=\"Sadevesikaivo SVK2\" id=\"searchLink8655\"><img class=\"emptySearchImages\" src=\"../../resources/images/tyhja.png\" \"=\"\" alt=\"kuva\"><p>Sadevesikaivo SVK2</p></li></ul><h1>Projects</h1><ul id=\"searchResultsProject\" class=\"searchCategory\"><li name=\"JADE\" id=\"searchLink7610\"><img class=\"searchImages\" src=\"https://dlfwwwfiles.s3.amazonaws.com/images/7610/thumb_top.jpg\" \"=\"\" alt=\"kuva\"><p>JADE</p></li></ul>";
 	equal(result,expected);
 	$("#searchResults").remove();
 	$.mockjaxClear();
+	});
+	
+	
 
 });
 
-test( "processResult word has changed test", function() {
+asyncTest( "processResult word has changed test", function() {
 
 	$.mockjaxClear();
 	
@@ -505,13 +549,16 @@ test( "processResult word has changed test", function() {
 	$("body").append('<div id="searchResults"></div>');
 	searchWordCheck="muuttunut";
 
-	processResult(searchWord);
-	
-	var result = $("#searchResults").html();
+	processResult(searchWord,function(){
+		start();
+		var result = $("#searchResults").html();
 	var expected = "";
 	equal(result,expected);
 	$("#searchResults").remove();
 	$.mockjaxClear();
+	});
+	
+	
 
 });
 
@@ -595,10 +642,9 @@ asyncTest("timedSearch test",function(){
 		]
 	});
 	$("body").append('<div id="searchResults"></div>');
-	stop();
 
-	timedSearch(searchWord);
-	setTimeout(function(){
+	timedSearch(searchWord,function(){
+		setTimeout(function(){
 		var result="";
 		result = $("#searchResults").html();
 
@@ -608,7 +654,8 @@ asyncTest("timedSearch test",function(){
 		start();
 	},1000);
 	
-	start();
+	});
+	
 
 
 });

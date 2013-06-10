@@ -6,13 +6,15 @@ document.addEventListener("DOMContentLoaded", function() {
 	$("#loginButton").click(function(){
 		var username = document.getElementById('loginUsername').value;
 		var password = document.getElementById('loginPassword').value;
-		login(username, password);
-
-		if(getStatus() == -1) {
+		login(username, password,function(){
+			if(getStatus() == -1) {
 			$("#failLogin").show();
 		} else if (getStatus() == 1) {
 			view.push("frontpage");
 		}
+		});
+
+		
 	});
 	
 	$("#loginUsername").keyup(function(event){
@@ -31,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-function login(username, password){
+function login(username, password,done){
 	if(username == null || password == null) {
 		setStatus(-1);
 		return;
@@ -46,12 +48,20 @@ function login(username, password){
 			if(getStatus() == 1) {
 					saveToken(data);
 					saveDL_id(data);
-					info = getInfo(getDL_id());
-					saveName(info);
+					getInfo(getDL_id(),function(data){
+						saveName(data);
+						done();
+
+					});
+					
+			} else {
+				done();
 			}
+			
 		},
 		function(data,t,m){
-			error(data,t,m)
+			error(data,t,m);
+			done();
 		});
 
 }

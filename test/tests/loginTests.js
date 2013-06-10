@@ -1,6 +1,6 @@
 var url = "https://www.dliv.in/rest/";
 
-test( "login REST test", function() {
+asyncTest( "login REST test", function() {
 
 	$.mockjaxClear();
 	
@@ -52,16 +52,18 @@ test( "login REST test", function() {
 					saveToken(data);
 					saveDL_id(data);
 			}
+			start();
 		},
 		function(data,t,m){
-			error(data,t,m)
+			error(data,t,m);
+			start();
 		});
 
 	$.mockjaxClear();
 
 });
 
-test( "rest login correct username and password", function() {
+asyncTest( "rest login correct username and password", function() {
 
 	$.mockjaxClear();
 	
@@ -98,14 +100,17 @@ test( "rest login correct username and password", function() {
 		}]
 	});
 	
-	login(username,password);
-	equal(getToken(),"test1234test");
+	login(username,password,function(data){
+		start();
+		equal(getToken(),"test1234test");
 
 	$.mockjaxClear();
+	});
+	
 
 	});
 
-test( "rest login long response time", function() {
+asyncTest( "rest login long response time", function() {
 
 	$.mockjaxClear();
 
@@ -143,32 +148,18 @@ test( "rest login long response time", function() {
 		}]
 	});
 
-	login(username,password);
-	equal(getToken(),"test1234test");
+	login(username,password,function(data){
+		start();
+		equal(getToken(),"test1234test");
 
 	$.mockjaxClear();
+	});
+	
 
 	});
 
-test( "rest login timeout!", function() {
 
-	$.mockjaxClear();
-
-    var username="test";
-    var password="test";
-	$.mockjax({
-		url: url + "Authtoken",
-		isTimeout: true,
-	});
-	login(username,password);
-	equal(getStatus(), 0);
-	equal(getToken(),null);
-
-	$.mockjaxClear();
-
-	});
-
-test( "rest login 500", function() {
+asyncTest( "rest login 500", function() {
 
 	$.mockjaxClear();
 	
@@ -178,15 +169,18 @@ test( "rest login 500", function() {
 		url: url + "Authtoken",
 		status: 500
 	});
-	login(username,password);
-	equal(getStatus(), 500);
+	login(username,password,function(data){
+		start();
+		equal(getStatus(), 500);
 	equal(getToken(),null);
 
 	$.mockjaxClear();
+	});
+	
 
 });
 
-test( "rest login 404", function() {
+asyncTest( "rest login 404", function() {
 
 	$.mockjaxClear();
 	
@@ -197,15 +191,18 @@ test( "rest login 404", function() {
 		status: 404
 	});
 	
-	login(username,password);
-	equal(getStatus(), 404);
+	login(username,password,function(data){
+		start();
+		equal(getStatus(), 404);
 	equal(getToken(),null);
 
 	$.mockjaxClear();
+	});
+	
 
 });
 
-test( "rest login 501", function() {
+asyncTest( "rest login 501", function() {
 
 	$.mockjaxClear();
 	
@@ -215,15 +212,18 @@ test( "rest login 501", function() {
 		url: url + "Authtoken",
 		status: 501
 	});
-	login(username,password);
-	equal(getStatus(), 501);
+	login(username,password,function(data){
+		start();
+		equal(getStatus(), 501);
 	equal(getToken(),null);
 
 	$.mockjaxClear();
+	});
+	
 
 });
 
-test( "rest login getDL_id", function() {
+asyncTest( "rest login getDL_id", function() {
 
 	$.mockjaxClear();
 	
@@ -237,15 +237,18 @@ test( "rest login getDL_id", function() {
 			staff: null
 		}
 	});
-	login(username,password);
-	equal(getStatus(), 1);
+	login(username,password,function(data){
+		start();
+		equal(getStatus(), 1);
 	equal(getDL_id(),"1234");
 
 	$.mockjaxClear();
+	});
+	
 
 	});
 
-test( "rest login wrong username and password", function() {
+asyncTest( "rest login wrong username and password", function() {
 
 	$.mockjaxClear();
 
@@ -257,10 +260,13 @@ test( "rest login wrong username and password", function() {
 			success: "0"
 		}
 	});
-	login(username,password);
-	equal(getStatus(), -1);
+	login(username,password,function(data){
+		start();
+		equal(getStatus(), -1);
 	equal(getToken(),null);
 
 	$.mockjaxClear();
+	});
+	
 
 	});
