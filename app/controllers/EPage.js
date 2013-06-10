@@ -82,7 +82,6 @@ function sendMessageClickEvent() {
 
                 resetMessageFields();
 
-                $("#thelist").prepend(message);
         } else {
                 alert("UNAUTHORISED");
         }
