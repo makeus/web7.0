@@ -81,6 +81,22 @@ function getOwnStream(types,dlid) {
     return getStream(opts);
 }
 
+
+function parseRelations(string) {
+    var array = string.split(',');
+    $.each(array, function(i, item) {
+        array[i] = array[i].split(':');
+    });
+    return array;
+}
+
+function ccList(dlid) {
+    if(dlid == undefined || dlid.relations == undefined) {
+      return;
+    } 
+    var relations = parseRelations(dlid.relations);
+    
+}
 function myHash(json) {
     var hash = {};
     $.each(json, function(i, item) {
