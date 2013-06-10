@@ -10,10 +10,13 @@ function addMessage(to_dl_id, from_dl_id, subject, link, content, done) {
    function(data){
       success(data);
       done();
+  },function(data){
+    error(data);
+    done();
   });
 }
 
-function addCommentToMessage(message_id, comment){
+function addCommentToMessage(message_id, comment,done){
     if (comment==null || message_id==null){
       return -1;
     }
@@ -24,14 +27,17 @@ function addCommentToMessage(message_id, comment){
     addCommentRest(opts,url,function(data) {
       result = data;
       success(data);
+      done();
     },
     function(data) {
       result = data;
       error(data);
+      done();
     });
 }
 
 function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_to, location, sub_type,done) {
+
   if(to_dl_id == null || from_dl_id == null || subject == null) {
     return -1;
   }
@@ -42,7 +48,11 @@ function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_
                'content':content, 'link':link, 'time_from':time_from, 'time_to':time_to, 'location':location, 'sub_type':sub_type},
                function(data){
                 success(data);
-                done();
+                done(data);
+               },
+               function(data){
+                error(data);
+                done(data);
                });
 
 }
@@ -105,12 +115,14 @@ function myHash(json) {
     return hash;
 }
 
-function showMessages() {
-    var messages=getOwnStream("message");
-    if (messages !="") {
+function showMessages(done) {
+    getOwnStream("message",function(messages){
+      if (messages !="") {
         $("#thelist").replaceWith("<ul id ='thelist'>" + messages.join('') + "</ul>")
     }
-    return messages;
+    done(messages);
+    });
+    
 }
 
 

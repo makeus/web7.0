@@ -60,7 +60,8 @@ function login(username, password,done){
 			
 		},
 		function(data,t,m){
-			error(data,t,m)
+			error(data,t,m);
+			done();
 		});
 
 }

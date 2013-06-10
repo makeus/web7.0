@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		updateSearchResults(data);
 	});
 	$("#searchInput").bind('input',function(){
-		timedSearch($("#searchInput").val())
+		timedSearch($("#searchInput").val(),function(){});
 	});
 
 });
@@ -100,14 +100,15 @@ function updateSearchResults(results){
 
 var timeout;
 var searchWordCheck;
-function processResult(searchWord){
+function processResult(searchWord,done){
 	search(searchWord,function(result){
 		if(searchWordCheck==searchWord){ updateSearchResults(result);}
-	else{ console.log("NO!!!!!!!!");}
+		else{ console.log("NO!!!!!!!!");}
+		done();
 	});
 	
 }
-function timedSearch(searchWord){
+function timedSearch(searchWord,done){
 	if(searchWord==""){
 		historyTemp(function(data){
 		updateSearchResults(data);
@@ -118,7 +119,7 @@ function timedSearch(searchWord){
 	searchWordCheck=searchWord;
 	if(timeout){clearTimeout(timeout);}
 	timeout=setTimeout(function(){
-		processResult(searchWord);
+		processResult(searchWord,done);
 	},200);
 }
 

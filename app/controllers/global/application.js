@@ -53,6 +53,7 @@ function getInfo(dl_id,done){
         function(data) {
             result = data; 
             error(data);
+            done(data);
         });
 }
 
@@ -85,6 +86,7 @@ function getHistory(done){
 		function(data) {
 			result = data;
 			error(data);
+			done(data);
 		});
 }
 
@@ -101,6 +103,7 @@ function search(searchWord,done){
 		function(data) {
 			result = data;
 			error(data);
+			done(data);
 		});
 }
 
@@ -114,6 +117,7 @@ function getActivityStream(opts,done) {
 		function(data) {
 			result = data;
 			error(data);
+			done(data);
 		});
 }
 
@@ -127,6 +131,7 @@ function getUserArray(opts,done) {
     function(data) {
         result=data;
         error(data);
+        done(data);
     });
 }
 

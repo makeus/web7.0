@@ -1,4 +1,4 @@
-test( "parseItemtest item,hash,type found", function() {
+asyncTest( "parseItemtest item,hash,type found", function() {
 
 var userHash= {};
 userHash['1234']=
@@ -53,11 +53,11 @@ var type=item[0].type;
 
 
 var expected ="<li class='listEL' id='1234' uid='1234'><section  class='eventElem' ><img src=goats-picture.gif alt='pic' /><div class='unandmsg'><div class='sendandre'><p class='user_name'>Adele Vuohi>>> A deli goat</p></div><section class='message_content'><p class='subject'>message</p><p class='content'>message_body</section></div></section></li>";
-
+start();
 equal(parseItem(item[0], userHash, type), expected);
 });
 
-test( "parseItemtest item not found", function() {
+asyncTest( "parseItemtest item not found", function() {
 
 
 var userHash= {};
@@ -94,12 +94,12 @@ var type="";
 
 
 var expected ="";
-
+start();
 equal(parseItem(item[0], userHash, type), expected);
 });
 
 
-test( "parseItemtest userHash not found", function() {
+asyncTest( "parseItemtest userHash not found", function() {
 
 
 var userHash = {};
@@ -129,12 +129,12 @@ var type=item[0].type;
 
 
 var expected ="";
-
+start();
 equal(parseItem(item[0], userHash, type), expected);
 
 });
 
-test( "parseItemtest type not found", function() {
+asyncTest( "parseItemtest type not found", function() {
 
 
 var userHash = {};
@@ -190,25 +190,27 @@ var type="";
 
 
 var expected ="";
-
+start();
 equal(parseItem(item[0], userHash, type), expected);
 
 });
 
 
-test( "dateTimeToDateTest", function() {
+asyncTest( "dateTimeToDateTest", function() {
 	var date = "1000-02-03 04:05:00";
 	var expected = "03.02.1000";
+    start();
 	equal(datetimetoDate(date), expected);
 });
 
-test( "dateTimeToTimeTest", function() {
+asyncTest( "dateTimeToTimeTest", function() {
 	var date = "1000-02-03 04:05:00";
 	var expected = "04:05";
+    start();
 	equal(datetimetoTime(date), expected);
 });
 
-test( "Show messages test found message", function() {
+asyncTest( "Show messages test found message", function() {
     var userId = "1234";
 var authToken = "test1234test";
 var offset = 10;
@@ -269,13 +271,17 @@ var url = "stream";
 
 
     var expected = "<li class='listEL' id='1234' uid='4321'><section  class='eventElem' ><img src=img.png alt='pic' /><div class='unandmsg'><div class='sendandre'><p class='user_name'>Adele Vuohi</p></div><section class='message_content'><p class='subject'>message</p><p class='content'>message_body</section></div></section></li>";
+    showMessages(function(data){
+        start();
+        equal(data,expected);
+        equal(getStatus(),1);
+        $.mockjaxClear();
+    });
     
-    equal(showMessages(),expected);
-    equal(getStatus(),1);
-    $.mockjaxClear();
+    
 });
 
-test( "Show messages test no results", function() {
+asyncTest( "Show messages test no results", function() {
     var userId = "1234";
     var authToken = "test1234test";
     var offset = 10;
@@ -299,7 +305,11 @@ test( "Show messages test no results", function() {
     });
     var expected = "";
     
-    equal(showMessages(),expected);
-    equal(getStatus(),201);
+    showMessages(function(data){
+        start();
+        equal(data,expected);
+        equal(getStatus(),201);
     $.mockjaxClear();
+    });
+    
 });

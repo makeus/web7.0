@@ -24,7 +24,7 @@ function getURLParameter(name) {
     return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 }
 
-function addActivity(opts,success) {
+function addActivity(opts,success,error) {
 	status = 0;
 	$.ajax(
 	{
