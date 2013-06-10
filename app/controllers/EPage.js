@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded",function(){
         getStreamUrl(function(stream){
             if(stream != "") {
             $("#thelist").append( stream.join('') );
+            addLiListener();
         }
 
         
@@ -41,7 +42,7 @@ document.addEventListener("DOMContentLoaded",function(){
     if($("#entityImg").width() == 200) {
         $("#entityImg").css('margin-left', '-100px');
     }
-    addLiListener();
+    
 
 });
 
