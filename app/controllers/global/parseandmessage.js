@@ -144,7 +144,7 @@ function showMessages(done) {
 
 
 function parseItem(item, userHash, type) {
-    if(item==undefined || item==null || item=="" || $.isEmptyObject(userHash) || type==undefined || type==null || type=="" ) {
+    if(item==undefined || item==null || item=="" || $.isEmptyObject(userHash) || type==undefined || type==null || type==""  || userHash==undefined ) {
       return "";
     }
     var entry = "<li class='listEL' id='" +item.id+ "' uid='"+item.from_DL_id+"'><section  class='eventElem' >"
