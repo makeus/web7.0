@@ -49,9 +49,11 @@ function appendContent(info){
     var comments = info.comments;
     var content = "";
     var currTime = (new Date()).getTime();
+    
     $.each(comments,function(i,item){
         content += "<li><p id='"+item.uid+"' class='commentWriter'>" + item.name + ":</p><p class='commentText'>" + item.comment + "</p><p class='commentTime'>Time: " + getTimeDiff(item.created) + "</p></li>";
     });
+
     if (content==""){
         $("#ipageComments").hide();
     } else {

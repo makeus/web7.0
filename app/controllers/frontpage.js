@@ -15,19 +15,19 @@ document.addEventListener("DOMContentLoaded",function(){
     $("#close").click(function(){
         hideMessageFields();
     });
+
     $("#showMessages").click(function(){
         showMessages(function(data){
                 addLiListener();
-
         });
     });
+
     if(isToken()) {
         getOwnStream('message,cal,note',function(stream){
             $("#appTitle").text(getName());
             $("#thelist").append(stream.join(''));
             addLiListener();
-        });
-                        
+        });            
     } else {
         alert("UNAUTHORISED");
     }
@@ -36,23 +36,23 @@ document.addEventListener("DOMContentLoaded",function(){
 
 
 function sendMessageClickEvent() {
-        if(isToken()) {
-                var subject = $("#messageField").val();
-                var link = $("#linkField").val();
+    if(isToken()) {
+        var subject = $("#messageField").val();
+        var link = $("#linkField").val();
 
-                if(subject == "") {
-                    return;
-                }
-
-                addMessage(getDL_id(), getDL_id(), subject, link,null,function(){
-                    getOwnStream('message,cal,note',function(stream){
-                        $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
-                        resetMessageFields();
-                    });
-                });
-        } else {
-                alert("UNAUTHORISED");
+        if(subject == "") {
+            return;
         }
+
+        addMessage(getDL_id(), getDL_id(), subject, link,null,function(){
+            getOwnStream('message,cal,note',function(stream){
+                $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                resetMessageFields();
+            });
+        });
+    } else {
+        alert("UNAUTHORISED");
+    }
 }
 
 function hideMessageFields() {
