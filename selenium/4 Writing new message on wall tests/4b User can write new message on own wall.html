@@ -17,17 +17,42 @@
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/job/web7.0/ws/dist/views/frontpage/index.html</td>
+	<td>/job/web7.0/ws/dist/views/login/index.html</td>
 	<td></td>
 </tr>
 <tr>
 	<td>pause</td>
-	<td>1000</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginUsername</td>
+	<td>ivan.tadic014@gmail.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginPassword</td>
+	<td>roki014</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=loginButton</td>
 	<td></td>
 </tr>
 <tr>
 	<td>waitForTitle</td>
-	<td>Adele Vuohi</td>
+	<td>Ivan Tadic</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
 	<td></td>
 </tr>
 <tr>
@@ -38,16 +63,16 @@
 <tr>
 	<td>type</td>
 	<td>id=messageField</td>
-	<td></td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>1000</td>
-	<td></td>
+	<td>test2</td>
 </tr>
 <tr>
 	<td>click</td>
 	<td>id=sendMessageBox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>4000</td>
 	<td></td>
 </tr>
 <tr>
@@ -67,7 +92,7 @@
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td></td>
+	<td>test2</td>
 	<td></td>
 </tr>
 </tbody></table>
@@ -84,8 +109,8 @@ var x = "Date: " + day + " " + months[month] + " " + year + " Selenium test mess
 var d = new Date();
 
 var a=document.getElementById('myTable');
-a.rows[5].cells[2].innerHTML=x;
-a.rows[11].cells[1].innerHTML=x;
+a.rows[10].cells[2].innerHTML=x;
+a.rows[16].cells[1].innerHTML=x;
 
 </script>
 

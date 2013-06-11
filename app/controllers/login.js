@@ -38,22 +38,23 @@ function login(username, password,done){
 		setStatus(-1);
 		return;
 	}
+
 	localStorage.removeItem('authtoken');
 	localStorage.removeItem('DL_id');
+
 	var url = "Authtoken";
 	var opts = {'u': username, 'p': password};
+
 	rest(opts,url,
 		function(data){
 			success(data);
 			if(getStatus() == 1) {
-					saveToken(data);
-					saveDL_id(data);
-					getInfo(getDL_id(),function(data){
-						saveName(data);
-						done();
-
-					});
-					
+				saveToken(data);
+				saveDL_id(data);
+				getInfo(getDL_id(),function(data){
+					saveName(data);
+					done();
+				});
 			} else {
 				done();
 			}
@@ -63,5 +64,4 @@ function login(username, password,done){
 			error(data,t,m);
 			done();
 		});
-
 }
