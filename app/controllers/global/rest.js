@@ -63,14 +63,12 @@ function success(data) {
 }
 
 function error(data, t, m) {
-	console.log("error_start");
 	if(t == "timeout") {
 		alert("TIMEOUT");
 	} else {
-		console.log("ERROR " + t + ": " + m);
+		alert("ERROR " + t + ": " + m);
 	}
 	status = data.status;
-	console.log("error_end");
 }
 
 function getStatus() {
