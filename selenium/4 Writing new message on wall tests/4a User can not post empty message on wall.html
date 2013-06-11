@@ -12,9 +12,49 @@
 <tr><td rowspan="1" colspan="3">User can not post empty message on wall</td></tr>
 </thead><tbody>
 <tr>
-	<td>store</td>
-	<td>vuori</td>
-	<td>passwordab</td>
+	<td>open</td>
+	<td>/job/web7.0/ws/dist/views/frontpage/index.html</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeBodyText</td>
+	<td>c</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>storedVars['c'].length</td>
+	<td>a</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=sendMessage</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeBodyText</td>
+	<td>d</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>storedVars['d'].length</td>
+	<td>b</td>
+</tr>
+<tr>
+	<td>verifyExpression</td>
+	<td>${a}</td>
+	<td>${b}</td>
 </tr>
 </tbody></table>
 </body>

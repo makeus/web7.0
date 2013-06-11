@@ -40,7 +40,7 @@ function setAddCommentEvent(){
     $(".addComment").click(function(){
         var comm = $(".commentArea").val();
         if (comm!=""){
-            addCommentToMessage(iPageID, comm);
+            addCommentToMessage(iPageID, comm,function(){});
             var comment = "<li><p id='"+getDL_id()+"' class='commentWriter'>" + getName() + ":</p><p class='commentText'>" + comm + "</p><p class='commentTime'>Time: just now</p></li>";;
             $("#listOfComments").append(comment);
             $(".commentArea").val("");
@@ -53,7 +53,6 @@ function setAddCommentEvent(){
 
 function parseMessage(){
     var info = getMessageInfo(iPageID);
-    console.log(info);
     getSubject(info);
 
     if (info.content==""){
