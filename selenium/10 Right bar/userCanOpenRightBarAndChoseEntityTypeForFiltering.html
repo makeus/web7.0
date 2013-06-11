@@ -37,11 +37,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>verify</td>
-	<td>link=Users</td>
-	<td></td>
-</tr>
-<tr>
 	<td>verifyElementPresent</td>
 	<td>link=Groups</td>
 	<td></td>
@@ -52,7 +47,7 @@
 	<td></td>
 </tr>
 <tr>
-	<td>assertElementPresent</td>
+	<td>verifyElementPresent</td>
 	<td>link=Contracts</td>
 	<td></td>
 </tr>
@@ -61,7 +56,16 @@
 	<td>link=Users</td>
 	<td></td>
 </tr>
-
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=entityStreamType</td>
+	<td>Users</td>
+</tr>
 </tbody></table>
 </body>
 </html>
