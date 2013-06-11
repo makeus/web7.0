@@ -53,10 +53,14 @@
 
  <div id="bar" data-position="fixed" data-role="header" data-theme="p" data-dom-cache="true">
         <div class="barCell" id="leftBarArea">
-          <img id="barLogo" src="../../resources/images/logo-login.jpg" />
+          <i class="icon-angle-left icon-2x" id="backButton"></i>
+          <img id="barLogo" src="../../resources/images/digital_living_logo_small.png" />
+        </div>
+        <div class="barCell" id="searchArea" hidden>
+          <input type="text" id="searchInput" />
         </div>
         <div class="barCell" id="rightBarArea">
-          <i class="icon-search icon-2x" id="searchInput"></i>
+          <i class="icon-search icon-2x" id="searchButton"></i>
           <i class="icon-reorder icon-2x" id="relationsButton"></i>
       </div>
     </div> 
@@ -96,7 +100,7 @@
 		</div>   
     </div> -->
 
-  	<div data-role="content" id="main">
+  	<div class="padding0" data-role="content" id="main">
   		<%= yield.view %>
   	</div>
   </div>

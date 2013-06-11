@@ -7,7 +7,7 @@ bar = {
 
 	show: function() {
 		$("#bar").show();
-		bar.setValues();
+		//bar.setValues();
 		bar.initListeners();
 	},
 
@@ -17,28 +17,40 @@ bar = {
 	},
 
 	showBackButton: function() {
-		var button = $("#barLogo");
-		button.attr("src", "../../resources/images/back-button.png");
-		button.css("margin-top", 0);
-		button.css("height", 80);
-		button.css("max-height", 80);
+		$("#backButton").css("visibility", "visible");
+		//var button = $("#barLogo");
+		//button.attr("src", "../../resources/images/back-button.png");
+		//button.css("margin-top", 0);
+		//button.css("height", 80);
+		//button.css("max-height", 80);
 
-		button.unbind();
-		button.click(function() {
-			view.pop();
-		});
+		//button.unbind();
+		//button.click(function() {
+		//	view.pop();
+		//});
 	},
 
 	initListeners: function() {
+		$("#backButton").click(function(){
+			view.pop();
+		});
+		if (bar.isSearchPage()){
+			$("#searchArea").show();
+			$("#rightBarArea").hide();
+		}
 		$("#barLogo").click(function() {
 			$( "#leftpanel" ).panel( "open" );
 		});
+		$("#relationsButton").click(function(){
+			$( "#rightpanel" ).panel( "open" );
 
-		$("#searchInput").click(function() {
-			if (!bar.isSearchPage()) {
-				$("#searchInput").blur();
-				view.push("search");
-        	}
+		})
+		$("#searchButton").click(function() {
+			// if (!bar.isSearchPage()) {
+			// 	$("#searchInput").blur();
+			// 	view.push("search");
+   //      	}
+   			view.push("search");
         });
 	},
 

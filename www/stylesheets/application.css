@@ -416,7 +416,9 @@ section#commentArea > textarea {
 
 
 #bar {
-
+	background: white;
+	height: 50px;
+	border-bottom: solid black;
 	/*position: fixed;
 	z-index: 1;
 	top: 0;
@@ -440,7 +442,7 @@ section#commentArea > textarea {
 }
 
 .barCell {
-	/*height: 100%;*/
+	padding:10px;
 }
 
 
@@ -450,14 +452,12 @@ section#commentArea > textarea {
 	/* width defined in /controllers/global/bar.js */
 }
 
-#barLogo {
-	/*margin-left: 3px;
-	max-width: 77px;
-	margin-top: 15px;
-	max-height: 65px;*/
-}
+
 
 #searchArea {
+	width:70%;
+	float:left;
+	height:30px;
 	/*position: absolute;
 	padding-left: 5%;
 	padding-right: 5%;*/
@@ -465,6 +465,7 @@ section#commentArea > textarea {
 }
 
 #searchInput {
+	height:30px;
 	/*margin-top: 17px;*/
 }
 
@@ -483,9 +484,13 @@ section#commentArea > textarea {
 #leftBarArea {
 	float:left;
 }
-#rightBarArea > #searchInput {
-	height:40px;
+#barLogo {
+	height: 30px;
 }
-#rightBarArea > #relationsButton {
-	height:40px;
+
+.padding0 {
+	padding:0px;
+}
+#backButton {
+	visibility: hidden;
 }
