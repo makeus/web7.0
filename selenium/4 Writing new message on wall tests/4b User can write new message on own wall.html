@@ -16,8 +16,8 @@
 <tr><td rowspan="1" colspan="3">User can write new message on own wall</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/job/web7.0/ws/dist/views/frontpage/index.html</td>
+	<td>refreshAndWait</td>
+	<td></td>
 	<td></td>
 </tr>
 <tr>
@@ -26,8 +26,23 @@
 	<td></td>
 </tr>
 <tr>
-	<td>waitForTitle</td>
-	<td>Adele Vuohi</td>
+	<td>click</td>
+	<td>id=barLogo</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Messages</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
 	<td></td>
 </tr>
 <tr>
@@ -84,8 +99,8 @@ var x = "Date: " + day + " " + months[month] + " " + year + " Selenium test mess
 var d = new Date();
 
 var a=document.getElementById('myTable');
-a.rows[5].cells[2].innerHTML=x;
-a.rows[11].cells[1].innerHTML=x;
+a.rows[8].cells[2].innerHTML=x;
+a.rows[14].cells[1].innerHTML=x;
 
 </script>
 
