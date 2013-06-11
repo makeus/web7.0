@@ -104,8 +104,8 @@ function resetMessageFields() {
 
 
 function setEntityInformation(dl_id){
-    $("#entityRole").text($(".bar_role").text());
-    $("#entityName").text($(".bar_name").text());
+    $("#entityRole").text($("#leftpanel .bar_role").text());
+    $("#entityName").text($("#leftpanel .bar_name").text());
 }
 
 function setLeftBarActiveLink(){

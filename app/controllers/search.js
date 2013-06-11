@@ -20,12 +20,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 function searchListParse(item){
+	var ret = '<li name="'+item.name+'" id="searchLink' +item.DL_id+ '">';
 	if(item.img!=""){
-		return '<li name="'+item.name+'" id="searchLink' +item.DL_id+ '">'+'<img class="searchImages" src="'+item.img+'"" alt="kuva"></img>'+'<p>'+item.name+'</p>'+'</li>';
+		ret += '<img class="searchImages" src="'+item.img+'"" alt="kuva"></img>';
 	}else{
-		return '<li name="'+item.name+'" id="searchLink' +item.DL_id+ '">'+'<img class="emptySearchImages" src="'+'../../resources/images/tyhja.png'+'"" alt="kuva"></img>'+'<p>'+item.name+'</p>'+'</li>';
+		ret += '<img class="emptySearchImages" src="'+'../../resources/images/tyhja.png'+'"" alt="kuva"></img>';
 	}
+
+	ret += '<p>'+item.name+'</p>'+'</li>';
+	return ret;
 }
+
+function appendSearchCategory(item, category) {
+
+	if (!$("#searchResults" + category).length){$("#searchResults").append('<h1>' + category + '</h1><ul id="searchResults' + category + '" class="searchCategory"></ul>');}
+	$("#searchResults" + category).append(searchListParse(item));
+	$("#searchLink"+item.DL_id).click(function(){
+		view.push("EPage", "index.html?dlid="+item.DL_id);
+	});
+}
+
 function updateSearchResults(results){
 	$("#searchResults").empty();
 	if(results.success==1){
@@ -35,60 +49,28 @@ function updateSearchResults(results){
 	$.each(results,function(i,item){
 		switch(item.type){
 			case 'user':
-				if (!$("#searchResultsUser").length){$("#searchResults").append('<h1>Persons</h1><ul id="searchResultsUser" class="searchCategory"></ul>');}
-				$("#searchResultsUser").append(searchListParse(item));
-				$("#searchLink"+item.DL_id).click(function(){
-					view.push("EPage", "index.html?dlid="+item.DL_id);
-				});
+				appendSearchCategory(item, "Users");
 				break;
 			case 'animal':
-				if (!$("#searchResultsAnimal").length){$("#searchResults").append('<h1>Animals</h1><ul id="searchResultsAnimal" class="searchCategory"></ul>');}
-				$("#searchResultsAnimal").append(searchListParse(item));
-				$("#searchLink"+item.DL_id).click(function(){
-					view.push("EPage", "index.html?dlid="+item.DL_id);
-				});
+				appendSearchCategory(item, "Animals");
 				break;
 			case 'thing':
-				if (!$("#searchResultsThing").length){$("#searchResults").append('<h1>Things</h1><ul id="searchResultsThing" class="searchCategory"></ul>');}
-				$("#searchResultsThing").append(searchListParse(item));
-				$("#searchLink"+item.DL_id).click(function(){
-					view.push("EPage", "index.html?dlid="+item.DL_id);
-				});
+				appendSearchCategory(item, "Things");
 				break;
 			case 'project':
-				if (!$("#searchResultsProject").length){$("#searchResults").append('<h1>Projects</h1><ul id="searchResultsProject" class="searchCategory"></ul>');}
-				$("#searchResultsProject").append(searchListParse(item));
-				$("#searchLink"+item.DL_id).click(function(){
-					view.push("EPage", "index.html?dlid="+item.DL_id);
-				});
+				appendSearchCategory(item, "Projects");
 				break;
 			case 'space':
-				if (!$("#searchResultsSpace").length){$("#searchResults").append('<h1>Places</h1><ul id="searchResultsSpace" class="searchCategory"></ul>');}
-				$("#searchResultsSpace").append(searchListParse(item));
-				$("#searchLink"+item.DL_id).click(function(){
-					view.push("EPage", "index.html?dlid="+item.DL_id);
-				});
+				appendSearchCategory(item, "Places");
 				break;
 			case 'group':
-				if (!$("#searchResultsGroup").length){$("#searchResults").append('<h1>Groups</h1><ul id="searchResultsGroup" class="searchCategory"></ul>');}
-				$("#searchResultsGroup").append(searchListParse(item));
-				$("#searchLink"+item.DL_id).click(function(){
-					view.push("EPage", "index.html?dlid="+item.DL_id);
-				});
+				appendSearchCategory(item, "Groups");
 				break;
 			case 'contract':
-				if (!$("#searchResultsContract").length){$("#searchResults").append('<h1>Contracts</h1><ul id="searchResultsContract" class="searchCategory"></ul>');}
-				$("#searchResultsContract").append(searchListParse(item));
-				$("#searchLink"+item.DL_id).click(function(){
-					view.push("EPage", "index.html?dlid="+item.DL_id);
-				});
+				appendSearchCategory(item, "Contracts");
 				break;
 			default:
-				if (!$("#searchResultsDefault").length){$("#searchResults").append('<h1>Other</h1><ul id="searchResultsDefault" class="searchCategory"></ul>');}
-				$("#searchResultsDefault").append(searchListParse(item));
-				$("#searchLink"+item.DL_id).click(function(){
-					view.push("EPage", "index.html?dlid="+item.DL_id);
-				});
+				appendSearchCategory(item, "Other");
 				break;
 		}
 	});
