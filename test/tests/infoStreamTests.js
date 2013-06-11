@@ -1,5 +1,5 @@
 
-test( "InforStream REST test", function() {
+asyncTest( "InforStream REST test", function() {
 	$.mockjaxClear();
 	
 	var userId = "1234";
@@ -50,17 +50,22 @@ test( "InforStream REST test", function() {
 	rest(opts,url,function(data) {
 			result = data;
 			success(data);
+			start();
+			$.mockjaxClear();
+
 		},
 		function(data) {
 			result = data;
 			error(data);
+			start();
+			$.mockjaxClear();
+
 		});
 
-	$.mockjaxClear();
 
 });
 
-test( "infostream test own id correct token", function() {
+asyncTest( "infostream test own id correct token", function() {
 
 	$.mockjaxClear();
 	
@@ -118,15 +123,17 @@ test( "infostream test own id correct token", function() {
 
 		}]
 	});
+	getActivityStream(opts,function(data){
+		start();
+		equal(status, 1);
+		$.mockjaxClear();
 
-	getActivityStream(opts);
-	equal(status, 1);
+	});
 
-	$.mockjaxClear();
 
 });
 
-test( "infostream test own id wrong token", function() {
+asyncTest( "infostream test own id wrong token", function() {
 
 	$.mockjaxClear();
 	
@@ -148,13 +155,16 @@ test( "infostream test own id wrong token", function() {
 		}
 	});
 	
-	getActivityStream(opts);
-	equal(status, 401);
-	$.mockjaxClear();
+	getActivityStream(opts,function(data){
+		start();
+		equal(status, 401);
+		$.mockjaxClear();
+	});
+	
 
 	});
 
-test( "infostream test wrong id right token", function() {
+asyncTest( "infostream test wrong id right token", function() {
 
 	$.mockjaxClear();
 	
@@ -174,14 +184,15 @@ test( "infostream test wrong id right token", function() {
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	getActivityStream(opts);
-	equal(status, 401);
-	$.mockjaxClear();
+	getActivityStream(opts,function(data){
+		start();
+		equal(status, 401);
+		$.mockjaxClear();
+	});
 
 });
 
-
-test( "getStream test", function() {
+asyncTest( "getStream test", function() {
 
 	$.mockjaxClear();
 	
@@ -228,13 +239,16 @@ test( "getStream test", function() {
     	}]
 	});
 
-	getOwnStream("note");
-	equal(getStatus(), 1);
+	getOwnStream("note",function(data){
+		start();
+		equal(getStatus(), 1);
 	$.mockjaxClear();
+	});
+	
 
 });
 
-test( "getStream Unauthorized", function() {
+asyncTest( "getStream Unauthorized", function() {
 
 	$.mockjaxClear();
 	
@@ -249,13 +263,16 @@ test( "getStream Unauthorized", function() {
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	getOwnStream("note");
-	equal(getStatus(), 401);
-	$.mockjaxClear();
+	getOwnStream("note",function(data){
+		start();
+		equal(getStatus(), 401);
+		$.mockjaxClear();
+	});
+	
 
 });
 
-test( "getStream fail method test", function() {
+asyncTest( "getStream fail method test", function() {
 
 	$.mockjaxClear();
 	
@@ -268,66 +285,12 @@ test( "getStream fail method test", function() {
 			ErrorMessage: "Method not allowed"
 		}
 	});	
-	getOwnStream("note");
-	equal(getStatus(), 405);
-
-	$.mockjaxClear();
+	getOwnStream("note",function(data){
+		start();
+		equal(getStatus(), 405);
+		$.mockjaxClear();
+	});
+	
 });
 
 
-test( "getmessainfo test", function() {
-	//jos tää failaa niin aseta token js DL_id derpit
-
-    $.mockjaxClear();
-    
-    $.mockjax({
-        url: "*",
-        responseText: [{
-            id: "1234",
-            type: "message",
-            sub_type: "",
-            DL_id: "4321",
-            from_DL_id: "4321",
-            subject: "message",
-            link: "",
-            content: "message_body",
-            locatio: "",
-            time_from: "0000-00-00 00:00:00",
-            time_to: "0000-00-00 00:00:00",
-            acl: "read",
-            whitelist_dlid: "",
-            completed: null,
-            completed_by: null,
-            created: "2013-05-17 11:10:31",
-            comments: "",
-            relations: ""
-        }]
-    });
-
-
-    var expected = {
-  "DL_id": "4321",
-  "acl": "read",
-  "comments": "",
-  "completed": null,
-  "completed_by": null,
-  "content": "message_body",
-  "created": "2013-05-17 11:10:31",
-  "from_DL_id": "4321",
-  "id": "1234",
-  "link": "",
-  "locatio": "",
-  "relations": "",
-  "sub_type": "",
-  "subject": "message",
-  "time_from": "0000-00-00 00:00:00",
-  "time_to": "0000-00-00 00:00:00",
-  "type": "message",
-  "whitelist_dlid": ""
-};
-    var result = getMessageInfo("1234","1234");
-    console.log(result);
-    equal(result.created,expected.created);
-    equal(getStatus(),1);
-    $.mockjaxClear();
-});

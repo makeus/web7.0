@@ -1,6 +1,6 @@
 var url = "https://www.dliv.in/rest/";
 
-test( "user info REST test", function() {
+asyncTest( "user info REST test", function() {
 	$.mockjaxClear();
 	
 	var uid = "1234";
@@ -24,10 +24,12 @@ test( "user info REST test", function() {
 
 	rest({'dl_id':dl_id,'auth':authToken,'uid':uid},url,
 		function(data) {
+			start();
 			searchResult = data;
 			success(data);
 		},
 		function(data) {
+			start();
 			searchResult = data;
 			error(data);
 		});
@@ -37,7 +39,7 @@ test( "user info REST test", function() {
 });
 
 
-test( "user info test correct token id uid", function() {
+asyncTest( "user info test correct token id uid", function() {
 
 	$.mockjaxClear();
 	
@@ -71,20 +73,28 @@ test( "user info test correct token id uid", function() {
 	
 	rest({'dl_id':dl_id,'auth':authToken,'uid':uid},url,
 		function(data) {
+			start();
 			searchResult = data;
 			success(data);
+				equal(status, 1);
+					$.mockjaxClear();
+
+
 		},
 		function(data) {
+			start();
 			searchResult = data;
 			error(data);
-		});
-	equal(status, 1);
+				equal(status, 1);
+					$.mockjaxClear();
 
-	$.mockjaxClear();
+
+		});
+
 
 });
 
-test( "user info test correct token, uid, no permission to view page", function() {
+asyncTest( "user info test correct token, uid, no permission to view page", function() {
 
 	$.mockjaxClear();
 	
@@ -117,20 +127,28 @@ test( "user info test correct token, uid, no permission to view page", function(
 	
 	rest({'dl_id':dl_id,'auth':authToken,'uid':uid},url,
 		function(data) {
+			start();
 			searchResult = data;
 			success(data);
+				equal(status, 1);
+					$.mockjaxClear();
+
+
 		},
 		function(data) {
+			start();
 			searchResult = data;
 			error(data);
-		});
-	equal(status, 1);
+				equal(status, 1);
+					$.mockjaxClear();
 
-	$.mockjaxClear();
+
+		});
+
 	});
 
 
-test( "user info test wrong token, correct uid", function() {
+asyncTest( "user info test wrong token, correct uid", function() {
 
 	$.mockjaxClear();
 	
@@ -155,20 +173,27 @@ test( "user info test wrong token, correct uid", function() {
 	});
 	rest({'dl_id':dl_id,'auth':authToken,'uid':uid},url,
 		function(data) {
+			start();
 			searchResult = data;
 			success(data);
+			equal(status, 401);
+				$.mockjaxClear();
+
 		},
 		function(data) {
+			start();
 			searchResult = data;
 			error(data);
+			equal(status, 401);
+				$.mockjaxClear();
+
 		});
-	equal(status, 401);
+	
 
 	
-	$.mockjaxClear();
 	});
 
-test( "user info test correct token, wrong uid", function() {
+asyncTest( "user info test correct token, wrong uid", function() {
 
 	$.mockjaxClear();
 	
@@ -193,22 +218,28 @@ test( "user info test correct token, wrong uid", function() {
 	});
 	rest({'dl_id':dl_id,'auth':authToken,'uid':uid},url,
 		function(data) {
+			start();
 			searchResult = data;
 			success(data);
+			equal(status, 401);
+				$.mockjaxClear();
+
 		},
 		function(data) {
+			start();
 			searchResult = data;
 			error(data);
+			equal(status, 401);
+				$.mockjaxClear();
+
 		});
-	equal(status, 401);
 
 	
-	$.mockjaxClear();
 	});
 
 
 
-test( "getEntityInformation test", function() {
+asyncTest( "getEntityInformation test", function() {
 
 	$.mockjaxClear();
 	
@@ -248,9 +279,12 @@ test( "getEntityInformation test", function() {
   "sub_type": "",
   "type": "user"
 }
-	var info=getInfo(dl_id);
-	equal(info[0].name,result.name);
+	getInfo(dl_id,function(info){
+		start();
+equal(info[0].name,result.name);
 
 	$.mockjaxClear();
+	});
+	
 
 });

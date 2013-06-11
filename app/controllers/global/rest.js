@@ -10,7 +10,7 @@ function rest(opts,url, success, error){
 		url: restUrl+url,
 		dataType: "json",
 		global: false,
-		async: false,
+		async: true,
 		data: opts,
 		success: success,
 		error: error
@@ -24,14 +24,14 @@ function getURLParameter(name) {
     return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 }
 
-function addActivity(opts) {
+function addActivity(opts,success,error) {
 	status = 0;
 	$.ajax(
 	{
 		url: restUrl+"stream",
 		type: "POST",
 		global: false,
-		async: false,
+		async: true,
 		dataType: 'JSON', 
 		data: opts,
 		success: success,
@@ -45,7 +45,7 @@ function addCommentRest(opts,url, success,error) {
 		url: restUrl+url,
 		type: "POST",
 		global: false,
-		async: false,
+		async: true,
 		dataType: 'JSON', 
 		data: opts,
 		success: success,
@@ -63,14 +63,12 @@ function success(data) {
 }
 
 function error(data, t, m) {
-	console.log("error_start");
 	if(t == "timeout") {
 		alert("TIMEOUT");
 	} else {
-		console.log("ERROR " + t + ": " + m);
+		alert("ERROR " + t + ": " + m);
 	}
 	status = data.status;
-	console.log("error_end");
 }
 
 function getStatus() {
@@ -99,4 +97,10 @@ function saveName(data){
 }
 function getName(){
 	return localStorage.getItem('name');
+}
+function saveStream(data){
+	localStorage.setItem('stream',JSON.stringify(data));
+}
+function getSavedStream(){
+	return JSON.parse(localStorage.getItem('stream'));
 }

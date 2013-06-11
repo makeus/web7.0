@@ -3,17 +3,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://88.114.122.139:8080/job/web7.0/ws/dist/views/frontpage/index.html" />
-<title>User can see my world page after hi has loggedIn</title>
+<link rel="selenium.base" href="http://88.114.122.139:8080/job/web7.0/ws/dist/views/EPage/index.html" />
+<title>User can post new event on wall</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">User can see my world page after has loggedIn</td></tr>
+<tr><td rowspan="1" colspan="3">User can post new event on wall</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>http://88.114.122.139:8080/job/web7.0/ws/dist/views/login/index.html</td>
+	<td>/job/web7.0/ws/dist/views/EPage/index.html?type=cal</td>
 	<td></td>
 </tr>
 <tr>
@@ -22,38 +22,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=loginUsername</td>
-	<td>adele.vuohi@gmail.com</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=loginPassword</td>
-	<td>vuori</td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>3000</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>id=loginButton</td>
-	<td></td>
-</tr>
-<tr>
-	<td>waitForElementPresent</td>
-	<td>id=showMessages</td>
-	<td></td>
-</tr>
-<tr>
-	<td>waitForElementPresent</td>
-	<td>id=showMessages</td>
-	<td></td>
-</tr>
-<tr>
-	<td>waitForElementPresent</td>
-	<td>id=searchInput</td>
+	<td>waitForTitle</td>
+	<td>Dlivin app</td>
 	<td></td>
 </tr>
 <tr>
@@ -62,8 +32,38 @@
 	<td></td>
 </tr>
 <tr>
-	<td>waitForTitle</td>
-	<td>Adele Vuohi</td>
+	<td>type</td>
+	<td>id=messageField</td>
+	<td>Selenium is writing on your wall</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=sendMessageBox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>refreshAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=section.eventElem</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=messageField</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td></td>
 	<td></td>
 </tr>
 </tbody></table>

@@ -30,7 +30,9 @@ function leftbarCreateLinks(dlid) {
 	links[3] = "Files";
 	urls[3] = baselink + "#";
 	icons[3] = "<i class=\"icon-file-alt\"></i>";
-
+	links[4] = "Basic-info";
+	urls[4] = "../BPage/index.html?dlid=" + dlid;
+	icons[4] = "<i class=\"icon-user\"></i>";
 
 
 	$.each(links, function(i, item) {
@@ -41,6 +43,7 @@ function leftbarCreateLinks(dlid) {
 		});
 	});
 	$("#linklistleft").listview("refresh");
+
 }
 
 function rightbarCreateLinks(dlid) {

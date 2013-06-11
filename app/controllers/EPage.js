@@ -15,15 +15,17 @@ document.addEventListener("DOMContentLoaded",function(){
     $("#sendMessage").click(sendMessageClickEvent);
     $("#sendMessageBox").click(sendMessageClickEvent);
 
-    setEntityInformation(getURLParameter("dlid"));
-    setLeftBarActiveLink();
 
+   
     if(isToken()) {
-        var stream = getStreamUrl();
-        if(stream != "") {
+        getStreamUrl(function(stream){
+            if(stream != "") {
             $("#thelist").append( stream.join('') );
+            addLiListener();
         }
-    
+
+        
+        });
     } else {
         alert("UNAUTHORISED");
     }
@@ -39,12 +41,16 @@ document.addEventListener("DOMContentLoaded",function(){
     if($("#entityImg").width() == 200) {
         $("#entityImg").css('margin-left', '-100px');
     }
-    addLiListener();
+    
+    $("#leftpanel img").load(function() {
+        setEntityInformation();
+        setLeftBarActiveLink();
+    });
 
 });
 
 
-function getStreamUrl() {
+function getStreamUrl(done) {
     var type = getURLParameter("type");
     var dlid = getURLParameter("dlid");
     if(type == null) {
@@ -53,7 +59,7 @@ function getStreamUrl() {
     if(dlid == null) {
         dlid = getDL_id();
     }
-    return getOtherStream(type,dlid);
+    getOtherStream(type,dlid,done);
 }
 
 function sendMessageClickEvent() {
@@ -70,17 +76,22 @@ function sendMessageClickEvent() {
                 }
 
                 if(getURLParameter("type")=="cal") {
-                    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location);
+                    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location,null,function(){
+                        getStreamUrl(function(stream){
+                            $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                            resetMessageFields();
+                 });
+                    });
                 }
                 else {
-                    addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content);
+                    addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content,function(){
+                        getStreamUrl(function(stream){
+                            $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                            resetMessageFields();
+                 });
+                    });
                 }
 
-                 var stream=getStreamUrl();
-                $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
-
-
-                resetMessageFields();
 
         } else {
                 alert("UNAUTHORISED");
@@ -103,7 +114,7 @@ function resetMessageFields() {
 }
 
 
-function setEntityInformation(dl_id){
+function setEntityInformation(){
     $("#entityRole").text($("#leftpanel .bar_role").text());
     $("#entityName").text($("#leftpanel .bar_name").text());
 }
@@ -127,6 +138,7 @@ function setLeftBarActiveLink(){
         default:
             $("#entityStreamType").text("Messages");
     }
+
 
 
 }

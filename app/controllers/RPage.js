@@ -11,18 +11,20 @@ document.addEventListener("DOMContentLoaded",function(){
     if(type == null) {
         type = "user";
     }
-
-	var relations = parseRelations(getInfo(dlid).relations);
-
-	$.each(relations, function(i, item) {
-		info = getInfo(item[0]);
-		console.log(info.type);
-		if(info.type == type) {
-			appendRelationsList(info);
-		}
+    getInfo(dlid, function(items){
+		var relations = parseRelations(items.relations);
+		$.each(relations, function(i, item) {
+			getInfo(item[0], function(info) {
+				if(info.type == type) {
+					appendRelationsList(info);
+				}
+			});
+		});
 	});
-
-	setRightBarActiveLink();
+    $("#rightpanel img").load(function() {
+    	setEntityInformation();
+		setRightBarActiveLink();
+    });
 
 });
 
@@ -46,23 +48,44 @@ function appendRelationsList(dlid) {
 	});
 }
 
+function setEntityInformation(){
+    $("#entityRole").text($("#leftpanel .bar_role").text());
+    $("#entityName").text($("#leftpanel .bar_name").text());
+}
+
 function setRightBarActiveLink(){
     var type = getURLParameter("type");
 
     switch(type) {
-        case 'cal':
-            $("#entityStreamType").text("Tasks & Events");
-            $("#linklistleftTasks").addClass("active");
+        case 'user':
+            $("#entityStreamType").text("Users");
+            $("#linklistrightUsers").addClass("active");
             break;
-        case 'message':
-            $("#entityStreamType").text("Messages");
-            $("#linklistleftMessages").addClass("active");
+        case 'group':
+            $("#entityStreamType").text("Groups");
+            $("#linklistrightGroups").addClass("active");
             break;
-        case 'note':
-            $("#entityStreamType").text("To-Do Notes");
-            $("#linklistleftNotes").addClass("active");
+        case 'animal':
+            $("#entityStreamType").text("Animals");
+            $("#linklistrightAnimals").addClass("active");
+            break;
+        case 'project':
+            $("#entityStreamType").text("Projects");
+            $("#linklistrightProjects").addClass("active");
+            break;            
+        case 'contract':
+            $("#entityStreamType").text("Contracts");
+            $("#linklistrightContracts").addClass("active");
+            break;
+        case 'thing':
+            $("#entityStreamType").text("Things");
+            $("#linklistrightThings").addClass("active");
+            break;
+        case 'space':
+            $("#entityStreamType").text("Spaces");
+            $("#linklistrightSpaces").addClass("active");
             break;
         default:
-            $("#entityStreamType").text("Messages");
+            $("#entityStreamType").text("Relations");
     }
 }
