@@ -2,20 +2,21 @@ view = {
 	push: function(name, page) {
 		if (page == undefined)
 			page = "index.html";
-
-		if (isSteroids()) {
-			var webView = createWebView(name, page);
-			steroids.layers.push(webView);
-		} else {
-			win.go(name, page);
-		}
+		win.go(name, page);
+		// if (isSteroids()) {
+		// 	var webView = createWebView(name, page);
+		// 	steroids.layers.push(webView);
+		// } else {
+		// 	win.go(name, page);
+		// }
 	},
 
 	pop: function() {
-		if (isSteroids())
-			steroids.layers.pop();
-		else
-			win.back();
+		win.back();
+		// if (isSteroids())
+		// 	steroids.layers.pop();
+		// else
+		// 	win.back();
 	},
 
 	preload: function(webView) {
