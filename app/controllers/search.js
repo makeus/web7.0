@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function searchListParse(item){
 	if(item.img!=""){
 		return '<li name="'+item.name+'" id="searchLink' +item.DL_id+ '">'+'<img class="searchImages" src="'+item.img+'"" alt="kuva"></img>'+'<p>'+item.name+'</p>'+'</li>';
-	}else{
+	} else {
 		return '<li name="'+item.name+'" id="searchLink' +item.DL_id+ '">'+'<img class="emptySearchImages" src="'+'../../resources/images/tyhja.png'+'"" alt="kuva"></img>'+'<p>'+item.name+'</p>'+'</li>';
 	}
 }
@@ -100,14 +100,19 @@ function updateSearchResults(results){
 
 var timeout;
 var searchWordCheck;
+
 function processResult(searchWord,done){
 	search(searchWord,function(result){
-		if(searchWordCheck==searchWord){ updateSearchResults(result);}
-		else{ console.log("NO!!!!!!!!");}
+		if(searchWordCheck==searchWord){
+			updateSearchResults(result);
+		} else {
+			console.log("NO!!!!!!!!");
+		}
+
 		done();
 	});
-	
 }
+
 function timedSearch(searchWord,done){
 	if(searchWord==""){
 		historyTemp(function(data){
@@ -116,22 +121,27 @@ function timedSearch(searchWord,done){
 		if(timeout){clearTimeout(timeout);}
 		return;
 	}
+
 	searchWordCheck=searchWord;
-	if(timeout){clearTimeout(timeout);}
+
+	if(timeout){
+		clearTimeout(timeout);
+	}
+
 	timeout=setTimeout(function(){
 		processResult(searchWord,done);
 	},200);
 }
 
-
 function historyTemp(done){
 	getHistory(function(info2){
 		var info3="";
-   		 $.each(info2,function(key,value){
-    	if(key!='DL_id'){
-    		info3=info3 + key.replace('dlid-','') + ',';
-		}
-   		 });
+   		$.each(info2,function(key,value){
+	    	if(key!='DL_id'){
+	    		info3=info3 + key.replace('dlid-','') + ',';
+			}
+   		});
+   		
    		info3=info3.slice(0,-1);
     	var opts={'dl_ids':info3,'auth':getToken(),'uid':getDL_id()};
     	getUserArray(opts,done);
