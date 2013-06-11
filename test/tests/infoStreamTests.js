@@ -123,7 +123,6 @@ asyncTest( "infostream test own id correct token", function() {
 
 		}]
 	});
-	console.log("123123123123123123123123123123ASDASJDIOASJ");
 	getActivityStream(opts,function(data){
 		start();
 		equal(status, 1);
