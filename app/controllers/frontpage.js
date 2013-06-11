@@ -16,8 +16,10 @@ document.addEventListener("DOMContentLoaded",function(){
         hideMessageFields();
     });
     $("#showMessages").click(function(){
-        showMessages();
-        addLiListener();
+        showMessages(function(data){
+                addLiListener();
+
+        });
     });
     if(isToken()) {
         getOwnStream('message,cal,note',function(stream){
