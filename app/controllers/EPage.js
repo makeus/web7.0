@@ -13,9 +13,8 @@ document.addEventListener("DOMContentLoaded",function(){
     $("#sendMessage").click(sendMessageClickEvent);
     $("#sendMessageBox").click(sendMessageClickEvent);
 
-    setEntityInformation(getURLParameter("dlid"));
-    setLeftBarActiveLink();
 
+   
     if(isToken()) {
         getStreamUrl(function(stream){
             if(stream != "") {
@@ -38,6 +37,11 @@ document.addEventListener("DOMContentLoaded",function(){
     if($("#entityImg").width() == 200) {
         $("#entityImg").css('margin-left', '-100px');
     }
+    
+    $("#leftpanel img").load(function() {
+        setEntityInformation();
+        setLeftBarActiveLink();
+    });
 });
 
 
@@ -101,22 +105,9 @@ function resetMessageFields() {
     hideMessageFields();
 }
 
-
-function setEntityInformation(dl_id){
-    getInfo(dl_id,function(info){
-        var image = "";
-
-        if(info.img == "") {
-            image = '../../resources/images/tyhja.png';
-        } else {
-            image = info.img
-        }
-        
-        $("#entityImg").attr('src',image);
-        $("#entityImg").attr('alt',info.name);
-        $("#entityRole").text($(".bar_role").text());
-        $("#entityName").text($(".bar_name").text());
-    });
+function setEntityInformation(){
+    $("#entityRole").text($("#leftpanel .bar_role").text());
+    $("#entityName").text($("#leftpanel .bar_name").text());
 }
 
 function setLeftBarActiveLink(){
