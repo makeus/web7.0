@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded",function(){
     if(isToken()) {
         setbPageID(getURLParameter("dlid"));
         //var userInfo = getUserInfo(bPageID);
-        alert(bPageID + "tässä");
+        //alert(bPageID + "tässä");
         //setPageTitle(userInfo.name);
         //parseBasicInfoPage(userInfo);
 
