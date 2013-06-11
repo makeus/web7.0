@@ -477,3 +477,15 @@ section#commentArea > textarea {
 .ui-footer-fixed {
 	bottom:auto;
 }
+#rightBarArea {
+	float:right;
+}
+#leftBarArea {
+	float:left;
+}
+#rightBarArea > #searchInput {
+	height:40px;
+}
+#rightBarArea > #relationsButton {
+	height:40px;
+}
