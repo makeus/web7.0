@@ -129,8 +129,9 @@ function getActivityStream(opts,done) {
 		});
 }
 
-function getUserArray(opts,done) {
+function getUserArray(dlids,done) {
 	var url = "dlid";
+	var opts = {'uid': getDL_id(), 'auth': getToken(), 'dl_ids':dlids};
     rest(opts, url, function(data) {
         result=data;
         success(data);

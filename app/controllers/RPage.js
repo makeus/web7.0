@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded",function(){
     getInfo(dlid, function(items){
 		var relations = parseRelations(items.relations);
 		$.each(relations, function(i, item) {
-			getInfo(item[0], function(info) {
+			getInfo(item, function(info) {
 				if(info.type == type) {
 					appendRelationsList(info);
 				}

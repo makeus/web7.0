@@ -78,8 +78,7 @@ function getStream(opts,done){
         });
         dlids = $.unique(dlids);
         //Retrieve user data
-        var users = {'uid': getDL_id(), 'auth': getToken(), 'dl_ids': dlids.join()};
-        getUserArray(users,function(json){
+        getUserArray(dlids.join(),function(json){
         userHash=myHash(json);
         //parse and push each json entry into its own <li> block
         $.each(stream, function(i, item) {
@@ -110,16 +109,18 @@ function getOwnStream(types,done) {
 function parseRelations(string) {
     var array = string.split(',');
     $.each(array, function(i, item) {
-        array[i] = array[i].split(':');
+        array[i] = item.split(':')[0];
     });
     return array;
 }
 
-function ccList(dlid) {
-    if(dlid == undefined || dlid.relations == undefined) {
-      return;
-    } 
-    var relations = parseRelations(dlid.relations);
+function ccList() {
+  var uid = getDL_id();
+  if(uid == undefined || uid.relations == undefined) {
+    return;
+  } 
+  var relations = parseRelations(uid.relations);
+
 
 }
 
