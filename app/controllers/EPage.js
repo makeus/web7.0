@@ -1,23 +1,12 @@
 document.addEventListener("DOMContentLoaded",function(){
-    setupPage({
-        bar:true
-    });
+    setupPage({bar:true});
 
-    if(getURLParameter("type")=="cal") {
-        $("#message").replaceWith($("#cal").show());
-        $("#msg").remove();
-    } else {
-        $("#message").replaceWith($("#msg").show());
-        $("#cal").remove();
-    }
-    $("#sendMessage").click(sendMessageClickEvent);
-    $("#sendMessageBox").click(sendMessageClickEvent);
-
-
+    showRightForm(getURLParameter("type"));
+    atachEvents();
    
     if(isToken()) {
         getStreamUrl(function(stream){
-            if(stream != "") {
+            if(stream != null && stream != "") {
                 $("#thelist").append( stream.join('') );
                 addLiListener();
             }
@@ -26,24 +15,42 @@ document.addEventListener("DOMContentLoaded",function(){
         alert("UNAUTHORISED");
     }
 
-    $("#messageField").focus(function() {
-        $("#message-hidden").show();
-    });
-
-    $("#close").click(function(){
-        hideMessageFields();
-    });
-
     if($("#entityImg").width() == 200) {
         $("#entityImg").css('margin-left', '-100px');
     }
     
+});
+
+function showRightForm(type){
+    if(type=="cal") {
+        $("#message").replaceWith($("#cal").show());
+        $("#msg").remove();
+        $("#not").remove();
+    } else if(type=="message"){
+        $("#message").replaceWith($("#msg").show());
+        $("#cal").remove();
+        $("#not").remove();
+    } else {
+        $("#message").replaceWith($("#not").show());
+        $("#cal").remove();
+        $("#msg").remove();
+    }
+}
+
+function atachEvents(){
+    $("#inputField").focus(function() {
+        $("#form-hidden").show();
+    });
+    $("#close").click(function(){
+        hideMessageFields();
+    });
+    $("#sendMessage").click(sendMessageClickEvent);
+    $("#sendMessageBox").click(sendMessageClickEvent);
     $("#leftpanel img").load(function() {
         setEntityInformation();
         setLeftBarActiveLink();
     });
-});
-
+}
 
 function getStreamUrl(done) {
     var type = getURLParameter("type");
@@ -59,49 +66,81 @@ function getStreamUrl(done) {
 
 function sendMessageClickEvent() {
     if(isToken()) {
-        var subject = $("#messageField").val();
-        var link = $("#linkField").val();
-        var content = $("#contentField").val();
-        var time_from = ""+ $("#date_from").val() + " " + $("#time_from").val();
-        var time_to = ""+ $("#date_to").val() + " " + $("#date_from").val();
-        var location = $("location").val();
+        var subject = $("#inputField").val();
 
         if(subject == "") {
             return;
         }
 
         if(getURLParameter("type")=="cal") {
-            addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location,null,function(){
-                getStreamUrl(function(stream){
-                    $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
-                    resetMessageFields();
-                });
-            });
+            saveTask(subject);
+        } else if(getURLParameter("type")=="message"){
+            saveMessage(subject);
         } else {
-            addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content,function(){
-                getStreamUrl(function(stream){
-                    $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
-                    resetMessageFields();
-                });
-            });
+            saveNote(subject);
         }
     } else {
         alert("UNAUTHORISED");
     }
 }
 
+function saveTask(subject){
+    var link = $("#linkField").val();
+    var content = $("#contentField").val();
+    var time_from = ""+ $("#date_from").val() + " " + $("#time_from").val();
+    var time_to = ""+ $("#date_to").val() + " " + $("#time_to").val();
+    var location = $("location").val();
+
+    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location,null,function(){
+        getStreamUrl(function(stream){
+            $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+            resetMessageFields();
+        });
+    });
+}
+
+function saveMessage(subject){
+    var privacy = $("#linkField").val();
+    var link = $("#linkField").val();
+    var content = $("#contentField").val();
+    addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content,function(){
+        getStreamUrl(function(stream){
+            $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+            resetMessageFields();
+        });
+    });
+}
+
+
+function saveNote(subject){  
+    var privacy = $("#privacy").val();
+    var deadline = ""+ $("#dDate").val() + " " + $("#dTime").val();  
+    //var ccList = .....
+    var content = $("#additional").val();
+    alert(subject + privacy + deadline + content);
+
+    addNote(getURLParameter("dlid"), getDL_id(), subject, content, deadline,function(){
+        getStreamUrl(function(stream){
+            $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+            resetMessageFields();
+        });
+    });
+}
 
 function hideMessageFields() {
-    $("#message-hidden").hide();
+    $("#form-hidden").hide();
 }
 
 function resetMessageFields() {
-    $("#messageField").val("");
+    $("#inputField").val("");
     $("#linkField").val("");
     $("#contentField").val("");
     $("#time_from").val("");
     $("#time_to").val("");
     $("#location").val("");
+    $("#additional").val("");
+    $("#cclist").val("");
+    $("#date_to").val("");
     hideMessageFields();
 }
 

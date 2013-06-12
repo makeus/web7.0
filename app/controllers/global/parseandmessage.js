@@ -37,7 +37,6 @@ function addCommentToMessage(message_id, comment,done){
 }
 
 function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_to, location, sub_type,done) {
-
   if(to_dl_id == null || from_dl_id == null || subject == null) {
     return -1;
   }
@@ -46,6 +45,26 @@ function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_
   var type = "cal";
   addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 
                'content':content, 'link':link, 'time_from':time_from, 'time_to':time_to, 'location':location, 'sub_type':sub_type},
+               function(data){
+                success(data);
+                done(data);
+               },
+               function(data){
+                error(data);
+                done(data);
+               });
+
+}
+
+function addNote(to_dl_id, from_dl_id, subject, content, time_to,done) {
+  if(to_dl_id == null || from_dl_id == null || subject == null) {
+    return -1;
+  }
+  var uid = getDL_id();
+  var auth = getToken();
+  var type = "note";
+  addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 
+               'content':content, 'time_to':time_to},
                function(data){
                 success(data);
                 done(data);
