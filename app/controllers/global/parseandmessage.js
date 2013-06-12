@@ -76,17 +76,22 @@ function getStream(opts,done){
               dlids.push(item.DL_id);
               dlids.push(item.from_DL_id);
         });
+
         dlids = $.unique(dlids);
+
         //Retrieve user data
         var users = {'uid': getDL_id(), 'auth': getToken(), 'dl_ids': dlids.join()};
         getUserArray(users,function(json){
-        userHash=myHash(json);
-        //parse and push each json entry into its own <li> block
-        $.each(stream, function(i, item) {
-              items.push(parseItem(item, userHash, item.type));
-        });
 
-        done(items);
+          userHash=myHash(json, userHash);
+
+          //parse and push each json entry into its own <li> block
+          $.each(stream, function(i, item) {
+                items.push(parseItem(item, userHash, item.type));
+          });
+
+          done(items);
+
         });
       }     
     //append <li> blocks to appropriate container
@@ -123,8 +128,7 @@ function ccList(dlid) {
 
 }
 
-function myHash(json) {
-    var hash = {};
+function myHash(json, hash) {
     $.each(json, function(i, item) {
         hash[item.DL_id]=item;
     });
