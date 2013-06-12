@@ -559,6 +559,9 @@
 		return i;
 	};
 	$.mockjaxClear = function(i) {
+		localStorage.clear();
+		usercache=null;
+		userdatacache=null;
 		if ( arguments.length == 1 ) {
 			mockHandlers[i] = null;
 		} else {
