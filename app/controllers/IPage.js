@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded",function(){
         barBackButton:true
     });
 
-    if(isToken()) {
+    if(isToken()&&getURLParameter("iPageID")) {
         setIPageID(getURLParameter("iPageID"));
         parseMessage();
         setLinkToSenderEvent();

@@ -442,7 +442,10 @@ section#commentArea > textarea {
 }
 
 .barCell {
-	padding:10px;
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
 
@@ -466,15 +469,14 @@ section#commentArea > textarea {
 
 #searchInput {
 	height:30px;
-	/*margin-top: 17px;*/
+}
+#ownPictureButton {
+	display:inline;
+	vertical-align: bottom;
+	height:30px;
 }
 
-#buttonArea {
-	/*position: absolute;
-	right: 0px;
-	background-color: gray;*/
-	/* width defined in /controllers/global/bar.js */
-}
+
 .ui-footer-fixed {
 	bottom:auto;
 }
