@@ -133,8 +133,9 @@ function getActivityStream(opts,done) {
 		});
 }
 
-function getUserArray(opts,done) {
-	var arr = opts["dl_ids"].split(",");
+function getUserArray(dlids,done) {
+	opts = {'uid': getDL_id(), 'auth':getToken(), 'dl_ids':dlids};
+	var arr = dlids.split(",");
 	var cached  = new Array();
 
 	$.grep(arr, function(item, i) {

@@ -80,8 +80,7 @@ function getStream(opts,done){
         dlids = $.unique(dlids);
 
         //Retrieve user data
-        var users = {'uid': getDL_id(), 'auth': getToken(), 'dl_ids': dlids.join()};
-        getUserArray(users,function(json){
+        getUserArray(dlids.join(),function(json){
 
           userHash=myHash(json, userHash);
 
