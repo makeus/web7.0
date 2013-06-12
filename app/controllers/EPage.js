@@ -73,6 +73,7 @@ function sendMessageClickEvent() {
         }
 
         if(getURLParameter("type")=="cal") {
+
             saveTask(subject);
         } else if(getURLParameter("type")=="message"){
             saveMessage(subject);
@@ -95,6 +96,7 @@ function saveTask(subject){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
+            addLiListener();
         });
     });
 }
@@ -107,6 +109,7 @@ function saveMessage(subject){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
+            addLiListener();
         });
     });
 }
@@ -121,6 +124,7 @@ function saveNote(subject){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
+            addLiListener();
         });
     });
 }
