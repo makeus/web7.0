@@ -34,14 +34,16 @@ function leftbarCreateLinks(dlid) {
 	urls[4] = "../BPage/index.html?dlid=" + dlid;
 	icons[4] = "<i class=\"icon-user\"></i>";
 
+
 	$.each(links, function(i, item) {
-		$("#linklistleft").append("<li id='linklistleft" + item + "'><a>" + icons[i] + "\t" + item + "</a></li>");
-		$("#linklistleft" + item).click(function() {
+		$("#linklistleft").append("<li id='linklistleft" + item.replace(/\s+/g, ' ') + "'><a>" + icons[i] + "\t" + item + "</a></li>");
+		$("#linklistleft" + item.replace(/\s+/g, ' ')).click(function() {
 			$("#leftpanel").panel( "close" );
 			view.push("EPage", urls[i]);
 		});
 	});
 	$("#linklistleft").listview("refresh");
+
 }
 
 function rightbarCreateLinks(dlid) {
@@ -51,16 +53,16 @@ function rightbarCreateLinks(dlid) {
 	var icons = new Array();
 
 	links[0] = "Users";
-	urls[0] =  baselink + "&type=users";
+	urls[0] =  baselink + "&type=user";
 	icons[0] = "<i class=\"icon-user\"></i>";
 	links[1] = "Groups";
-	urls[1] =  baselink + "&type=groups";
+	urls[1] =  baselink + "&type=group";
 	icons[1] = "<i class=\"icon-group\"></i>";
 	links[2] = "Places";
-	urls[2] = baselink + "&type=places";
+	urls[2] = baselink + "&type=space";
 	icons[2] = "<i class=\"icon-map-marker\"></i>";
 	links[3] = "Things";
-	urls[3] = baselink + "&type=things";
+	urls[3] = baselink + "&type=thing";
 	icons[3] = "<i class=\"icon-barcode\"></i>";
 	links[4] = "Animals";
 	urls[4] = baselink + "&type=animal";

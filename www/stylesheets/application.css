@@ -267,9 +267,10 @@ section#searchResults > h1 {
 	margin: 10px;
 }
 
-#thelist > li {
+#thelist li {
 	border: thin solid grey;
-	list-style: none
+	list-style: none;
+	margin-bottom: 5px;
 }
 
 #searchdiv {

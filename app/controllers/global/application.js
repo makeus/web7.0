@@ -11,10 +11,8 @@ document.addEventListener("DOMContentLoaded",function(){
 
 		getInfo(dlid,function(info){
 			sidebarsSetInfo(info);
-		leftbarCreateLinks(dlid);
-		rightbarCreateLinks(dlid);
-
-
+			leftbarCreateLinks(dlid);
+			rightbarCreateLinks(dlid);
 		});
 		
 		jQuery( window ).on( "swiperight", function() {
