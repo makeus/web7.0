@@ -48,6 +48,7 @@ function sendMessageClickEvent() {
             getOwnStream('message,cal,note',function(stream){
                 $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
                 resetMessageFields();
+                addLiListener();
             });
         });
     } else {

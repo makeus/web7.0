@@ -9,64 +9,7 @@ li {
   background: white;
 }
 
-#bar {
-	position: fixed;
-	z-index: 1;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background: white;
-	display: none;
-	/* height defined in /controllers/global/bar.js */
-}
 
-#betweenBlackLines {
-	height: 100%;
-	margin-top: 3px;
-	background: white;
-	border-top-style: solid;
-	border-top-color: black;
-	border-top-width: 5px;
-	border-bottom-style: solid;
-	border-bottom-color: black;
-	border-bottom-width: 5px;
-}
-
-.barCell {
-	height: 100%;
-}
-
-
-#logoArea {
-	position: absolute;
-	left: 0px;
-	/* width defined in /controllers/global/bar.js */
-}
-
-#barLogo {
-	margin-left: 3px;
-	max-width: 77px;
-	margin-top: 15px;
-	max-height: 65px;
-}
-
-#searchArea {
-	position: absolute;
-	padding-left: 5%;
-	padding-right: 5%;
-	/* left and right defined in /controllers/global/bar.js */
-}
-
-#searchInput {
-	margin-top: 17px;
-}
-
-#buttonArea {
-	position: absolute;
-	right: 0px;
-	background-color: gray;
-	/* width defined in /controllers/global/bar.js */
-}
 
 
 * {
@@ -469,4 +412,87 @@ section#commentArea {
 
 section#commentArea > textarea {
 	margin-bottom: 0;
+}
+
+
+#bar {
+	background: white;
+	height: 50px;
+	border-bottom: solid black;
+	/*position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: white;
+	display: none;*/
+	/* height defined in /controllers/global/bar.js */
+}
+
+#betweenBlackLines {
+	/*height: 100%;
+	margin-top: 3px;
+	background: white;
+	border-top-style: solid;
+	border-top-color: black;
+	border-top-width: 5px;
+	border-bottom-style: solid;
+	border-bottom-color: black;
+	border-bottom-width: 5px;*/
+}
+
+.barCell {
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+
+#logoArea {
+	/*position: absolute;
+	left: 0px;*/
+	/* width defined in /controllers/global/bar.js */
+}
+
+
+
+#searchArea {
+	width:70%;
+	float:left;
+	height:30px;
+	/*position: absolute;
+	padding-left: 5%;
+	padding-right: 5%;*/
+	/* left and right defined in /controllers/global/bar.js */
+}
+
+#searchInput {
+	height:30px;
+}
+#ownPictureButton {
+	display:inline;
+	vertical-align: bottom;
+	height:30px;
+}
+
+
+.ui-footer-fixed {
+	bottom:auto;
+}
+#rightBarArea {
+	float:right;
+}
+#leftBarArea {
+	float:left;
+}
+#barLogo {
+	height: 30px;
+}
+
+.padding0 {
+	padding:0px;
+}
+#backButton {
+	visibility: hidden;
 }
