@@ -66,9 +66,8 @@ function parseMessage(){
 
 function getSubject(info){
     var ids = info.DL_id + "," + info.from_DL_id;
-    var opts={'dl_ids':ids,'auth':getToken(),'uid':getDL_id()};
 
-    var arr = getUserArray(opts, function(arr) {
+    var arr = getUserArray(ids, function(arr) {
         var from = getURLParameter("uid");
         var to;
 

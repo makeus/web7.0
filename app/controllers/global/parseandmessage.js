@@ -37,7 +37,6 @@ function addCommentToMessage(message_id, comment,done){
 }
 
 function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_to, location, sub_type,done) {
-
   if(to_dl_id == null || from_dl_id == null || subject == null) {
     return -1;
   }
@@ -46,6 +45,26 @@ function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_
   var type = "cal";
   addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 
                'content':content, 'link':link, 'time_from':time_from, 'time_to':time_to, 'location':location, 'sub_type':sub_type},
+               function(data){
+                success(data);
+                done(data);
+               },
+               function(data){
+                error(data);
+                done(data);
+               });
+
+}
+
+function addNote(to_dl_id, from_dl_id, subject, content, time_to,done) {
+  if(to_dl_id == null || from_dl_id == null || subject == null) {
+    return -1;
+  }
+  var uid = getDL_id();
+  var auth = getToken();
+  var type = "note";
+  addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 
+               'content':content, 'time_to':time_to},
                function(data){
                 success(data);
                 done(data);
@@ -76,17 +95,20 @@ function getStream(opts,done){
               dlids.push(item.DL_id);
               dlids.push(item.from_DL_id);
         });
-        dlids = $.unique(dlids);
-        //Retrieve user data
-        var users = {'uid': getDL_id(), 'auth': getToken(), 'dl_ids': dlids.join()};
-        getUserArray(users,function(json){
-        userHash=myHash(json);
-        //parse and push each json entry into its own <li> block
-        $.each(stream, function(i, item) {
-              items.push(parseItem(item, userHash, item.type));
-        });
 
-        done(items);
+        dlids = $.unique(dlids);
+
+        //Retrieve user data
+        getUserArray(dlids.join(),function(json){
+
+          userHash=myHash(json, userHash);
+
+          //parse and push each json entry into its own <li> block
+          $.each(stream, function(i, item) {
+                items.push(parseItem(item, userHash, item.type));
+          });
+
+          done(items);
         });
       }     
     //append <li> blocks to appropriate container
@@ -110,21 +132,22 @@ function getOwnStream(types,done) {
 function parseRelations(string) {
     var array = string.split(',');
     $.each(array, function(i, item) {
-        array[i] = array[i].split(':');
+        array[i] = item.split(':')[0];
     });
     return array;
 }
 
-function ccList(dlid) {
-    if(dlid == undefined || dlid.relations == undefined) {
-      return;
-    } 
-    var relations = parseRelations(dlid.relations);
+function ccList() {
+  var uid = getDL_id();
+  if(uid == undefined || uid.relations == undefined) {
+    return;
+  } 
+  var relations = parseRelations(uid.relations);
+
 
 }
 
-function myHash(json) {
-    var hash = {};
+function myHash(json, hash) {
     $.each(json, function(i, item) {
         hash[item.DL_id]=item;
     });

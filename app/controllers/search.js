@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+	document.addEventListener("DOMContentLoaded", function() {
 	setupPage({
 		bar: true,
 		barBackButton: true
@@ -125,7 +125,6 @@ function historyTemp(done){
    		});
    		
    		info3=info3.slice(0,-1);
-    	var opts={'dl_ids':info3,'auth':getToken(),'uid':getDL_id()};
-    	getUserArray(opts,done);
+    	getUserArray(info3,done);
 	});
 }
