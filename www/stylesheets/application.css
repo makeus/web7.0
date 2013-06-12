@@ -470,3 +470,75 @@ section#commentArea {
 section#commentArea > textarea {
 	margin-bottom: 0;
 }
+
+
+form.ui-listview-filter {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background: white;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+.ui-input-search.ui-focus {
+	box-shadow: initial;
+}
+
+ul#relationslist i {
+	float:right;
+	margin-top: 20px;
+	margin-left: 10px;
+}
+
+ul#relationslist li:first-child, ul#relationslist .ui-first-child {
+	border-top: 0;
+
+}
+
+ul#relationslist li:last-child, ul#relationslist .ui-last-child {
+	border-bottom: 0;
+}
+
+ul#relationslist li {
+	background: white;
+	margin: -1px;
+	padding-left: 15px;
+	border: thin solid lightgray;
+
+}
+
+ul#relationslist li h2 {
+	font-size: 15px;
+}
+
+ul#relationslist li h3 {
+	font-size: 13px;
+	color: lightgray;
+}
+
+
+ul#relationslist div {
+	vertical-align: middle;
+	margin-left: 10%;
+	display: inline-block;
+	max-width: 50%;
+}
+
+ul#relationslist img {
+	vertical-align: middle;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	max-width: 80px;
+	max-height: 80px;
+	width: 80px;
+	float: none;
+	position: initial;
+	max-height: initial;
+	max-width: initial;
+}
+ul#relationslist .emptyRelationImage {
+	border: thin solid black;
+}
+
