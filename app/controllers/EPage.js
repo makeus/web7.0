@@ -117,8 +117,6 @@ function saveNote(subject){
     var deadline = ""+ $("#dDate").val() + " " + $("#dTime").val();  
     //var ccList = .....
     var content = $("#additional").val();
-    alert(subject + privacy + deadline + content);
-
     addNote(getURLParameter("dlid"), getDL_id(), subject, content, deadline,function(){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
