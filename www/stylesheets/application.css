@@ -9,6 +9,9 @@ li {
   background: white;
 }
 
+
+/* BAR */
+
 #bar {
 	position: fixed;
 	z-index: 1;
@@ -35,7 +38,6 @@ li {
 .barCell {
 	height: 100%;
 }
-
 
 #logoArea {
 	position: absolute;
@@ -67,6 +69,7 @@ li {
 	background-color: gray;
 	/* width defined in /controllers/global/bar.js */
 }
+
 
 
 * {
@@ -253,6 +256,8 @@ section#searchResults > h1 {
 	vertical-align: middle;
 	margin: 0.5%;
 }
+
+
 .sendandre {
 	display:inline-block;
 	margin-left: 5%;
@@ -306,32 +311,45 @@ section#searchResults > h1 {
 	margin-left: 5%;
 	margin-top:-1%;
 }
-#messageContent > img{
+
+
+/* IPage */
+
+#ipageMessage {
+	border: thin solid grey;
+	margin:10px;
+}
+
+#messageContent > img {
 	vertical-align: top;
 	display: inline-block;
 	width:15%;
 	margin: 10px;
 }
-#ipageFromAndSubject {
-	vertical-align: middle;
+
+#ipageInfo {
 	display: inline-block;
-	width:70%;
+	width: 70%;
+}
+
+#ipageFormAndSubject {
+	vertical-align: middle;
 	margin-top: 10px;
 }
+
 #ipageTime {
 	font-size:0.8em;
 }
-#ipageMessage {
-	border: thin solid grey;
-	margin:10px;
-}
+
 #ipageComments {
 	margin: 10px;
 	border:thin solid grey;
 }
+
 #listOfComments {
 	list-style: none;
 }
+
 #listOfComments > li {
 	margin:10px;
 }
@@ -340,6 +358,29 @@ section#searchResults > h1 {
 	border-top: solid thin LightGray;
 	margin:10px;
 }
+
+
+/* TASK / EVENT */
+
+.completed {
+	opacity: 0.4;
+}
+
+.completed .message_content, .completed #ipageSubject {
+	text-decoration:line-through;
+}
+
+#completeMarker {
+}
+
+#completeMarker > label {
+}
+
+#completeCheckbox {
+}
+
+
+
 .commentWriter{
 	display:inline-block;
 	vertical-align: top;

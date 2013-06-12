@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded",function(){
         setLinkToSenderEvent();
         setAddCommentEvent();
         setCommentFocusEvent();
+        setCompleteMarkerEvent();
     } else {
         alert("UNAUTHORISED");
     }
@@ -50,6 +51,16 @@ function setAddCommentEvent(){
     });
 }
 
+function setCompleteMarkerEvent() {
+    $("#completeCheckbox").change(function() {
+        if (this.checked) {
+            $("#ipageMessage").addClass("completed");
+        } else {
+            $("#ipageMessage").removeClass();
+        }
+    });
+}
+
 
 function parseMessage(){
     var info = getMessageInfo(iPageID);
@@ -59,6 +70,11 @@ function parseMessage(){
         $("#ipageContent").hide();
     } else {
         $("#ipageContent").show();
+    }
+
+    if (info.completed !== null) {
+        $("#ipageMessage").attr("class", "completed");
+        $("#completeCheckbox").prop("checked", true);
     }
 
     getComments(info);
@@ -83,14 +99,15 @@ function getSubject(info){
         $("#messageContent > img").attr('src',from.img);
 
         if(to){
-            var content = "<div id='ipageFromAndSubject'><h3>" + from.name + " >> " + to.name + "</h3><p id='ipageTime'>Time: " + info.created + "</p>";
+            var content = "<h3>" + from.name + " >> " + to.name + "</h3><p id='ipageTime'>Time: " + info.created + "</p>";
         } else {
-            var content = "<div id='ipageFromAndSubject'><h3>" + from.name + "</h3><p id='ipageTime'>Time: " + info.created + "</p>";
+            var content = "<h3>" + from.name + "</h3><p id='ipageTime'>Time: " + info.created + "</p>";
         }
 
-        content += "<p id = 'ipageSubject'>" + info.subject + "</p></div>";
-        content += "<div id='ipageContent'><p>" + info.content + "</p></div>";
-        $("#messageContent").append(content);
+        content += "<p id = 'ipageSubject'>" + info.subject + "</p>";
+        $("#ipageFormAndSubject").append(content);
+
+        $("#ipageContent").append("<p>" + info.content + "</p>");
     });
     
 }

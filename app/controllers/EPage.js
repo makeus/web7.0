@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded",function(){
 function getStreamUrl(done) {
     var type = getURLParameter("type");
     var dlid = getURLParameter("dlid");
+
     if(type == null) {
         type = "message";
     }

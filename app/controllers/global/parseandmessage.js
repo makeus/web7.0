@@ -69,26 +69,28 @@ function getStream(opts,done){
       if(getStatus()!=1 || stream=="" || stream.responseText=="") {
         done(items);
       } else {
-        /*
-        Capture unique dlids from stream for retrieval of user data.
-        */
+
+        //Capture unique dlids from stream for retrieval of user data.
         $.each(stream, function(i, item) {
               dlids.push(item.DL_id);
               dlids.push(item.from_DL_id);
         });
+
         dlids = $.unique(dlids);
+
         //Retrieve user data
         var users = {'uid': getDL_id(), 'auth': getToken(), 'dl_ids': dlids.join()};
         getUserArray(users,function(json){
-        userHash=myHash(json);
-        //parse and push each json entry into its own <li> block
-        $.each(stream, function(i, item) {
-              items.push(parseItem(item, userHash, item.type));
-        });
+          userHash=myHash(json);
 
-        done(items);
+          //parse and push each json entry into its own <li> block
+          $.each(stream, function(i, item) {
+                items.push(parseItem(item, userHash, item.type));
+          });
+
+          done(items);
         });
-      }     
+      }
     //append <li> blocks to appropriate container
       
     });
@@ -144,31 +146,39 @@ function showMessages(done) {
 
 
 function parseItem(item, userHash, type) {
-    if(item==undefined || item==null || item=="" || $.isEmptyObject(userHash) || type==undefined || type==null || type==""  || userHash==undefined ) {
-      return "";
-    }
-    var entry = "<li class='listEL' id='" +item.id+ "' uid='"+item.from_DL_id+"'><section  class='eventElem' >"
-                + "<img src=" + userHash[item.from_DL_id].img + " alt='pic' />"
-                + "<div class='unandmsg'><div class='sendandre'><p class='user_name'>" +userHash[item.from_DL_id].name;
-    
-    if(item.DL_id != null && item.DL_id != undefined && item.DL_id != "" && item.DL_id != item.from_DL_id) {
-        entry += ">>> " + userHash[item.DL_id].name;
-    }
-    entry += "</p></div>";
-    if(type == "cal" && item.time_from != "0000-00-00 00:00:00"){
-      entry += "<p class='eventTime'>"+item.time_from+"</p>";
-    }
 
-    entry += "<section class='message_content'>"
-          + "<p class='subject'>" + item.subject + "</p>";
+  if(item==undefined || item==null || item=="" || $.isEmptyObject(userHash) || type==undefined || type==null || type==""  || userHash==undefined ) {
+    return "";
+  }
 
-    if(item.content != null && item.content != undefined) {
-        entry += "<p class='content'>" + item.content.substr(0,20);
-    }
+  var sectionClass = "eventElem";
+  if (item.completed !== null) {
+    sectionClass += " completed";
+  }
 
-    entry += "</section></div></section></li>";
+  var entry = "<li class='listEL' id='" +item.id+ "' uid='"+item.from_DL_id+"'>"
+              + "<section  class='"+sectionClass+"' >"
+              + "<img src=" + userHash[item.from_DL_id].img + " alt='pic' />"
+              + "<div class='unandmsg'><div class='sendandre'><p class='user_name'>" +userHash[item.from_DL_id].name;
+  
+  if(item.DL_id != null && item.DL_id != undefined && item.DL_id != "" && item.DL_id != item.from_DL_id) {
+      entry += ">>> " + userHash[item.DL_id].name;
+  }
+  entry += "</p></div>";
+  if(type == "cal" && item.time_from != "0000-00-00 00:00:00"){
+    entry += "<p class='eventTime'>"+item.time_from+"</p>";
+  }
 
-    return entry;
+  entry += "<section class='message_content'>"
+        + "<p class='subject'>" + item.subject + "</p>";
+
+  if(item.content != null && item.content != undefined) {
+      entry += "<p class='content'>" + item.content.substr(0,20);
+  }
+
+  entry += "</section></div></section></li>";
+
+  return entry;
 }
 
 function datetimetoDate(date) {
