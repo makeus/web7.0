@@ -75,6 +75,7 @@ function sendMessageClickEvent() {
                 getStreamUrl(function(stream){
                     $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
                     resetMessageFields();
+                    addLiListener();
                 });
             });
         } else {
@@ -82,6 +83,7 @@ function sendMessageClickEvent() {
                 getStreamUrl(function(stream){
                     $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
                     resetMessageFields();
+                    addLiListener();
                 });
             });
         }
