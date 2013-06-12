@@ -51,6 +51,20 @@
       </div>
       <div id="message-hidden" hidden>
         <div data-role="fieldcontain">
+          <label for="privacy">Privacy:</label>
+          <select id="privacy">
+            <option value="read" selected>Public</option>
+            <option value="owner">Private</option>
+          </select>
+        </div>
+        <div data-role="fieldcontain">
+          <div data-role="collapsible">
+            <h2 class="ui-collapsible-heading">CC</h2>
+            <ul id="cc" data-role="listview" data-filter="true">
+            </ul>
+          </div>
+        </div>
+        <div data-role="fieldcontain">
           <label for ="date_from">Date from:</label>
           <input type="date" name="date_from" id="date_from"></input>
           <label for ="time_from">Time (hh:mm)</label>
@@ -86,6 +100,20 @@
         <input type="text" id="messageField" placeholder="Leave a message here"/>
       </div>
       <div id="message-hidden" hidden>
+        <div data-role="fieldcontain">
+          <label for="privacy">Privacy:</label>
+          <select id="privacy">
+            <option value="read" selected>Public</option>
+            <option value="owner">Private</option>
+          </select>
+        </div>
+        <div data-role="fieldcontain">
+          <div data-role="collapsible">
+            <h2 class="ui-collapsible-heading">CC</h2>
+            <ul id="cc" data-role="listview" data-filter="true">
+            </ul>
+          </div>
+        </div>
         <label>Link</label><br/>
         <input type="url" id="linkField" placeholder="http://"/><br/>
         <label>Long Content</label><br/>
