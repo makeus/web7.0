@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded",function(){
         bar: true
     });
 
-    $("#messageField").focus(function() {
+    $("#inputField").focus(function() {
         $("#message-hidden").show();
     });
 
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded",function(){
 
 function sendMessageClickEvent() {
     if(isToken()) {
-        var subject = $("#messageField").val();
+        var subject = $("#inputField").val();
         var link = $("#linkField").val();
 
         if(subject == "") {
@@ -59,7 +59,7 @@ function hideMessageFields() {
 }
 
 function resetMessageFields() {
-    $("#messageField").val("");
+    $("#inputField").val("");
     $("#linkField").val("");
     hideMessageFields();
 }
