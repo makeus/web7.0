@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded",function(){
-	$("#sendMessage").click(sendMessageClickEvent);
     $("#sendMessageBox").click(sendMessageClickEvent);
 
     setupPage({
@@ -43,7 +42,6 @@ function sendMessageClickEvent() {
         if(subject == "") {
             return;
         }
-
         addMessage(getDL_id(), getDL_id(), subject, link,null,function(){
             getOwnStream('message,cal,note',function(stream){
                 $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");

@@ -102,7 +102,6 @@ function saveTask(subject){
 }
 
 function saveMessage(subject){
-    var privacy = $("#linkField").val();
     var link = $("#linkField").val();
     var content = $("#contentField").val();
     addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content,function(){
