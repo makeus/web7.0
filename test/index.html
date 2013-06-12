@@ -13,6 +13,7 @@
   <script src="../www/vendor/hammerjs/jquery.hammer.min.js"></script>
   <script src="qunit.js"></script>
   <script src="jquery.mockjax.js"></script>
+  <script src="qunit-reporter-junit.js"></script>
   <script type="text/javascript">
     $.mockjax({
       url: "*",
@@ -42,6 +43,13 @@
   <script src="tests/userInfoTests.js"></script>
   <script src="tests/historyTests.js"></script>
   <script src="tests/searchTests.js"></script>
+  
+
+  <script type="text/javascript">
+    // QUnit.jUnitReport = function(report) {
+    //     $.parseXML(report.xml);
+    // };
+  </script>
 
   <ul data-role="listview" id="linklist" hidden></ul>
 </body>
