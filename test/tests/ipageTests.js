@@ -57,7 +57,7 @@ asyncTest( "ipage parsemessage test", function() {
 	setTimeout(function(){
 		start();
 		result = $("#all").html();
-		var expected = "<section id=\"ipageMessage\"><div id=\"messageContent\"><img src=\"https://dlfwwwfiles.s3.amazonaws.com/images/8620/thumb_1495esn.jpg\"><div id=\"ipageFromAndSubject\"><h3>testio tesdia &gt;&gt; testtenseeen</h3><p id=\"ipageTime\">Time: 2013-06-06 12:16:38</p><p id=\"ipageSubject\">en kerro</p></div><div id=\"ipageContent\"><p></p></div></div></section><section id=\"ipageComments\" style=\"display: none;\"><ul id=\"listOfComments\"></ul></section><section id=\"commentArea\"><textarea id=\"\" class=\"commentArea\" placeholder=\"Add your comment here\"></textarea><button id=\"addComment\">Add</button></section>";
+		var expected = "<section id=\"ipageMessage\"><div id=\"messageContent\"><img src=\"https://dlfwwwfiles.s3.amazonaws.com/images/8620/thumb_1495esn.jpg\"><div id=\"ipageFromAndSubject\"><h3>testio tesdia &gt;&gt; testtenseeen</h3><p id=\"ipageTime\">Time: 2013-06-06 12:16:38</p><p id=\"ipageSubject\">en kerro</p></div><div id=\"ipageContent\"><p></p></div></div></section><section id=\"ipageComments\" style=\"display: none; \"><ul id=\"listOfComments\"></ul></section><section id=\"commentArea\"><textarea id=\"\" class=\"commentArea\" placeholder=\"Add your comment here\"></textarea><button id=\"addComment\">Add</button></section>";
 		equal(result, expected);
 
 		$("#all").remove();
@@ -66,3 +66,10 @@ asyncTest( "ipage parsemessage test", function() {
 	
 
 });
+
+
+
+
+
+
+
