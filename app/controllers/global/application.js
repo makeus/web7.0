@@ -50,12 +50,15 @@ function getMessageInfo(id){
 }
 
 function getInfo(dl_id,done){
-    var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
+	var info = getInfoCache(dl_id);
+	if(!info) {
+	var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
     var url="dlid"
     var info=rest(opts,url,
         function(data) {
             result = data;
             success(data);
+            setInfoCache(data);
             done(data);
         },
         function(data) {
@@ -63,9 +66,10 @@ function getInfo(dl_id,done){
             error(data);
             done(data);
         });
+	} else {
+		done(info);
+	}
 }
-
-
 
 function setupPage(settings) {
 	if (settings === undefined)
@@ -129,11 +133,29 @@ function getActivityStream(opts,done) {
 		});
 }
 
-function getUserArray(opts,done) {
+function getUserArray(dlids,done) {
+	opts = {'uid': getDL_id(), 'auth':getToken(), 'dl_ids':dlids};
+	var arr = dlids.split(",");
+	var cached  = new Array();
+
+	$.grep(arr, function(item, i) {
+		var info = getInfoCache(item);
+		if(!info) {
+			cached.push(info);
+		}
+		return info === false;
+	});
+
+	opts["dl_ids"] = arr.join();
 	var url = "dlid";
+	var opts = {'uid': getDL_id(), 'auth': getToken(), 'dl_ids':dlids};
     rest(opts, url, function(data) {
         result=data;
         success(data);
+        $.each(data, function(i, item) {
+        	setInfoCache(item);
+        });
+        data = data.concat(cached);
         done(data);
     },
     function(data) {
@@ -142,8 +164,6 @@ function getUserArray(opts,done) {
         done(data);
     });
 }
-
-
 
 function isToken() {
 	return (getToken() != null) && (getToken() != undefined);
