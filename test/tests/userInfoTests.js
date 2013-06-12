@@ -246,12 +246,7 @@ asyncTest( "getEntityInformation test", function() {
     var dl_id = "4321";
 	
 	$.mockjax({
-		url: /https:\/\/www.dliv.in\/rest\/dlid/,
-		urlParams: [
-			'dl_id',
-			'auth',
-			'uid'
-		],
+		url: "*",
 		responseText: {
 			DL_id: "8653",
 			type: "user",
