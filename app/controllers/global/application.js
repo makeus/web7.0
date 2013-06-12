@@ -147,8 +147,8 @@ function getUserArray(dlids,done) {
 	});
 
 	opts["dl_ids"] = arr.join();
-
 	var url = "dlid";
+	var opts = {'uid': getDL_id(), 'auth': getToken(), 'dl_ids':dlids};
     rest(opts, url, function(data) {
         result=data;
         success(data);

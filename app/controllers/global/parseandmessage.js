@@ -90,7 +90,6 @@ function getStream(opts,done){
           });
 
           done(items);
-
         });
       }     
     //append <li> blocks to appropriate container
@@ -114,16 +113,18 @@ function getOwnStream(types,done) {
 function parseRelations(string) {
     var array = string.split(',');
     $.each(array, function(i, item) {
-        array[i] = array[i].split(':');
+        array[i] = item.split(':')[0];
     });
     return array;
 }
 
-function ccList(dlid) {
-    if(dlid == undefined || dlid.relations == undefined) {
-      return;
-    } 
-    var relations = parseRelations(dlid.relations);
+function ccList() {
+  var uid = getDL_id();
+  if(uid == undefined || uid.relations == undefined) {
+    return;
+  } 
+  var relations = parseRelations(uid.relations);
+
 
 }
 
