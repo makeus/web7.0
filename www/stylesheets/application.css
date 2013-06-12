@@ -10,6 +10,66 @@ li {
 }
 
 
+/* BAR */
+
+#bar {
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: white;
+	display: none;
+	/* height defined in /controllers/global/bar.js */
+}
+
+#betweenBlackLines {
+	height: 100%;
+	margin-top: 3px;
+	background: white;
+	border-top-style: solid;
+	border-top-color: black;
+	border-top-width: 5px;
+	border-bottom-style: solid;
+	border-bottom-color: black;
+	border-bottom-width: 5px;
+}
+
+.barCell {
+	height: 100%;
+}
+
+#logoArea {
+	position: absolute;
+	left: 0px;
+	/* width defined in /controllers/global/bar.js */
+}
+
+#barLogo {
+	margin-left: 3px;
+	max-width: 77px;
+	margin-top: 15px;
+	max-height: 65px;
+}
+
+#searchArea {
+	position: absolute;
+	padding-left: 5%;
+	padding-right: 5%;
+	/* left and right defined in /controllers/global/bar.js */
+}
+
+#searchInput {
+	margin-top: 17px;
+}
+
+#buttonArea {
+	position: absolute;
+	right: 0px;
+	background-color: gray;
+	/* width defined in /controllers/global/bar.js */
+}
+
 
 
 * {
@@ -196,6 +256,8 @@ section#searchResults > h1 {
 	vertical-align: middle;
 	margin: 0.5%;
 }
+
+
 .sendandre {
 	display:inline-block;
 	margin-left: 5%;
@@ -249,32 +311,45 @@ section#searchResults > h1 {
 	margin-left: 5%;
 	margin-top:-1%;
 }
-#messageContent > img{
+
+
+/* IPage */
+
+#ipageMessage {
+	border: thin solid grey;
+	margin:10px;
+}
+
+#messageContent > img {
 	vertical-align: top;
 	display: inline-block;
 	width:15%;
 	margin: 10px;
 }
-#ipageFromAndSubject {
-	vertical-align: middle;
+
+#ipageInfo {
 	display: inline-block;
-	width:70%;
+	width: 70%;
+}
+
+#ipageFormAndSubject {
+	vertical-align: middle;
 	margin-top: 10px;
 }
+
 #ipageTime {
 	font-size:0.8em;
 }
-#ipageMessage {
-	border: thin solid grey;
-	margin:10px;
-}
+
 #ipageComments {
 	margin: 10px;
 	border:thin solid grey;
 }
+
 #listOfComments {
 	list-style: none;
 }
+
 #listOfComments > li {
 	margin:10px;
 }
@@ -283,6 +358,29 @@ section#searchResults > h1 {
 	border-top: solid thin LightGray;
 	margin:10px;
 }
+
+
+/* TASK / EVENT */
+
+.completed {
+	opacity: 0.4;
+}
+
+.completed .message_content, .completed #ipageSubject {
+	text-decoration:line-through;
+}
+
+#completeMarker {
+}
+
+#completeMarker > label {
+}
+
+#completeCheckbox {
+}
+
+
+
 .commentWriter{
 	display:inline-block;
 	vertical-align: top;
