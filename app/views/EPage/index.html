@@ -47,9 +47,9 @@
 <div id="cal" hidden>
   <div id="message">
       <div id="message-shown">
-        <input type="text" id="messageField" placeholder="Add a task"/>
+        <input type="text" id="inputField" placeholder="Add a task"/>
       </div>
-      <div id="message-hidden" hidden>
+      <div id="form-hidden" hidden>
         <div data-role="fieldcontain">
           <label for="privacy">Privacy:</label>
           <select id="privacy">
@@ -97,9 +97,9 @@
 <div id="msg" hidden>
   <div id="message">
         <div id="message-shown">
-        <input type="text" id="messageField" placeholder="Leave a message here"/>
+        <input type="text" id="inputField" placeholder="Leave a message here"/>
       </div>
-      <div id="message-hidden" hidden>
+      <div id="form-hidden" hidden>
         <div data-role="fieldcontain">
           <label for="privacy">Privacy:</label>
           <select id="privacy">
@@ -118,6 +118,32 @@
         <input type="url" id="linkField" placeholder="http://"/><br/>
         <label>Long Content</label><br/>
         <textarea id="contentField"></textarea>
+        <div id="sendMessageBox"><a id="sendMessage" href="#">+</a></div>
+        <div id="closelink"><a id="close" href="#">close</a></div>
+      </div>
+  </div>
+</div>
+
+<div id="not" hidden>
+  <div id="message">
+        <div id="note-shown">
+        <input type="text" id="inputField" placeholder="Leave a note here"/>
+      </div>
+      <div id="form-hidden" hidden>
+        <label>Privacy: </label>
+        <select id="privacy">
+            <option> Public</option>
+            <option> Private</option>
+        </select></br>
+        <label>Connect / assign/ cc to: </label><br>
+        <input type="text" id="cclist" placeholder="Connect others"></input><br/>
+        <div data-role="fieldcontain">
+          <label for ="date_to">Deadline:</label></br>
+          <input type="date" name="date_to" id="dDate" style="width:50%;" placeholder="dd.mm.yyyy"></input>
+          <input type="time" name="time_to" id="dTime" style="width:50%;" placeholder="hh:mm"></input>
+        </div>
+         <label>Additional information:: </label><br>
+        <textarea id="additional" rows="5"></textarea><br/>
         <div id="sendMessageBox"><a id="sendMessage" href="#">+</a></div>
         <div id="closelink"><a id="close" href="#">close</a></div>
       </div>
