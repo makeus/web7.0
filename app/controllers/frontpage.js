@@ -6,8 +6,6 @@ document.addEventListener("DOMContentLoaded",function(){
         bar: true
     });
 
-    
-
     $("#messageField").focus(function() {
         $("#message-hidden").show();
     });

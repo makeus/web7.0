@@ -55,6 +55,7 @@ function atachEvents(){
 function getStreamUrl(done) {
     var type = getURLParameter("type");
     var dlid = getURLParameter("dlid");
+
     if(type == null) {
         type = "message";
     }
