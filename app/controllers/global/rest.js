@@ -54,6 +54,7 @@ function addCommentRest(opts,url, success,error) {
 }
 
 
+
 function success(data) {
 	if(data != undefined && data.success != 0) {
 		status = 1;
