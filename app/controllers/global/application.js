@@ -32,24 +32,21 @@ document.addEventListener("DOMContentLoaded",function(){
 	}
 });
 
-function getUserData(dlid,done){
+function getUserData(dlid,done, error){
 	var info = getUserDataCache(dlid);
 	if(!info) {
-	var opts={'dl_id':dlid,'auth':getToken(),'uid':getDL_id(),'table_name':"dl_user"};
-    var url="dliddata"
-    var info=rest(opts,url,
+		var opts={'dl_id':dlid,'auth':getToken(),'uid':getDL_id(),'table_name':"dl_user"};
+    	var url="dliddata";
+    	rest(opts,url,
         function(data) {
             result = data;
             success(data);
             setUserDataCache(data);
             done(data);
         },
-        function(data) {
-            result = data; 
-            error(data);
-            done(data);
-        });
+        error);
 	} else {
+		//console.log("rtrtrtrtr");
 		done(info);
 	}
 }

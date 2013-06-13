@@ -5,19 +5,17 @@ document.addEventListener("DOMContentLoaded",function(){
 
     if(isToken()) {
         setbPageID(getURLParameter("dlid"));
-        var perusData = getInfo(bPageID);
-        alert(peruData.name);
-        setPageTitle(perusData);
-        appendImageAndUsername(perusData);
-
-        var userInfo;
-        getUserData(bPageID,function(userInfo){
-            console.log(userInfo);
-            parseBasicInfoPage(userInfo);
+        getInfo(bPageID, function(perusData){
+            setPageTitle(perusData);
+            appendImageAndUsername(perusData);
         });
-       
-        
 
+        getUserData(bPageID,function(userInfo){
+            //console.log(userInfo);
+            parseBasicInfoPage(userInfo);
+        }, function(){
+            $("#userData").hide();
+        });      
     } else {
         alert("UNAUTHORISED");
     }
@@ -38,7 +36,6 @@ function getUserInfo(bPageID) {
 
 function parseBasicInfoPage(info){
     if(info==undefined){return;};
-    
     appendInformation(info);
     appendPlace(info);
     appendLinks(info);
@@ -51,37 +48,68 @@ function appendImageAndUsername(info){
     $("#profileImage").attr('src', info.img);
     $("#Username").text(info.name); 
 }
+function wordFrom(a){
+    if (a==undefined){
+        return "-";
+    } 
+    return a;
+}
+function textFrom(a,b,c){
+    if (a==undefined && b == undefined && c==undefined){
+        return "-";
+    }
+    var text= wordFrom(a) + ' ' + wordFrom(c) + ' ' + wordFrom(b);
+    return text
+}
 
+function appendInto(element, text){
+    if (text=='-'){
+        $(element).parents('tr').hide();
+        return '';
+    } 
+    $(element).html(text);
+    return 'not empty';
+}
+
+function setVisibilityOf(element, rowsContent){
+    if (rowsContent == ''){
+        $(element).hide();
+    }
+}
 
 function appendInformation(info){
-    $("#infoName").html(info.first_name + ' ' + info.middle_name + ' ' + info.last_name);
-    $("#infoSex").html(info.sex);
-    $("#infoBirthday").html(info.birthday_day + '.' + info.birthday_month + '.' + info.birthday_year);
-    $("#infoLanguage").html(info.lang);
-    $("#infoEducation").html(info.education);
+    var rowsContent = appendInto("#infoName", textFrom(info.first_name, info.middle_name, info.last_name));
+    rowsContent += appendInto("#infoSex", wordFrom(info.sex));
+    rowsContent += appendInto("#infoBirthday", textFrom(info.birthday_day, info.birthday_month, info.birthday_year));
+    rowsContent += appendInto("#infoLanguage", wordFrom(info.lang));
+    rowsContent += appendInto("#infoEducation", wordFrom(info.education));
+    setVisibilityOf("#informations", rowsContent);
 }
 
 function appendPlace(info){
-    $("#infoAddress").html(info.address);
-    $("#infoSityState").html(info.postal_code + ' ' + info.city + ' ' + info.country);
-    $("#infoLongitude").html(info.long + '°');
-    $("#infoLatitude").html(info.lat + '°');
+    var rowsContent = appendInto("#infoAddress", wordFrom(info.address));
+    rowsContent += appendInto("#infoSityState", textFrom(info.postal_code, info.city, info.country));
+    rowsContent += appendInto("#infoLongitude", wordFrom(info.long));
+    rowsContent += appendInto("#infoLatitude", wordFrom(info.lat));
+    setVisibilityOf("#places", rowsContent);
 }
 
 function appendLinks(info){
-    $("#infoFacebook").html(info.facebook_page);
-        $("#infoFacebook").attr('href',info.facebook_page);
-    $("#infoTwitter").html(info.twitter_page);
-        $("#infoTwitter").attr('href',info.twitter_page);
-    $("#infoLinkpage").html(info.linkedin_page);
-        $("#infoLinkpage").attr('href',info.linkedin_page);
+    $("#infoFacebook").attr('href',info.facebook_page);
+    var rowsContent = appendInto("#infoFacebook", wordFrom(info.facebook_page));
+    $("#infoTwitter").attr('href',info.twitter_page);    
+    rowsContent += appendInto("#infoTwitter", wordFrom(info.twitter_page));
+    $("#infoLinkpage").attr('href',info.linkedin_page);
+    rowsContent += appendInto("#infoLinkpage", wordFrom(info.linkedin_page));
+    setVisibilityOf("#links", rowsContent);
 }
  function appendContact(info){
-    $("#infoPhone").html(info.phone);
-    $("#infoEmail").html(info.email);
-        $("#infoEmail").attr('href', 'mailto:' + info.email);
-    $("#infoHomePage").html(info.home_page);
-        $("#infoHomePage").attr('href',info.home_page);
+    var rowsContent = appendInto("#infoPhone", wordFrom(info.phone));
+    $("#infoEmail").attr('href', 'mailto:' + info.email);
+    rowsContent += appendInto("#infoEmail", wordFrom(info.email));
+    $("#infoHomePage").attr('href',info.home_page);
+    rowsContent += appendInto("#infoHomePage", wordFrom(info.home_page));
+    setVisibilityOf("#contact", rowsContent);
  }
 
 
