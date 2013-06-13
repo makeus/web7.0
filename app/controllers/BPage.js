@@ -45,7 +45,9 @@ function parseBasicInfoPage(info){
     appendContact(info);
 }
 
-function appendImageAndUsername(info){   
+
+function appendImageAndUsername(info){
+    if (info.img==undefined){return;}
     $("#profileImage").attr('src', info.img);
     $("#Username").text(info.name); 
 }

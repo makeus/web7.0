@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded",function(){
 				}
 			});
 		});
+        $("#relationslist").listview("refresh");
 	});
     $("#rightpanel img").load(function() {
-    	setEntityInformation();
 		setRightBarActiveLink();
     });
 
@@ -30,22 +30,24 @@ document.addEventListener("DOMContentLoaded",function(){
 
 
 function appendRelationsList(dlid) {
-	var li = "<li id='relationList" + dlid.DL_id + "'>";
+	var li = "<li>";
 	if(dlid.img!=""){
-		li += '<img class="searchImages" src="' + dlid.img + '"" alt="kuva"></img>';
+		li += '<img src="' + dlid.img + '"" alt="kuva"></img>';
 	}else{
-		li += '<img class="emptySearchImages" src="'+'../../resources/images/tyhja.png'+'"" alt="kuva"></img>';
+		li += '<img class=\"emptyRelationImage\" src="'+'../../resources/images/tyhja.png'+'"" alt="kuva"></img>';
 	}
-	li += "<div><h2>" + dlid.name + "</h2>";
-	li += "<h3>" + dlid.type + "</h3></div>";
-	li += "<a href=#>x</a>";      // TÄHÄN POISTO KUNHAN SEMMOINEN TEHDÄÄN
+    li += "<div>"
+	li += "<h2>" + dlid.name + "</h2>";
+	li += "<h3>" + dlid.type + "</p>";
+    li += "</div>"
+	li += "<i id='delete" + dlid.DL_id + "' class=\"icon-remove\" ></i>";      // TÄHÄN POISTO KUNHAN SEMMOINEN TEHDÄÄN
 	li += "</li>";
 
 	$("#relationslist").append(li);
 	
-	$("li#relationList" + dlid.DL_id).click(function() {
-		view.push("EPage", "index.html?dlid=" + dlid.DL_id);
-	});
+	// $("li#relationList" + dlid.DL_id).click(function() {
+	// 	view.push("EPage", "index.html?dlid=" + dlid.DL_id);
+	// });
 }
 
 function setEntityInformation(){

@@ -283,7 +283,7 @@ asyncTest( "addEvent test", function() {
 	});	
 
 	login(username, password,function(data){
-		addEvent(to_dl_id, from_dl_id, subject,"",null,"1","2","3",null,function(data){
+		addEvent(to_dl_id, from_dl_id, subject,"",null,"1","2","3",null, null, function(data){
 			start();
 				$.mockjaxClear();
 
@@ -306,7 +306,7 @@ asyncTest( "addEvent unauthorized", function() {
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	addEvent(to_dl_id, from_dl_id, subject,"",null,"1","2","3",null,function(data){
+	addEvent(to_dl_id, from_dl_id, subject,"",null,"1","2","3",null, null, function(data){
 		start();
 		equal(getStatus(), 401);
 
@@ -328,7 +328,7 @@ asyncTest( "addEvent fail method test", function() {
 			ErrorMessage: "Method not allowed"
 		}
 	});
-	addEvent(to_dl_id, from_dl_id, subject,"",null,"1","2","3",null,function(data){
+	addEvent(to_dl_id, from_dl_id, subject,"",null,"1","2","3",null, null, function(data){
 		start();
 		equal(getStatus(), 405);
 

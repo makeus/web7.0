@@ -2,7 +2,6 @@ li {
 	list-style-type: none;
 }
 
-
 #main, html, body {
   /* top defined in /controllers/global/bar.js */
 
@@ -10,71 +9,14 @@ li {
 }
 
 
-/* BAR */
-
-#bar {
-	position: fixed;
-	z-index: 1;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background: white;
-	display: none;
-	/* height defined in /controllers/global/bar.js */
-}
-
-#betweenBlackLines {
-	height: 100%;
-	margin-top: 3px;
-	background: white;
-	border-top-style: solid;
-	border-top-color: black;
-	border-top-width: 5px;
-	border-bottom-style: solid;
-	border-bottom-color: black;
-	border-bottom-width: 5px;
-}
-
-.barCell {
-	height: 100%;
-}
-
-#logoArea {
-	position: absolute;
-	left: 0px;
-	/* width defined in /controllers/global/bar.js */
-}
-
-#barLogo {
-	margin-left: 3px;
-	max-width: 77px;
-	margin-top: 15px;
-	max-height: 65px;
-}
-
-#searchArea {
-	position: absolute;
-	padding-left: 5%;
-	padding-right: 5%;
-	/* left and right defined in /controllers/global/bar.js */
-}
-
-#searchInput {
-	margin-top: 17px;
-}
-
-#buttonArea {
-	position: absolute;
-	right: 0px;
-	background-color: gray;
-	/* width defined in /controllers/global/bar.js */
-}
-
-
-
 * {
   	-webkit-user-select: none; 
+  	
    /* Disable selection/Copy of UIWebView when tapping for a long time */
+
+
+
+   /* POISTAKAAN KUN RELEASE */
 }
 
 input {
@@ -249,13 +191,6 @@ section#searchResults > h1 {
 	width: 80%;
 	margin-left: auto;
 }
-.eventElem > img {
-	display:inline-block;
-	width: 15%;
-	max-width: 300px;
-	vertical-align: middle;
-	margin: 0.5%;
-}
 
 
 .sendandre {
@@ -268,14 +203,32 @@ section#searchResults > h1 {
 	margin-left: 5%;
 }
 
-#thelist {
-	margin: 10px;
-}
 
-#thelist li {
+ul#thelist li {
 	border: thin solid grey;
 	list-style: none;
-	margin-bottom: 5px;
+	margin: -1px;
+}
+
+ul#thelist li:first-child {
+	border-top: 0;
+}
+
+ul#thelist li:last-child {
+	border-bottom: 0;
+}
+
+ul#thelist .eventElem img {
+	display:inline-block;
+	width: 12%;
+	max-width: 300px;
+	vertical-align: middle;
+	margin: 0.5%;
+	margin-left: 10px;
+}
+
+ul#thelist .eventElem p {
+	margin: 8px;
 }
 
 #searchdiv {
@@ -411,7 +364,7 @@ section#searchResults > h1 {
 }
 
 .bar_info > img {
-	width: 30%;
+	width: 20%;
 	padding: 5px;
 	background: #333;
 }
@@ -512,32 +465,87 @@ section#commentArea > textarea {
 	margin-bottom: 0;
 }
 
+form.ui-listview-filter {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background: white;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+form.ui-listview-filter div {
+	border-radius: 0px;
+}
+
+.ui-input-search.ui-focus {
+	box-shadow: initial;
+}
+
+ul#relationslist i {
+	float:right;
+	margin-top: 20px;
+	margin-left: 10px;
+}
+
+ul#relationslist li:first-child, ul#relationslist .ui-first-child {
+	border-top: 0;
+
+}
+
+ul#relationslist li:last-child, ul#relationslist .ui-last-child {
+	border-bottom: 0;
+}
+
+ul#relationslist li {
+	background: white;
+	margin: -1px;
+	padding-left: 15px;
+	border: thin solid lightgray;
+
+}
+
+ul#relationslist li h2 {
+	font-size: 15px;
+}
+
+ul#relationslist li h3 {
+	font-size: 13px;
+	color: lightgray;
+}
+
+
+ul#relationslist div {
+	vertical-align: middle;
+	margin-left: 10%;
+	display: inline-block;
+	max-width: 50%;
+}
+
+ul#relationslist img {
+	vertical-align: middle;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	max-width: 80px;
+	max-height: 80px;
+	width: 80px;
+	float: none;
+	position: initial;
+	max-height: initial;
+	max-width: initial;
+}
+ul#relationslist .emptyRelationImage {
+	border: thin solid black;
+}
 
 #bar {
 	background: white;
 	height: 50px;
 	border-bottom: solid black;
-	/*position: fixed;
-	z-index: 1;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background: white;
-	display: none;*/
-	/* height defined in /controllers/global/bar.js */
+
 }
 
-#betweenBlackLines {
-	/*height: 100%;
-	margin-top: 3px;
-	background: white;
-	border-top-style: solid;
-	border-top-color: black;
-	border-top-width: 5px;
-	border-bottom-style: solid;
-	border-bottom-color: black;
-	border-bottom-width: 5px;*/
-}
 
 .barCell {
 	padding-top:10px;
@@ -547,22 +555,12 @@ section#commentArea > textarea {
 }
 
 
-#logoArea {
-	/*position: absolute;
-	left: 0px;*/
-	/* width defined in /controllers/global/bar.js */
-}
-
-
 
 #searchArea {
 	width:70%;
 	float:left;
 	height:30px;
-	/*position: absolute;
-	padding-left: 5%;
-	padding-right: 5%;*/
-	/* left and right defined in /controllers/global/bar.js */
+	padding-left: 10px;
 }
 
 #searchInput {
@@ -593,4 +591,28 @@ section#commentArea > textarea {
 }
 #backButton {
 	visibility: hidden;
+}
+
+#cc {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#cc li {
+clear:both;
+}
+
+#cc li>img {
+    float:left;
+    max-width:50px;
+}
+
+#cc li>p {
+    float:left;
+}
+
+#cc li>input {
+    margin-top:15px;
+    float:left;
 }
