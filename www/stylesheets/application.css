@@ -548,6 +548,7 @@ ul#relationslist .emptyRelationImage {
 	width:70%;
 	float:left;
 	height:30px;
+	padding-left: 10px;
 }
 
 #searchInput {
