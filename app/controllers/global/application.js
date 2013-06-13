@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded",function(){
+	if(!isSteroids()) {
+		$("*").css("max-width", "400px");
+	}
+
 
 	if(/login/i.test(window.location.pathname)) {
 		localStorage.clear();
@@ -171,7 +175,7 @@ function setActivityCompleted() {
 }
 
 function getUserArray(dlids,done) {
-	opts = {'uid': getDL_id(), 'auth':getToken(), 'dl_ids':dlids};
+	var opts = {'uid': getDL_id(), 'auth':getToken(), 'dl_ids':dlids};
 	var arr = dlids.split(",");
 	var cached  = new Array();
 
@@ -185,7 +189,6 @@ function getUserArray(dlids,done) {
 
 	opts["dl_ids"] = arr.join();
 	var url = "dlid";
-	var opts = {'uid': getDL_id(), 'auth': getToken(), 'dl_ids':dlids};
     rest(opts, url, function(data) {
         result=data;
         success(data);

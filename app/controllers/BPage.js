@@ -39,7 +39,6 @@ function parseBasicInfoPage(info){
 
 function appendImageAndUsername(info){
     if (info.img==undefined){return;}
-    alert(info.img);
     $("#profileImage").attr('src', info.img);
     $("#first_name").text(info.first_name + info.last_name);
    
