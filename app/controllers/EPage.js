@@ -30,11 +30,21 @@ function showRightForm(type){
         $("#message").replaceWith($("#msg").show());
         $("#cal").remove();
         $("#not").remove();
-    } else {
+    } else if(type=='note') {
         $("#message").replaceWith($("#not").show());
         $("#cal").remove();
         $("#msg").remove();
+    } else {
+        $("#message").replaceWith($("#msg").show());
+        $("#cal").remove();
+        $("#not").remove();
     }
+    
+    getCCList(function(data) {
+        if(data != undefined && data != "") {
+            $("#cc").append(data.join(''));
+        }   
+    });
 }
 
 function atachEvents(){
@@ -91,8 +101,9 @@ function saveTask(subject){
     var time_from = ""+ $("#date_from").val() + " " + $("#time_from").val();
     var time_to = ""+ $("#date_to").val() + " " + $("#time_to").val();
     var location = $("location").val();
+    var ccList = getSelectedCC();
 
-    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location,null,function(){
+    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location, null, ccList, function(){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
@@ -104,6 +115,7 @@ function saveTask(subject){
 function saveMessage(subject){
     var link = $("#linkField").val();
     var content = $("#contentField").val();
+    var ccList = getSelectedCC();
     addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content,function(){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
@@ -113,11 +125,10 @@ function saveMessage(subject){
     });
 }
 
-
 function saveNote(subject){  
     var privacy = $("#privacy").val();
     var deadline = ""+ $("#dDate").val() + " " + $("#dTime").val();  
-    //var ccList = .....
+    var ccList = getSelectedCC();
     var content = $("#additional").val();
     addNote(getURLParameter("dlid"), getDL_id(), subject, content, deadline,function(){
         getStreamUrl(function(stream){
@@ -126,6 +137,14 @@ function saveNote(subject){
             addLiListener();
         });
     });
+}
+
+function getSelectedCC() {
+    var cc = [];
+    $('input:checked').each(function() {
+        cc.push($(this).val());
+    });
+    return cc.join();
 }
 
 function hideMessageFields() {
@@ -140,7 +159,6 @@ function resetMessageFields() {
     $("#time_to").val("");
     $("#location").val("");
     $("#additional").val("");
-    $("#cclist").val("");
     $("#date_to").val("");
     hideMessageFields();
 }

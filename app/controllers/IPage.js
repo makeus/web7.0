@@ -55,8 +55,11 @@ function setCompleteMarkerEvent() {
     $("#completeCheckbox").change(function() {
         if (this.checked) {
             $("#ipageMessage").addClass("completed");
+            setActivityCompleted();
         } else {
             $("#ipageMessage").removeClass();
+
+            alert("Not implemented");
         }
     });
 }
@@ -85,6 +88,12 @@ function parseMessage(){
         $("#ipageContent").hide();
     } else {
         $("#ipageContent").show();
+    }
+
+    if (info.type === "cal" || info.type === "note") {
+        $("#completeMarker").show();
+    } else {
+        $("#completeMarker").hide();
     }
 
     if (info.completed !== null) {

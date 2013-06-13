@@ -3,7 +3,7 @@ asyncTest( "ipage parsemessage test", function() {
 	var sender = "testio tesdia";
 	var receiver = "testtenseeen";
 	
-	
+
 	$.mockjax({
 		url: "*",
 		responseText: [{
@@ -31,7 +31,7 @@ asyncTest( "ipage parsemessage test", function() {
 			type: "user"
 		}
 		]
-	})
+	});
 	$("body").append('<div id="all"><section id="ipageMessage"><div id ="messageContent"><img src=""></img><div id="ipageInfo"><div id="ipageFormAndSubject"></div><div id="completeMarker"><input id="completeCheckbox" type="checkbox" /><label for="completeCheckbox">Mark as completed</label></div></div><div id="ipageContent"></div></div></section><section id="ipageComments"><ul id="listOfComments"></ul></section><section id="commentArea"><textarea id="" class=\'commentArea\' placeholder=\'Add your comment here\' rows=1></textarea><div id="sendMessageBox" hidden class="addComment"><a class="addComment" href="#">+</a></div></section></div>');
 
 	var stream = [{
@@ -69,13 +69,4 @@ asyncTest( "ipage parsemessage test", function() {
 		$("#all").remove();
 		$.mockjaxClear();	
 	},2000);
-	
-
 });
-
-
-
-
-
-
-
