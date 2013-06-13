@@ -2,6 +2,9 @@ li {
 	list-style-type: none;
 }
 
+html {
+	max-width: 550px;
+}
 
 #main, html, body {
   /* top defined in /controllers/global/bar.js */
@@ -268,14 +271,11 @@ section#searchResults > h1 {
 	margin-left: 5%;
 }
 
-#thelist {
-	margin: 10px;
-}
 
 #thelist li {
 	border: thin solid grey;
 	list-style: none;
-	margin-bottom: 5px;
+	margin: -1px;
 }
 
 #searchdiv {
