@@ -594,3 +594,27 @@ section#commentArea > textarea {
 #backButton {
 	visibility: hidden;
 }
+
+#cc {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#cc li {
+clear:both;
+}
+
+#cc li>img {
+    float:left;
+    max-width:50px;
+}
+
+#cc li>p {
+    float:left;
+}
+
+#cc li>input {
+    margin-top:15px;
+    float:left;
+}
