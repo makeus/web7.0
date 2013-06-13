@@ -5,12 +5,17 @@ document.addEventListener("DOMContentLoaded",function(){
 
     if(isToken()) {
         setbPageID(getURLParameter("dlid"));
+        var perusData = getInfo(bPageID);
+        alert(peruData.name);
+        setPageTitle(perusData);
+        appendImageAndUsername(perusData);
+
         var userInfo;
         getUserData(bPageID,function(userInfo){
             console.log(userInfo);
             parseBasicInfoPage(userInfo);
         });
-        //setPageTitle(userInfo.name);
+       
         
 
     } else {
@@ -23,8 +28,8 @@ function setbPageID(id){
     bPageID = id;
 }
 
-function setPageTitle(name){
-    $("#appTitle").text(name + ' - info');
+function setPageTitle(info){
+    $("#appTitle").text(info.name + ' - info');
 }
 
 function getUserInfo(bPageID) {
@@ -33,33 +38,50 @@ function getUserInfo(bPageID) {
 
 function parseBasicInfoPage(info){
     if(info==undefined){return;};
-    appendImageAndUsername(info);
-    //appendContent();
-}
-
-function appendImageAndUsername(info){
-    if (info.img==undefined){return;}
-    alert(info.img);
-    $("#profileImage").attr('src', info.img);
-    $("#first_name").text(info.first_name + info.last_name);
-   
-}
-
-
-function appendContent(info){
-    var comments = info.comments;
-    var content = "";
-    var currTime = (new Date()).getTime();
     
-    $.each(comments,function(i,item){
-        content += "<li><p id='"+item.uid+"' class='commentWriter'>" + item.name + ":</p><p class='commentText'>" + item.comment + "</p><p class='commentTime'>Time: " + getTimeDiff(item.created) + "</p></li>";
-    });
-
-    if (content==""){
-        $("#ipageComments").hide();
-    } else {
-        $("#ipageComments").show();
-    }
-
-    return content;
+    appendInformation(info);
+    appendPlace(info);
+    appendLinks(info);
+    appendContact(info);
 }
+
+function appendImageAndUsername(info){   
+    $("#profileImage").attr('src', info.img);
+    $("#Username").text(info.name); 
+}
+
+
+function appendInformation(info){
+    $("#infoName").html(info.first_name + ' ' + info.middle_name + ' ' + info.last_name);
+    $("#infoSex").html(info.sex);
+    $("#infoBirthday").html(info.birthday_day + '.' + info.birthday_month + '.' + info.birthday_year);
+    $("#infoLanguage").html(info.lang);
+    $("#infoEducation").html(info.education);
+}
+
+function appendPlace(info){
+    $("#infoAddress").html(info.address);
+    $("#infoSityState").html(info.postal_code + ' ' + info.city + ' ' + info.country);
+    $("#infoLongitude").html(info.long + '°');
+    $("#infoLatitude").html(info.lat + '°');
+}
+
+function appendLinks(info){
+    $("#infoFacebook").html(info.facebook_page);
+        $("#infoFacebook").attr('href',info.facebook_page);
+    $("#infoTwitter").html(info.twitter_page);
+        $("#infoTwitter").attr('href',info.twitter_page);
+    $("#infoLinkpage").html(info.linkedin_page);
+        $("#infoLinkpage").attr('href',info.linkedin_page);
+}
+ function appendContact(info){
+    $("#infoPhone").html(info.phone);
+    $("#infoEmail").html(info.email);
+        $("#infoEmail").attr('href', 'mailto:' + info.email);
+    $("#infoHomePage").html(info.home_page);
+        $("#infoHomePage").attr('href',info.home_page);
+ }
+
+
+
+
