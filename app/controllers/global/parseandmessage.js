@@ -191,8 +191,15 @@ function parseItem(item, userHash, type) {
     entry += "<p class='eventTime'>"+item.time_from+"</p>";
   }
 
-  entry += "<section class='message_content'>"
-        + "<p class='subject'>" + item.subject + "</p>";
+  entry += "<section class='message_content'>";
+
+  entry += "<p class='subject'>";
+  if(item.subject.length > 50) {
+    entry += item.subject.substr(0,50) + "...";
+  } else {
+    entry += item.subject;
+  }
+  entry += "</p>";
 
   if(item.content != null && item.content != undefined) {
       entry += "<p class='content'>" + item.content.substr(0,20);
