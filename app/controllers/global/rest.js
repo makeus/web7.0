@@ -110,3 +110,11 @@ function saveImage(url){
 function getImage(){
 	return localStorage.getItem('image');
 }
+
+function saveRelations(relations) {
+	localStorage.setItem('relations', relations);
+}
+
+function getRelations() {
+	return localStorage.getItem('relations');
+}

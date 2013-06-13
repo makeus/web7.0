@@ -131,17 +131,7 @@ function getOwnStream(types,done) {
 
 }
 
-
-function parseRelations(string) {
-    var array = string.split(',');
-    $.each(array, function(i, item) {
-        array[i] = item.split(':')[0];
-    });
-    return array;
-}
-
 function getCCList(done) {
-  console.log("getCCList");
   var items=[];
   var relations=[];
   var userHash={};
@@ -150,26 +140,33 @@ function getCCList(done) {
     return;
   }
 
-  getInfo(uid, function(data) {
+  var relationsString=getRelations();
+  if(relationsString == undefined) {
+    done(items);
+  }
+  else {
+    relations = parseRelations(relationsString);
 
-    relations=parseRelations(data.relations);
     getUserArray(relations.join(), function(json) {
-      
+        
       userHash = myHash(json, userHash);
-      console.log("RELATIONS"+relations);
-      console.log("USERHASH"+JSON.stringify(userHash));
-      console.log("WTF TEST");
-      
+        
       $.each(relations, function(i, item) {
         items.push(parseCC(userHash[item]));
       });
-      
-      console.log("ITEMS"+JSON.stringify(items));
-      done(items);
+        
+     done(items);
     });
+  }
 
-  });
+}
 
+function parseRelations(string) {
+    var array = string.split(',');
+    $.each(array, function(i, item) {
+        array[i] = item.split(':')[0];
+    });
+    return array;
 }
 
 function parseCC(info) {

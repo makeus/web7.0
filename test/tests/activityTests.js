@@ -336,3 +336,117 @@ asyncTest( "addEvent fail method test", function() {
 	});
 	
 });
+
+asyncTest( "getCCList test", function() {
+	$.mockjaxClear();
+	
+
+	$.mockjax({
+		url: url + "Authtoken",
+		responseText: {
+			DL_id: userId,
+			authtoken: authtoken,
+			staff: null
+		}
+
+	});
+
+	$.mockjax(
+	{
+		url:/https:\/\/www.dliv.in\/rest\/dlid/,
+		urlParams: [
+			'dl_ids',
+			'auth',
+			'uid'],
+		responseText: [{
+        	DL_id: "7795",
+        	type: "user",
+        	sub_type: "",
+	        relations: "7795:,8658",
+	        name: "Adele Vuohi",
+	        img: "https://dlfwwwfiles.s3.amazonaws.com/images/8653/thumb_303657-goats-picture.gif",
+	        edited: "2013-05-22 07:31:55",
+	        created: "2013-05-21 13:55:43",
+	        created_by: "8653",
+	        edited_by: "8653"
+    	},
+    	{
+        	DL_id: "8658",
+        	type: "user",
+        	sub_type: "",
+	        relations: "7795:,8658",
+	        name: "Adele Vuohi",
+	        img: "https://dlfwwwfiles.s3.amazonaws.com/images/8653/thumb_303657-goats-picture.gif",
+	        edited: "2013-05-22 07:31:55",
+	        created: "2013-05-21 13:55:43",
+	        created_by: "8653",
+	        edited_by: "8653"
+    	}]
+	});
+
+	login(username, password, function(data) {
+		localStorage.setItem('relations', '7795:,8658');
+		getCCList(function(data){
+			start();
+			equal(getStatus(), 1);
+		});
+		$.mockjaxClear();
+	});
+});
+
+asyncTest( "getCCList test no relations", function() {
+	$.mockjaxClear();
+	
+
+	$.mockjax({
+		url: url + "Authtoken",
+		responseText: {
+			DL_id: userId,
+			authtoken: authtoken,
+			staff: null
+		}
+
+	});
+
+	$.mockjax(
+	{
+		url:/https:\/\/www.dliv.in\/rest\/dlid/,
+		urlParams: [
+			'dl_ids',
+			'auth',
+			'uid'],
+		responseText: [{
+        	DL_id: "7795",
+        	type: "user",
+        	sub_type: "",
+	        relations: "7795:,8658",
+	        name: "Adele Vuohi",
+	        img: "https://dlfwwwfiles.s3.amazonaws.com/images/8653/thumb_303657-goats-picture.gif",
+	        edited: "2013-05-22 07:31:55",
+	        created: "2013-05-21 13:55:43",
+	        created_by: "8653",
+	        edited_by: "8653"
+    	},
+    	{
+        	DL_id: "8658",
+        	type: "user",
+        	sub_type: "",
+	        relations: "7795:,8658",
+	        name: "Adele Vuohi",
+	        img: "https://dlfwwwfiles.s3.amazonaws.com/images/8653/thumb_303657-goats-picture.gif",
+	        edited: "2013-05-22 07:31:55",
+	        created: "2013-05-21 13:55:43",
+	        created_by: "8653",
+	        edited_by: "8653"
+    	}]
+	});
+
+	login(username, password, function(data) {
+		//localStorage.setItem('relations', '7795:,8658');
+		getCCList(function(data){
+			start();
+			equal(getStatus(), 1);
+		});
+		$.mockjaxClear();
+	});
+});
