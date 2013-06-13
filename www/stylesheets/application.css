@@ -2,7 +2,6 @@ li {
 	list-style-type: none;
 }
 
-
 #main, html, body {
   /* top defined in /controllers/global/bar.js */
 
@@ -15,7 +14,12 @@ li {
 
 * {
   	-webkit-user-select: none; 
+  	
    /* Disable selection/Copy of UIWebView when tapping for a long time */
+
+
+
+   /* POISTAKAAN KUN RELEASE */
 }
 
 input {
@@ -209,14 +213,19 @@ section#searchResults > h1 {
 	margin-left: 5%;
 }
 
-#thelist {
-	margin: 10px;
-}
 
-#thelist li {
+ul#thelist li {
 	border: thin solid grey;
 	list-style: none;
-	margin-bottom: 5px;
+	margin: -1px;
+}
+
+ul#thelist li:first-child {
+	border-top: 0;
+}
+
+ul#thelist li:last-child {
+	border-bottom: 0;
 }
 
 #searchdiv {
