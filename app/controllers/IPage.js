@@ -64,6 +64,21 @@ function setCompleteMarkerEvent() {
 
 function parseMessage(){
     var info = getMessageInfo(iPageID);
+
+    switch(info.type) {
+        case 'cal':
+            $("#nameAndTypeBar p:last-child").text("Task");
+            break;
+        case 'message':
+            $("#nameAndTypeBar p:last-child").text("Message");
+            break;
+        case 'note':
+            $("#nameAndTypeBar p:last-child").text("To-Do Note");
+            break;
+        default:
+            $("#nameAndTypeBar p:last-child").text("Message");
+    }
+
     getSubject(info);
 
     if (info.content==""){

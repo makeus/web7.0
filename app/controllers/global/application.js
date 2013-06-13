@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded",function(){
 			sidebarsSetInfo(info);
 			leftbarCreateLinks(dlid);
 			rightbarCreateLinks(dlid);
+			setEntityInformation(info);
 		});
 		
 		jQuery( window ).on( "swiperight", function() {
@@ -31,6 +32,10 @@ document.addEventListener("DOMContentLoaded",function(){
 		});
 	}
 });
+
+function setEntityInformation(dlid){
+    $("#nameAndTypeBar p:first-child").text(dlid.name);
+}
 
 function getUserData(dlid,done){
 	var info = getUserDataCache(dlid);

@@ -50,44 +50,40 @@ function appendRelationsList(dlid) {
 	// });
 }
 
-function setEntityInformation(){
-    $("#entityRole").text($("#leftpanel .bar_role").text());
-    $("#entityName").text($("#leftpanel .bar_name").text());
-}
 
 function setRightBarActiveLink(){
     var type = getURLParameter("type");
 
     switch(type) {
         case 'user':
-            $("#entityStreamType").text("Users");
+            $("#nameAndTypeBar p:last-child").text("Users");
             $("#linklistrightUsers").addClass("active");
             break;
         case 'group':
-            $("#entityStreamType").text("Groups");
+            $("#nameAndTypeBar p:last-child").text("Groups");
             $("#linklistrightGroups").addClass("active");
             break;
         case 'animal':
-            $("#entityStreamType").text("Animals");
+            $("#nameAndTypeBar p:last-child").text("Animals");
             $("#linklistrightAnimals").addClass("active");
             break;
         case 'project':
-            $("#entityStreamType").text("Projects");
+            $("#nameAndTypeBar p:last-child").text("Projects");
             $("#linklistrightProjects").addClass("active");
             break;            
         case 'contract':
-            $("#entityStreamType").text("Contracts");
+            $("#nameAndTypeBar p:last-child").text("Contracts");
             $("#linklistrightContracts").addClass("active");
             break;
         case 'thing':
-            $("#entityStreamType").text("Things");
+            $("#nameAndTypeBar p:last-child").text("Things");
             $("#linklistrightThings").addClass("active");
             break;
         case 'space':
-            $("#entityStreamType").text("Spaces");
+            $("#nameAndTypeBar p:last-child").text("Spaces");
             $("#linklistrightSpaces").addClass("active");
             break;
         default:
-            $("#entityStreamType").text("Relations");
+            $("#nameAndTypeBar p:last-child").text("Relations");
     }
 }

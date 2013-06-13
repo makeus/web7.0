@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded",function(){
         getUserData(bPageID,function(userInfo){
             console.log(userInfo);
             parseBasicInfoPage(userInfo);
+            $("#nameAndTypeBar p:last-child").text("Information");
         });
         //setPageTitle(userInfo.name);
         

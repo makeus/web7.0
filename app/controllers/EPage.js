@@ -47,7 +47,6 @@ function atachEvents(){
     $("#sendMessage").click(sendMessageClickEvent);
     $("#sendMessageBox").click(sendMessageClickEvent);
     $("#leftpanel img").load(function() {
-        setEntityInformation();
         setLeftBarActiveLink();
     });
 }
@@ -146,28 +145,26 @@ function resetMessageFields() {
     hideMessageFields();
 }
 
-function setEntityInformation(){
-    $("#entityRole").text($("#leftpanel .bar_role").text());
-    $("#entityName").text($("#leftpanel .bar_name").text());
-}
+
 
 function setLeftBarActiveLink(){
     var type = getURLParameter("type");
 
     switch(type) {
         case 'cal':
-            $("#entityStreamType").text("Tasks & Events");
+            $("#nameAndTypeBar p:last-child").text("Tasks & Events");
             $("#linklistleftTasks").addClass("active");
             break;
         case 'message':
-            $("#entityStreamType").text("Messages");
+            $("#nameAndTypeBar p:last-child").text("Messages");
             $("#linklistleftMessages").addClass("active");
             break;
         case 'note':
-            $("#entityStreamType").text("To-Do Notes");
+            $("#nameAndTypeBar p:last-child").text("To-Do Notes");
             $("#linklistleftNotes").addClass("active");
             break;
         default:
+            $("#nameAndTypeBar p:last-child").text("Messages");
             $("#entityStreamType").text("Messages");
     }
 }

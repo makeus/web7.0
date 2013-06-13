@@ -595,3 +595,14 @@ ul#relationslist .emptyRelationImage {
 #backButton {
 	visibility: hidden;
 }
+#nameAndTypeBar {
+	width:50%;
+	display: inline-block;
+	float:left;
+}
+#nameAndTypeBar p{
+	font-size:0.8em;
+	text-align: center;
+	font-weight: bold;
+	margin:0;
+}
