@@ -30,21 +30,22 @@ document.addEventListener("DOMContentLoaded",function(){
 
 function getUserData(dlid,done){
 	var info = getUserDataCache(dlid);
+
 	if(!info) {
-	var opts={'dl_id':dlid,'auth':getToken(),'uid':getDL_id(),'table_name':"dl_user"};
-    var url="dliddata"
-    var info=rest(opts,url,
-        function(data) {
-            result = data;
-            success(data);
-            setUserDataCache(data);
-            done(data);
-        },
-        function(data) {
-            result = data; 
-            error(data);
-            done(data);
-        });
+		var opts={'dl_id':dlid,'auth':getToken(),'uid':getDL_id(),'table_name':"dl_user"};
+	    var url="dliddata"
+	    var info=rest(opts,url,
+	        function(data) {
+	            result = data;
+	            success(data);
+	            setUserDataCache(data);
+	            done(data);
+	        },
+	        function(data) {
+	            result = data; 
+	            error(data);
+	            done(data);
+	        });
 	} else {
 		done(info);
 	}
@@ -152,6 +153,21 @@ function getActivityStream(opts,done) {
 			error(data);
 			done(data);
 		});
+}
+
+function setActivityCompleted() {
+    var uid = getDL_id();
+    var auth = getToken();
+    var dlid = getURLParameter("uid");
+    var activity_id = getURLParameter("iPageID");
+
+    var url = "setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id="+dlid+"&activity_id="+activity_id;
+
+    rest(null,
+        url,
+        function() {},
+        function(data) { error(data); }
+        );
 }
 
 function getUserArray(dlids,done) {
