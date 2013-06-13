@@ -119,7 +119,7 @@ div#message-hidden > label, div #message-hidden > input {
 
 
 section#searchResults {
-	padding: 10px;
+	padding: 0;
 	vertical-align: middle;
 }
 
@@ -147,14 +147,9 @@ section#searchResults > h1 {
 }
 
 .searchCategory {
-	margin-left: 10px;
-	margin-right: 10px;
-/*	padding: 2px;*/
-	margin-right: auto;
-	margin-left: auto;
 	list-style: none;
-	/*border: thin solid black;*/
 	max-width: 710px;
+	margin: -1px;
 }
 
 .clear {
@@ -167,8 +162,8 @@ section#searchResults > h1 {
 	display: inline-block;
 	vertical-align: middle;
 	border: thin solid black;
-	width:15%;
-	margin: 2px;
+	width:12%;
+	margin: 10px;
 	max-width: 300px;
 }
 #picturebar {
@@ -193,17 +188,14 @@ section#searchResults > h1 {
 	vertical-align: middle;
 	width: 80%;
 	margin-left: auto;
+	margin-left: 10px;
 }
 
 
 .sendandre {
 	display:inline-block;
-	margin-left: 5%;
 	font-size: 0.8em;
 	font-weight: bolder;
-}
-.message_content {
-	margin-left: 5%;
 }
 
 
@@ -375,6 +367,7 @@ ul#thelist .eventElem p {
 .bar_name_role {
 	width: 65%;
 	display: inline-block;
+	vertical-align: middle;
 }
 
 .bar_name_role > h1 {
@@ -486,6 +479,10 @@ form.ui-listview-filter div {
 	box-shadow: initial;
 }
 
+ul#relationslist {
+	margin: initial;
+}
+
 ul#relationslist i {
 	float:right;
 	margin-top: 20px;
@@ -505,12 +502,14 @@ ul#relationslist li {
 	background: white;
 	margin: -1px;
 	padding-left: 15px;
+	padding: 0;
 	border: thin solid lightgray;
 
 }
 
 ul#relationslist li h2 {
 	font-size: 15px;
+	word-wrap: break-word;
 }
 
 ul#relationslist li h3 {
@@ -528,8 +527,7 @@ ul#relationslist div {
 
 ul#relationslist img {
 	vertical-align: middle;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin: 10px;
 	max-width: 80px;
 	max-height: 80px;
 	width: 80px;

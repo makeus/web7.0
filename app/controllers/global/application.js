@@ -77,21 +77,22 @@ function getMessageInfo(id){
 function getInfo(dl_id,done){
 	var info = getInfoCache(dl_id);
 	if(!info) {
-	var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
-    var url="dlid"
-    var info=rest(opts,url,
-        function(data) {
-            result = data;
-            success(data);
-            setInfoCache(data);
-            done(data);
-        },
-        function(data) {
-            result = data; 
-            error(data);
-            done(data);
-        });
+		var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
+	    var url="dlid"
+	    var info=rest(opts,url,
+	        function(data) {
+	            result = data;
+	            success(data);
+	            setInfoCache(data);
+	            done(data);
+	        },
+	        function(data) {
+	            result = data; 
+	            error(data);
+	            done(data);
+	        });
 	} else {
+		success(info);
 		done(info);
 	}
 }
