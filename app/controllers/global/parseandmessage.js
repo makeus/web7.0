@@ -227,8 +227,8 @@ function parseItem(item, userHash, type) {
   entry += "<section class='message_content'>";
 
   entry += "<p class='subject'>";
-  if(item.subject.length > 50) {
-    entry += item.subject.substr(0,50) + "...";
+  if(item.subject.length > 70) {
+    entry += item.subject.substr(0,70) + "...";
   } else {
     entry += item.subject;
   }

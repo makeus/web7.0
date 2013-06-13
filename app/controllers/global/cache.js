@@ -29,7 +29,9 @@ function setInfoCache(info) {
 	usercache[info.DL_id] = info;
 	setCache("usercache", usercache);
 }
+
 var userdatacache;
+
 function getUserDataCache(dlid) {
 	if(userdatacache == undefined) {
 		userdatacache = getCache("userdatacache");

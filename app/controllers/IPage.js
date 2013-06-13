@@ -55,8 +55,11 @@ function setCompleteMarkerEvent() {
     $("#completeCheckbox").change(function() {
         if (this.checked) {
             $("#ipageMessage").addClass("completed");
+            setActivityCompleted();
         } else {
             $("#ipageMessage").removeClass();
+
+            alert("Not implemented");
         }
     });
 }
@@ -64,12 +67,33 @@ function setCompleteMarkerEvent() {
 
 function parseMessage(){
     var info = getMessageInfo(iPageID);
+
+    switch(info.type) {
+        case 'cal':
+            $("#nameAndTypeBar p:last-child").text("Task");
+            break;
+        case 'message':
+            $("#nameAndTypeBar p:last-child").text("Message");
+            break;
+        case 'note':
+            $("#nameAndTypeBar p:last-child").text("To-Do Note");
+            break;
+        default:
+            $("#nameAndTypeBar p:last-child").text("Message");
+    }
+
     getSubject(info);
 
     if (info.content==""){
         $("#ipageContent").hide();
     } else {
         $("#ipageContent").show();
+    }
+
+    if (info.type === "cal" || info.type === "note") {
+        $("#completeMarker").show();
+    } else {
+        $("#completeMarker").hide();
     }
 
     if (info.completed !== null) {

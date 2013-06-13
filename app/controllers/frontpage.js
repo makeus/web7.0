@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded",function(){
             $("#appTitle").text(getName());
             $("#thelist").append(stream.join(''));
             addLiListener();
+            $("#nameAndTypeBar p:last-child").text("Infostream");
+
         });            
     } else {
         alert("UNAUTHORISED");
