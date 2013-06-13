@@ -36,15 +36,17 @@ function addCommentToMessage(message_id, comment,done){
     });
 }
 
-function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_to, location, sub_type,done) {
+function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_to, location, sub_type, cc, done) {
   if(to_dl_id == null || from_dl_id == null || subject == null) {
     return -1;
   }
+
   var uid = getDL_id();
   var auth = getToken();
   var type = "cal";
+
   addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 
-               'content':content, 'link':link, 'time_from':time_from, 'time_to':time_to, 'location':location, 'sub_type':sub_type},
+               'content':content, 'link':link, 'time_from':time_from, 'time_to':time_to, 'location':location, 'sub_type':sub_type, 'whitelist_dlid':cc},
                function(data){
                 success(data);
                 done(data);
@@ -138,14 +140,45 @@ function parseRelations(string) {
     return array;
 }
 
-function ccList() {
+function getCCList(done) {
+  console.log("getCCList");
+  var items=[];
+  var relations=[];
+  var userHash={};
   var uid = getDL_id();
-  if(uid == undefined || uid.relations == undefined) {
+  if(uid == undefined) {
     return;
-  } 
-  var relations = parseRelations(uid.relations);
+  }
 
+  getInfo(uid, function(data) {
 
+    relations=parseRelations(data.relations);
+    getUserArray(relations.join(), function(json) {
+      
+      userHash = myHash(json, userHash);
+      console.log("RELATIONS"+relations);
+      console.log("USERHASH"+JSON.stringify(userHash));
+      console.log("WTF TEST");
+      
+      $.each(relations, function(i, item) {
+        items.push(parseCC(userHash[item]));
+      });
+      
+      console.log("ITEMS"+JSON.stringify(items));
+      done(items);
+    });
+
+  });
+
+}
+
+function parseCC(info) {
+  return "<li><input id='cc_button' type='checkbox' name="
+         + info.DL_id
+         +" value="+info.DL_id+">"
+         +"<img src="+info.img+" alt='' />"
+         +"<p>" +info.name+"</p>"
+         +"</input></li>"; 
 }
 
 function myHash(json, hash) {
