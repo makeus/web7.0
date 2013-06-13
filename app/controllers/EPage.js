@@ -30,10 +30,14 @@ function showRightForm(type){
         $("#message").replaceWith($("#msg").show());
         $("#cal").remove();
         $("#not").remove();
-    } else {
+    } else if(type=='note') {
         $("#message").replaceWith($("#not").show());
         $("#cal").remove();
         $("#msg").remove();
+    } else {
+        $("#message").replaceWith($("#msg").show());
+        $("#cal").remove();
+        $("#not").remove();
     }
     
     getCCList(function(data) {
