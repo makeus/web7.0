@@ -55,6 +55,7 @@ function atachEvents(){
 function getStreamUrl(done) {
     var type = getURLParameter("type");
     var dlid = getURLParameter("dlid");
+
     if(type == null) {
         type = "message";
     }
@@ -73,6 +74,7 @@ function sendMessageClickEvent() {
         }
 
         if(getURLParameter("type")=="cal") {
+
             saveTask(subject);
         } else if(getURLParameter("type")=="message"){
             saveMessage(subject);
@@ -95,18 +97,19 @@ function saveTask(subject){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
+            addLiListener();
         });
     });
 }
 
 function saveMessage(subject){
-    var privacy = $("#linkField").val();
     var link = $("#linkField").val();
     var content = $("#contentField").val();
     addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content,function(){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
+            addLiListener();
         });
     });
 }
@@ -121,6 +124,7 @@ function saveNote(subject){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
+            addLiListener();
         });
     });
 }

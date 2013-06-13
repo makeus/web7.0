@@ -244,16 +244,10 @@ asyncTest( "getEntityInformation test", function() {
 	$.mockjaxClear();
 	
     var dl_id = "4321";
-	
 	$.mockjax({
-		url: /https:\/\/www.dliv.in\/rest\/dlid/,
-		urlParams: [
-			'dl_id',
-			'auth',
-			'uid'
-		],
+		url: "*",
 		responseText: {
-			DL_id: "8653",
+			DL_id: "4321",
 			type: "user",
 			sub_type: "",
 			relations: "7795:,8658",
@@ -268,7 +262,7 @@ asyncTest( "getEntityInformation test", function() {
 	});
 	
 	var result={
-	  "DL_id": "8653",
+	  "DL_id": "4321",
 	  "created": "2013-05-21 13:55:43",
 	  "created_by": "8653",
 	  "edited": "2013-05-22 07:31:55",
@@ -279,9 +273,10 @@ asyncTest( "getEntityInformation test", function() {
 	  "sub_type": "",
 	  "type": "user"
 	};
-	getInfo(dl_id,function(info){
+	localStorage.clear();
+	getInfo(dl_id,function(data){
 		start();
-		equal(info.name,result.name);
+		equal(data.name,result.name);
 		$.mockjaxClear();
 	});
 

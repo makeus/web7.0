@@ -104,3 +104,9 @@ function saveStream(data){
 function getSavedStream(){
 	return JSON.parse(localStorage.getItem('stream'));
 }
+function saveImage(url){
+	localStorage.setItem('image',url);
+}
+function getImage(){
+	return localStorage.getItem('image');
+}

@@ -29,3 +29,20 @@ function setInfoCache(info) {
 	usercache[info.DL_id] = info;
 	setCache("usercache", usercache);
 }
+var userdatacache;
+function getUserDataCache(dlid) {
+	if(userdatacache == undefined) {
+		userdatacache = getCache("userdatacache");
+	}
+	if(!(dlid in userdatacache)) {
+		return false;
+	}
+	return userdatacache[dlid];
+}
+function setUserDataCache(info) {
+	if(userdatacache == undefined) {
+		userdatacache = getCache("userdatacache");
+	}
+	userdatacache[info.DL_id] = info;
+	setCache("userdatacache", userdatacache);
+}

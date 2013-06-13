@@ -28,6 +28,27 @@ document.addEventListener("DOMContentLoaded",function(){
 	}
 });
 
+function getUserData(dlid,done){
+	var info = getUserDataCache(dlid);
+	if(!info) {
+	var opts={'dl_id':dlid,'auth':getToken(),'uid':getDL_id(),'table_name':"dl_user"};
+    var url="dliddata"
+    var info=rest(opts,url,
+        function(data) {
+            result = data;
+            success(data);
+            setUserDataCache(data);
+            done(data);
+        },
+        function(data) {
+            result = data; 
+            error(data);
+            done(data);
+        });
+	} else {
+		done(info);
+	}
+}
 
 function addLiListener(){
     $(".listEL").click(function(){
@@ -172,3 +193,42 @@ function isToken() {
 function getURLParameter(name) {
     return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 }
+
+
+// function downloadFile(dlUrl){
+//         window.requestFileSystem(
+//                      LocalFileSystem.PERSISTENT, 0, 
+//                      function onFileSystemSuccess(fileSystem) {
+//                      	        	alert("1");
+
+//                      fileSystem.root.getFile(
+//                                  "dummy.html", {create: true, exclusive: false}, 
+//                                  function gotFileEntry(fileEntry){
+//                                  	                     	        	alert("2");
+
+//                                  var sPath = fileEntry.fullPath.replace("dummy.html","");
+//                                  var fileTransfer = new FileTransfer();
+//                                  fileEntry.remove();
+//  								alert("5");
+//                                  fileTransfer.download(
+//                                            encodeURI(dlUrl),
+//                                            sPath + "theFile"+dlUrl.slice(-4),
+//                                            function(theFile) {
+//                                            	                     	        	alert("3");
+
+//                                            console.log("download complete: " + theFile.toURI());
+//                                            saveImage(theFile.toURI());
+//                                            alert(theFile.toURI());
+//                                            },
+//                                            function(error) {
+//                                            	                     	        	alert("4");
+
+//                                            console.log("download error source " + error.source);
+//                                            console.log("download error target " + error.target);
+//                                            console.log("upload error code: " + error.code);
+//                                            },true
+//                                            );
+//                                  });
+//                      });
+ 
+//     }

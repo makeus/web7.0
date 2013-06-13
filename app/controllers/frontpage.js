@@ -1,14 +1,11 @@
 document.addEventListener("DOMContentLoaded",function(){
-	$("#sendMessage").click(sendMessageClickEvent);
     $("#sendMessageBox").click(sendMessageClickEvent);
 
     setupPage({
         bar: true
     });
 
-    
-
-    $("#messageField").focus(function() {
+    $("#inputField").focus(function() {
         $("#message-hidden").show();
     });
 
@@ -37,17 +34,17 @@ document.addEventListener("DOMContentLoaded",function(){
 
 function sendMessageClickEvent() {
     if(isToken()) {
-        var subject = $("#messageField").val();
+        var subject = $("#inputField").val();
         var link = $("#linkField").val();
 
         if(subject == "") {
             return;
         }
-
         addMessage(getDL_id(), getDL_id(), subject, link,null,function(){
             getOwnStream('message,cal,note',function(stream){
                 $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
                 resetMessageFields();
+                addLiListener();
             });
         });
     } else {
@@ -60,7 +57,7 @@ function hideMessageFields() {
 }
 
 function resetMessageFields() {
-    $("#messageField").val("");
+    $("#inputField").val("");
     $("#linkField").val("");
     hideMessageFields();
 }
