@@ -482,6 +482,10 @@ form.ui-listview-filter {
 
 }
 
+form.ui-listview-filter div {
+	border-radius: 0px;
+}
+
 .ui-input-search.ui-focus {
 	box-shadow: initial;
 }
