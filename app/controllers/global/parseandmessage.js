@@ -141,16 +141,16 @@ function getCCList(done) {
   }
 
   var relationsString=getRelations();
-  if(relationsString == undefined) {
-    done(items);
-  }
-  else {
-    relations = parseRelations(relationsString);
+  console.log("relationstring: "+relationsString);
 
+  if(relationsString == undefined || relationsString == "") {
+    console.log("haloo olen tyhmä");
+    done(items);
+  } else {
+    relations = parseRelations(relationsString);
     getUserArray(relations.join(), function(json) {
-        
+       
       userHash = myHash(json, userHash);
-        
       $.each(relations, function(i, item) {
         items.push(parseCC(userHash[item]));
       });

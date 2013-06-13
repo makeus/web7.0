@@ -30,14 +30,10 @@ function showRightForm(type){
         $("#message").replaceWith($("#msg").show());
         $("#cal").remove();
         $("#not").remove();
-    } else if(type=='note') {
+    } else {
         $("#message").replaceWith($("#not").show());
         $("#cal").remove();
         $("#msg").remove();
-    } else {
-        $("#message").replaceWith($("#msg").show());
-        $("#cal").remove();
-        $("#not").remove();
     }
     
     getCCList(function(data) {
@@ -57,6 +53,7 @@ function atachEvents(){
     $("#sendMessage").click(sendMessageClickEvent);
     $("#sendMessageBox").click(sendMessageClickEvent);
     $("#leftpanel img").load(function() {
+        setEntityInformation();
         setLeftBarActiveLink();
     });
 }
@@ -103,7 +100,7 @@ function saveTask(subject){
     var location = $("location").val();
     var ccList = getSelectedCC();
 
-    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location, null, ccList, function(){
+    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location, null, ccList,    function(){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
@@ -163,26 +160,28 @@ function resetMessageFields() {
     hideMessageFields();
 }
 
-
+function setEntityInformation(){
+    $("#entityRole").text($("#leftpanel .bar_role").text());
+    $("#entityName").text($("#leftpanel .bar_name").text());
+}
 
 function setLeftBarActiveLink(){
     var type = getURLParameter("type");
 
     switch(type) {
         case 'cal':
-            $("#nameAndTypeBar p:last-child").text("Tasks & Events");
+            $("#entityStreamType").text("Tasks & Events");
             $("#linklistleftTasks").addClass("active");
             break;
         case 'message':
-            $("#nameAndTypeBar p:last-child").text("Messages");
+            $("#entityStreamType").text("Messages");
             $("#linklistleftMessages").addClass("active");
             break;
         case 'note':
-            $("#nameAndTypeBar p:last-child").text("To-Do Notes");
+            $("#entityStreamType").text("To-Do Notes");
             $("#linklistleftNotes").addClass("active");
             break;
         default:
-            $("#nameAndTypeBar p:last-child").text("Messages");
             $("#entityStreamType").text("Messages");
     }
 }
