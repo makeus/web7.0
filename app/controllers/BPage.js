@@ -1,18 +1,17 @@
 
 var bPageID;
 document.addEventListener("DOMContentLoaded",function(){
-    setupPage({
-        bar:true,
-        barBackButton:true
-    });
+    setupPage({bar : true, barBackButton : true});
 
     if(isToken()) {
         setbPageID(getURLParameter("dlid"));
+        var userInfo;
         getUserData(bPageID,function(userInfo){
             console.log(userInfo);
+            parseBasicInfoPage(userInfo);
         });
         //setPageTitle(userInfo.name);
-        //parseBasicInfoPage(userInfo);
+        
 
     } else {
         alert("UNAUTHORISED");
@@ -40,8 +39,9 @@ function parseBasicInfoPage(info){
 
 function appendImageAndUsername(info){
     if (info.img==undefined){return;}
+    alert(info.img);
     $("#profileImage").attr('src', info.img);
-    $("h1").text(info.name);
+    $("#first_name").text(info.first_name + info.last_name);
    
 }
 
