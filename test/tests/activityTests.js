@@ -442,7 +442,7 @@ asyncTest( "getCCList test no relations", function() {
 	});
 
 	login(username, password, function(data) {
-		//localStorage.setItem('relations', '7795:,8658');
+		localStorage.setItem("relations", "");
 		getCCList(function(data){
 			start();
 			equal(getStatus(), 1);

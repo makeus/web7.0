@@ -187,7 +187,6 @@ function setActivityCompleted(completed, done) {
 
 function getUserArray(dlids,done) {
 	var opts = {'uid': getDL_id(), 'auth':getToken(), 'dl_ids':dlids};
-	console.log("DLIDS TO GET:" +dlids);
 	var arr = dlids.split(",");
 	var cached  = new Array();
 
@@ -200,16 +199,13 @@ function getUserArray(dlids,done) {
 	});
 
 	opts["dl_ids"] = arr.join();
-	console.log(JSON.stringify(opts));
 	var url = "dlid";
     rest(opts, url, function(data) {
-    	console.log(JSON.stringify(data));
         result=data;
         success(data);
         $.each(data, function(i, item) {
         	setInfoCache(item);
         });
-        console.log("GETUSERAARAYDATA: "+JSON.stringify(data));
         data = data.concat(cached);
         done(data);
     },
