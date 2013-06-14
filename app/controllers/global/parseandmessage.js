@@ -169,7 +169,7 @@ function parseRelations(string) {
 }
 
 function parseCC(info) {
-  var entry = "<li><input id='cc_button' type='checkbox' name="
+  var entry = "<li id="+ info.DL_id+ "<input id=" +info.DL_id+" type='checkbox' name="
          + info.DL_id
          +" value="+info.DL_id+">";
 
@@ -182,7 +182,7 @@ function parseCC(info) {
 
   entry +=" alt='' />"
          +"<p>" +info.name+"</p>"
-         +"</input></li>"; 
+         +"</input></li><span class='clear'></span>"; 
   return entry;
 }
 
