@@ -55,11 +55,10 @@ function setCompleteMarkerEvent() {
     $("#completeCheckbox").change(function() {
         if (this.checked) {
             $("#ipageMessage").addClass("completed");
-            setActivityCompleted();
+            setActivityCompleted(true);
         } else {
             $("#ipageMessage").removeClass();
-
-            alert("Not implemented");
+            setActivityCompleted(false);
         }
     });
 }
