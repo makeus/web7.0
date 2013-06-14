@@ -626,3 +626,8 @@ ul#relationslist .emptyRelationImage {
     margin-top:15px;
     float:left;
 }
+.ui-corner-all{
+	-webkit-border-radius:.1em;
+	border-radius:.1em;
+}
+
