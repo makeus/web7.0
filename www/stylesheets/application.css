@@ -642,4 +642,9 @@ ul#relationslist .emptyRelationImage {
 	-webkit-border-radius:.1em;
 	border-radius:.1em;
 }
+.ui-btn-inner {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-color: black;
+}
 
