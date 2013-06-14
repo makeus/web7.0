@@ -61,12 +61,12 @@ div#message {
 	border: thin solid black;
 }
 
-div#message-hidden {
+div#form-hidden {
 	margin: 10px;
 	margin-bottom: 0;
 }
 
-div#message-shown > input {
+div#message-shown input {
 	font-size: 13px;
 	border-left: 0;
 	border-top: 0;
