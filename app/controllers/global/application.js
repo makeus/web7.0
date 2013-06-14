@@ -1,3 +1,11 @@
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady(){
+    document.addEventListener("backbutton", function(e){
+        window.history.go(-1);
+    }, false);
+}
+
 document.addEventListener("DOMContentLoaded",function(){
 	if(!isSteroids()) {
 		$("*").css("max-width", "340px");
@@ -39,7 +47,6 @@ function setEntityInformation(dlid){
 	}else{
 		$("#nameAndTypeBar p:first-child").text(dlid.name);	
 	}
-    
 }
 
 function getUserData(dlid,done, error){
@@ -195,32 +202,39 @@ function setActivityCompleted(completed, done) {
 function getUserArray(dlids,done) {
 	var opts = {'uid': getDL_id(), 'auth':getToken(), 'dl_ids':dlids};
 	var arr = dlids.split(",");
+	arr = $.unique(arr);
 	var cached  = new Array();
 
-	$.grep(arr, function(item, i) {
+	arr = $.grep(arr, function(item, i) {
 		var info = getInfoCache(item);
-		if(!info) {
+		if(info == undefined) {
+			info == false;
+		}
+		if(info !== false) {
 			cached.push(info);
 		}
-		return info === false;
+		return (info == false);
 	});
-
-	opts["dl_ids"] = arr.join();
-	var url = "dlid";
-    rest(opts, url, function(data) {
-        result=data;
-        success(data);
-        $.each(data, function(i, item) {
-        	setInfoCache(item);
-        });
-        data = data.concat(cached);
-        done(data);
-    },
-    function(data) {
-        result=data;
-        error(data);
-        done(data);
-    });
+	if(arr.length !== 0) {
+		opts["dl_ids"] = arr.join();
+		var url = "dlid";
+	    rest(opts, url, function(data) {
+	        result=data;
+	        success(data);
+	        $.each(data, function(i, item) {
+	        	setInfoCache(item);
+	        });
+	        data = data.concat(cached);
+	        done(data);
+	    },
+	    function(data) {
+	        result=data;
+	        error(data);
+	        done(data);
+	    });
+	} else {
+		done(cached);
+	}
 }
 
 function isToken() {

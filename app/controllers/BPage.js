@@ -35,6 +35,7 @@ function getUserInfo(bPageID) {
 
 function parseBasicInfoPage(info){
     if(info==undefined){return;};
+
     appendInformation(info);
     appendPlace(info);
     appendLinks(info);
@@ -43,9 +44,16 @@ function parseBasicInfoPage(info){
 
 
 function appendImageAndUsername(info){
-    if (info.img==undefined){return;}
-    $("#profileImage").attr('src', info.img);
+    var image = "";
+    if(info.img == "") {
+        image = '../../resources/images/tyhja.png';
+    } else {
+        image = info.img
+    }
+
+    $("#profileImage").attr('src', image);
     $("#Username").text(info.name); 
+    $("#Role").text(info.type);
 }
 function wordFrom(a){
     if (a==undefined){
