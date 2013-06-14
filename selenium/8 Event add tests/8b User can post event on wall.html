@@ -7,23 +7,13 @@
 <title>User can post new event on wall</title>
 </head>
 <body>
-<table cellpadding="1" cellspacing="1" border="1">
+<table id="myTable" cellpadding="1" cellspacing="1" border="1">
 <thead>
 <tr><td rowspan="1" colspan="3">User can post new event on wall</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/job/web7.0/ws/dist/views/EPage/index.html?type=cal</td>
-	<td></td>
-</tr>
-<tr>
 	<td>pause</td>
 	<td>2000</td>
-	<td></td>
-</tr>
-<tr>
-	<td>waitForTitle</td>
-	<td>Dlivin app</td>
 	<td></td>
 </tr>
 <tr>
@@ -34,16 +24,16 @@
 <tr>
 	<td>type</td>
 	<td>id=inputField</td>
-	<td>Selenium is writing on your wall</td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>500</td>
-	<td></td>
+	<td>test22</td>
 </tr>
 <tr>
 	<td>click</td>
 	<td>id=sendMessageBox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>4000</td>
 	<td></td>
 </tr>
 <tr>
@@ -52,8 +42,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>waitForElementPresent</td>
-	<td>css=section.eventElem</td>
+	<td>pause</td>
+	<td>4000</td>
 	<td></td>
 </tr>
 <tr>
@@ -63,9 +53,25 @@
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td></td>
+	<td>test22</td>
 	<td></td>
 </tr>
 </tbody></table>
+<script>
+
+var months = new Array('January','February','March','April','May',
+'June','July','August','September','October','November','December');
+var date = new Date();
+var day = date.getDate();
+var month = date.getMonth() + 1;
+var yy = date.getYear();
+var year = (yy < 1000) ? yy + 1900 : yy;
+var x = "Date: " + day + " " + months[month] + " " + year + " New selenium test event no:  "+ date.getMinutes()+ date.getSeconds()+date.getMilliseconds();
+var d = new Date();
+
+var a=document.getElementById('myTable');
+a.rows[3].cells[2].innerHTML=x;
+a.rows[9].cells[1].innerHTML=x;
+</script>
 </body>
 </html>
