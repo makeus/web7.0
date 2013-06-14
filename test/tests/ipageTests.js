@@ -61,6 +61,7 @@ asyncTest( "ipage parsemessage test", function() {
 	setTimeout(function(){
 		start();
 		result = $("#all").html();
+		
 		ok(result.indexOf(stream[0]["subject"] != -1));
 		ok(result.indexOf(stream[0]["content"] != -1));
 		ok(result.indexOf(sender) != -1);
@@ -69,4 +70,69 @@ asyncTest( "ipage parsemessage test", function() {
 		$("#all").remove();
 		$.mockjaxClear();	
 	},2000);
+});
+
+
+
+asyncTest( "valid request is send when task is marked completed", function() {
+	$.mockjaxClear();
+	
+    var uid = "6666";
+    var auth = "uliuuToken666";
+    var dl_id = "1000";
+    var activity_id = "4444";
+
+	var data = {
+		DL_id: uid,
+		authtoken: auth
+	}
+
+	saveDL_id(data);
+	saveToken(data);
+	
+	$.mockjax({
+		url: "https://www.dliv.in/rest/setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id=****&activity_id=****",
+		response: function(settings) {
+			this.responseText = { "success": "1" }
+		}
+	});
+
+	setActivityCompleted(true, function() {
+		start();
+		equal(getStatus(), 1);
+	});
+
+	$.mockjaxClear();
+});
+
+
+asyncTest( "valid request is send when task is marked incompleted", function() {
+	$.mockjaxClear();
+	
+    var uid = "6666";
+    var auth = "uliuuToken666";
+    var dl_id = "1000";
+    var activity_id = "4444";
+
+	var data = {
+		DL_id: uid,
+		authtoken: auth
+	}
+
+	saveDL_id(data);
+	saveToken(data);
+	
+	$.mockjax({
+		url: "https://www.dliv.in/rest/setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id=null&activity_id=null&remove=1",
+		response: function(settings) {
+			this.responseText = { "success": "1" }
+		}
+	});
+
+	setActivityCompleted(false, function() {
+		start();
+		equal(getStatus(), 1);
+	});
+
+	$.mockjaxClear();
 });

@@ -1,4 +1,4 @@
-function addMessage(to_dl_id, from_dl_id, subject, link, content, done) {
+function addMessage(to_dl_id, from_dl_id, subject, link, content, cc, done) {
 	if(to_dl_id == null || from_dl_id == null || subject == null) {
 		return -1;
 	}
@@ -6,7 +6,7 @@ function addMessage(to_dl_id, from_dl_id, subject, link, content, done) {
 	var auth = getToken();
 	var type = "message";
 	addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id,
-   'type':type, 'subject': subject, 'content':content, 'link':link},
+   'type':type, 'subject': subject, 'content':content, 'link':link, 'cc':cc},
    function(data){
       success(data);
       done();
@@ -46,7 +46,7 @@ function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_
   var type = "cal";
 
   addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 
-               'content':content, 'link':link, 'time_from':time_from, 'time_to':time_to, 'location':location, 'sub_type':sub_type, 'whitelist_dlid':cc},
+               'content':content, 'link':link, 'time_from':time_from, 'time_to':time_to, 'location':location, 'sub_type':sub_type, 'cc':cc},
                function(data){
                 success(data);
                 done(data);
@@ -58,7 +58,7 @@ function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_
 
 }
 
-function addNote(to_dl_id, from_dl_id, subject, content, time_to,done) {
+function addNote(to_dl_id, from_dl_id, subject, content, time_to, cc, done) {
   if(to_dl_id == null || from_dl_id == null || subject == null) {
     return -1;
   }
@@ -66,7 +66,7 @@ function addNote(to_dl_id, from_dl_id, subject, content, time_to,done) {
   var auth = getToken();
   var type = "note";
   addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 
-               'content':content, 'time_to':time_to},
+               'content':content, 'time_to':time_to, 'cc':cc},
                function(data){
                 success(data);
                 done(data);
@@ -79,13 +79,12 @@ function addNote(to_dl_id, from_dl_id, subject, content, time_to,done) {
 }
 
 function getStream(opts,done){
-  
+    
     getActivityStream(opts,function(stream){
       saveStream(stream);
       var items =[];
       var dlids= [];
       var userHash={};
-
       //error retrieving the activity stream
       if(getStatus()!=1 || stream=="" || stream.responseText=="") {
         done(items);
@@ -170,12 +169,21 @@ function parseRelations(string) {
 }
 
 function parseCC(info) {
-  return "<li><input id='cc_button' type='checkbox' name="
+  var entry = "<li id="+ info.DL_id+ "><input id=" +info.DL_id+" type='checkbox' name="
          + info.DL_id
-         +" value="+info.DL_id+">"
-         +"<img src="+info.img+" alt='' />"
+         +" value="+info.DL_id+">";
+
+  if(info.img == "") {
+    entry += "<img src='../../resources/images/tyhja.png'";
+  }
+  else {
+    entry +=  "<img src=" + info.img;
+  }
+
+  entry +=" alt='' />"
          +"<p>" +info.name+"</p>"
-         +"</input></li>"; 
+         +"</input></li><span class='clear'></span>"; 
+  return entry;
 }
 
 function myHash(json, hash) {
@@ -209,9 +217,15 @@ function parseItem(item, userHash, type) {
   }
 
   var entry = "<li class='listEL' id='" +item.id+ "' uid='"+item.from_DL_id+"'>"
-              + "<section  class='"+sectionClass+"' >"
-              + "<img src=" + userHash[item.from_DL_id].img + " alt='pic' />"
-              + "<div class='unandmsg'><div class='sendandre'><p class='user_name'>" +userHash[item.from_DL_id].name;
+              + "<section  class='"+sectionClass+"' >";
+  if(userHash[item.from_DL_id].img == "") {
+    entry += "<img src='../../resources/images/tyhja.png'";
+  }
+  else {
+    entry +=  "<img src=" + userHash[item.from_DL_id].img;
+  }
+  entry += " alt='pic' />"
+          + "<div class='unandmsg'><div class='sendandre'><p class='user_name'>" +userHash[item.from_DL_id].name;
   
   if(item.DL_id != null && item.DL_id != undefined && item.DL_id != "" && item.DL_id != item.from_DL_id) {
       entry += ">>> " + userHash[item.DL_id].name;

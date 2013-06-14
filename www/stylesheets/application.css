@@ -316,6 +316,7 @@ ul#thelist .eventElem p {
 }
 
 #completeMarker {
+	padding: 5px;
 }
 
 #completeMarker > label {
@@ -581,6 +582,18 @@ ul#relationslist .emptyRelationImage {
 #rightBarArea {
 	float:right;
 }
+#rightBarArea #ownPictureButton {
+	padding-right: 10px
+}
+
+#rightBarArea #searchButton {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+#rightBarArea #relationsButton {
+	padding-left: 10px;
+}
+
 #leftBarArea {
 	float:left;
 }
@@ -596,7 +609,7 @@ ul#relationslist .emptyRelationImage {
 }
 
 #nameAndTypeBar {
-	width:50%;
+	width:40%;
 	display: inline-block;
 	float:left;
 }
@@ -656,5 +669,14 @@ ul#relationslist .emptyRelationImage {
 	background: #F7F7F7;
 	margin: -1px;
 	border-radius: 0px;
+}
+.ui-corner-all{
+	-webkit-border-radius:.1em;
+	border-radius:.1em;
+}
+.ui-btn-inner {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-color: black;
 }
 
