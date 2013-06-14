@@ -49,7 +49,7 @@ function atachEvents(){
     $("#close").click(function(){
         hideMessageFields();
     });
-    $("#sendMessage").click(sendMessageClickEvent);
+    $("#sendMessageBox").click(sendMessageClickEvent);
     $("#leftpanel img").load(function() {
         setLeftBarActiveLink();
     });
