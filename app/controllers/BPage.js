@@ -1,4 +1,3 @@
-
 var bPageID;
 document.addEventListener("DOMContentLoaded",function(){
     setupPage({bar : true, barBackButton : true});
@@ -58,7 +57,7 @@ function textFrom(a,b,c){
     if (a==undefined && b == undefined && c==undefined){
         return "-";
     }
-    var text= wordFrom(a) + ' ' + wordFrom(c) + ' ' + wordFrom(b);
+    var text= wordFrom(a) + ' ' + wordFrom(b) + ' ' + wordFrom(c);
     return text
 }
 
