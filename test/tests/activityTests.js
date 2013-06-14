@@ -168,7 +168,7 @@ asyncTest( "addMessage test", function() {
 	});	
 
 	login(username, password,function(data){
-		addMessage(to_dl_id, from_dl_id, subject,"",null,function(data){
+		addMessage(to_dl_id, from_dl_id, subject,"",null,null,function(data){
 			start();
 			$.mockjaxClear();
 		});
@@ -192,7 +192,7 @@ asyncTest( "addMessage unauthorized", function() {
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	addMessage(to_dl_id, from_dl_id, subject, link,null,function(data){
+	addMessage(to_dl_id, from_dl_id, subject, link,null,null,function(data){
 		start();
 		equal(getStatus(), 401);
 
@@ -214,7 +214,7 @@ asyncTest( "addMessage fail method test", function() {
 			ErrorMessage: "Method not allowed"
 		}
 	});
-	addMessage(to_dl_id, from_dl_id, subject, link,null,function(data){
+	addMessage(to_dl_id, from_dl_id, subject, link,null, null,function(data){
 		start();
 		equal(getStatus(), 405);
 

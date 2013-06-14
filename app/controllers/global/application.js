@@ -166,19 +166,28 @@ function getActivityStream(opts,done) {
 		});
 }
 
-function setActivityCompleted() {
+function setActivityCompleted(completed, done) {
     var uid = getDL_id();
     var auth = getToken();
     var dlid = getURLParameter("uid");
     var activity_id = getURLParameter("iPageID");
 
-    var url = "setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id="+dlid+"&activity_id="+activity_id;
+    var remove = "";
+    if (completed === false)
+    	remove = "&remove=1";
 
+    var url = "setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id="+dlid+"&activity_id="+activity_id+remove;
+    
     rest(null,
         url,
-        function() {},
-        function(data) { error(data); }
-        );
+        function(data) {
+			success(data);
+			done(data);
+		},
+		function(data) {
+			error(data);
+			done(data);
+		});
 }
 
 function getUserArray(dlids,done) {

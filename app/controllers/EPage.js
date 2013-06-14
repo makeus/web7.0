@@ -50,7 +50,6 @@ function atachEvents(){
         hideMessageFields();
     });
     $("#sendMessage").click(sendMessageClickEvent);
-    $("#sendMessageBox").click(sendMessageClickEvent);
     $("#leftpanel img").load(function() {
         setLeftBarActiveLink();
     });
@@ -78,12 +77,11 @@ function sendMessageClickEvent() {
         }
 
         if(getURLParameter("type")=="cal") {
-
             saveTask(subject);
-        } else if(getURLParameter("type")=="message"){
-            saveMessage(subject);
-        } else {
+        } else if(getURLParameter("type")=="note"){
             saveNote(subject);
+        } else {
+            saveMessage(subject);
         }
     } else {
         alert("UNAUTHORISED");
@@ -98,7 +96,7 @@ function saveTask(subject){
     var location = $("location").val();
     var ccList = getSelectedCC();
 
-    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location, null, ccList,    function(){
+    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location, null, ccList, function(){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
@@ -111,7 +109,7 @@ function saveMessage(subject){
     var link = $("#linkField").val();
     var content = $("#contentField").val();
     var ccList = getSelectedCC();
-    addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content,function(){
+    addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content, ccList, function(){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
@@ -125,7 +123,8 @@ function saveNote(subject){
     var deadline = ""+ $("#dDate").val() + " " + $("#dTime").val();  
     var ccList = getSelectedCC();
     var content = $("#additional").val();
-    addNote(getURLParameter("dlid"), getDL_id(), subject, content, deadline,function(){
+    var ccList = getSelectedCC();
+    addNote(getURLParameter("dlid"), getDL_id(), subject, content, deadline, ccList, function(){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
