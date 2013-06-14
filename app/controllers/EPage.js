@@ -28,7 +28,7 @@ function showRightForm(type){
     } else if(type=="note"){
         $("#message").replaceWith($("#not").show());
         $("#cal").remove();
-        $("#not").remove();
+        $("#msg").remove();
     } else {
         $("#message").replaceWith($("#msg").show());
         $("#cal").remove();
