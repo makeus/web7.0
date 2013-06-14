@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded",function(){
 	if(!isSteroids()) {
-		$("*").css("max-width", "400px");
+		$("*").css("max-width", "340px");
 	}
 
 
@@ -34,7 +34,12 @@ document.addEventListener("DOMContentLoaded",function(){
 });
 
 function setEntityInformation(dlid){
-    $("#nameAndTypeBar p:first-child").text(dlid.name);
+	if(dlid.name.length > 35){
+		$("#nameAndTypeBar p:first-child").text(dlid.name.slice(0,32)+"...");
+	}else{
+		$("#nameAndTypeBar p:first-child").text(dlid.name);	
+	}
+    
 }
 
 function getUserData(dlid,done, error){
@@ -155,7 +160,7 @@ function getActivityStream(opts,done) {
 			done(data);
 		},
 		function(data) {
-			result = data;
+			console.log(data);
 			error(data);
 			done(data);
 		});
