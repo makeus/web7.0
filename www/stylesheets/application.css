@@ -316,6 +316,7 @@ ul#thelist .eventElem p {
 }
 
 #completeMarker {
+	padding: 5px;
 }
 
 #completeMarker > label {

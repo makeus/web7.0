@@ -182,11 +182,13 @@ function setActivityCompleted(completed, done) {
         url,
         function(data) {
 			success(data);
-			done(data);
+			if (done != null)
+				done(data);
 		},
 		function(data) {
 			error(data);
-			done(data);
+			if (done != null)
+				done(data);
 		});
 }
 
