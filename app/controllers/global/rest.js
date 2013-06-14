@@ -67,7 +67,7 @@ function error(data, t, m) {
 	if(t == "timeout") {
 		alert("TIMEOUT");
 	} else {
-		alert("ERROR " + t + ": " + m);
+		console.log("ERROR " + t + ": " + m);
 	}
 	status = data.status;
 }

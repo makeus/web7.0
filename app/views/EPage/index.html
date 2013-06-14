@@ -132,8 +132,13 @@
             <option> Public</option>
             <option> Private</option>
         </select></br>
-        <label>Connect / assign/ cc to: </label><br>
-        <input type="text" id="cclist" placeholder="Connect others"></input><br/>
+        <div data-role="fieldcontain">
+          <div data-role="collapsible">
+            <h2 class="ui-collapsible-heading">CC</h2>
+            <ul id="cc" data-role="listview" data-filter="true">
+            </ul>
+          </div>
+        </div>
         <div data-role="fieldcontain">
           <label for ="date_to">Deadline:</label></br>
           <input type="date" name="date_to" id="dDate" style="width:50%;" placeholder="dd.mm.yyyy"></input>

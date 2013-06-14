@@ -170,12 +170,21 @@ function parseRelations(string) {
 }
 
 function parseCC(info) {
-  return "<li><input id='cc_button' type='checkbox' name="
+  var entry = "<li><input id='cc_button' type='checkbox' name="
          + info.DL_id
-         +" value="+info.DL_id+">"
-         +"<img src="+info.img+" alt='' />"
+         +" value="+info.DL_id+">";
+
+  if(info.img == "") {
+    entry += "<img src='../../resources/images/tyhja.png'";
+  }
+  else {
+    entry +=  "<img src=" + info.img;
+  }
+
+  entry +=" alt='' />"
          +"<p>" +info.name+"</p>"
          +"</input></li>"; 
+  return entry;
 }
 
 function myHash(json, hash) {
@@ -209,9 +218,15 @@ function parseItem(item, userHash, type) {
   }
 
   var entry = "<li class='listEL' id='" +item.id+ "' uid='"+item.from_DL_id+"'>"
-              + "<section  class='"+sectionClass+"' >"
-              + "<img src=" + userHash[item.from_DL_id].img + " alt='pic' />"
-              + "<div class='unandmsg'><div class='sendandre'><p class='user_name'>" +userHash[item.from_DL_id].name;
+              + "<section  class='"+sectionClass+"' >";
+  if(userHash[item.from_DL_id].img == "") {
+    entry += "<img src='../../resources/images/tyhja.png'";
+  }
+  else {
+    entry +=  "<img src=" + userHash[item.from_DL_id].img;
+  }
+  entry += " alt='pic' />"
+          + "<div class='unandmsg'><div class='sendandre'><p class='user_name'>" +userHash[item.from_DL_id].name;
   
   if(item.DL_id != null && item.DL_id != undefined && item.DL_id != "" && item.DL_id != item.from_DL_id) {
       entry += ">>> " + userHash[item.DL_id].name;
