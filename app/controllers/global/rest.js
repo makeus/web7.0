@@ -68,7 +68,6 @@ function error(data, t, m) {
 		alert("TIMEOUT");
 	} else {
 		alert("ERROR " + t + ": " + m);
-		view.push("login");
 	}
 	status = data.status;
 }

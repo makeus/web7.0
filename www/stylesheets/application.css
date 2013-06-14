@@ -527,7 +527,7 @@ ul#relationslist img {
 	margin: 10px;
 	max-width: 80px;
 	max-height: 80px;
-	width: 80px;
+	width: 12%;
 	float: none;
 	position: initial;
 	max-height: initial;
@@ -563,7 +563,11 @@ ul#relationslist .emptyRelationImage {
 
 #searchInput {
 	height:30px;
+	background-image: url("../../www/resources/images/search.png");
+    background-repeat: no-repeat;
+    background-position: 13px;
 }
+
 #ownPictureButton {
 	display:inline;
 	vertical-align: bottom;
@@ -626,3 +630,31 @@ ul#relationslist .emptyRelationImage {
     margin-top:15px;
     float:left;
 }
+
+#bInfo span {
+	background: white;
+}
+
+#bInfo img{
+	vertical-align: middle;
+	width: 15%;
+	margin: 10px;
+}
+
+#bInfo div div {
+	display: inline-block;
+	vertical-align: middle;
+
+}
+
+#bInfo div div h2 {
+	font-size: 18px;
+	color: lightgray;
+}
+
+.ui-collapsible-inset .ui-collapsible-heading .ui-btn {
+	background: #F7F7F7;
+	margin: -1px;
+	border-radius: 0px;
+}
+
