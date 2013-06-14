@@ -41,7 +41,7 @@ bar = {
 		if (bar.isSearchPage()){
 			$("#searchArea").show();
 			$("#rightBarArea").hide();
-			$("#nameAndRoleBar").hide();
+			$("#nameAndTypeBar").hide();
 		}
 		$("#barLogo").click(function() {
 			$( "#leftpanel" ).panel( "open" );

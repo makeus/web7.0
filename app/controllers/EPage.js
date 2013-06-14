@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded",function(){
 
     showRightForm(getURLParameter("type"));
     atachEvents();
-   
     if(isToken()) {
         getStreamUrl(function(stream){
             if(stream != null && stream != "") {
@@ -51,9 +50,7 @@ function atachEvents(){
         hideMessageFields();
     });
     $("#sendMessage").click(sendMessageClickEvent);
-    $("#sendMessageBox").click(sendMessageClickEvent);
     $("#leftpanel img").load(function() {
-        setEntityInformation();
         setLeftBarActiveLink();
     });
 }
@@ -80,12 +77,11 @@ function sendMessageClickEvent() {
         }
 
         if(getURLParameter("type")=="cal") {
-
             saveTask(subject);
-        } else if(getURLParameter("type")=="message"){
-            saveMessage(subject);
-        } else {
+        } else if(getURLParameter("type")=="note"){
             saveNote(subject);
+        } else {
+            saveMessage(subject);
         }
     } else {
         alert("UNAUTHORISED");
@@ -100,7 +96,7 @@ function saveTask(subject){
     var location = $("location").val();
     var ccList = getSelectedCC();
 
-    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location, null, ccList,    function(){
+    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location, null, ccList, function(){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
@@ -113,7 +109,7 @@ function saveMessage(subject){
     var link = $("#linkField").val();
     var content = $("#contentField").val();
     var ccList = getSelectedCC();
-    addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content,function(){
+    addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content, ccList, function(){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
@@ -127,7 +123,8 @@ function saveNote(subject){
     var deadline = ""+ $("#dDate").val() + " " + $("#dTime").val();  
     var ccList = getSelectedCC();
     var content = $("#additional").val();
-    addNote(getURLParameter("dlid"), getDL_id(), subject, content, deadline,function(){
+    var ccList = getSelectedCC();
+    addNote(getURLParameter("dlid"), getDL_id(), subject, content, deadline, ccList, function(){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
@@ -160,28 +157,24 @@ function resetMessageFields() {
     hideMessageFields();
 }
 
-function setEntityInformation(){
-    $("#entityRole").text($("#leftpanel .bar_role").text());
-    $("#entityName").text($("#leftpanel .bar_name").text());
-}
 
 function setLeftBarActiveLink(){
     var type = getURLParameter("type");
 
     switch(type) {
         case 'cal':
-            $("#entityStreamType").text("Tasks & Events");
+            $("#nameAndTypeBar p:last-child").text("Tasks & Events");
             $("#linklistleftTasks").addClass("active");
             break;
         case 'message':
-            $("#entityStreamType").text("Messages");
+            $("#nameAndTypeBar p:last-child").text("Messages");
             $("#linklistleftMessages").addClass("active");
             break;
         case 'note':
-            $("#entityStreamType").text("To-Do Notes");
+            $("#nameAndTypeBar p:last-child").text("To-Do Notes");
             $("#linklistleftNotes").addClass("active");
             break;
         default:
-            $("#entityStreamType").text("Messages");
+            $("#nameAndTypeBar p:last-child").text("Messages");
     }
 }

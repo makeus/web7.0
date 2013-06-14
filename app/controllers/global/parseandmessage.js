@@ -1,4 +1,4 @@
-function addMessage(to_dl_id, from_dl_id, subject, link, content, done) {
+function addMessage(to_dl_id, from_dl_id, subject, link, content, cc, done) {
 	if(to_dl_id == null || from_dl_id == null || subject == null) {
 		return -1;
 	}
@@ -6,7 +6,7 @@ function addMessage(to_dl_id, from_dl_id, subject, link, content, done) {
 	var auth = getToken();
 	var type = "message";
 	addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id,
-   'type':type, 'subject': subject, 'content':content, 'link':link},
+   'type':type, 'subject': subject, 'content':content, 'link':link, 'cc':cc},
    function(data){
       success(data);
       done();
@@ -46,7 +46,7 @@ function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_
   var type = "cal";
 
   addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 
-               'content':content, 'link':link, 'time_from':time_from, 'time_to':time_to, 'location':location, 'sub_type':sub_type, 'whitelist_dlid':cc},
+               'content':content, 'link':link, 'time_from':time_from, 'time_to':time_to, 'location':location, 'sub_type':sub_type, 'cc':cc},
                function(data){
                 success(data);
                 done(data);
@@ -58,7 +58,7 @@ function addEvent(to_dl_id, from_dl_id, subject, link, content, time_from, time_
 
 }
 
-function addNote(to_dl_id, from_dl_id, subject, content, time_to,done) {
+function addNote(to_dl_id, from_dl_id, subject, content, time_to, cc, done) {
   if(to_dl_id == null || from_dl_id == null || subject == null) {
     return -1;
   }
@@ -66,7 +66,7 @@ function addNote(to_dl_id, from_dl_id, subject, content, time_to,done) {
   var auth = getToken();
   var type = "note";
   addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id, 'type':type, 'subject': subject, 
-               'content':content, 'time_to':time_to},
+               'content':content, 'time_to':time_to, 'cc':cc},
                function(data){
                 success(data);
                 done(data);
@@ -79,13 +79,12 @@ function addNote(to_dl_id, from_dl_id, subject, content, time_to,done) {
 }
 
 function getStream(opts,done){
-  
+    
     getActivityStream(opts,function(stream){
       saveStream(stream);
       var items =[];
       var dlids= [];
       var userHash={};
-
       //error retrieving the activity stream
       if(getStatus()!=1 || stream=="" || stream.responseText=="") {
         done(items);

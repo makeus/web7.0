@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded",function(){
 	if(!isSteroids()) {
-		$("*").css("max-width", "400px");
+		$("*").css("max-width", "340px");
 	}
 
 
@@ -34,7 +34,12 @@ document.addEventListener("DOMContentLoaded",function(){
 });
 
 function setEntityInformation(dlid){
-    $("#nameAndTypeBar p:first-child").text(dlid.name);
+	if(dlid.name.length > 35){
+		$("#nameAndTypeBar p:first-child").text(dlid.name.slice(0,32)+"...");
+	}else{
+		$("#nameAndTypeBar p:first-child").text(dlid.name);	
+	}
+    
 }
 
 function getUserData(dlid,done, error){
@@ -155,25 +160,34 @@ function getActivityStream(opts,done) {
 			done(data);
 		},
 		function(data) {
-			result = data;
+			console.log(data);
 			error(data);
 			done(data);
 		});
 }
 
-function setActivityCompleted() {
+function setActivityCompleted(completed, done) {
     var uid = getDL_id();
     var auth = getToken();
     var dlid = getURLParameter("uid");
     var activity_id = getURLParameter("iPageID");
 
-    var url = "setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id="+dlid+"&activity_id="+activity_id;
+    var remove = "";
+    if (completed === false)
+    	remove = "&remove=1";
 
+    var url = "setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id="+dlid+"&activity_id="+activity_id+remove;
+    
     rest(null,
         url,
-        function() {},
-        function(data) { error(data); }
-        );
+        function(data) {
+			success(data);
+			done(data);
+		},
+		function(data) {
+			error(data);
+			done(data);
+		});
 }
 
 function getUserArray(dlids,done) {
