@@ -42,7 +42,7 @@ function sendMessageClickEvent() {
         if(subject == "") {
             return;
         }
-        addMessage(getDL_id(), getDL_id(), subject, link,null,function(){
+        addMessage(getDL_id(), getDL_id(), subject, link,null,null,function(){
             getOwnStream('message,cal,note',function(stream){
                 $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
                 resetMessageFields();
