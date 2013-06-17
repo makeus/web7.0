@@ -13,11 +13,11 @@ document.addEventListener("DOMContentLoaded",function(){
     }
     getInfo(dlid, function(items){
 		var relations = parseRelations(items.relations);
+
 		$.each(relations, function(i, item) {
-			getInfo(item, function(info) {
-				if(info.type == type) {
+			getInfo(item.dlid, function(info) {
+				if(info.type == type)
 					appendRelationsList(info);
-				}
 			});
 		});
         $("#relationslist").listview("refresh");

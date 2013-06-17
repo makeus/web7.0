@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded",function(){
     setupPage({bar:true});
-
+    
     showRightForm(getURLParameter("type"));
     atachEvents();
     if(isToken()) {
@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded",function(){
     if($("#entityImg").width() == 200) {
         $("#entityImg").css('margin-left', '-100px');
     }
-    
 });
 
 function showRightForm(type){

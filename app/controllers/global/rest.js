@@ -113,9 +113,34 @@ function getImage(){
 }
 
 function saveRelations(relations) {
-	localStorage.setItem('relations', relations);
+	localStorage.setItem('relations', JSON.stringify(relations));
 }
 
 function getRelations() {
-	return localStorage.getItem('relations');
+	var relations = localStorage.getItem('relations');
+
+	if (relations !== "")
+		return $.parseJSON(relations);
+	else
+		return null;
+}
+
+function getRelation(dlid) {
+	var relations = getRelations();
+
+	if (relations !== null) {
+		for (var i=0; i<relations.length; ++i) {
+			if (relations[i].dlid === dlid) {
+				return relations[i];
+			}
+		}
+	}
+	return null;
+}
+
+function isRelated() {
+	if (getRelation(getURLParameter("dlid")) !== null)
+		return true;
+	else
+		return false;
 }
