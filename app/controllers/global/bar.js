@@ -29,6 +29,14 @@ bar = {
 			view.pop();
 		});
 	},
+	hideBackButton: function() {
+		$("#backButton").css("visibility", "none");
+		var button = $("#barLogo");
+		button.unbind();
+		button.click(function() {
+			$( "#leftpanel" ).panel( "open" );
+		});
+	}
 
 	initListeners: function() {
 		$("#ownPictureButton").attr("src",getImage());
