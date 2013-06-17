@@ -307,9 +307,7 @@ asyncTest( "getUserArray resttest", function() {
 			console.log(settings.data);
 			equal(settings.data.uid, uid, "Oma id ei muutu");
 			equal(settings.data.auth, authToken, "Auth ei muutu");
-			ok(settings.data.dl_ids.indexOf("8762") != -1);
-			ok(settings.data.dl_ids.indexOf("2838") != -1);
-			ok(settings.data.dl_ids.indexOf("19394") != -1);
+			equal(settings.data.dl_ids, dl_ids, "haettavat dl_idt eivät muutu");
 			this.responseText = [];
 			
 		}

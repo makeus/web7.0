@@ -1,4 +1,4 @@
-	document.addEventListener("DOMContentLoaded", function() {
+function initsearch() {
 	setupPage({
 		bar: true,
 		barBackButton: true
@@ -15,18 +15,11 @@
 	historyTemp(function(data){
 		updateSearchResults(data);
 	});
-
-
 	$("#searchInput").bind('input',function(){
-		if(!$("#searchInput").val()) {
-			$("#searchInput").css("background-image", "url(\"../../resources/images/search.png\")");
-		} else {
-			$("#searchInput").css("background-image", "none");
-		}
 		timedSearch($("#searchInput").val(),function(){});
 	});
 
-});
+}
 
 
 function searchListParse(item){
@@ -41,10 +34,11 @@ function searchListParse(item){
 }
 
 function appendSearchCategory(item, category) {
+
 	if (!$("#searchResults" + category).length){$("#searchResults").append('<h1>' + category + '</h1><ul id="searchResults' + category + '" class="searchCategory"></ul>');}
 	$("#searchResults" + category).append(searchListParse(item));
 	$("#searchLink"+item.DL_id).click(function(){
-		view.push("EPage", "index.html?dlid="+item.DL_id);
+		view.push("EPage", {'dlid':item.DL_id});
 	});
 }
 
