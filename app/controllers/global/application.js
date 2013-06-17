@@ -150,8 +150,11 @@ function setupPage(settings) {
 	else
 		bar.hide();
 
-	if (settings.barBackButton)
+	if (settings.barBackButton){
 		bar.showBackButton();
+	}else{
+		bar.hideBackButton();
+	}
 }
 
 
