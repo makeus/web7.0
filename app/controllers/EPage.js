@@ -57,7 +57,7 @@ function showRightForm(type){
     } else if(type=="note"){
         $("#message").replaceWith($("#not").show());
         $("#cal").remove();
-        $("#message").remove();
+        $("#msg").remove();
     } else {
         $("#message").replaceWith($("#msg").show());
         $("#cal").remove();
@@ -67,6 +67,7 @@ function showRightForm(type){
     getCCList(function(data) {
         if(data != undefined && data != "") {
             $("#cc").append(data.join(''));
+			$("#cc").listview().listview("refresh");
         }   
     });
 }
