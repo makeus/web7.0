@@ -36,7 +36,7 @@ bar = {
 		button.click(function() {
 			$( "#leftpanel" ).panel( "open" );
 		});
-	}
+	},
 
 	initListeners: function() {
 		$("#ownPictureButton").attr("src",getImage());
