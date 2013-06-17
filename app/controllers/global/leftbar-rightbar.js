@@ -21,19 +21,26 @@ function leftbarCreateLinks(dlid) {
 	links[0] = "Messages";
 	urls[0] =  baselink + "&type=message";
 	icons[0] = "<i class=\"icon-envelope\"></i>";
+
 	links[1] = "Tasks";
 	urls[1] =  baselink + "&type=cal";
 	icons[1] = "<i class=\"icon-calendar\"></i>";
+
 	links[2] = "Notes";
 	urls[2] = baselink + "&type=note";
 	icons[2] = "<i class=\"icon-edit\"></i>";
+
 	links[3] = "Files";
 	urls[3] = baselink + "#";
 	icons[3] = "<i class=\"icon-file-alt\"></i>";
+
 	links[4] = "Basic-info";
 	urls[4] = "../BPage/index.html?dlid=" + dlid;
 	icons[4] = "<i class=\"icon-user\"></i>";
-
+	
+	links[5] = "Logout";
+	urls[5] = "../login/index.html";
+	icons[5] = "<i class=\"icon-off\"></i>";
 
 	$.each(links, function(i, item) {
 		$("#linklistleft").append("<li id='linklistleft" + item.replace(/\s+/g, ' ') + "'><a>" + icons[i] + "\t" + item + "</a></li>");
