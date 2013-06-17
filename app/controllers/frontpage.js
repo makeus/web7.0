@@ -1,4 +1,18 @@
 document.addEventListener("DOMContentLoaded",function(){
+
+    var scrollTimer = 0;
+
+    $(window).scroll(function () {
+        if (scrollTimer) {
+            clearTimeout(scrollTimer);
+        }
+        scrollTimer = setTimeout(function(){
+            if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
+                appendStreamF();
+            }
+        }, 100);
+    });
+
     $("#sendMessageBox").click(sendMessageClickEvent);
 
     setupPage({
@@ -13,14 +27,9 @@ document.addEventListener("DOMContentLoaded",function(){
         hideMessageFields();
     });
 
-    $("#showMessages").click(function(){
-        showMessages(function(data){
-                addLiListener();
-        });
-    });
 
     if(isToken()) {
-        getOwnStream('message,cal,note',function(stream){
+        getOwnStream('message,cal,note',offset,function(stream){
             $("#appTitle").text(getName());
             $("#thelist").append(stream.join(''));
             addLiListener();
@@ -31,8 +40,14 @@ document.addEventListener("DOMContentLoaded",function(){
         alert("UNAUTHORISED");
     }
 });
-
-
+var offset=0;
+function appendStreamF(){
+    offset += 15;
+    getOwnStream('message,cal,note',offset,function(stream){
+            $("#thelist").append(stream.join(''));
+            addLiListener();
+        });
+}
 
 function sendMessageClickEvent() {
     if(isToken()) {

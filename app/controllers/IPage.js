@@ -66,7 +66,6 @@ function setCompleteMarkerEvent() {
 
 function parseMessage(){
     var info = getMessageInfo(iPageID);
-
     switch(info.type) {
         case 'cal':
             $("#nameAndTypeBar p:last-child").text("Task");
@@ -80,9 +79,7 @@ function parseMessage(){
         default:
             $("#nameAndTypeBar p:last-child").text("Message");
     }
-
     getSubject(info);
-
     if (info.content==""){
         $("#ipageContent").hide();
     } else {
@@ -99,7 +96,6 @@ function parseMessage(){
         $("#ipageMessage").attr("class", "completed");
         $("#completeCheckbox").prop("checked", true);
     }
-
     getComments(info);
 }
 
@@ -117,7 +113,6 @@ function getSubject(info){
             to = arr[0];
             from = arr[1];
         }
-        
         $("#messageContent > img").attr('src',from.img);
 
         if(to){

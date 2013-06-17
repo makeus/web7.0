@@ -54,7 +54,6 @@ asyncTest( "ipage parsemessage test", function() {
 			comments: "",
 			relations: ""
 			}];
-			
 	saveStream(stream);
 	setIPageID("4444");
 	parseMessage();

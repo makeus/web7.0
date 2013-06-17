@@ -7,6 +7,7 @@ function onDeviceReady(){
 }
 
 document.addEventListener("DOMContentLoaded",function(){
+
 	if(!isSteroids()) {
 		$("*").css("max-width", "340px");
 	}
@@ -40,6 +41,8 @@ document.addEventListener("DOMContentLoaded",function(){
 		});
 	}
 });
+
+
 
 function setEntityInformation(dlid){
 	if(dlid.name.length > 35){

@@ -1,10 +1,25 @@
 document.addEventListener("DOMContentLoaded",function(){
+
+    var scrollTimer = 0;
+
+    $(window).scroll(function () {
+        if (scrollTimer) {
+            clearTimeout(scrollTimer);
+        }
+        scrollTimer = setTimeout(function(){
+            if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
+                appendStreamE();
+            }
+        }, 100);
+    });
+
+
     setupPage({bar:true});
 
     showRightForm(getURLParameter("type"));
     atachEvents();
     if(isToken()) {
-        getStreamUrl(function(stream){
+        getStreamUrl(offset,function(stream){
             if(stream != null && stream != "") {
                 $("#thelist").append( stream.join('') );
                 addLiListener();
@@ -19,6 +34,17 @@ document.addEventListener("DOMContentLoaded",function(){
     }
     
 });
+
+var offset=0;
+function appendStreamE(){
+    offset += 15;
+    getStreamUrl(offset,function(stream){
+        if(stream != null && stream != "") {
+            $("#thelist").append( stream.join('') );
+            addLiListener();
+         }
+    });
+}
 
 function showRightForm(type){
     if(type=="cal") {
@@ -55,7 +81,7 @@ function atachEvents(){
     });
 }
 
-function getStreamUrl(done) {
+function getStreamUrl(offset,done) {
     var type = getURLParameter("type");
     var dlid = getURLParameter("dlid");
 
@@ -65,7 +91,7 @@ function getStreamUrl(done) {
     if(dlid == null) {
         dlid = getDL_id();
     }
-    getOtherStream(type,dlid,done);
+    getOtherStream(type,dlid,offset,done);
 }
 
 function sendMessageClickEvent() {
