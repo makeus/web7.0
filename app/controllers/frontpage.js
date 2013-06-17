@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-document.addEventListener("DOMContentLoaded",function(){
-
+function initfrontpage(){
     var scrollTimer = 0;
 
     $(window).scroll(function () {
@@ -14,9 +12,6 @@ document.addEventListener("DOMContentLoaded",function(){
         }, 100);
     });
 
-=======
-function initfrontpage(){
->>>>>>> master
     $("#sendMessageBox").click(sendMessageClickEvent);
 
     setupPage({
@@ -44,8 +39,7 @@ function initfrontpage(){
     } else {
         alert("UNAUTHORISED");
     }
-<<<<<<< HEAD
-});
+}
 var offset=0;
 function appendStreamF(){
     offset += 15;
@@ -54,13 +48,7 @@ function appendStreamF(){
             addLiListener();
         });
 }
-=======
 
-
-}
-
-
->>>>>>> master
 
 function sendMessageClickEvent() {
     if(isToken()) {

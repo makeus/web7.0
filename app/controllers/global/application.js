@@ -33,11 +33,6 @@ document.addEventListener("DOMContentLoaded",function(){
 		view.push("login");
 	}
 
-<<<<<<< HEAD
-document.addEventListener("DOMContentLoaded",function(){
-
-=======
->>>>>>> master
 	if(!isSteroids()) {
 		$("*").css("max-width", "340px");
 	}
