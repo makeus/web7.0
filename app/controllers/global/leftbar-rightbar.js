@@ -17,36 +17,41 @@ function leftbarCreateLinks(dlid) {
 	var links = new Array();
 	var urls = new Array();
 	var icons = new Array();
+	var opts = new Array();
 
 	links[0] = "Messages";
-	urls[0] =  baselink + "&type=message";
+	urls[0] =  "EPage";
+	opts[0] = {'type':'message'}
 	icons[0] = "<i class=\"icon-envelope\"></i>";
 
 	links[1] = "Tasks";
-	urls[1] =  baselink + "&type=cal";
+	urls[1] =  "EPage";
+	opts[1] = {'type':'cal'}
 	icons[1] = "<i class=\"icon-calendar\"></i>";
 
 	links[2] = "Notes";
-	urls[2] = baselink + "&type=note";
+	urls[2] = "EPage";
+	opts[2] = {'type':'note'}
 	icons[2] = "<i class=\"icon-edit\"></i>";
 
 	links[3] = "Files";
-	urls[3] = baselink + "#";
+	urls[3] = "EPage";
 	icons[3] = "<i class=\"icon-file-alt\"></i>";
 
 	links[4] = "Basic-info";
-	urls[4] = "../BPage/index.html?dlid=" + dlid;
+	urls[4] = "BPage";
+	opts[4] = {'dlid':dlid}
 	icons[4] = "<i class=\"icon-user\"></i>";
 	
 	links[5] = "Logout";
-	urls[5] = "../login/index.html";
+	urls[5] = "login";
 	icons[5] = "<i class=\"icon-off\"></i>";
 
 	$.each(links, function(i, item) {
 		$("#linklistleft").append("<li id='linklistleft" + item.replace(/\s+/g, ' ') + "'><a>" + icons[i] + "\t" + item + "</a></li>");
 		$("#linklistleft" + item.replace(/\s+/g, ' ')).click(function() {
 			$("#leftpanel").panel( "close" );
-			view.push("EPage", urls[i]);
+			view.push(urls[i], opts[i]);
 		});
 	});
 	$("#linklistleft").listview("refresh");
