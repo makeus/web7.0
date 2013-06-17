@@ -1,5 +1,11 @@
 var bPageID;
-document.addEventListener("DOMContentLoaded",function(){
+function initBPage() {
+
+    setupPage({
+        bar: true,
+        barBackButton: false
+    });
+    
     setupPage({bar : true, barBackButton : true});
 
     if(isToken()) {
@@ -18,7 +24,7 @@ document.addEventListener("DOMContentLoaded",function(){
     } else {
         alert("UNAUTHORISED");
     }
-});
+}
 
 
 function setbPageID(id){
@@ -35,7 +41,6 @@ function getUserInfo(bPageID) {
 
 function parseBasicInfoPage(info){
     if(info==undefined){return;};
-
     appendInformation(info);
     appendPlace(info);
     appendLinks(info);
@@ -44,16 +49,9 @@ function parseBasicInfoPage(info){
 
 
 function appendImageAndUsername(info){
-    var image = "";
-    if(info.img == "") {
-        image = '../../resources/images/tyhja.png';
-    } else {
-        image = info.img
-    }
-
-    $("#profileImage").attr('src', image);
+    if (info.img==undefined){return;}
+    $("#profileImage").attr('src', info.img);
     $("#Username").text(info.name); 
-    $("#Role").text(info.type);
 }
 function wordFrom(a){
     if (a==undefined){

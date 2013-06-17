@@ -1,20 +1,46 @@
-document.addEventListener("deviceready", onDeviceReady, false);
-
-function onDeviceReady(){
-    document.addEventListener("backbutton", function(e){
-        window.history.go(-1);
-    }, false);
-}
-
 document.addEventListener("DOMContentLoaded",function(){
+	$("#main").on('pageswitch', function(){
+		console.log(getCurrent());
+		switch(getCurrent()['name']) {
+			case "login":
+				initlogin();
+				break;
+			case "frontpage":
+				initfrontpage();
+				break;
+			case "BPage":
+				initBPage();
+				break;
+			case "EPage":
+				initEPage();
+				break;
+			case "IPage":
+				initIPage();
+				break;
+			case "RPage":
+				initRPage();
+				break;
+			case "search":
+				initsearch();
+				break;
+			default:
+				console.log("default initiated");
+		}
+		appInit();
+	});
+
+	if(getCurrent() == undefined) {
+		view.push("login");
+	}
+
 	if(!isSteroids()) {
 		$("*").css("max-width", "340px");
 	}
 
 
-	if(/login/i.test(window.location.pathname)) {
-		localStorage.clear();
-	}
+});
+
+function appInit(){
 	if(isToken()) {
 		var dlid = getURLParameter("dlid");
 		if(dlid == null) {
@@ -22,6 +48,9 @@ document.addEventListener("DOMContentLoaded",function(){
 		}
 
 		getInfo(dlid,function(info){
+			$("#linklistleft").empty();
+			$("#linklistright").empty();
+
 			sidebarsSetInfo(info);
 			leftbarCreateLinks(dlid);
 			rightbarCreateLinks(dlid);
@@ -39,7 +68,7 @@ document.addEventListener("DOMContentLoaded",function(){
 			}
 		});
 	}
-});
+}
 
 function setEntityInformation(dlid){
 	if(dlid.name.length > 35){
@@ -47,6 +76,7 @@ function setEntityInformation(dlid){
 	}else{
 		$("#nameAndTypeBar p:first-child").text(dlid.name);	
 	}
+    
 }
 
 function getUserData(dlid,done, error){
@@ -202,48 +232,39 @@ function setActivityCompleted(completed, done) {
 function getUserArray(dlids,done) {
 	var opts = {'uid': getDL_id(), 'auth':getToken(), 'dl_ids':dlids};
 	var arr = dlids.split(",");
-	arr = $.unique(arr);
 	var cached  = new Array();
 
-	arr = $.grep(arr, function(item, i) {
+	$.grep(arr, function(item, i) {
 		var info = getInfoCache(item);
-		if(info == undefined) {
-			info == false;
-		}
-		if(info !== false) {
+		if(!info) {
 			cached.push(info);
 		}
-		return (info == false);
+		return info === false;
 	});
-	if(arr.length !== 0) {
-		opts["dl_ids"] = arr.join();
-		var url = "dlid";
-	    rest(opts, url, function(data) {
-	        result=data;
-	        success(data);
-	        $.each(data, function(i, item) {
-	        	setInfoCache(item);
-	        });
-	        data = data.concat(cached);
-	        done(data);
-	    },
-	    function(data) {
-	        result=data;
-	        error(data);
-	        done(data);
-	    });
-	} else {
-		done(cached);
-	}
+
+	opts["dl_ids"] = arr.join();
+	var url = "dlid";
+    rest(opts, url, function(data) {
+        result=data;
+        success(data);
+        $.each(data, function(i, item) {
+        	setInfoCache(item);
+        });
+        data = data.concat(cached);
+        done(data);
+    },
+    function(data) {
+        result=data;
+        error(data);
+        done(data);
+    });
 }
 
 function isToken() {
 	return (getToken() != null) && (getToken() != undefined);
 }
 
-function getURLParameter(name) {
-    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
-}
+
 
 
 // function downloadFile(dlUrl){

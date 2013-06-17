@@ -1,10 +1,11 @@
-document.addEventListener("DOMContentLoaded",function(){
+function initfrontpage(){
     $("#sendMessageBox").click(sendMessageClickEvent);
 
     setupPage({
-        bar: true
+        bar: true,
+        barBackButton: false
     });
-
+    
     $("#inputField").focus(function() {
         $("#message-hidden").show();
     });
@@ -30,7 +31,9 @@ document.addEventListener("DOMContentLoaded",function(){
     } else {
         alert("UNAUTHORISED");
     }
-});
+
+
+}
 
 
 
