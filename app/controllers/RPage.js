@@ -1,6 +1,7 @@
-document.addEventListener("DOMContentLoaded",function(){
+function initRPage() {
 	setupPage({
-        bar:true
+        bar: true,
+        barBackButton: false
     });
 
 	var dlid = getURLParameter("dlid");
@@ -20,13 +21,13 @@ document.addEventListener("DOMContentLoaded",function(){
 					appendRelationsList(info);
 			});
 		});
-        $("#relationslist").listview("refresh");
+        $("#relationslist").listview().listview("refresh");
 	});
     $("#rightpanel img").load(function() {
 		setRightBarActiveLink();
     });
 
-});
+}
 
 
 function appendRelationsList(dlid) {

@@ -1,6 +1,10 @@
-document.addEventListener("DOMContentLoaded",function(){
-    setupPage({bar:true});
-    
+
+function initEPage() {
+    setupPage({
+        bar: true,
+        barBackButton: false
+    });
+
     showRightForm(getURLParameter("type"));
     atachEvents();
     if(isToken()) {
@@ -17,7 +21,8 @@ document.addEventListener("DOMContentLoaded",function(){
     if($("#entityImg").width() == 200) {
         $("#entityImg").css('margin-left', '-100px');
     }
-});
+}
+
 
 function showRightForm(type){
     if(type=="cal") {
@@ -27,7 +32,7 @@ function showRightForm(type){
     } else if(type=="note"){
         $("#message").replaceWith($("#not").show());
         $("#cal").remove();
-        $("#msg").remove();
+        $("#not").remove();
     } else {
         $("#message").replaceWith($("#msg").show());
         $("#cal").remove();

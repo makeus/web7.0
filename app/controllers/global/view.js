@@ -1,8 +1,22 @@
+var current;
+var variables;
+var previous = {};
+
 view = {
-	push: function(name, page) {
-		if (page == undefined)
-			page = "index.html";
-		win.go(name, page);
+	push: function(name, params) {
+		if(params != undefined) {
+			variables = params;
+		}
+
+		$("#main").html(Handlebars.templates[name + ".html"]());
+		previous = current;
+		current = {'name': name, 'previous': previous};
+
+
+		$("#main :last-child").ready(function() {
+			$("#main").trigger('pageswitch');
+		});
+		
 		// if (isSteroids()) {
 		// 	var webView = createWebView(name, page);
 		// 	steroids.layers.push(webView);
@@ -12,7 +26,18 @@ view = {
 	},
 
 	pop: function() {
-		win.back();
+		if(previous['name'] == 'login' && isSteroids()) {
+			navigator.device.exitApp();
+		}
+
+		current = previous;
+		previous = current['previous'];
+
+		$("#main").html(Handlebars.templates[current['name'] + ".html"]());
+		$("#main :last-child").ready(function() {
+			$("#main").trigger('pageswitch');
+		});
+
 		// if (isSteroids())
 		// 	steroids.layers.pop();
 		// else
@@ -52,12 +77,24 @@ modal = {
 	}
 }
 
+function getCurrent() {
+	return current;
+}
 
 function createWebView(name, page) {
 	if (page == undefined)
 		page = "index.html";
 
 	return new steroids.views.WebView("views/"+name+"/"+page);
+}
+
+function getURLParameter(name) {
+	if(typeof variables === "string") {
+		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(variables)||[,""])[1].replace(/\+/g, '%20'))||null;
+	} else if (typeof variables === "object") {
+		return variables[name] || null;
+	}
+    
 }
 
 
