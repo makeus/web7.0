@@ -42,11 +42,7 @@ document.addEventListener("DOMContentLoaded",function(){
 });
 
 function setEntityInformation(dlid){
-	if(dlid.name.length > 35){
-		$("#nameAndTypeBar p:first-child").text(dlid.name.slice(0,32)+"...");
-	}else{
-		$("#nameAndTypeBar p:first-child").text(dlid.name);	
-	}
+	$("#nameAndTypeBar img:first-child").attr("src",dlid.img);	
 }
 
 function getUserData(dlid,done, error){
