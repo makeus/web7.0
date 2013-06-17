@@ -1,4 +1,10 @@
-document.addEventListener("DOMContentLoaded",function(){
+
+function initEPage() {
+    setupPage({
+        bar: true,
+        barBackButton: false
+    });
+
 
     var scrollTimer = 0;
 
@@ -12,10 +18,7 @@ document.addEventListener("DOMContentLoaded",function(){
             }
         }, 100);
     });
-
-
-    setupPage({bar:true});
-
+    
     showRightForm(getURLParameter("type"));
     atachEvents();
     if(isToken()) {
@@ -33,7 +36,7 @@ document.addEventListener("DOMContentLoaded",function(){
         $("#entityImg").css('margin-left', '-100px');
     }
     
-});
+}
 
 var offset=0;
 function appendStreamE(){
@@ -54,7 +57,7 @@ function showRightForm(type){
     } else if(type=="note"){
         $("#message").replaceWith($("#not").show());
         $("#cal").remove();
-        $("#msg").remove();
+        $("#not").remove();
     } else {
         $("#message").replaceWith($("#msg").show());
         $("#cal").remove();

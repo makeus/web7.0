@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded",function(){
 
     var scrollTimer = 0;
@@ -13,12 +14,16 @@ document.addEventListener("DOMContentLoaded",function(){
         }, 100);
     });
 
+=======
+function initfrontpage(){
+>>>>>>> master
     $("#sendMessageBox").click(sendMessageClickEvent);
 
     setupPage({
-        bar: true
+        bar: true,
+        barBackButton: false
     });
-
+    
     $("#inputField").focus(function() {
         $("#message-hidden").show();
     });
@@ -39,6 +44,7 @@ document.addEventListener("DOMContentLoaded",function(){
     } else {
         alert("UNAUTHORISED");
     }
+<<<<<<< HEAD
 });
 var offset=0;
 function appendStreamF(){
@@ -48,6 +54,13 @@ function appendStreamF(){
             addLiListener();
         });
 }
+=======
+
+
+}
+
+
+>>>>>>> master
 
 function sendMessageClickEvent() {
     if(isToken()) {

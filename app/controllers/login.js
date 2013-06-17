@@ -1,7 +1,9 @@
-document.addEventListener("DOMContentLoaded", function() {
+function initlogin() {
+
 	setupPage({
-        bar: false
-    });
+	    bar: false,
+	    barBackButton: false
+	});
 
 	$("#loginButton").click(function(){
 		var username = document.getElementById('loginUsername').value;
@@ -10,26 +12,28 @@ document.addEventListener("DOMContentLoaded", function() {
 			if(getStatus() == -1) {
 			$("#failLogin").show();
 		} else if (getStatus() == 1) {
+
 			view.push("frontpage");
 		}
 		});
 
 		
 	});
-	
+
 	$("#loginUsername").keyup(function(event){
-    if(event.keyCode == 13){
-        $("#loginPassword").focus();
-    }
+	if(event.keyCode == 13){
+	    $("#loginPassword").focus();
+	}
 	});
 	$("#loginPassword").keyup(function(event){
-    	if(event.keyCode == 13){
-        	$("#loginButton").click();
-    }
+		if(event.keyCode == 13){
+	    	$("#loginButton").click();
+	}
 	});
 
-	createDebugButtons();
-});
+	// createDebugButtons();
+
+}
 
 
 

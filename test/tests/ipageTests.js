@@ -128,6 +128,13 @@ asyncTest( "valid request is send when task is marked incompleted", function() {
 		}
 	});
 
+	$.mockjax({
+		url: "https://www.dliv.in/rest/setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id=undefined&activity_id=undefined&remove=1",
+		response: function(settings) {
+			this.responseText = { "success": "1" }
+		}
+	});
+
 	setActivityCompleted(false, function() {
 		start();
 		equal(getStatus(), 1);

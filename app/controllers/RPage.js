@@ -1,6 +1,7 @@
-document.addEventListener("DOMContentLoaded",function(){
+function initRPage() {
 	setupPage({
-        bar:true
+        bar: true,
+        barBackButton: false
     });
 
 	var dlid = getURLParameter("dlid");
@@ -13,20 +14,23 @@ document.addEventListener("DOMContentLoaded",function(){
     }
     getInfo(dlid, function(items){
 		var relations = parseRelations(items.relations);
-		$.each(relations, function(i, item) {
-			getInfo(item, function(info) {
-				if(info.type == type) {
-					appendRelationsList(info);
-				}
-			});
-		});
-        $("#relationslist").listview("refresh");
+        $.each(relations, function(i, item) {
+            getInfo(item, function(info) {
+                if(info.type == type) {
+                    appendRelationsList(info);
+                }
+            });
+        });
+        $("#relationslist").listview().listview("refresh");
+
+        
+        
 	});
     $("#rightpanel img").load(function() {
 		setRightBarActiveLink();
     });
 
-});
+}
 
 
 function appendRelationsList(dlid) {

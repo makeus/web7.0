@@ -1,5 +1,5 @@
 var iPageID;
-document.addEventListener("DOMContentLoaded",function(){
+function initIPage() {
     setupPage({
         bar:true,
         barBackButton:true
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded",function(){
     } else {
         alert("UNAUTHORISED");
     }
-});
+}
 
 
 function setIPageID(id){
