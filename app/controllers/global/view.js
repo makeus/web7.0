@@ -6,6 +6,8 @@ view = {
 	push: function(name, params) {
 		if(params != undefined) {
 			variables = params;
+		} else{
+			variables = undefined;
 		}
 
 		$("#main").html(Handlebars.templates[name + ".html"]());
@@ -88,9 +90,9 @@ function createWebView(name, page) {
 
 function getParameter(name) {
 	if (variables==undefined){
-		return null;
+		return undefined;
 	}
-	return variables[name] || null;
+	return variables[name] || undefined;
 }
 
 
