@@ -6,13 +6,13 @@ view = {
 	push: function(name, params) {
 		if(params != undefined) {
 			variables = params;
+		} else{
+			variables = undefined;
 		}
 
 		$("#main").html(Handlebars.templates[name + ".html"]());
 		previous = current;
 		current = {'name': name, 'previous': previous};
-
-
 		$("#main :last-child").ready(function() {
 			$("#main").trigger('pageswitch');
 		});
@@ -88,13 +88,11 @@ function createWebView(name, page) {
 	return new steroids.views.WebView("views/"+name+"/"+page);
 }
 
-function getURLParameter(name) {
-	if(typeof variables === "string") {
-		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(variables)||[,""])[1].replace(/\+/g, '%20'))||null;
-	} else if (typeof variables === "object") {
-		return variables[name] || null;
+function getParameter(name) {
+	if (variables==undefined){
+		return undefined;
 	}
-    
+	return variables[name] || undefined;
 }
 
 
