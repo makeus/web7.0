@@ -6,12 +6,12 @@ function isSteroids() {
 }
 
 function printDebugInfo() {
-	console.log("Name: "+getName());
+	console.log("Name:  "+getName());
 	console.log("DL_id: "+getDL_id())
 	console.log("Token: "+getToken());
-	console.log("Status: "+getStatus());
 	console.log("Image: "+getImage());
-	console.log("Relations: "+getRelations());
+	console.log("Relations:")
+	console.log(getRelations());
 }
 
 

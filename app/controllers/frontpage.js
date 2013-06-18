@@ -40,7 +40,7 @@ function initfrontpage(){
         alert("UNAUTHORISED");
     }
 
-    //printDebugInfo();
+    printDebugInfo();
 }
 
 

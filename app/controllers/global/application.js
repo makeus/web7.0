@@ -213,7 +213,6 @@ function getActivityStream(opts,done) {
 function setActivityCompleted(completed, done) {
     if (completed === false){
     	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getURLParameter("uid"),'activity_id':getURLParameter("iPageID"),'remove':"1"};
-    	remove = "&remove=1";
     }else {
     	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getURLParameter("uid"),'activity_id':getURLParameter("iPageID")};
     }
@@ -231,7 +230,41 @@ function setActivityCompleted(completed, done) {
 			error(data);
 			if (done != null)
 				done(data);
-		});
+		}
+	);
+}
+
+function createRelation(dl_id_from, dl_id_to, role, done) {
+	if (dl_id_from == null || dl_id_from === "me")
+		dl_id_from = getDL_id();
+
+	if (role == null)
+		role = "";
+
+
+	var url = "addrelation";
+
+	var opts = {
+		'uid': getDL_id(),
+		'auth': getToken(),
+		'dl_id_from': dl_id_from,
+		'dl_id_to': dl_id_to,
+		'role': role
+	};
+
+	rest(opts,
+		url,
+		function(data) {
+			success(data);
+			if (done != null)
+				done(data);
+		},
+		function(data) {
+			error(data);
+			if (done != null)
+				done(data);
+		}
+	);
 }
 
 function getUserArray(dlids,done) {
