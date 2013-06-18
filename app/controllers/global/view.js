@@ -87,6 +87,9 @@ function createWebView(name, page) {
 }
 
 function getParameter(name) {
+	if (variables==undefined){
+		return null;
+	}
 	return variables[name] || null;
 }
 

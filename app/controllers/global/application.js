@@ -46,8 +46,12 @@ document.addEventListener("DOMContentLoaded",function(){
 
 function appInit(){
 	if(isToken()) {
-		var	dlid = getDL_id();
+		
+		var	dlid = getParameter('dlid');
 
+		if (dlid==undefined){
+			dlid = getDL_id();
+		}
 		getInfo(dlid,function(info){
 			$("#linklistleft").empty();
 			$("#linklistright").empty();
