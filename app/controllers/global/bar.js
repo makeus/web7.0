@@ -41,6 +41,25 @@ bar = {
 		$("#searchButton").click(function() {
    			view.push("search");
         });
+        $("#settingsButton").click(function(){
+        	bar.showSettingsList();
+        });
+	},
+	showSettingsList: function(){
+		$("#settingsList").css("display","table");
+		var x = $("#settingsButton").position().left;
+		$("#settingsList").css("left",x+"px");
+		$("#settingsButton").unbind();
+		$("#settingsButton").click(function(){
+			bar.hideSettingsList();
+		});
+	},
+	hideSettingsList: function(){
+		$("#settingsList").css("display","none");
+		$("#settingsButton").unbind();
+		$("#settingsButton").click(function(){
+			bar.showSettingsList();
+		});
 	},
 	showSearch: function(){
 		$("#searchArea").show();
