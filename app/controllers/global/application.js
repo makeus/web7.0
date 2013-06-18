@@ -211,17 +211,11 @@ function getActivityStream(opts,done) {
 }
 
 function setActivityCompleted(completed, done) {
-    var uid = getDL_id();
-    var auth = getToken();
-    var dlid = getURLParameter("uid");
-    var activity_id = getURLParameter("iPageID");
-
-    var remove = "";
     if (completed === false){
-    	var opts = {'uid':uid,'auth':auth,'dl_id':dlid,'activity_id':activity_id,'remove':"1"};
+    	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getURLParameter("uid"),'activity_id':getURLParameter("iPageID"),'remove':"1"};
     	remove = "&remove=1";
     }else {
-    	var opts = {'uid':uid,'auth':auth,'dl_id':dlid,'activity_id':activity_id};
+    	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getURLParameter("uid"),'activity_id':getURLParameter("iPageID")};
     }
     
     var url = "setactivitycompleted";
