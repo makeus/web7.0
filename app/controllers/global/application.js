@@ -217,12 +217,16 @@ function setActivityCompleted(completed, done) {
     var activity_id = getURLParameter("iPageID");
 
     var remove = "";
-    if (completed === false)
+    if (completed === false){
+    	var opts = {'uid':uid,'auth':auth,'dl_id':dlid,'activity_id':activity_id,'remove':"1"};
     	remove = "&remove=1";
-
-    var url = "setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id="+dlid+"&activity_id="+activity_id+remove;
+    }else {
+    	var opts = {'uid':uid,'auth':auth,'dl_id':dlid,'activity_id':activity_id};
+    }
     
-    rest(null,
+    var url = "setactivitycompleted";
+    
+    rest(opts,
         url,
         function(data) {
 			success(data);
