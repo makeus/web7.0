@@ -539,20 +539,21 @@ ul#relationslist .emptyRelationImage {
 }
 
 #bar {
-	background: white;
+	background: #333;
 	height: 50px;
-	border-bottom: solid black;
+	display: table;
+	border-bottom: thin solid black;
 
 }
-
-
-.barCell {
-	padding-top:10px;
-	padding-bottom:10px;
-	padding-left: 0px;
-	padding-right: 0px;
-}
-
+#bar li {
+    display: table-cell;
+    text-align: center;
+    white-space: nowrap;
+    color: #bbb;
+	text-shadow:none;
+	padding-top: 10px;
+	vertical-align: middle;
+}​
 
 
 #searchArea {
@@ -571,50 +572,26 @@ ul#relationslist .emptyRelationImage {
 	height:30px;
 }
 
-
 .ui-footer-fixed {
 	bottom:auto;
 }
-#rightBarArea {
-	float:right;
-}
-#rightBarArea #ownPictureButton {
-	padding-right: 10px
-}
-
-#rightBarArea #searchButton {
-	padding-left: 10px;
-	padding-right: 10px;
-}
-#rightBarArea #relationsButton {
-	padding-left: 10px;
-}
-
-#leftBarArea {
-	float:left;
-}
 #barLogo {
 	height: 30px;
+	margin-left: 0%;
 }
 
 .padding0 {
 	padding:0px;
 }
 #backButton {
-	visibility: hidden;
+	display:none;
+	padding-bottom: 10px;
+}
+#settingsButton {
+}
+#relationsButton {
 }
 
-#nameAndTypeBar {
-	width:40%;
-	display: inline-block;
-	float:left;
-}
-#nameAndTypeBar p{
-	font-size:0.8em;
-	text-align: center;
-	font-weight: bold;
-	margin:0;
-}
 
 #cc {
     list-style:none;
