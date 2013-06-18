@@ -261,7 +261,7 @@ asyncTest( "search test correct token, wrong uid", function() {
 			success(data);
 			equal(status, 401);
 
-	$.mockjaxClear();
+			$.mockjaxClear();
 		},
 		function(data) {
 			start();
@@ -269,7 +269,7 @@ asyncTest( "search test correct token, wrong uid", function() {
 			error(data);
 			equal(status, 401);
 
-	$.mockjaxClear();
+			$.mockjaxClear();
 		});
 	
 	});
