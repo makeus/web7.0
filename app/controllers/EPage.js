@@ -186,25 +186,3 @@ function resetMessageFields() {
     $("#date_to").val("");
     hideMessageFields();
 }
-
-
-function setLeftBarActiveLink(){
-    var type = getURLParameter("type");
-
-    switch(type) {
-        case 'cal':
-            $("#nameAndTypeBar p:last-child").text("Tasks & Events");
-            $("#linklistleftTasks").addClass("active");
-            break;
-        case 'message':
-            $("#nameAndTypeBar p:last-child").text("Messages");
-            $("#linklistleftMessages").addClass("active");
-            break;
-        case 'note':
-            $("#nameAndTypeBar p:last-child").text("To-Do Notes");
-            $("#linklistleftNotes").addClass("active");
-            break;
-        default:
-            $("#nameAndTypeBar p:last-child").text("Messages");
-    }
-}

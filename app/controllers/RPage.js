@@ -26,9 +26,6 @@ function initRPage() {
         
         
 	});
-    $("#rightpanel img").load(function() {
-		setRightBarActiveLink();
-    });
 
 }
 
@@ -54,40 +51,3 @@ function appendRelationsList(dlid) {
 	// });
 }
 
-
-function setRightBarActiveLink(){
-    var type = getURLParameter("type");
-
-    switch(type) {
-        case 'user':
-            $("#nameAndTypeBar p:last-child").text("Users");
-            $("#linklistrightUsers").addClass("active");
-            break;
-        case 'group':
-            $("#nameAndTypeBar p:last-child").text("Groups");
-            $("#linklistrightGroups").addClass("active");
-            break;
-        case 'animal':
-            $("#nameAndTypeBar p:last-child").text("Animals");
-            $("#linklistrightAnimals").addClass("active");
-            break;
-        case 'project':
-            $("#nameAndTypeBar p:last-child").text("Projects");
-            $("#linklistrightProjects").addClass("active");
-            break;            
-        case 'contract':
-            $("#nameAndTypeBar p:last-child").text("Contracts");
-            $("#linklistrightContracts").addClass("active");
-            break;
-        case 'thing':
-            $("#nameAndTypeBar p:last-child").text("Things");
-            $("#linklistrightThings").addClass("active");
-            break;
-        case 'space':
-            $("#nameAndTypeBar p:last-child").text("Spaces");
-            $("#linklistrightSpaces").addClass("active");
-            break;
-        default:
-            $("#nameAndTypeBar p:last-child").text("Relations");
-    }
-}
