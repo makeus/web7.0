@@ -16,23 +16,9 @@ function initlogin() {
 			view.push("frontpage");
 		}
 		});
-
-		
 	});
 
-	$("#loginUsername").keyup(function(event){
-	if(event.keyCode == 13){
-	    $("#loginPassword").focus();
-	}
-	});
-	$("#loginPassword").keyup(function(event){
-		if(event.keyCode == 13){
-	    	$("#loginButton").click();
-	}
-	});
-
-	// createDebugButtons();
-
+	createDebugButtons();
 }
 
 
@@ -58,7 +44,7 @@ function login(username, password,done){
 				getInfo(getDL_id(),function(data){
 					saveName(data);
 					saveImage(data.img);
-					saveRelations(data.relations);
+					saveRelations(parseRelations(data.relations));
 					done();
 				});
 			} else {

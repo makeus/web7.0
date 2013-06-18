@@ -1,13 +1,28 @@
+
 function initEPage() {
     setupPage({
         bar: true,
         barBackButton: false
     });
 
+
+    var scrollTimer = 0;
+
+    $(window).scroll(function () {
+        if (scrollTimer) {
+            clearTimeout(scrollTimer);
+        }
+        scrollTimer = setTimeout(function(){
+            if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
+                appendStreamE();
+            }
+        }, 100);
+    });
+    
     showRightForm(getURLParameter("type"));
     atachEvents();
     if(isToken()) {
-        getStreamUrl(function(stream){
+        getStreamUrl(offset,function(stream){
             if(stream != null && stream != "") {
                 $("#thelist").append( stream.join('') );
                 addLiListener();
@@ -20,7 +35,17 @@ function initEPage() {
     if($("#entityImg").width() == 200) {
         $("#entityImg").css('margin-left', '-100px');
     }
-    
+}
+
+var offset=0;
+function appendStreamE(){
+    offset += 15;
+    getStreamUrl(offset,function(stream){
+        if(stream != null && stream != "") {
+            $("#thelist").append( stream.join('') );
+            addLiListener();
+         }
+    });
 }
 
 function showRightForm(type){
@@ -31,7 +56,7 @@ function showRightForm(type){
     } else if(type=="note"){
         $("#message").replaceWith($("#not").show());
         $("#cal").remove();
-        $("#not").remove();
+        $("#msg").remove();
     } else {
         $("#message").replaceWith($("#msg").show());
         $("#cal").remove();
@@ -41,6 +66,7 @@ function showRightForm(type){
     getCCList(function(data) {
         if(data != undefined && data != "") {
             $("#cc").append(data.join(''));
+			$("#cc").listview().listview("refresh");
         }   
     });
 }
@@ -58,7 +84,7 @@ function atachEvents(){
     });
 }
 
-function getStreamUrl(done) {
+function getStreamUrl(offset,done) {
     var type = getURLParameter("type");
     var dlid = getURLParameter("dlid");
 
@@ -68,7 +94,7 @@ function getStreamUrl(done) {
     if(dlid == null) {
         dlid = getDL_id();
     }
-    getOtherStream(type,dlid,done);
+    getOtherStream(type,dlid,offset,done);
 }
 
 function sendMessageClickEvent() {

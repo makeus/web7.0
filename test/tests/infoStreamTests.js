@@ -239,7 +239,7 @@ asyncTest( "getStream test", function() {
     	}]
 	});
 
-	getOwnStream("note",function(data){
+	getOwnStream("note",0,function(data){
 		start();
 		equal(getStatus(), 1);
 	$.mockjaxClear();
@@ -263,7 +263,7 @@ asyncTest( "getStream Unauthorized", function() {
 			ErrorMessage: "Unauthorized"
 		}
 	});
-	getOwnStream("note",function(data){
+	getOwnStream("note",0,function(data){
 		start();
 		equal(getStatus(), 401);
 		$.mockjaxClear();
@@ -285,7 +285,7 @@ asyncTest( "getStream fail method test", function() {
 			ErrorMessage: "Method not allowed"
 		}
 	});	
-	getOwnStream("note",function(data){
+	getOwnStream("note",0,function(data){
 		start();
 		equal(getStatus(), 405);
 		$.mockjaxClear();
