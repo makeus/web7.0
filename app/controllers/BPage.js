@@ -9,7 +9,7 @@ function initBPage() {
     setupPage({bar : true, barBackButton : true});
 
     if(isToken()) {
-        setbPageID(getURLParameter("dlid"));
+        setbPageID(getParameter("dlid"));
         getInfo(bPageID, function(perusData){
             setPageTitle(perusData);
             appendImageAndUsername(perusData);
@@ -80,6 +80,7 @@ function setVisibilityOf(element, rowsContent){
     if (rowsContent == ''){
         $(element).hide();
     }
+    $(element).collapsible({refresh:true});
 }
 
 function appendInformation(info){

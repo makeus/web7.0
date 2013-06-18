@@ -4,11 +4,11 @@ function initRPage() {
         barBackButton: false
     });
 
-	var dlid = getURLParameter("dlid");
+	var dlid = getParameter("dlid");
 	if(dlid == null) {
 		dlid = getDL_id();
 	}
-	var type = getURLParameter("type");
+	var type = getParameter("type");
     if(type == null) {
         type = "user";
     }
@@ -46,14 +46,14 @@ function appendRelationsList(dlid) {
 
 	$("#relationslist").append(li);
 	
-	// $("li#relationList" + dlid.DL_id).click(function() {
-	// 	view.push("EPage", "index.html?dlid=" + dlid.DL_id);
-	// });
+	 $("li#relationList" + dlid.DL_id).click(function() {
+        view.push("EPage", {'dlid': dlid.DL_id});           //view.push("EPage", "index.html?dlid=" + dlid.DL_id);
+	 });
 }
 
 
 function setRightBarActiveLink(){
-    var type = getURLParameter("type");
+    var type = getParameter("type");
 
     switch(type) {
         case 'user':

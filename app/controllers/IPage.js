@@ -5,8 +5,8 @@ function initIPage() {
         barBackButton:true
     });
 
-    if(isToken()&&getURLParameter("iPageID")) {
-        setIPageID(getURLParameter("iPageID"));
+    if(isToken()&&getParameter("iPageID")) {
+        setIPageID(getParameter("iPageID"));
         parseMessage();
         setLinkToSenderEvent();
         setAddCommentEvent();
@@ -33,7 +33,7 @@ function setCommentFocusEvent() {
 function setLinkToSenderEvent(){
     $(".commentWriter").click(function(){
         var dlid = $(this).attr('id');
-        view.push("EPage", "index.html?dlid=" + dlid);
+        view.push("EPage", {'dlid': dlid});         //view.push("EPage", "index.html?dlid=" + dlid);
     });
 }
 
@@ -42,7 +42,7 @@ function setAddCommentEvent(){
         var comm = $(".commentArea").val();
         if (comm!=""){
             addCommentToMessage(iPageID, comm,function(){});
-            var comment = "<li><p id='"+getDL_id()+"' class='commentWriter'>" + getName() + ":</p><p class='commentText'>" + comm + "</p><p class='commentTime'>Time: just now</p></li>";;
+            var comment = "<li><a id='"+getDL_id()+"' class='commentWriter'>" + getName() + ":</a><p class='commentText'>" + comm + "</p><p class='commentTime'>Time: just now</p></li>";;
             $("#listOfComments").append(comment);
             $(".commentArea").val("");
             setLinkToSenderEvent();
@@ -103,7 +103,7 @@ function getSubject(info){
     var ids = info.DL_id + "," + info.from_DL_id;
 
     var arr = getUserArray(ids, function(arr) {
-        var from = getURLParameter("uid");
+        var from = getParameter("uid");
         var to;
 
         if(arr[0].DL_id == from) {

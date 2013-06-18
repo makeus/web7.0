@@ -19,7 +19,7 @@ function initEPage() {
         }, 100);
     });
     
-    showRightForm(getURLParameter("type"));
+    showRightForm(getParameter("type"));
     atachEvents();
     if(isToken()) {
         getStreamUrl(offset,function(stream){
@@ -85,8 +85,8 @@ function atachEvents(){
 }
 
 function getStreamUrl(offset,done) {
-    var type = getURLParameter("type");
-    var dlid = getURLParameter("dlid");
+    var type = getParameter("type");
+    var dlid = getParameter("dlid");
 
     if(type == null) {
         type = "message";
@@ -105,9 +105,9 @@ function sendMessageClickEvent() {
             return;
         }
 
-        if(getURLParameter("type")=="cal") {
+        if(getParameter("type")=="cal") {
             saveTask(subject);
-        } else if(getURLParameter("type")=="note"){
+        } else if(getParameter("type")=="note"){
             saveNote(subject);
         } else {
             saveMessage(subject);
@@ -125,7 +125,7 @@ function saveTask(subject){
     var location = $("location").val();
     var ccList = getSelectedCC();
 
-    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location, null, ccList, function(){
+    addEvent(getParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location, null, ccList, function(){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
@@ -138,7 +138,7 @@ function saveMessage(subject){
     var link = $("#linkField").val();
     var content = $("#contentField").val();
     var ccList = getSelectedCC();
-    addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content, ccList, function(){
+    addMessage(getParameter("dlid"), getDL_id(), subject, link, content, ccList, function(){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
@@ -153,7 +153,7 @@ function saveNote(subject){
     var ccList = getSelectedCC();
     var content = $("#additional").val();
     var ccList = getSelectedCC();
-    addNote(getURLParameter("dlid"), getDL_id(), subject, content, deadline, ccList, function(){
+    addNote(getParameter("dlid"), getDL_id(), subject, content, deadline, ccList, function(){
         getStreamUrl(function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
@@ -188,7 +188,7 @@ function resetMessageFields() {
 
 
 function setLeftBarActiveLink(){
-    var type = getURLParameter("type");
+    var type = getParameter("type");
 
     switch(type) {
         case 'cal':

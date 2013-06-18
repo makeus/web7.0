@@ -64,7 +64,7 @@ function getRelation(dlid) {
 }
 
 function isRelated() {
-	if (getRelation(getURLParameter("dlid")) !== null)
+	if (getRelation(getParameter("dlid")) !== null)
 		return true;
 	else
 		return false;
