@@ -18,7 +18,6 @@ function rest(opts,url, success, error){
 	return result;
 }
 
-
 function addActivity(opts,success,error) {
 	status = 0;
 	$.ajax(
@@ -65,52 +64,4 @@ function error(data, t, m) {
 		console.log("ERROR " + t + ": " + m);
 	}
 	status = data.status;
-}
-
-function getStatus() {
-  return status;
-}
-
-function setStatus(uusi) {
-	status = uusi;
-}
-
-function saveToken(data){
-	localStorage.setItem('authtoken',data.authtoken);
-}
-function saveDL_id(data){
-	localStorage.setItem('DL_id',data.DL_id);
-}
-function getToken(){
-	return localStorage.getItem('authtoken');
-}
-function getDL_id(){
-	return localStorage.getItem('DL_id');
-}
-
-function saveName(data){
-	localStorage.setItem('name',data.name);
-}
-function getName(){
-	return localStorage.getItem('name');
-}
-function saveStream(data){
-	localStorage.setItem('stream',JSON.stringify(data));
-}
-function getSavedStream(){
-	return JSON.parse(localStorage.getItem('stream'));
-}
-function saveImage(url){
-	localStorage.setItem('image',url);
-}
-function getImage(){
-	return localStorage.getItem('image');
-}
-
-function saveRelations(relations) {
-	localStorage.setItem('relations', relations);
-}
-
-function getRelations() {
-	return localStorage.getItem('relations');
 }

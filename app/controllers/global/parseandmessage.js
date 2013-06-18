@@ -1,19 +1,19 @@
 function addMessage(to_dl_id, from_dl_id, subject, link, content, cc, done) {
-	if(to_dl_id == null || from_dl_id == null || subject == null) {
-		return -1;
-	}
-	var uid = getDL_id();
-	var auth = getToken();
-	var type = "message";
-	addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id,
-   'type':type, 'subject': subject, 'content':content, 'link':link, 'cc':cc},
-   function(data){
-      success(data);
+  	if(to_dl_id == null || from_dl_id == null || subject == null) {
+  		return -1;
+  	}
+  	var uid = getDL_id();
+  	var auth = getToken();
+  	var type = "message";
+  	addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id,
+     'type':type, 'subject': subject, 'content':content, 'link':link, 'cc':cc},
+     function(data){
+        success(data);
+        done();
+    },function(data){
+      error(data);
       done();
-  },function(data){
-    error(data);
-    done();
-  });
+    });
 }
 
 function addCommentToMessage(message_id, comment,done){
@@ -139,18 +139,20 @@ function getCCList(done) {
     return;
   }
 
-  var relationsString=getRelations();
-  console.log("relationstring: "+relationsString);
+  var relations = getRelations();
 
-  if(relationsString == undefined || relationsString == "") {
+  if(relations == null) {
     console.log("haloo olen tyhmä");
     done(items);
   } else {
-    relations = parseRelations(relationsString);
-    getUserArray(relations.join(), function(json) {
-       
+    var dlids = [];
+    $.each(relations, function(i, item) {
+      dlids[i] = item.dlid;
+    });
+
+    getUserArray(dlids.join(), function(json) {      
       userHash = myHash(json, userHash);
-      $.each(relations, function(i, item) {
+      $.each(dlids, function(i, item) {
         items.push(parseCC(userHash[item]));
       });
         
@@ -161,11 +163,22 @@ function getCCList(done) {
 }
 
 function parseRelations(string) {
-    var array = string.split(',');
-    $.each(array, function(i, item) {
-        array[i] = item.split(':')[0];
-    });
-    return array;
+  if (string == undefined)
+    return;
+
+  var array = string.split(',');
+  var relations = [];
+
+  $.each(array, function(i, item) {
+      item = item.split(':');
+
+      relations[i] = {
+        dlid: item[0],
+        type: item[1]
+      }
+  });
+
+  return relations;
 }
 
 function parseCC(info) {

@@ -90,8 +90,11 @@ asyncTest( "valid request is send when task is marked completed", function() {
 	saveToken(data);
 	
 	$.mockjax({
-		url: "https://www.dliv.in/rest/setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id=****&activity_id=****",
+		url: "https://www.dliv.in/rest/setactivitycompleted",
 		response: function(settings) {
+			equal(settings.data.uid, uid, "uid löytyy");
+			equal(settings.data.auth, auth, "auth löytyy");
+			equal(settings.data.remove, null, "remove on null");
 			this.responseText = { "success": "1" }
 		}
 	});
@@ -121,16 +124,14 @@ asyncTest( "valid request is send when task is marked incompleted", function() {
 	saveDL_id(data);
 	saveToken(data);
 	
-	$.mockjax({
-		url: "https://www.dliv.in/rest/setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id=null&activity_id=null&remove=1",
-		response: function(settings) {
-			this.responseText = { "success": "1" }
-		}
-	});
+
 
 	$.mockjax({
-		url: "https://www.dliv.in/rest/setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id=undefined&activity_id=undefined&remove=1",
+		url: "https://www.dliv.in/rest/setactivitycompleted",
 		response: function(settings) {
+			equal(settings.data.uid, uid, "uid löytyy");
+			equal(settings.data.auth, auth, "auth löytyy");
+			equal(settings.data.remove, 1, "remove on 1");
 			this.responseText = { "success": "1" }
 		}
 	});

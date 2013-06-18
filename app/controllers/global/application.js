@@ -1,6 +1,7 @@
 $(document).on('pageinit', function(){
 
 	$("#main").on('pageswitch', function(){
+
 		switch(getCurrent()['name']) {
 			case "login":
 				initlogin();
@@ -27,6 +28,7 @@ $(document).on('pageinit', function(){
 				console.log("default initiated");
 		}
 		appInit();
+
 	});
 
 	$("#linklistleft").empty();
@@ -49,12 +51,12 @@ $(document).on('pageinit', function(){
 function appInit(){
 
 	if(isToken()) {
+		
+		var	dlid = getParameter('dlid');
 
-		var dlid = getURLParameter("dlid");
-		if(dlid == null) {
+		if (dlid==undefined){
 			dlid = getDL_id();
 		}
-
 		getInfo(dlid,function(info){
 
 			sidebarsSetInfo(info);
@@ -73,7 +75,7 @@ function appInit(){
 			}
 		});
 
-		setActive(getURLParameter('type'));
+		setActive(getParameter('type'));
 
 	}
 }
@@ -81,14 +83,7 @@ function appInit(){
 
 
 function setEntityInformation(dlid){
-
-	if(dlid.name.length > 35){
-		$("#nameAndTypeBar p:first-child").text(dlid.name.slice(0,32)+"...");
-	}else{
-		$("#nameAndTypeBar p:first-child").text(dlid.name);	
-	}
-    
-
+		$("#nameAndTypeBar img").attr("src",dlid.img);	
 }
 
 function getUserData(dlid,done, error){
@@ -115,7 +110,7 @@ function addLiListener(){
         var id = $(this).attr('id');
         var uid = $(this).attr('uid');
         var listElement= $(this);
-        view.push("IPage", "index.html?iPageID=" + id +"&uid=" + uid);
+        view.push("IPage", {'iPageID': id, 'uid': uid});  		//view.push("IPage", "index.html?iPageID=" + id +"&uid=" + uid);
     });
 }
 
@@ -166,6 +161,11 @@ function setupPage(settings) {
 		bar.showBackButton();
 	}else{
 		bar.hideBackButton();
+	}
+	if(settings.searchPage){
+		bar.showSearch();
+	}else{
+		bar.hideSearch();
 	}
 }
 
@@ -219,18 +219,16 @@ function getActivityStream(opts,done) {
 }
 
 function setActivityCompleted(completed, done) {
-    var uid = getDL_id();
-    var auth = getToken();
-    var dlid = getURLParameter("uid");
-    var activity_id = getURLParameter("iPageID");
-
-    var remove = "";
-    if (completed === false)
+    if (completed === false){
+    	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getParameter("uid"),'activity_id':getParameter("iPageID"),'remove':"1"};
     	remove = "&remove=1";
-
-    var url = "setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id="+dlid+"&activity_id="+activity_id+remove;
+    }else {
+    	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getParameter("uid"),'activity_id':getParameter("iPageID")};
+    }
     
-    rest(null,
+    var url = "setactivitycompleted";
+    
+    rest(opts,
         url,
         function(data) {
 			success(data);
@@ -241,7 +239,41 @@ function setActivityCompleted(completed, done) {
 			error(data);
 			if (done != null)
 				done(data);
-		});
+		}
+	);
+}
+
+function createRelation(dl_id_from, dl_id_to, role, done) {
+	if (dl_id_from == null || dl_id_from === "me")
+		dl_id_from = getDL_id();
+
+	if (role == null)
+		role = "";
+
+
+	var url = "addrelation";
+
+	var opts = {
+		'uid': getDL_id(),
+		'auth': getToken(),
+		'dl_id_from': dl_id_from,
+		'dl_id_to': dl_id_to,
+		'role': role
+	};
+
+	rest(opts,
+		url,
+		function(data) {
+			success(data);
+			if (done != null)
+				done(data);
+		},
+		function(data) {
+			error(data);
+			if (done != null)
+				done(data);
+		}
+	);
 }
 
 function getUserArray(dlids,done) {

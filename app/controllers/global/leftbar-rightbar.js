@@ -17,8 +17,8 @@ function sidebarsSetInfo(info) {
 function updateUrls(dlid) {
 	$.each(links, function(i, item) {
 		item['opts']['dlid'] = dlid;
+		$("#" + item['id']).unbind();
 		$("#" + item['id']).click(function() {
-
 			$("#leftpanel").panel( "close" );
 			$("#rightpanel").panel( "close");
 			view.push(item['url'], item['opts']);
@@ -28,8 +28,7 @@ function updateUrls(dlid) {
 
 function setActive(name) {
 	$.each(links, function(i, item) {
-		console.log((item['opts']['type'] == name));
-		if(((item['opts']['type'] === name) && (name !== undefined)) || ((item['opts']['type'] === undefined) && (getCurrent()["name"] === item['url']))) {
+		if(((item['opts']['type'] === name) && (name !== undefined)) || ((item['opts']['type'] === undefined) && (getCurrent()["name"] === item['url']) && (name === undefined))) {
 			$("#" + item['id']).addClass("active");
 		} else {
 			$("#" + item['id']).removeClass("active");
@@ -44,7 +43,7 @@ function leftbarCreateLinks() {
 	links[0] = {'type': "Messages", 'id':'linklistleftMessages', 'url':'EPage', 'icon' : "<i class=\"icon-envelope\"></i>", 'opts' : {'type' : 'message'}};
 	links[1] = {'type': "Tasks", 'id':'linklistleftTasks', 'url':'EPage', 'icon' : "<i class=\"icon-calendar\"></i>", 'opts' : {'type' : 'cal'}};
 	links[2] = {'type': "Notes", 'id':'linklistleftNotes', 'url':'EPage', 'icon' : "<i class=\"icon-edit\"></i>", 'opts' : {'type' : 'note'}};
-	links[3] = {'type': "Files", 'id':'linklistleftFiles', 'url':'EPage', 'icon' : "<i class=\"icon-file-alt\"></i>", 'opts' : {'type' : 'files'}};
+	links[3] = {'type': "Files", 'id':'linklistleftFiles', 'url':'EPage', 'icon' : "<i class=\"icon-file-alt\"></i>", 'opts' : {}};
 	links[4] = {'type': "Basic-Info", 'id':'linklistleftBasic-Info', 'url':'BPage', 'icon' : "<i class=\"icon-user\"></i>", 'opts' : {}};
 
 	// links[5] = "Logout";
