@@ -362,7 +362,7 @@ asyncTest( "getCCList test", function() {
         	DL_id: "7795",
         	type: "user",
         	sub_type: "",
-	        relations: "7795:,8658",
+	        relations: "7795:,8658:",
 	        name: "Adele Vuohi",
 	        img: "https://dlfwwwfiles.s3.amazonaws.com/images/8653/thumb_303657-goats-picture.gif",
 	        edited: "2013-05-22 07:31:55",
@@ -374,7 +374,7 @@ asyncTest( "getCCList test", function() {
         	DL_id: "8658",
         	type: "user",
         	sub_type: "",
-	        relations: "7795:,8658",
+	        relations: "7795:,8658:",
 	        name: "Adele Vuohi",
 	        img: "https://dlfwwwfiles.s3.amazonaws.com/images/8653/thumb_303657-goats-picture.gif",
 	        edited: "2013-05-22 07:31:55",
@@ -385,7 +385,9 @@ asyncTest( "getCCList test", function() {
 	});
 
 	login(username, password, function(data) {
-		localStorage.setItem('relations', '7795:,8658');
+		var relationString = '7795:,8658:';
+		saveRelations(parseRelations(relationString));
+		
 		getCCList(function(data){
 			start();
 			equal(getStatus(), 1);

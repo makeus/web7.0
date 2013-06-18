@@ -4,27 +4,24 @@ function initRPage() {
         barBackButton: false
     });
 
-	var dlid = getURLParameter("dlid");
+	var dlid = getParameter("dlid");
 	if(dlid == null) {
 		dlid = getDL_id();
 	}
-	var type = getURLParameter("type");
+	var type = getParameter("type");
     if(type == null) {
         type = "user";
     }
     getInfo(dlid, function(items){
 		var relations = parseRelations(items.relations);
-        $.each(relations, function(i, item) {
-            getInfo(item, function(info) {
-                if(info.type == type) {
-                    appendRelationsList(info);
-                }
-            });
-        });
-        $("#relationslist").listview().listview("refresh");
 
-        
-        
+		$.each(relations, function(i, item) {
+			getInfo(item.dlid, function(info) {
+				if(info.type == type)
+					appendRelationsList(info);
+			});
+		});
+        $("#relationslist").listview().listview("refresh");
 	});
     $("#rightpanel img").load(function() {
 		setRightBarActiveLink();
@@ -49,14 +46,14 @@ function appendRelationsList(dlid) {
 
 	$("#relationslist").append(li);
 	
-	// $("li#relationList" + dlid.DL_id).click(function() {
-	// 	view.push("EPage", "index.html?dlid=" + dlid.DL_id);
-	// });
+	 $("li#relationList" + dlid.DL_id).click(function() {
+        view.push("EPage", {'dlid': dlid.DL_id});           //view.push("EPage", "index.html?dlid=" + dlid.DL_id);
+	 });
 }
 
 
 function setRightBarActiveLink(){
-    var type = getURLParameter("type");
+    var type = getParameter("type");
 
     switch(type) {
         case 'user':

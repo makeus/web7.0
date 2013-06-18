@@ -139,18 +139,20 @@ function getCCList(done) {
     return;
   }
 
-  var relationsString=getRelations();
-  console.log("relationstring: "+relationsString);
+  var relations = getRelations();
 
-  if(relationsString == undefined || relationsString == "") {
+  if(relations == null) {
     console.log("haloo olen tyhmä");
     done(items);
   } else {
-    relations = parseRelations(relationsString);
-    getUserArray(relations.join(), function(json) {
-       
+    var dlids = [];
+    $.each(relations, function(i, item) {
+      dlids[i] = item.dlid;
+    });
+
+    getUserArray(dlids.join(), function(json) {      
       userHash = myHash(json, userHash);
-      $.each(relations, function(i, item) {
+      $.each(dlids, function(i, item) {
         items.push(parseCC(userHash[item]));
       });
         
@@ -161,11 +163,22 @@ function getCCList(done) {
 }
 
 function parseRelations(string) {
-    var array = string.split(',');
-    $.each(array, function(i, item) {
-        array[i] = item.split(':')[0];
-    });
-    return array;
+  if (string == undefined)
+    return;
+
+  var array = string.split(',');
+  var relations = [];
+
+  $.each(array, function(i, item) {
+      item = item.split(':');
+
+      relations[i] = {
+        dlid: item[0],
+        type: item[1]
+      }
+  });
+
+  return relations;
 }
 
 function parseCC(info) {

@@ -39,7 +39,11 @@ function initfrontpage(){
     } else {
         alert("UNAUTHORISED");
     }
+
+    printDebugInfo();
 }
+
+
 var offset=0;
 function appendStreamF(){
     offset += 15;

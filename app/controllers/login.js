@@ -5,6 +5,8 @@ function initlogin() {
 	    barBackButton: false
 	});
 
+	localStorage.clear();
+
 	$("#loginButton").click(function(){
 		var username = document.getElementById('loginUsername').value;
 		var password = document.getElementById('loginPassword').value;
@@ -16,12 +18,9 @@ function initlogin() {
 			view.push("frontpage");
 		}
 		});
-
-		
 	});
 
-	// createDebugButtons();
-
+	createDebugButtons();
 }
 
 
@@ -47,7 +46,7 @@ function login(username, password,done){
 				getInfo(getDL_id(),function(data){
 					saveName(data);
 					saveImage(data.img);
-					saveRelations(data.relations);
+					saveRelations(parseRelations(data.relations));
 					done();
 				});
 			} else {

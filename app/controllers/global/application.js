@@ -1,37 +1,41 @@
 document.addEventListener("DOMContentLoaded",function(){
 	$("#main").on('pageswitch', function(){
 		console.log(getCurrent());
-		switch(getCurrent()['name']) {
-			case "login":
-				initlogin();
-				break;
-			case "frontpage":
-				initfrontpage();
-				break;
-			case "BPage":
-				initBPage();
-				break;
-			case "EPage":
-				initEPage();
-				break;
-			case "IPage":
-				initIPage();
-				break;
-			case "RPage":
-				initRPage();
-				break;
-			case "search":
-				initsearch();
-				break;
-			default:
-				console.log("default initiated");
-		}
+		
+			switch(getCurrent()['name']) {
+				case "login":
+					initlogin();
+					break;
+				case "frontpage":
+					initfrontpage();
+					break;
+				case "BPage":
+					initBPage();
+					break;
+				case "EPage":
+					initEPage();
+					break;
+				case "IPage":
+					initIPage();
+					break;
+				case "RPage":
+					initRPage();
+					break;
+				case "search":
+					initsearch();
+					break;
+				default:
+					console.log("default initiated");
+			}
 		appInit();
+
 	});
 
-	if(getCurrent() == undefined) {
-		view.push("login");
-	}
+		if(getCurrent() == undefined) {
+
+			view.push("login");
+		} 
+
 
 	if(!isSteroids()) {
 		$("*").css("max-width", "340px");
@@ -42,11 +46,12 @@ document.addEventListener("DOMContentLoaded",function(){
 
 function appInit(){
 	if(isToken()) {
-		var dlid = getURLParameter("dlid");
-		if(dlid == null) {
+		
+		var	dlid = getParameter('dlid');
+
+		if (dlid==undefined){
 			dlid = getDL_id();
 		}
-
 		getInfo(dlid,function(info){
 			$("#linklistleft").empty();
 			$("#linklistright").empty();
@@ -100,7 +105,7 @@ function addLiListener(){
         var id = $(this).attr('id');
         var uid = $(this).attr('uid');
         var listElement= $(this);
-        view.push("IPage", "index.html?iPageID=" + id +"&uid=" + uid);
+        view.push("IPage", {'iPageID': id, 'uid': uid});  		//view.push("IPage", "index.html?iPageID=" + id +"&uid=" + uid);
     });
 }
 
@@ -210,10 +215,10 @@ function getActivityStream(opts,done) {
 
 function setActivityCompleted(completed, done) {
     if (completed === false){
-    	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getURLParameter("uid"),'activity_id':getURLParameter("iPageID"),'remove':"1"};
+    	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getParameter("uid"),'activity_id':getParameter("iPageID"),'remove':"1"};
     	remove = "&remove=1";
     }else {
-    	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getURLParameter("uid"),'activity_id':getURLParameter("iPageID")};
+    	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getParameter("uid"),'activity_id':getParameter("iPageID")};
     }
     
     var url = "setactivitycompleted";
@@ -229,7 +234,41 @@ function setActivityCompleted(completed, done) {
 			error(data);
 			if (done != null)
 				done(data);
-		});
+		}
+	);
+}
+
+function createRelation(dl_id_from, dl_id_to, role, done) {
+	if (dl_id_from == null || dl_id_from === "me")
+		dl_id_from = getDL_id();
+
+	if (role == null)
+		role = "";
+
+
+	var url = "addrelation";
+
+	var opts = {
+		'uid': getDL_id(),
+		'auth': getToken(),
+		'dl_id_from': dl_id_from,
+		'dl_id_to': dl_id_to,
+		'role': role
+	};
+
+	rest(opts,
+		url,
+		function(data) {
+			success(data);
+			if (done != null)
+				done(data);
+		},
+		function(data) {
+			error(data);
+			if (done != null)
+				done(data);
+		}
+	);
 }
 
 function getUserArray(dlids,done) {
