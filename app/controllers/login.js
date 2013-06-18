@@ -20,17 +20,6 @@ function initlogin() {
 		
 	});
 
-	$("#loginUsername").keyup(function(event){
-	if(event.keyCode == 13){
-	    $("#loginPassword").focus();
-	}
-	});
-	$("#loginPassword").keyup(function(event){
-		if(event.keyCode == 13){
-	    	$("#loginButton").click();
-	}
-	});
-
 	// createDebugButtons();
 
 }

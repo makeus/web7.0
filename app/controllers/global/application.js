@@ -70,13 +70,17 @@ function appInit(){
 	}
 }
 
+
+
 function setEntityInformation(dlid){
+
 	if(dlid.name.length > 35){
 		$("#nameAndTypeBar p:first-child").text(dlid.name.slice(0,32)+"...");
 	}else{
 		$("#nameAndTypeBar p:first-child").text(dlid.name);	
 	}
     
+
 }
 
 function getUserData(dlid,done, error){

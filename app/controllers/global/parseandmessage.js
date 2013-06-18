@@ -119,13 +119,13 @@ function getStream(opts,done){
 
 
 
-function getOtherStream(types,dlid,done) {
-    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types+',', 'dlid':dlid};
+function getOtherStream(types,dlid,offset,done) {
+    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': offset, 'limit': 15, 'types': types+',', 'dlid':dlid};
     getStream(opts,done);
 }
 
-function getOwnStream(types,done) {
-    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': 0, 'limit': 15, 'types': types, 'stream': true};
+function getOwnStream(types,offset,done) {
+    var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': offset, 'limit': 15, 'types': types, 'stream': true};
     getStream(opts,done);
 
 }
@@ -207,15 +207,7 @@ function myHash(json, hash) {
     return hash;
 }
 
-function showMessages(done) {
-    getOwnStream("message",function(messages){
-      if (messages !="") {
-        $("#thelist").replaceWith("<ul id ='thelist'>" + messages.join('') + "</ul>")
-    }
-    done(messages);
-    });
-    
-}
+
 
 
 function parseItem(item, userHash, type) {
