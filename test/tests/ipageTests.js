@@ -90,7 +90,7 @@ asyncTest( "valid request is send when task is marked completed", function() {
 	saveToken(data);
 	
 	$.mockjax({
-		url: "https://www.dliv.in/rest/setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id=****&activity_id=****",
+		url: "*",
 		response: function(settings) {
 			this.responseText = { "success": "1" }
 		}
@@ -121,15 +121,10 @@ asyncTest( "valid request is send when task is marked incompleted", function() {
 	saveDL_id(data);
 	saveToken(data);
 	
-	$.mockjax({
-		url: "https://www.dliv.in/rest/setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id=null&activity_id=null&remove=1",
-		response: function(settings) {
-			this.responseText = { "success": "1" }
-		}
-	});
+
 
 	$.mockjax({
-		url: "https://www.dliv.in/rest/setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id=undefined&activity_id=undefined&remove=1",
+		url: "*",
 		response: function(settings) {
 			this.responseText = { "success": "1" }
 		}

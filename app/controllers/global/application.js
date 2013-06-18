@@ -211,18 +211,16 @@ function getActivityStream(opts,done) {
 }
 
 function setActivityCompleted(completed, done) {
-    var uid = getDL_id();
-    var auth = getToken();
-    var dlid = getURLParameter("uid");
-    var activity_id = getURLParameter("iPageID");
-
-    var remove = "";
-    if (completed === false)
+    if (completed === false){
+    	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getURLParameter("uid"),'activity_id':getURLParameter("iPageID"),'remove':"1"};
     	remove = "&remove=1";
-
-    var url = "setactivitycompleted?uid="+uid+"&auth="+auth+"&dl_id="+dlid+"&activity_id="+activity_id+remove;
+    }else {
+    	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getURLParameter("uid"),'activity_id':getURLParameter("iPageID")};
+    }
     
-    rest(null,
+    var url = "setactivitycompleted";
+    
+    rest(opts,
         url,
         function(data) {
 			success(data);
