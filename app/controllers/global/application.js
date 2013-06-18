@@ -77,6 +77,24 @@ function appInit(){
 
 		setActive(getParameter('type'));
 
+		var scrollTimer = 0;
+		$(window).scroll(function () {
+	        if (scrollTimer) {
+	            clearTimeout(scrollTimer);
+	        }
+	        scrollTimer = setTimeout(function(){
+	            if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
+	            	if(getCurrent() == "frontpage") {
+	            		appendStreamF();
+	            	}
+	            	if(getCurrent() == "EPage") {
+	            		appendStreamE();
+	            	}
+	                
+	            }
+	        }, 100);
+    	});
+
 	}
 }
 

@@ -5,24 +5,11 @@ function initEPage() {
         barBackButton: false
     });
 
-
-    var scrollTimer = 0;
-
-    $(window).scroll(function () {
-        if (scrollTimer) {
-            clearTimeout(scrollTimer);
-        }
-        scrollTimer = setTimeout(function(){
-            if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
-                appendStreamE();
-            }
-        }, 100);
-    });
     
     showRightForm(getParameter("type"));
     attachEvents();
     if(isToken()) {
-        getStreamUrl(offset,function(stream){
+        getStreamUrl(0,function(stream){
             if(stream != null && stream != "") {
                 $("#thelist").append( stream.join('') );
                 addLiListener();
@@ -85,10 +72,10 @@ function getStreamUrl(offset,done) {
     var type = getParameter("type");
     var dlid = getParameter("dlid");
 
-    if(type == null) {
+    if(type == undefined) {
         type = "message";
     }
-    if(dlid == null) {
+    if(dlid == undefined) {
         dlid = getDL_id();
     }
     getOtherStream(type,dlid,offset,done);
@@ -123,7 +110,7 @@ function saveTask(subject){
     var ccList = getSelectedCC();
 
     addEvent(getParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location, null, ccList, function(){
-        getStreamUrl(function(stream){
+        getStreamUrl(0, function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
             addLiListener();
@@ -136,7 +123,7 @@ function saveMessage(subject){
     var content = $("#contentField").val();
     var ccList = getSelectedCC();
     addMessage(getParameter("dlid"), getDL_id(), subject, link, content, ccList, function(){
-        getStreamUrl(function(stream){
+        getStreamUrl(0, function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
             addLiListener();
@@ -151,7 +138,7 @@ function saveNote(subject){
     var content = $("#additional").val();
     var ccList = getSelectedCC();
     addNote(getParameter("dlid"), getDL_id(), subject, content, deadline, ccList, function(){
-        getStreamUrl(function(stream){
+        getStreamUrl(0, function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
             addLiListener();
