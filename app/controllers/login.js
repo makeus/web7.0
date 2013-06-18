@@ -16,12 +16,9 @@ function initlogin() {
 			view.push("frontpage");
 		}
 		});
-
-		
 	});
 
-	// createDebugButtons();
-
+	createDebugButtons();
 }
 
 
