@@ -8,7 +8,6 @@ bar = {
 	show: function() {
 		$("#bar").show();
 		//bar.setValues();
-		bar.initListeners();
 	},
 
 	hide: function() {
@@ -24,25 +23,34 @@ bar = {
 	},
 
 	initListeners: function() {
+	
+
 		$("#ownPictureButton").attr("src",getImage());
+		$("#ownPictureButton").off();
 		$("#ownPictureButton").click(function(){
 			view.push("frontpage");
 		});
+		$("#backButton").off();
 		$("#backButton").click(function(){
 			view.pop();
 		});
+		$("#barLogo").off();
 		$("#barLogo").click(function() {
 			$( "#leftpanel" ).panel( "open" );
 		});
+		$("#relationsButton").off();
 		$("#relationsButton").click(function(){
 			$( "#rightpanel" ).panel( "open" );
 		});
+		$("#searchButton").off();
 		$("#searchButton").click(function() {
    			view.push("search");
         });
+        $("#settingsButton").off();
         $("#settingsButton").click(function(){
         	bar.showSettingsList();
         });
+        $("#settingsList :first-child").off(),
         $("#settingsList :first-child").click(function(){
         	view.push("login");
         });
