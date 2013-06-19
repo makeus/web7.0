@@ -56,6 +56,7 @@ function createButton(info) {
 	button.css("font-weight", "bolder");
 	button.css("color", randomColor());
 	button.css("background-color", randomColor());
+	button.css("padding", "10px");
 	
 	button.click(function() {
 		login(info.username, info.password, function() {

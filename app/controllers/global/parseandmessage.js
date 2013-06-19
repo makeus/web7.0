@@ -81,7 +81,8 @@ function addNote(to_dl_id, from_dl_id, subject, content, time_to, cc, done) {
 function getStream(opts,done){
     
     getActivityStream(opts,function(stream){
-      saveStream(stream);
+      saveStream(getSavedStream().concat(stream));
+      console.log(getSavedStream());
       var items =[];
       var dlids= [];
       var userHash={};
