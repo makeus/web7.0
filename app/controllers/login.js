@@ -19,7 +19,6 @@ function initlogin() {
 	});
 
 	createDebugButtons();
-	addStatusBar();
 }
 
 
