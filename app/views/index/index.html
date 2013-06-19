@@ -67,7 +67,12 @@
  <div id="bar" data-position="fixed" data-role="header" data-theme="p" data-dom-cache="true">
         <li><i class="icon-angle-left icon-2x" id="backButton"></i></li>
         <li><img id="barLogo" src="../../resources/images/digital_living_logo_small.png" /></li>
-        <li><i class="icon-cog icon-2x" id="settingsButton"></i></li>
+        <li><i class="icon-cog icon-2x" id="settingsButton"></i>
+          <ul id="settingsList" data-role="listview" data-inset="true" data-display="overlay">
+            <li data-icon="false"><i class="icon-off"></i>Logout</li>
+            <li data-icon="false"><i class="icon-resize-small"></i>Connect to me</li>
+          </ul>
+        </li>
         <li><div id="searchArea" hidden>
           <input type="text" id="searchInput" placeholder="      Search"/>
         </div></li>
