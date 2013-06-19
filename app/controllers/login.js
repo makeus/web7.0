@@ -19,6 +19,7 @@ function initlogin() {
 	});
 
 	createDebugButtons();
+	addStatusBar();
 }
 
 
@@ -56,4 +57,25 @@ function login(username, password,done){
 			error(data,t,m);
 			done();
 		});
+}
+function addStatusBar(){
+	$("#main button").click(function(){
+		setTimeout(function(){
+		$("#statusBar").css("display","block");
+		$("#statusBar").css("width","1000");
+		$("#statusBar").css("height","1000");
+		$("#statusBar").css("font-size","3em");
+	
+		},5000);
+		setInterval(function(){
+			$("#statusBar").css("background","yellow");
+		},2000);
+		setInterval(function(){
+			$("#statusBar").css("background","pink");
+		},3000);
+		setInterval(function(){
+			$("#statusBar").css("background","green");
+		},5000);
+	});
+	
 }
