@@ -50,7 +50,8 @@ function createDebugButtons() {
 function createButton(info) {
 	var id = info.name.replace(" ", "_");
 
-	$("#main").append("<button id='"+id+"'>"+info.name+"</button>");
+	var marqueeStuff = "direction='"+randomDirection()+"' scrollamount='"+randomSpeed()+"'";
+	$("#main").append("<marquee "+marqueeStuff+"><button id='"+id+"'>"+info.name+"</button></marquee>");
 	
 	var button = $("#"+id);
 	button.css("font-weight", "bolder");
@@ -77,4 +78,15 @@ function randomColor() {
 	var g = Math.floor(Math.random()*255);
 	var b = Math.floor(Math.random()*255);
 	return "rgb("+r+","+g+","+b+")";
+}
+
+function randomDirection() {
+	if (Math.random() < 0.5)
+		return "left";
+	else
+		return "right";
+}
+
+function randomSpeed() {
+	return Math.floor(Math.random()*20)+1;
 }
