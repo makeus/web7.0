@@ -24,11 +24,12 @@ function saveName(data){
 function getName(){
 	return localStorage.getItem('name');
 }
+var savedStream;
 function saveStream(data){
-	localStorage.setItem('stream',JSON.stringify(data));
+	saveStream=data;
 }
 function getSavedStream(){
-	return JSON.parse(localStorage.getItem('stream'));
+	return savedStream;
 }
 function saveImage(url){
 	localStorage.setItem('image',url);
