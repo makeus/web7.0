@@ -409,6 +409,7 @@ ul#thelist .eventElem p {
 .ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li {
     padding-top:20px;
     padding-bottom:20px;
+
 }
 
 #linklistright .ui-li .ui-btn-inner a.ui-link-inherit, #linklistright .ui-li-static.ui-li {
@@ -625,6 +626,8 @@ ul#relationslist .emptyRelationImage {
 #cc li>img {
     float:left;
     max-width:50px;
+    margin-top: 5px;
+    margin-left: 5px;  
 }
 
 #cc li>p {
@@ -632,7 +635,7 @@ ul#relationslist .emptyRelationImage {
 }
 
 #cc li>input {
-    margin-top:15px;
+    margin-top:5px;
     float:left;
 }
 .ui-corner-all{
@@ -643,5 +646,25 @@ ul#relationslist .emptyRelationImage {
 	padding-top: 20px;
 	padding-bottom: 20px;
 	border-color: black;
+}
+.checkCC{
+	 width: 20px; 
+	 height: 35px; 
+	 margin-left: 5px; margin-right: 0px;
+}
+
+.pCC{
+	 margin-top: 15px; 
+	 width: 170px; 
+}
+.liCC{
+	padding-left: 120px;  
+	padding-top: 2px; 
+	padding-bottom: 5px; 
+}
+#cc .ui-li .ui-btn-inner a.ui-link-inherit,#cc .ui-li-static.ui-li {
+    padding-top:2px;
+    padding-bottom:2px;
+    padding-left: 70px;   
 }
 

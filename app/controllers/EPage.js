@@ -55,6 +55,7 @@ function showRightForm(type){
             $("#cc").append(data.join(''));
 			$("#cc").listview().listview("refresh");
         }   
+        $("#ccForm").collapsible({refresh:true});
     });
 }
 
