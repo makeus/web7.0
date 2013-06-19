@@ -9,7 +9,7 @@ view = {
 		} else{
 			variables = undefined;
 		}
-
+		
 		$("#main").html(Handlebars.templates[name + ".html"]());
 		previous = current;
 		current = {'name': name, 'previous': previous};

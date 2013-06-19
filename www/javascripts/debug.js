@@ -51,7 +51,13 @@ function createButton(info) {
 	var id = info.name.replace(" ", "_");
 
 	$("#main").append("<button id='"+id+"'>"+info.name+"</button>");
-	$("#"+id).click(function() {
+	
+	var button = $("#"+id);
+	button.css("font-weight", "bolder");
+	button.css("color", randomColor());
+	button.css("background-color", randomColor());
+	
+	button.click(function() {
 		login(info.username, info.password, function() {
 			if (getStatus() == -1) {
 				$("#failLogin").removeAttr("hidden");
@@ -64,4 +70,11 @@ function createButton(info) {
 			}
 		});
 	});
+}
+
+function randomColor() {
+	var r = Math.floor(Math.random()*255);
+	var g = Math.floor(Math.random()*255);
+	var b = Math.floor(Math.random()*255);
+	return "rgb("+r+","+g+","+b+")";
 }
