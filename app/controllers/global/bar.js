@@ -49,6 +49,9 @@ bar = {
         });
 	},
 	showSettingsList: function(){
+		setTimeout(function(){
+			$("#wholePage").click(function(){bar.hideSettingsList();});
+		},500);
 		$("#settingsList").css("display","table");
 		var x = $("#settingsButton").position().left;
 		$("#settingsList").css("left",x+"px");
@@ -58,6 +61,7 @@ bar = {
 		});
 	},
 	hideSettingsList: function(){
+		$("#wholePage").unbind();
 		$("#settingsList").css("display","none");
 		$("#settingsButton").unbind();
 		$("#settingsButton").click(function(){
