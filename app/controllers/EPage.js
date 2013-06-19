@@ -65,7 +65,7 @@ function attachEvents(){
     $("#close").click(function(){
         hideMessageFields();
     });
-    $("#sendMessageBox").click(sendMessageClickEvent);
+    $("#sendMessageBox").click(sendMessageClickEventEPage);
 }
 
 function getStreamUrl(offset,done) {
@@ -81,7 +81,7 @@ function getStreamUrl(offset,done) {
     getOtherStream(type,dlid,offset,done);
 }
 
-function sendMessageClickEvent() {
+function sendMessageClickEventEPage() {
     if(isToken()) {
         var subject = $("#inputField").val();
 

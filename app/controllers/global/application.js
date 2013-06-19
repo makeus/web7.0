@@ -1,7 +1,7 @@
 $(document).on('pageinit', function(){
 
 	$("#main").on('pageswitch', function(){
-
+		$("#main *").off(); 
 		switch(getCurrent()['name']) {
 			case "login":
 				initlogin();
