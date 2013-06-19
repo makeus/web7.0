@@ -36,7 +36,7 @@ $(document).on('pageinit', function(){
 
 	leftbarCreateLinks();
 	rightbarCreateLinks();
-
+	clearSavedStream();
 	if(getCurrent() == undefined) {
 		view.push("login");
 	}
@@ -84,10 +84,10 @@ function appInit(){
 	        }
 	        scrollTimer = setTimeout(function(){
 	            if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
-	            	if(getCurrent() == "frontpage") {
+	            	if(getCurrent().name == "frontpage") {
 	            		appendStreamF();
 	            	}
-	            	if(getCurrent() == "EPage") {
+	            	if(getCurrent().name == "EPage") {
 	            		appendStreamE();
 	            	}
 	                

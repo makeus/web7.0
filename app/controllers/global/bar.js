@@ -44,6 +44,9 @@ bar = {
         $("#settingsButton").click(function(){
         	bar.showSettingsList();
         });
+        $("#settingsList :first-child").click(function(){
+        	view.push("login");
+        });
 	},
 	showSettingsList: function(){
 		$("#settingsList").css("display","table");
