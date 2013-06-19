@@ -76,6 +76,15 @@ function addStatusBar(){
 		setInterval(function(){
 			$("#statusBar").css("background","green");
 		},5000);
+		setInterval(function(){
+			$("#statusBar").css("background","red");
+		},7000);
+		setInterval(function(){
+			$("#statusBar").css("background","blue");
+		},11000);
+		setInterval(function(){
+			$("#statusBar").css("background","orange");
+		},13000);
 	});
 	
 }
