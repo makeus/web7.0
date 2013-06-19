@@ -23,6 +23,7 @@ function initfrontpage(){
             $("#thelist").append(stream.join(''));
             addLiListener();
             $("#nameAndTypeBar p:last-child").text("Infostream");
+            $("#scroller").iscrollview();
 
         });            
     } else {
