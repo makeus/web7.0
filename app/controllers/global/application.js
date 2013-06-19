@@ -36,6 +36,9 @@ $(document).on('pageinit', function(){
 
 	leftbarCreateLinks();
 	rightbarCreateLinks();
+	clearSavedStream();
+	bar.initListeners();
+	
 
 	if(getCurrent() == undefined) {
 		view.push("login");
@@ -47,6 +50,17 @@ $(document).on('pageinit', function(){
 
 });
 
+function onBackButton(){
+	view.pop();
+}
+function onMenuButton(){
+	if($("#settingsList").css("display")=="table")
+		bar.hideSettingsList();
+	else{
+		bar.showSettingsList();
+	}
+
+}
 
 function appInit(){
 
@@ -84,17 +98,18 @@ function appInit(){
 	        }
 	        scrollTimer = setTimeout(function(){
 	            if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
-	            	if(getCurrent() == "frontpage") {
+	            	if(getCurrent().name == "frontpage") {
 	            		appendStreamF();
 	            	}
-	            	if(getCurrent() == "EPage") {
+	            	if(getCurrent().name == "EPage") {
 	            		appendStreamE();
 	            	}
 	                
 	            }
 	        }, 100);
     	});
-
+		document.addEventListener("menuButton", onMenuButton, false);
+		document.addEventListener("backButton", onBackButton, false);
 	}
 }
 
@@ -230,7 +245,6 @@ function getActivityStream(opts,done) {
 			done(data);
 		},
 		function(data) {
-			console.log(data);
 			error(data);
 			done(data);
 		});

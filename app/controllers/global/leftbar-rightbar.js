@@ -46,10 +46,6 @@ function leftbarCreateLinks() {
 	links[3] = {'type': "Files", 'id':'linklistleftFiles', 'url':'EPage', 'icon' : "<i class=\"icon-file-alt\"></i>", 'opts' : {}};
 	links[4] = {'type': "Basic-Info", 'id':'linklistleftBasic-Info', 'url':'BPage', 'icon' : "<i class=\"icon-user\"></i>", 'opts' : {}};
 
-	// links[5] = "Logout";
-	// urls[5] = "login";
-	// icons[5] = "<i class=\"icon-off\"></i>";
-
 	for(var i = 0; i<5; i++) {
 		$("#linklistleft").append("<li id='" + links[i]['id'] + "'><a>" + links[i]['icon'] + "\t" + links[i]['type'] + "</a></li>");
 	}

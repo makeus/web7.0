@@ -62,50 +62,50 @@
 
 <body>
 
-  <div data-role="page">
+<div id="wholePage" data-role="page">
 
- <div id="bar" data-position="fixed" data-role="header" data-theme="p" data-dom-cache="true">
-        <li><i class="icon-angle-left icon-2x" id="backButton"></i></li>
-        <li><img id="barLogo" src="../../resources/images/digital_living_logo_small.png" /></li>
-        <li><i class="icon-cog icon-2x" id="settingsButton"></i>
-          <ul id="settingsList" data-role="listview" data-inset="true" data-display="overlay">
-            <li data-icon="false"><i class="icon-off"></i>Logout</li>
-            <li data-icon="false"><i class="icon-resize-small"></i>Connect to me</li>
-          </ul>
-        </li>
-        <li><div id="searchArea" hidden>
-          <input type="text" id="searchInput" placeholder="      Search"/>
-        </div></li>
-        <li><img  id="ownPictureButton" src="../../resources/images/tyhja.png"></img></li>
-        <li><i class="icon-search icon-2x" id="searchButton"></i></li>
-        <li><i class="icon-reorder icon-2x" id="relationsButton"></i></li>
-    </div> 
-    <div id="statusBar">
-      ugly buttons!111
-    </div>
+  <div id="bar" data-position="fixed" data-role="header" data-theme="p" data-dom-cache="true">
+    <li><i class="icon-angle-left icon-2x" id="backButton"></i></li>
+    <li><img id="barLogo" src="../../resources/images/digital_living_logo_small.png" /></li>
+    <li><i class="icon-cog icon-2x" id="settingsButton"></i>
+      <ul id="settingsList" data-role="listview" data-inset="true" data-display="overlay">
+        <li data-icon="false"><i class="icon-off"></i>Logout</li>
+        <li data-icon="false" id="connectToMeButton"><i class="icon-resize-small"></i>Connect to me</li>
+        <ul id="relationsList" data-role="listview" data-inset="true" data-display="overlay"></ul>
+      </ul>
+    </li>
+    <li><div id="searchArea" hidden>
+      <input type="text" id="searchInput" placeholder="      Search"/>
+    </div></li>
+    <li><img id="ownPictureButton" src="../../resources/images/tyhja.png"></img></li>
+    <li><i class="icon-search icon-2x" id="searchButton"></i></li>
+    <li><i class="icon-reorder icon-2x" id="relationsButton"></i></li>
+  </div>
+
+  <div id="statusBar">
+  </div>
  
-    <div data-role="panel" id="leftpanel" data-theme="g" data-display="overlay" data-dom-cache="true">
-      <div class="bar_info" data-theme="g">
-        <img class="bar_img"></img>
-        <div class="bar_name_role">
-          <h1 class="bar_name"></h1>
-          <h2 class="bar_role"></h2>
-        </div>
+  <div data-role="panel" id="leftpanel" data-theme="g" data-display="overlay" data-dom-cache="true">
+    <div class="bar_info" data-theme="g">
+      <img class="bar_img"></img>
+      <div class="bar_name_role">
+        <h1 class="bar_name"></h1>
+        <h2 class="bar_role"></h2>
       </div>
-      <ul data-role="listview" data-theme="g" id="linklistleft"></ul>
     </div>
+    <ul data-role="listview" data-theme="g" id="linklistleft"></ul>
+  </div>
 
-    <div data-role="panel" id="rightpanel" data-position="right" data-theme="g" data-display="overlay" data-dom-cache="true">
-      <div class="bar_info" data-theme="g">
-        <div class="bar_name_role">
-          <h1 class="bar_name"></h1>
-          <h2 class="bar_role"></h2>
-        </div>
-        <img class="bar_img"></img>
-
+  <div data-role="panel" id="rightpanel" data-position="right" data-theme="g" data-display="overlay" data-dom-cache="true">
+    <div class="bar_info" data-theme="g">
+      <div class="bar_name_role">
+        <h1 class="bar_name"></h1>
+        <h2 class="bar_role"></h2>
       </div>
-      <ul data-role="listview" data-theme="g" id="linklistright" ></ul>
+      <img class="bar_img"></img>
     </div>
+    <ul data-role="listview" data-theme="g" id="linklistright" ></ul>
+  </div>
 
     
    <!-- <div data-role="header" id="header" data-theme="c">
@@ -119,9 +119,9 @@
     </div>   
     </div> -->
 
-    <div class="padding0" data-role="content" id="main">
-    </div>
+  <div class="padding0" data-role="content" id="main">
   </div>
+</div>
 
 </body>
 </html>

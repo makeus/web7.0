@@ -81,6 +81,7 @@ function addNote(to_dl_id, from_dl_id, subject, content, time_to, cc, done) {
 function getStream(opts,done){
     
     getActivityStream(opts,function(stream){
+      saveStream(getSavedStream().concat(stream));
       var items =[];
       var dlids= [];
       var userHash={};
@@ -181,7 +182,8 @@ function parseRelations(string) {
 }
 
 function parseCC(info) {
-  var entry = "<li id="+ info.DL_id+ "><input id=" +info.DL_id+" type='checkbox' name="
+  
+  var entry = "<li class='liCC' id="+ info.DL_id+ "><p class='pCC'>" +info.name+"</p><input class='checkCC' id=" +info.DL_id+" type='checkbox' name="
          + info.DL_id
          +" value="+info.DL_id+">";
 
@@ -193,7 +195,6 @@ function parseCC(info) {
   }
 
   entry +=" alt='' />"
-         +"<p>" +info.name+"</p>"
          +"</input></li><span class='clear'></span>"; 
   return entry;
 }
