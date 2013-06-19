@@ -56,6 +56,7 @@ function showRightForm(type){
             $("#cc").trigger("create");
 			//$("#cc").listview().listview("refresh");
         }   
+        $("#ccForm").collapsible({refresh:true});
     });
 }
 
