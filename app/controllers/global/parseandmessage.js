@@ -82,7 +82,6 @@ function getStream(opts,done){
     
     getActivityStream(opts,function(stream){
       saveStream(getSavedStream().concat(stream));
-      console.log(getSavedStream());
       var items =[];
       var dlids= [];
       var userHash={};

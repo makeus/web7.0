@@ -43,7 +43,6 @@ function initfrontpage(){
         alert("UNAUTHORISED");
     }
 
-    printDebugInfo();
 }
 
 
