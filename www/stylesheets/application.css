@@ -8,9 +8,14 @@ li {
   background: white;
 }
 
+body {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
 
 * {
   	-webkit-user-select: none; 
+
   	
    /* Disable selection/Copy of UIWebView when tapping for a long time */
 
@@ -551,7 +556,6 @@ ul#relationslist .emptyRelationImage {
     white-space: nowrap;
     color: #bbb;
 	text-shadow:none;
-	padding-top: 10px;
 	vertical-align: middle;
 }​
 
@@ -560,6 +564,8 @@ ul#relationslist .emptyRelationImage {
 	float:left;
 	height:30px;
 	padding-left: 10px;
+	padding-top: 10px;
+	padding-right: 30px;
 }
 
 #searchInput {
@@ -584,7 +590,6 @@ ul#relationslist .emptyRelationImage {
 }
 #backButton {
 	display:none;
-	padding-bottom: 10px;
 }
 #settingsList {
 	display:none;
@@ -628,6 +633,43 @@ ul#relationslist .emptyRelationImage {
 .ui-btn-inner {
 	padding-top: 20px;
 	padding-bottom: 20px;
-	border-color: black;
 }
 
+
+#bInfo span {
+   background: white;
+ }
+ 
+ #bInfo img{
+   vertical-align: middle;
+   width: 15%;
+   margin: 10px;
+ }
+ 
+ #bInfo div div {
+   display: inline block;
+   vertical-align: middle;
+ 
+ }
+ 
+ #bInfo div div h2 {
+   font size: 18px;
+   color: lightgray;
+ }
+ 
+ .ui-collapsible-inset .ui-collapsible-heading .ui-btn {
+   background: #F7F7F7;
+   margin:  -1px;
+   border-radius: 0px;
+ }
+
+#thelist + img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#bar li div#searchArea {
+	padding-top: 10px;
+	padding-right: 30px;
+}
