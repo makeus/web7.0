@@ -57,6 +57,7 @@ function createButton(info) {
 	button.css("font-weight", "bolder");
 	button.css("color", randomColor());
 	button.css("background-color", randomColor());
+	button.css("padding", "20px");
 	
 	button.click(function() {
 		login(info.username, info.password, function() {
@@ -88,5 +89,5 @@ function randomDirection() {
 }
 
 function randomSpeed() {
-	return Math.floor(Math.random()*20)+1;
+	return Math.floor(Math.random()*5)+2;
 }
