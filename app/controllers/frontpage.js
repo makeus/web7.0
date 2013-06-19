@@ -19,7 +19,6 @@ function initfrontpage(){
 
     if(isToken()) {
         getOwnStream('message,cal,note',0,function(stream){
-            console.log(stream);
             $("#appTitle").text(getName());
             $("#thelist").append(stream.join(''));
             addLiListener();
