@@ -50,14 +50,13 @@ function createDebugButtons() {
 function createButton(info) {
 	var id = info.name.replace(" ", "_");
 
-	var marqueeStuff = "direction='"+randomDirection()+"' scrollamount='"+randomSpeed()+"'";
-	$("#main").append("<marquee "+marqueeStuff+"><button id='"+id+"'>"+info.name+"</button></marquee>");
+	$("#main").append("<button id='"+id+"'>"+info.name+"</button>");
 	
 	var button = $("#"+id);
 	button.css("font-weight", "bolder");
 	button.css("color", randomColor());
 	button.css("background-color", randomColor());
-	button.css("padding", "20px");
+	button.css("padding", "10px");
 	
 	button.click(function() {
 		login(info.username, info.password, function() {
@@ -79,15 +78,4 @@ function randomColor() {
 	var g = Math.floor(Math.random()*255);
 	var b = Math.floor(Math.random()*255);
 	return "rgb("+r+","+g+","+b+")";
-}
-
-function randomDirection() {
-	if (Math.random() < 0.5)
-		return "left";
-	else
-		return "right";
-}
-
-function randomSpeed() {
-	return Math.floor(Math.random()*5)+2;
 }
