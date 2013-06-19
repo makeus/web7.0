@@ -13,7 +13,7 @@ function initfrontpage(){
     });
 
     $("#close").click(function(){
-        hideMessageFields();
+        $("#message-hidden").hide();
     });
 
 
@@ -52,25 +52,26 @@ function sendMessageClickEvent() {
             return;
         }
         addMessage(getDL_id(), getDL_id(), subject, link,null,null,function(){
-            getOwnStream('message,cal,note', 0, function(stream){
-                $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
-                resetMessageFields();
-                addLiListener();
-            });
+            $.mobile.showPageLoadingMsg();
+            setTimeout(function() {
+                getOwnStream('message,cal,note', 0, function(stream){
+                    $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                    resetMessageFields();
+                    addLiListener();
+                    $.mobile.hidePageLoadingMsg();
+                });
+            }, 2000)
+
         });
     } else {
         alert("UNAUTHORISED");
     }
 }
 
-function hideMessageFields() {
-    $("#message-hidden").hide();
-}
-
 function resetMessageFields() {
     $("#inputField").val("");
     $("#linkField").val("");
-    hideMessageFields();
+    $("#message-hidden").hide();
 }
 
 

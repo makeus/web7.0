@@ -63,7 +63,7 @@ function attachEvents(){
         $("#form-hidden").show();
     });
     $("#close").click(function(){
-        hideMessageFields();
+        $("#form-hidden").hide();
     });
     $("#sendMessageBox").click(sendMessageClickEventEPage);
 }
@@ -96,6 +96,7 @@ function sendMessageClickEventEPage() {
         } else {
             saveMessage(subject);
         }
+
     } else {
         alert("UNAUTHORISED");
     }
@@ -110,11 +111,15 @@ function saveTask(subject){
     var ccList = getSelectedCC();
 
     addEvent(getParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location, null, ccList, function(){
-        getStreamUrl(0, function(stream){
-            $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
-            resetMessageFields();
-            addLiListener();
-        });
+        $.mobile.showPageLoadingMsg();
+        setTimeout(function() {
+            getStreamUrl(0, function(stream){
+                $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                resetMessageFieldsEPage();
+                addLiListener();
+                $.mobile.hidePageLoadingMsg();
+            });
+        }, 2000);
     });
 }
 
@@ -123,11 +128,15 @@ function saveMessage(subject){
     var content = $("#contentField").val();
     var ccList = getSelectedCC();
     addMessage(getParameter("dlid"), getDL_id(), subject, link, content, ccList, function(){
-        getStreamUrl(0, function(stream){
-            $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
-            resetMessageFields();
-            addLiListener();
-        });
+        $.mobile.showPageLoadingMsg();
+        setTimeout(function() {
+            getStreamUrl(0, function(stream){
+                $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                resetMessageFieldsEPage();
+                addLiListener();
+                $.mobile.hidePageLoadingMsg();
+            });
+        }, 2000);
     });
 }
 
@@ -138,11 +147,15 @@ function saveNote(subject){
     var content = $("#additional").val();
     var ccList = getSelectedCC();
     addNote(getParameter("dlid"), getDL_id(), subject, content, deadline, ccList, function(){
-        getStreamUrl(0, function(stream){
-            $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
-            resetMessageFields();
-            addLiListener();
-        });
+        $.mobile.showPageLoadingMsg();
+        setTimeout(function() {
+            getStreamUrl(0, function(stream){
+                $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                resetMessageFieldsEPage();
+                addLiListener();
+                $.mobile.hidePageLoadingMsg();
+            });
+        }, 2000);
     });
 }
 
@@ -154,11 +167,8 @@ function getSelectedCC() {
     return cc.join();
 }
 
-function hideMessageFields() {
-    $("#form-hidden").hide();
-}
 
-function resetMessageFields() {
+function resetMessageFieldsEPage() {
     $("#inputField").val("");
     $("#linkField").val("");
     $("#contentField").val("");
@@ -167,5 +177,5 @@ function resetMessageFields() {
     $("#location").val("");
     $("#additional").val("");
     $("#date_to").val("");
-    hideMessageFields();
+    $("#form-hidden").hide();
 }
