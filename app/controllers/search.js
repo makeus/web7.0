@@ -7,9 +7,6 @@ function initsearch() {
 
 	$("#searchInput").focus();
 
-	$("#back").click(function() {
-		popView();
-	});
 
 	//tähän tilalle history() kun hölmöydet on korjattu restistä
 	//eli ei koskaan!

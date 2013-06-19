@@ -29,11 +29,9 @@ function initfrontpage(){
     } else {
         alert("UNAUTHORISED");
     }
-
+    
     offset = 0;
     intheend = 0;
-
-    printDebugInfo();
 }
 
 
