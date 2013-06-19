@@ -1,19 +1,19 @@
 function addMessage(to_dl_id, from_dl_id, subject, link, content, cc, done) {
-	if(to_dl_id == null || from_dl_id == null || subject == null) {
-		return -1;
-	}
-	var uid = getDL_id();
-	var auth = getToken();
-	var type = "message";
-	addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id,
-   'type':type, 'subject': subject, 'content':content, 'link':link, 'cc':cc},
-   function(data){
-      success(data);
+  	if(to_dl_id == null || from_dl_id == null || subject == null) {
+  		return -1;
+  	}
+  	var uid = getDL_id();
+  	var auth = getToken();
+  	var type = "message";
+  	addActivity({'uid': uid, 'auth':auth, 'to_dl_id':to_dl_id, 'from_dl_id':from_dl_id,
+     'type':type, 'subject': subject, 'content':content, 'link':link, 'cc':cc},
+     function(data){
+        success(data);
+        done();
+    },function(data){
+      error(data);
       done();
-  },function(data){
-    error(data);
-    done();
-  });
+    });
 }
 
 function addCommentToMessage(message_id, comment,done){
@@ -182,7 +182,7 @@ function parseRelations(string) {
 }
 
 function parseCC(info) {
-  var entry = "<li id="+ info.DL_id+ "<input id=" +info.DL_id+" type='checkbox' name="
+  var entry = "<li id="+ info.DL_id+ "><input id=" +info.DL_id+" type='checkbox' name="
          + info.DL_id
          +" value="+info.DL_id+">";
 
