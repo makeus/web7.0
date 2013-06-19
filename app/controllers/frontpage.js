@@ -24,9 +24,22 @@ function initfrontpage(){
             addLiListener();
             $("#nameAndTypeBar p:last-child").text("Infostream");
             $("#scroller").iscrollview();
-
-        });            
-    } else {
+            $(document).delegate("div.iscroll-wrapper", "iscroll_onpulldown" , function() {
+                refreshStream("message,cal,note", function(stream) {
+                    if(stream != null && stream != "") {
+                        $("#thelist").html(stream.join('') );
+                        $("#scroller").iscrollview("refresh");
+                        addLiListener();
+                    }
+                });
+            });
+            $(document).delegate("div.iscroll-wrapper", "iscroll_onpullup" , function() {
+                appendStreamF();
+                $("#scroller").iscrollview("refresh");
+            });        
+        });
+    }
+     else {
         alert("UNAUTHORISED");
     }
 

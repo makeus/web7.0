@@ -31,7 +31,7 @@ function appendStreamE(){
         if(stream != null && stream != "") {
             $("#thelist").append( stream.join('') );
             addLiListener();
-         }
+        }
     });
 }
 
@@ -53,7 +53,8 @@ function showRightForm(type){
     getCCList(function(data) {
         if(data != undefined && data != "") {
             $("#cc").append(data.join(''));
-			$("#cc").listview().listview("refresh");
+            $("#cc").trigger("create");
+			//$("#cc").listview().listview("refresh");
         }   
     });
 }
