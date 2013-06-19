@@ -4,11 +4,11 @@ function initRPage() {
         barBackButton: false
     });
 
-	var dlid = getURLParameter("dlid");
+	var dlid = getParameter("dlid");
 	if(dlid == null) {
 		dlid = getDL_id();
 	}
-	var type = getURLParameter("type");
+	var type = getParameter("type");
     if(type == null) {
         type = "user";
     }
@@ -23,9 +23,6 @@ function initRPage() {
 		});
         $("#relationslist").listview().listview("refresh");
 	});
-    $("#rightpanel img").load(function() {
-		setRightBarActiveLink();
-    });
 
 }
 
@@ -46,45 +43,7 @@ function appendRelationsList(dlid) {
 
 	$("#relationslist").append(li);
 	
-	// $("li#relationList" + dlid.DL_id).click(function() {
-	// 	view.push("EPage", "index.html?dlid=" + dlid.DL_id);
-	// });
-}
-
-
-function setRightBarActiveLink(){
-    var type = getURLParameter("type");
-
-    switch(type) {
-        case 'user':
-            $("#nameAndTypeBar p:last-child").text("Users");
-            $("#linklistrightUsers").addClass("active");
-            break;
-        case 'group':
-            $("#nameAndTypeBar p:last-child").text("Groups");
-            $("#linklistrightGroups").addClass("active");
-            break;
-        case 'animal':
-            $("#nameAndTypeBar p:last-child").text("Animals");
-            $("#linklistrightAnimals").addClass("active");
-            break;
-        case 'project':
-            $("#nameAndTypeBar p:last-child").text("Projects");
-            $("#linklistrightProjects").addClass("active");
-            break;            
-        case 'contract':
-            $("#nameAndTypeBar p:last-child").text("Contracts");
-            $("#linklistrightContracts").addClass("active");
-            break;
-        case 'thing':
-            $("#nameAndTypeBar p:last-child").text("Things");
-            $("#linklistrightThings").addClass("active");
-            break;
-        case 'space':
-            $("#nameAndTypeBar p:last-child").text("Spaces");
-            $("#linklistrightSpaces").addClass("active");
-            break;
-        default:
-            $("#nameAndTypeBar p:last-child").text("Relations");
-    }
+	 $("li#relationList" + dlid.DL_id).click(function() {
+        view.push("EPage", {'dlid': dlid.DL_id});           //view.push("EPage", "index.html?dlid=" + dlid.DL_id);
+	 });
 }

@@ -6,12 +6,12 @@ function isSteroids() {
 }
 
 function printDebugInfo() {
-	console.log("Name: "+getName());
+	console.log("Name:  "+getName());
 	console.log("DL_id: "+getDL_id())
 	console.log("Token: "+getToken());
-	console.log("Status: "+getStatus());
 	console.log("Image: "+getImage());
-	console.log("Relations: "+getRelations());
+	console.log("Relations:")
+	console.log(getRelations());
 }
 
 
@@ -50,8 +50,16 @@ function createDebugButtons() {
 function createButton(info) {
 	var id = info.name.replace(" ", "_");
 
-	$("#main").append("<button id='"+id+"'>"+info.name+"</button>");
-	$("#"+id).click(function() {
+	var marqueeStuff = "direction='"+randomDirection()+"' scrollamount='"+randomSpeed()+"'";
+	$("#main").append("<marquee "+marqueeStuff+"><button id='"+id+"'>"+info.name+"</button></marquee>");
+	
+	var button = $("#"+id);
+	button.css("font-weight", "bolder");
+	button.css("color", randomColor());
+	button.css("background-color", randomColor());
+	button.css("padding", "20px");
+	
+	button.click(function() {
 		login(info.username, info.password, function() {
 			if (getStatus() == -1) {
 				$("#failLogin").removeAttr("hidden");
@@ -64,4 +72,22 @@ function createButton(info) {
 			}
 		});
 	});
+}
+
+function randomColor() {
+	var r = Math.floor(Math.random()*255);
+	var g = Math.floor(Math.random()*255);
+	var b = Math.floor(Math.random()*255);
+	return "rgb("+r+","+g+","+b+")";
+}
+
+function randomDirection() {
+	if (Math.random() < 0.5)
+		return "left";
+	else
+		return "right";
+}
+
+function randomSpeed() {
+	return Math.floor(Math.random()*5)+2;
 }

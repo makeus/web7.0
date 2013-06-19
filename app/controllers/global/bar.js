@@ -17,25 +17,10 @@ bar = {
 	},
 
 	showBackButton: function() {
-		$("#backButton").css("visibility", "visible");
-		var button = $("#barLogo");
-		//button.attr("src", "../../resources/images/back-button.png");
-		//button.css("margin-top", 0);
-		//button.css("height", 80);
-		//button.css("max-height", 80);
-
-		button.unbind();
-		button.click(function() {
-			view.pop();
-		});
+		$("#backButton").css("display", "block");
 	},
 	hideBackButton: function() {
-		$("#backButton").css("visibility", "none");
-		var button = $("#barLogo");
-		button.unbind();
-		button.click(function() {
-			$( "#leftpanel" ).panel( "open" );
-		});
+		$("#backButton").css("display", "none");
 	},
 
 	initListeners: function() {
@@ -46,11 +31,6 @@ bar = {
 		$("#backButton").click(function(){
 			view.pop();
 		});
-		if (bar.isSearchPage()){
-			$("#searchArea").show();
-			$("#rightBarArea").hide();
-			$("#nameAndTypeBar").hide();
-		}
 		$("#barLogo").click(function() {
 			$( "#leftpanel" ).panel( "open" );
 		});
@@ -59,25 +39,43 @@ bar = {
 
 		})
 		$("#searchButton").click(function() {
-			// if (!bar.isSearchPage()) {
-			// 	$("#searchInput").blur();
-			// 	view.push("search");
-   //      	}
    			view.push("search");
         });
+        $("#settingsButton").click(function(){
+        	bar.showSettingsList();
+        });
 	},
-
-	isSearchPage: function() {
-		if (window.location.href.indexOf("views/search/") !== -1)
-			return true;
-		else
-			return false;
+	showSettingsList: function(){
+		$("#settingsList").css("display","table");
+		var x = $("#settingsButton").position().left;
+		$("#settingsList").css("left",x+"px");
+		$("#settingsButton").unbind();
+		$("#settingsButton").click(function(){
+			bar.hideSettingsList();
+		});
 	},
-	isLoginPage: function(){
-		if (window.location.href.indexOf("views/login/") !== -1)
-			return true;
-		else
-			return false;
+	hideSettingsList: function(){
+		$("#settingsList").css("display","none");
+		$("#settingsButton").unbind();
+		$("#settingsButton").click(function(){
+			bar.showSettingsList();
+		});
+	},
+	showSearch: function(){
+		$("#searchArea").show();
+		$("#ownPictureButton").hide();
+		$("#searchButton").hide();
+		$("#relationsButton").hide();
+		$("#barLogo").hide();
+		$("#settingsButton").hide();
+	},
+	hideSearch: function(){
+		$("#searchArea").hide();
+		$("#ownPictureButton").show();
+		$("#searchButton").show();
+		$("#relationsButton").show();
+		$("#barLogo").show();
+		$("#settingsButton").show();
 	},
 
 	setValues: function() {

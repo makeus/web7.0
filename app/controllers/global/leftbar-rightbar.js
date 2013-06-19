@@ -1,3 +1,5 @@
+var links = [{}];
+
 function sidebarsSetInfo(info) {
 	var image = "";
     if(info.img == "") {
@@ -12,88 +14,64 @@ function sidebarsSetInfo(info) {
     $(".bar_name").text(info.name);
 }
 
-function leftbarCreateLinks(dlid) {
-	var baselink = "index.html?dlid=" + dlid;
-	var links = new Array();
-	var urls = new Array();
-	var icons = new Array();
-	var opts = new Array();
-
-	links[0] = "Messages";
-	urls[0] =  "EPage";
-	opts[0] = {'type':'message'}
-	icons[0] = "<i class=\"icon-envelope\"></i>";
-
-	links[1] = "Tasks";
-	urls[1] =  "EPage";
-	opts[1] = {'type':'cal'}
-	icons[1] = "<i class=\"icon-calendar\"></i>";
-
-	links[2] = "Notes";
-	urls[2] = "EPage";
-	opts[2] = {'type':'note'}
-	icons[2] = "<i class=\"icon-edit\"></i>";
-
-	links[3] = "Files";
-	urls[3] = "EPage";
-	icons[3] = "<i class=\"icon-file-alt\"></i>";
-
-	links[4] = "Basic-info";
-	urls[4] = "BPage";
-	opts[4] = {'dlid':dlid}
-	icons[4] = "<i class=\"icon-user\"></i>";
-	
-	links[5] = "Logout";
-	urls[5] = "login";
-	icons[5] = "<i class=\"icon-off\"></i>";
-
+function updateUrls(dlid) {
 	$.each(links, function(i, item) {
-		$("#linklistleft").append("<li id='linklistleft" + item.replace(/\s+/g, ' ') + "'><a>" + icons[i] + "\t" + item + "</a></li>");
-		$("#linklistleft" + item.replace(/\s+/g, ' ')).click(function() {
+		item['opts']['dlid'] = dlid;
+		$("#" + item['id']).unbind();
+		$("#" + item['id']).click(function() {
 			$("#leftpanel").panel( "close" );
-			view.push(urls[i], opts[i]);
+			$("#rightpanel").panel( "close");
+			view.push(item['url'], item['opts']);
 		});
 	});
-	$("#linklistleft").listview("refresh");
-
 }
 
-function rightbarCreateLinks(dlid) {
-	var baselink = "index.html?dlid=" + dlid;
-	var links = new Array();
-	var urls = new Array();
-	var icons = new Array();
-
-	links[0] = "Users";
-	urls[0] =  baselink + "&type=user";
-	icons[0] = "<i class=\"icon-user\"></i>";
-	links[1] = "Groups";
-	urls[1] =  baselink + "&type=group";
-	icons[1] = "<i class=\"icon-group\"></i>";
-	links[2] = "Places";
-	urls[2] = baselink + "&type=space";
-	icons[2] = "<i class=\"icon-map-marker\"></i>";
-	links[3] = "Things";
-	urls[3] = baselink + "&type=thing";
-	icons[3] = "<i class=\"icon-barcode\"></i>";
-	links[4] = "Animals";
-	urls[4] = baselink + "&type=animal";
-	icons[4] = "<i class=\"icon-github-sign\"></i>";
-	links[5] = "Projects";
-	urls[5] = baselink + "&type=project";
-	icons[5] = "<i class=\"icon-briefcase\"></i>";
-	links[6] = "Contracts";
-	urls[6] = baselink + "&type=contract";
-	icons[6] = "<i class=\"icon-legal\"></i>";
-
-
+function setActive(name) {
 	$.each(links, function(i, item) {
-		$("#linklistright").append("<li class=\"ui-btn-icon-left rightlinklistitem\"  id='linklistright" + item + "'><a>" + item + "\t" + icons[i] + "</a></li>");
-		$("#linklistright" + item).click(function() {
-			$("#rightpanel").panel( "close" );
-			view.push("RPage", urls[i]);
-		});
+		if(((item['opts']['type'] === name) && (name !== undefined)) || ((item['opts']['type'] === undefined) && (getCurrent()["name"] === item['url']) && (name === undefined))) {
+			$("#" + item['id']).addClass("active");
+		} else {
+			$("#" + item['id']).removeClass("active");
+		}
 	});
+}
+
+function leftbarCreateLinks() {
+
+	$("#linklistleft").listview();
+
+	links[0] = {'type': "Messages", 'id':'linklistleftMessages', 'url':'EPage', 'icon' : "<i class=\"icon-envelope\"></i>", 'opts' : {'type' : 'message'}};
+	links[1] = {'type': "Tasks", 'id':'linklistleftTasks', 'url':'EPage', 'icon' : "<i class=\"icon-calendar\"></i>", 'opts' : {'type' : 'cal'}};
+	links[2] = {'type': "Notes", 'id':'linklistleftNotes', 'url':'EPage', 'icon' : "<i class=\"icon-edit\"></i>", 'opts' : {'type' : 'note'}};
+	links[3] = {'type': "Files", 'id':'linklistleftFiles', 'url':'EPage', 'icon' : "<i class=\"icon-file-alt\"></i>", 'opts' : {}};
+	links[4] = {'type': "Basic-Info", 'id':'linklistleftBasic-Info', 'url':'BPage', 'icon' : "<i class=\"icon-user\"></i>", 'opts' : {}};
+
+	// links[5] = "Logout";
+	// urls[5] = "login";
+	// icons[5] = "<i class=\"icon-off\"></i>";
+
+	for(var i = 0; i<5; i++) {
+		$("#linklistleft").append("<li id='" + links[i]['id'] + "'><a>" + links[i]['icon'] + "\t" + links[i]['type'] + "</a></li>");
+	}
+	$("#linklistleft").listview("refresh");
+}
+
+function rightbarCreateLinks() {
+
+	$("#linklistright").listview();
+
+	links[5] = {'type': "Users", 'id':'linklistrightUsers', 'url':'RPage', 'icon' : "<i class=\"icon-user\"></i>", 'opts' : {'type' : 'user'}};
+	links[6] = {'type': "Groups", 'id':'linklistrightGroups', 'url':'RPage', 'icon' : "<i class=\"icon-group\"></i>", 'opts' : {'type' : 'group'}};
+	links[7] = {'type': "Places", 'id':'linklistrightPlaces', 'url':'RPage', 'icon' : "<i class=\"icon-map-marker\"></i>", 'opts' : {'type' : 'space'}};
+	links[8] = {'type': "Things", 'id':'linklistrightThings', 'url':'RPage', 'icon' : "<i class=\"icon-barcode\"></i>", 'opts' : {'type' : 'thing'}};
+	links[9] = {'type': "Animals", 'id':'linklistrightAnimals', 'url':'RPage', 'icon' : "<i class=\"icon-github-sign\"></i>", 'opts' : {'type' : 'animal'}};
+	links[10] = {'type': "Projects", 'id':'linklistrightProjects', 'url':'RPage', 'icon' : "<i class=\"icon-briefcase\"></i>", 'opts' : {'type' : 'project'}};
+	links[11] = {'type': "Contracts", 'id':'linklistrightContracts', 'url':'RPage', 'icon' : "<i class=\"icon-legal\"></i>", 'opts' : {'type' : 'contract'}};
+
+	for(var i = 5; i<12; i++) {
+		$("#linklistright").append("<li class=\"ui-btn-icon-left rightlinklistitem\"  id='" + links[i]['id'] + "'><a>" + links[i]['type'] + "\t" + links[i]['icon'] + "</a></li>");
+	}
+
 	$("#linklistright").listview("refresh");
 	$("li.rightlinklistitem span.ui-icon-arrow-r").toggleClass("ui-icon-arrow-r ui-icon-arrow-l");
 	$("li.rightlinklistitem a").addClass("rightpanellink");

@@ -1,6 +1,7 @@
-document.addEventListener("DOMContentLoaded",function(){
+$(document).on('pageinit', function(){
+
 	$("#main").on('pageswitch', function(){
-		console.log(getCurrent());
+		$("#main *").off(); 
 		switch(getCurrent()['name']) {
 			case "login":
 				initlogin();
@@ -27,7 +28,14 @@ document.addEventListener("DOMContentLoaded",function(){
 				console.log("default initiated");
 		}
 		appInit();
+
 	});
+
+	$("#linklistleft").empty();
+	$("#linklistright").empty();
+
+	leftbarCreateLinks();
+	rightbarCreateLinks();
 
 	if(getCurrent() == undefined) {
 		view.push("login");
@@ -37,23 +45,22 @@ document.addEventListener("DOMContentLoaded",function(){
 		$("*").css("max-width", "340px");
 	}
 
-
 });
 
+
 function appInit(){
+
 	if(isToken()) {
-		var dlid = getURLParameter("dlid");
-		if(dlid == null) {
+		
+		var	dlid = getParameter('dlid');
+
+		if (dlid==undefined){
 			dlid = getDL_id();
 		}
-
 		getInfo(dlid,function(info){
-			$("#linklistleft").empty();
-			$("#linklistright").empty();
 
 			sidebarsSetInfo(info);
-			leftbarCreateLinks(dlid);
-			rightbarCreateLinks(dlid);
+			updateUrls(dlid);
 			setEntityInformation(info);
 		});
 		
@@ -67,20 +74,34 @@ function appInit(){
 				$( "#rightpanel" ).panel( "open" );
 			}
 		});
+
+		setActive(getParameter('type'));
+
+		var scrollTimer = 0;
+		$(window).scroll(function () {
+	        if (scrollTimer) {
+	            clearTimeout(scrollTimer);
+	        }
+	        scrollTimer = setTimeout(function(){
+	            if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
+	            	if(getCurrent() == "frontpage") {
+	            		appendStreamF();
+	            	}
+	            	if(getCurrent() == "EPage") {
+	            		appendStreamE();
+	            	}
+	                
+	            }
+	        }, 100);
+    	});
+
 	}
 }
 
 
 
 function setEntityInformation(dlid){
-
-	if(dlid.name.length > 35){
-		$("#nameAndTypeBar p:first-child").text(dlid.name.slice(0,32)+"...");
-	}else{
-		$("#nameAndTypeBar p:first-child").text(dlid.name);	
-	}
-    
-
+		$("#nameAndTypeBar img").attr("src",dlid.img);	
 }
 
 function getUserData(dlid,done, error){
@@ -107,7 +128,7 @@ function addLiListener(){
         var id = $(this).attr('id');
         var uid = $(this).attr('uid');
         var listElement= $(this);
-        view.push("IPage", "index.html?iPageID=" + id +"&uid=" + uid);
+        view.push("IPage", {'iPageID': id, 'uid': uid});  		//view.push("IPage", "index.html?iPageID=" + id +"&uid=" + uid);
     });
 }
 
@@ -158,6 +179,11 @@ function setupPage(settings) {
 		bar.showBackButton();
 	}else{
 		bar.hideBackButton();
+	}
+	if(settings.searchPage){
+		bar.showSearch();
+	}else{
+		bar.hideSearch();
 	}
 }
 
@@ -212,10 +238,10 @@ function getActivityStream(opts,done) {
 
 function setActivityCompleted(completed, done) {
     if (completed === false){
-    	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getURLParameter("uid"),'activity_id':getURLParameter("iPageID"),'remove':"1"};
+    	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getParameter("uid"),'activity_id':getParameter("iPageID"),'remove':"1"};
     	remove = "&remove=1";
     }else {
-    	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getURLParameter("uid"),'activity_id':getURLParameter("iPageID")};
+    	var opts = {'uid':getDL_id(),'auth':getToken(),'dl_id':getParameter("uid"),'activity_id':getParameter("iPageID")};
     }
     
     var url = "setactivitycompleted";
@@ -231,38 +257,81 @@ function setActivityCompleted(completed, done) {
 			error(data);
 			if (done != null)
 				done(data);
-		});
+		}
+	);
+}
+
+function createRelation(dl_id_from, dl_id_to, role, done) {
+	if (dl_id_from == null || dl_id_from === "me")
+		dl_id_from = getDL_id();
+
+	if (role == null)
+		role = "";
+
+
+	var url = "addrelation";
+
+	var opts = {
+		'uid': getDL_id(),
+		'auth': getToken(),
+		'dl_id_from': dl_id_from,
+		'dl_id_to': dl_id_to,
+		'role': role
+	};
+
+	rest(opts,
+		url,
+		function(data) {
+			success(data);
+			if (done != null)
+				done(data);
+		},
+		function(data) {
+			error(data);
+			if (done != null)
+				done(data);
+		}
+	);
 }
 
 function getUserArray(dlids,done) {
 	var opts = {'uid': getDL_id(), 'auth':getToken(), 'dl_ids':dlids};
 	var arr = dlids.split(",");
+	arr = $.unique(arr);
 	var cached  = new Array();
 
-	$.grep(arr, function(item, i) {
+	arr = $.grep(arr, function(item, i) {
 		var info = getInfoCache(item);
-		if(!info) {
+		if(info == undefined) {
+			info == false;
+		}
+		
+		if(info !== false) {
 			cached.push(info);
 		}
-		return info === false;
+		return (info == false);
 	});
 
-	opts["dl_ids"] = arr.join();
-	var url = "dlid";
-    rest(opts, url, function(data) {
-        result=data;
-        success(data);
-        $.each(data, function(i, item) {
-        	setInfoCache(item);
-        });
-        data = data.concat(cached);
-        done(data);
-    },
-    function(data) {
-        result=data;
-        error(data);
-        done(data);
-    });
+	if(arr.length !== 0) {
+	   opts["dl_ids"] = arr.join();
+	   var url = "dlid";
+	      rest(opts, url, function(data) {
+	          result=data;
+	          success(data);
+	          $.each(data, function(i, item) {
+	            setInfoCache(item);
+	         });
+	          data = data.concat(cached);
+	          done(data);
+	      },
+	     function(data) {
+	          result=data;
+	          error(data);
+	          done(data);
+	      });
+	} else {
+		done(cached);
+	}
 }
 
 function isToken() {

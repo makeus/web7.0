@@ -65,23 +65,20 @@
   <div data-role="page">
 
  <div id="bar" data-position="fixed" data-role="header" data-theme="p" data-dom-cache="true">
-        <div class="barCell" id="leftBarArea">
-          <i class="icon-angle-left icon-2x" id="backButton"></i>
-          <img id="barLogo" src="../../resources/images/digital_living_logo_small.png" />
-        </div>
-        <div class="barCell" id="searchArea" hidden>
+        <li><i class="icon-angle-left icon-2x" id="backButton"></i></li>
+        <li><img id="barLogo" src="../../resources/images/digital_living_logo_small.png" /></li>
+        <li><i class="icon-cog icon-2x" id="settingsButton"></i>
+          <ul id="settingsList" data-role="listview" data-inset="true" data-display="overlay">
+            <li data-icon="false"><i class="icon-off"></i>Logout</li>
+            <li data-icon="false"><i class="icon-resize-small"></i>Connect to me</li>
+          </ul>
+        </li>
+        <li><div id="searchArea" hidden>
           <input type="text" id="searchInput" placeholder="      Search"/>
-        </div>
-        <div id="nameAndTypeBar" class="barCell">
-            <p></p>
-            <p></p>
-         </div>
-        <div class="barCell" id="rightBarArea">
-          
-          <img id="ownPictureButton" src="../../resources/images/tyhja.png"></img>
-          <i class="icon-search icon-2x" id="searchButton"></i>
-          <i class="icon-reorder icon-2x" id="relationsButton"></i>
-      </div>
+        </div></li>
+        <li><img  id="ownPictureButton" src="../../resources/images/tyhja.png"></img></li>
+        <li><i class="icon-search icon-2x" id="searchButton"></i></li>
+        <li><i class="icon-reorder icon-2x" id="relationsButton"></i></li>
     </div> 
  
     <div data-role="panel" id="leftpanel" data-theme="g" data-display="overlay" data-dom-cache="true">

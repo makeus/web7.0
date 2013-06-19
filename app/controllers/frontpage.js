@@ -1,16 +1,5 @@
 function initfrontpage(){
-    var scrollTimer = 0;
 
-    $(window).scroll(function () {
-        if (scrollTimer) {
-            clearTimeout(scrollTimer);
-        }
-        scrollTimer = setTimeout(function(){
-            if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
-                appendStreamF();
-            }
-        }, 100);
-    });
 
     $("#sendMessageBox").click(sendMessageClickEvent);
 
@@ -29,7 +18,7 @@ function initfrontpage(){
 
 
     if(isToken()) {
-        getOwnStream('message,cal,note',offset,function(stream){
+        getOwnStream('message,cal,note',0,function(stream){
             $("#appTitle").text(getName());
             $("#thelist").append(stream.join(''));
             addLiListener();
@@ -40,7 +29,7 @@ function initfrontpage(){
         alert("UNAUTHORISED");
     }
 
-    //printDebugInfo();
+    printDebugInfo();
 }
 
 
@@ -63,7 +52,7 @@ function sendMessageClickEvent() {
             return;
         }
         addMessage(getDL_id(), getDL_id(), subject, link,null,null,function(){
-            getOwnStream('message,cal,note',function(stream){
+            getOwnStream('message,cal,note', 0, function(stream){
                 $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
                 resetMessageFields();
                 addLiListener();

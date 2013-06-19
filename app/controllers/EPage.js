@@ -5,24 +5,11 @@ function initEPage() {
         barBackButton: false
     });
 
-
-    var scrollTimer = 0;
-
-    $(window).scroll(function () {
-        if (scrollTimer) {
-            clearTimeout(scrollTimer);
-        }
-        scrollTimer = setTimeout(function(){
-            if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
-                appendStreamE();
-            }
-        }, 100);
-    });
     
-    showRightForm(getURLParameter("type"));
-    atachEvents();
+    showRightForm(getParameter("type"));
+    attachEvents();
     if(isToken()) {
-        getStreamUrl(offset,function(stream){
+        getStreamUrl(0,function(stream){
             if(stream != null && stream != "") {
                 $("#thelist").append( stream.join('') );
                 addLiListener();
@@ -71,33 +58,30 @@ function showRightForm(type){
     });
 }
 
-function atachEvents(){
+function attachEvents(){
     $("#inputField").focus(function() {
         $("#form-hidden").show();
     });
     $("#close").click(function(){
         hideMessageFields();
     });
-    $("#sendMessageBox").click(sendMessageClickEvent);
-    $("#leftpanel img").load(function() {
-        setLeftBarActiveLink();
-    });
+    $("#sendMessageBox").click(sendMessageClickEventEPage);
 }
 
 function getStreamUrl(offset,done) {
-    var type = getURLParameter("type");
-    var dlid = getURLParameter("dlid");
+    var type = getParameter("type");
+    var dlid = getParameter("dlid");
 
-    if(type == null) {
+    if(type == undefined) {
         type = "message";
     }
-    if(dlid == null) {
+    if(dlid == undefined) {
         dlid = getDL_id();
     }
     getOtherStream(type,dlid,offset,done);
 }
 
-function sendMessageClickEvent() {
+function sendMessageClickEventEPage() {
     if(isToken()) {
         var subject = $("#inputField").val();
 
@@ -105,9 +89,9 @@ function sendMessageClickEvent() {
             return;
         }
 
-        if(getURLParameter("type")=="cal") {
+        if(getParameter("type")=="cal") {
             saveTask(subject);
-        } else if(getURLParameter("type")=="note"){
+        } else if(getParameter("type")=="note"){
             saveNote(subject);
         } else {
             saveMessage(subject);
@@ -125,8 +109,8 @@ function saveTask(subject){
     var location = $("location").val();
     var ccList = getSelectedCC();
 
-    addEvent(getURLParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location, null, ccList, function(){
-        getStreamUrl(function(stream){
+    addEvent(getParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location, null, ccList, function(){
+        getStreamUrl(0, function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
             addLiListener();
@@ -138,8 +122,8 @@ function saveMessage(subject){
     var link = $("#linkField").val();
     var content = $("#contentField").val();
     var ccList = getSelectedCC();
-    addMessage(getURLParameter("dlid"), getDL_id(), subject, link, content, ccList, function(){
-        getStreamUrl(function(stream){
+    addMessage(getParameter("dlid"), getDL_id(), subject, link, content, ccList, function(){
+        getStreamUrl(0, function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
             addLiListener();
@@ -153,8 +137,8 @@ function saveNote(subject){
     var ccList = getSelectedCC();
     var content = $("#additional").val();
     var ccList = getSelectedCC();
-    addNote(getURLParameter("dlid"), getDL_id(), subject, content, deadline, ccList, function(){
-        getStreamUrl(function(stream){
+    addNote(getParameter("dlid"), getDL_id(), subject, content, deadline, ccList, function(){
+        getStreamUrl(0, function(stream){
             $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
             resetMessageFields();
             addLiListener();
@@ -184,26 +168,4 @@ function resetMessageFields() {
     $("#additional").val("");
     $("#date_to").val("");
     hideMessageFields();
-}
-
-
-function setLeftBarActiveLink(){
-    var type = getURLParameter("type");
-
-    switch(type) {
-        case 'cal':
-            $("#nameAndTypeBar p:last-child").text("Tasks & Events");
-            $("#linklistleftTasks").addClass("active");
-            break;
-        case 'message':
-            $("#nameAndTypeBar p:last-child").text("Messages");
-            $("#linklistleftMessages").addClass("active");
-            break;
-        case 'note':
-            $("#nameAndTypeBar p:last-child").text("To-Do Notes");
-            $("#linklistleftNotes").addClass("active");
-            break;
-        default:
-            $("#nameAndTypeBar p:last-child").text("Messages");
-    }
 }

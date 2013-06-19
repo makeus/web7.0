@@ -9,7 +9,7 @@ function initBPage() {
     setupPage({bar : true, barBackButton : true});
 
     if(isToken()) {
-        setbPageID(getURLParameter("dlid"));
+        setbPageID(getParameter("dlid"));
         getInfo(bPageID, function(perusData){
             setPageTitle(perusData);
             appendImageAndUsername(perusData);
@@ -49,9 +49,17 @@ function parseBasicInfoPage(info){
 
 
 function appendImageAndUsername(info){
-    if (info.img==undefined){return;}
-    $("#profileImage").attr('src', info.img);
+
+    var image = "";
+    if(info.img == "") {
+        image = '../../resources/images/tyhja.png';
+    } else {
+        image = info.img
+    }
+
+    $("#profileImage").attr('src', image);
     $("#Username").text(info.name); 
+    $("#Role").text(info.type);
 }
 function wordFrom(a){
     if (a==undefined){
@@ -80,6 +88,7 @@ function setVisibilityOf(element, rowsContent){
     if (rowsContent == ''){
         $(element).hide();
     }
+    $(element).collapsible({refresh:true});
 }
 
 function appendInformation(info){

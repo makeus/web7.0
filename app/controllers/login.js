@@ -4,7 +4,8 @@ function initlogin() {
 	    bar: false,
 	    barBackButton: false
 	});
-
+	localStorage.clear();
+	
 	$("#loginButton").click(function(){
 		var username = document.getElementById('loginUsername').value;
 		var password = document.getElementById('loginPassword').value;
@@ -12,7 +13,6 @@ function initlogin() {
 			if(getStatus() == -1) {
 			$("#failLogin").show();
 		} else if (getStatus() == 1) {
-
 			view.push("frontpage");
 		}
 		});
