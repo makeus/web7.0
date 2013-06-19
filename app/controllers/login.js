@@ -7,14 +7,17 @@ function initlogin() {
 	localStorage.clear();
 	
 	$("#loginButton").click(function(){
+		$.mobile.showPageLoadingMsg();
 		var username = document.getElementById('loginUsername').value;
 		var password = document.getElementById('loginPassword').value;
 		login(username, password,function(){
+			$.mobile.hidePageLoadingMsg();
 			if(getStatus() == -1) {
-			$("#failLogin").show();
-		} else if (getStatus() == 1) {
-			view.push("frontpage");
-		}
+				$("#failLogin").show();
+			} else if (getStatus() == 1) {
+				view.push("frontpage");
+			}
+
 		});
 	});
 
