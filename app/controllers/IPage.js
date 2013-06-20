@@ -31,14 +31,14 @@ function setCommentFocusEvent() {
 }
 
 function setLinkToSenderEvent(){
-    $(".commentWriter").on('tap', function(){
+    $(".commentWriter").click(function(){
         var dlid = $(this).attr('id');
         view.push("EPage", {'dlid': dlid});         //view.push("EPage", "index.html?dlid=" + dlid);
     });
 }
 
 function setAddCommentEvent(){
-    $(".addComment").on('tap', function(){
+    $(".addComment").click(function(){
         var comm = $(".commentArea").val();
         if (comm!=""){
             addCommentToMessage(iPageID, comm,function(){});
