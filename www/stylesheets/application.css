@@ -598,6 +598,7 @@ ul#relationslist .emptyRelationImage {
 }
 #settingsList {
 	display: none;
+	width: 8.0em;
 	position: absolute;
 	background: #333;
 	font-size: 1.5em;
@@ -605,17 +606,22 @@ ul#relationslist .emptyRelationImage {
 	padding: 5px;
 }
 #settingsList li {
+	width: 100%;
 	display: table-row;
 	text-align: left;
 }
 
-#relationsList {
+#connectToMeList {
 	display: none;
 	position: absolute;
 	background: #555;
-	font-size: 1.5em;
 	border: solid thin black;
 	padding: 5px;
+}
+
+#connectToMelist li {
+	display: table-row;
+	text-align: left;
 }
 
 #cc {
@@ -652,8 +658,8 @@ ul#relationslist .emptyRelationImage {
 	padding-bottom: 20px;
 }
 .checkCC{
-	 width: 5px; 
-	 height: 5px; 
+	 width: 7px; 
+	 height: 7px; 
 	 margin-left: 5px; 
 	 margin-right: 0px;
 	 margin-top: 10px;
@@ -663,7 +669,7 @@ ul#relationslist .emptyRelationImage {
 
 .pCC{
 	 margin-top: 15px; 
-	 width: 100px; 
+	 width: 80%; 
 }
 /*.liCC{
 	padding-left: 120px;  

@@ -37,7 +37,7 @@ $(document).on('pageinit', function(){
 	leftbarCreateLinks();
 	rightbarCreateLinks();
 	
-	bar.initListeners();
+	bar.init();
 	
 	jQuery( window ).on( "swiperight", function() {
 		if(getCurrent()['name'] != 'login') {
@@ -61,7 +61,6 @@ $(document).on('pageinit', function(){
 	if(!isSteroids()) {
 		$("*").css("max-width", "340px");
 	}
-
 });
 
 function onBackButton(){
