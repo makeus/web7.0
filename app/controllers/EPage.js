@@ -1,5 +1,6 @@
 
 function initEPage() {
+    clearSavedStream();
     setupPage({
         bar: true,
         barBackButton: false
