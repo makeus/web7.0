@@ -81,9 +81,9 @@ bar = {
 		var dlid = getParameter("dlid");
 
 		if (getParameter("dlid") !== undefined)
-			showConnectToMeButton();
+			bar.showConnectToMeButton();
 		else
-			hideConnectToMeButton();
+			bar.hideConnectToMeButton();
 	},
 	hideSettingsList: function(){
 		$("body").off();
