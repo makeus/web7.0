@@ -559,7 +559,7 @@
 		return i;
 	};
 	$.mockjaxClear = function(i) {
-		localStorage.clear();
+		clearAll();
 		usercache=null;
 		userdatacache=null;
 		if ( arguments.length == 1 ) {
