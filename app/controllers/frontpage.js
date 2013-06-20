@@ -1,5 +1,6 @@
 function initfrontpage(){
 
+    clearSavedStream();
 
     $("#sendMessageBox").click(sendMessageClickEvent);
 

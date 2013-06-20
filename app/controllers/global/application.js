@@ -36,7 +36,7 @@ $(document).on('pageinit', function(){
 
 	leftbarCreateLinks();
 	rightbarCreateLinks();
-	clearSavedStream();
+	
 	bar.initListeners();
 	
 
