@@ -202,7 +202,7 @@ section#searchResults > h1 {
 
 
 ul#thelist li {
-	border: thin solid grey;
+	border: thin solid #D3D3D3;
 	list-style: none;
 	margin: -1px;
 }
@@ -266,7 +266,7 @@ ul#thelist .eventElem p {
 /* IPage */
 
 #ipageMessage {
-	border: thin solid grey;
+	border: thin solid #D3D3D3;
 	margin:10px;
 }
 
@@ -613,10 +613,6 @@ ul#relationslist .emptyRelationImage {
 	border: solid thin black;
 	padding: 5px;
 }
-#relationslist li {
-	display: table-row;
-	text-align: left;
-}
 
 #cc {
     list-style:none;
@@ -652,10 +648,13 @@ ul#relationslist .emptyRelationImage {
 	padding-bottom: 20px;
 }
 .checkCC{
-	 width: 20px; 
-	 height: 35px; 
-	 margin-left: 5px; margin-right: 0px;
+	 width: 5px; 
+	 height: 5px; 
+	 margin-left: 5px; 
+	 margin-right: 0px;
+	 margin-top: 10px;
 	 float: right;
+	 background-color: blue;
 }
 
 .pCC{

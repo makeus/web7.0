@@ -97,7 +97,7 @@ function appInit(){
 	            clearTimeout(scrollTimer);
 	        }
 	        scrollTimer = setTimeout(function(){
-	            if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
+	            if($(window).scrollTop() + $(window).height() > $(document).height() - 250) {
 	            	if(getCurrent().name == "frontpage") {
 	            		appendStreamF();
 	            	}

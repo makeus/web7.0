@@ -16,12 +16,14 @@ function initlogin() {
 				$("#failLogin").show();
 			} else if (getStatus() == 1) {
 				view.push("frontpage");
+				$("#ownPictureButton").attr("src",getImage());
+
 			}
 
 		});
 	});
 
-	createDebugButtons();
+	//createDebugButtons();
 }
 
 
