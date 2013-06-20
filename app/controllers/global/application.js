@@ -36,9 +36,9 @@ $(document).on('pageinit', function(){
 
 	leftbarCreateLinks();
 	rightbarCreateLinks();
-	if(getCurrent().name == "IPage") {
-	    clearSavedStream();
-	}
+	//if(getCurrent().name == "IPage") {
+	//    clearSavedStream();
+	//}
 	
 	bar.initListeners();
 	
