@@ -46,7 +46,7 @@ function login(username, password,done){
 				saveDL_id(data);
 				getInfo(getDL_id(),function(data){
 					saveName(data);
-					saveImage(data.img);
+					saveImage(data);
 					saveRelations(parseRelations(data.relations));
 					done();
 				});

@@ -1,7 +1,7 @@
 var url = "https://www.dliv.in/rest/";
 
 asyncTest( "login REST test", function() {
-
+	clearAll();
 	$.mockjaxClear();
 	
     var username="test";
@@ -64,7 +64,7 @@ asyncTest( "login REST test", function() {
 });
 
 asyncTest( "rest login correct username and password", function() {
-
+	clearAll();
 	$.mockjaxClear();
 	
     var username="test";
@@ -111,7 +111,7 @@ asyncTest( "rest login correct username and password", function() {
 	});
 
 asyncTest( "rest login long response time", function() {
-
+	clearAll();
 	$.mockjaxClear();
 
     var username="test";
@@ -160,7 +160,7 @@ asyncTest( "rest login long response time", function() {
 
 
 asyncTest( "rest login 500", function() {
-
+	clearAll();
 	$.mockjaxClear();
 	
     var username="test";
@@ -172,7 +172,7 @@ asyncTest( "rest login 500", function() {
 	login(username,password,function(data){
 		start();
 		equal(getStatus(), 500);
-	equal(getToken(),null);
+		equal(getToken(),null);
 
 	$.mockjaxClear();
 	});
@@ -181,7 +181,7 @@ asyncTest( "rest login 500", function() {
 });
 
 asyncTest( "rest login 404", function() {
-
+	clearAll();
 	$.mockjaxClear();
 	
     var username="test";
@@ -203,7 +203,7 @@ asyncTest( "rest login 404", function() {
 });
 
 asyncTest( "rest login 501", function() {
-
+	clearAll();
 	$.mockjaxClear();
 	
     var username="test";
@@ -224,7 +224,7 @@ asyncTest( "rest login 501", function() {
 });
 
 asyncTest( "rest login getDL_id", function() {
-
+	clearAll();
 	$.mockjaxClear();
 	
     var username="test";
@@ -249,7 +249,7 @@ asyncTest( "rest login getDL_id", function() {
 	});
 
 asyncTest( "rest login wrong username and password", function() {
-
+	clearAll();
 	$.mockjaxClear();
 
     var username="test";
