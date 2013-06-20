@@ -16,9 +16,7 @@ view = {
 		$("#main :last-child").ready(function() {
 			$("#main").trigger('pageswitch');
 		});
-		console.log("push"),
-		console.log(current);
-		console.log(previous);
+
 		
 		// if (isSteroids()) {
 		// 	var webView = createWebView(name, page);
@@ -35,9 +33,7 @@ view = {
 
 		current = previous;
 		previous = current['previous'];
-		console.log("pop");
-		console.log(current);
-		console.log(previous);
+
 		$("#main").html(Handlebars.templates[current['name'] + ".html"]());
 		$("#main :last-child").ready(function() {
 			$("#main").trigger('pageswitch');
