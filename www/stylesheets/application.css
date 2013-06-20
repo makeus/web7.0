@@ -648,10 +648,13 @@ ul#relationslist .emptyRelationImage {
 	padding-bottom: 20px;
 }
 .checkCC{
-	 width: 20px; 
-	 height: 35px; 
-	 margin-left: 5px; margin-right: 0px;
+	 width: 5px; 
+	 height: 5px; 
+	 margin-left: 5px; 
+	 margin-right: 0px;
+	 margin-top: 10px;
 	 float: right;
+	 background-color: blue;
 }
 
 .pCC{
