@@ -22,6 +22,7 @@ function initfrontpage(){
             $("#appTitle").text(getName());
             $("#thelist").append(stream.join(''));
             addLiListener();
+            $("#thelist+img").hide();
             $("#nameAndTypeBar p:last-child").text("Infostream");
             $("#scroller").iscrollview();
             $(document).delegate("div.iscroll-wrapper", "iscroll_onpulldown" , function() {
@@ -42,17 +43,28 @@ function initfrontpage(){
      else {
         alert("UNAUTHORISED");
     }
-
+    
+    offset = 0;
+    intheend = 0;
 }
 
 
 var offset=0;
+var intheend = false;
 function appendStreamF(){
     offset += 15;
-    getOwnStream('message,cal,note',offset,function(stream){
-            $("#thelist").append(stream.join(''));
-            addLiListener();
+    if(!intheend) {
+        $("#thelist+img").show();
+        getOwnStream('message,cal,note',offset,function(stream){
+                if((stream.length < 1) || (!stream)) {
+                    intheend = true;
+                    $("#thelist+img").hide();
+                } else {
+                    $("#thelist").append(stream.join(''));
+                    addLiListener();  
+                }
         });
+    }
 }
 
 

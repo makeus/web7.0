@@ -13,6 +13,7 @@ function initEPage() {
             if(stream != null && stream != "") {
                 $("#thelist").append( stream.join('') );
                 addLiListener();
+                $("#thelist+img").hide();
             }
         });
     } else {
@@ -22,17 +23,28 @@ function initEPage() {
     if($("#entityImg").width() == 200) {
         $("#entityImg").css('margin-left', '-100px');
     }
+
+    offset = 0;
+    intheend = false;
 }
 
 var offset=0;
+var intheend = false;
 function appendStreamE(){
     offset += 15;
-    getStreamUrl(offset,function(stream){
-        if(stream != null && stream != "") {
-            $("#thelist").append( stream.join('') );
-            addLiListener();
-        }
-    });
+    if(!intheend) {
+        $("#thelist+img").show();
+        getStreamUrl(offset,function(stream){
+            if((stream.length < 1) || (!stream)) {
+                intheend = true;
+                $("#thelist+img").hide();
+             } else {
+                $("#thelist").append( stream.join('') );
+                addLiListener();
+
+            }
+        });
+    }
 }
 
 function showRightForm(type){
@@ -53,8 +65,7 @@ function showRightForm(type){
     getCCList(function(data) {
         if(data != undefined && data != "") {
             $("#cc").append(data.join(''));
-            $("#cc").trigger("create");
-			//$("#cc").listview().listview("refresh");
+			$("#cc").listview().listview("refresh");
         }   
         $("#ccForm").collapsible({refresh:true});
     });
