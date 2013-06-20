@@ -130,6 +130,10 @@ function getOwnStream(types,offset,done) {
 
 }
 
+function refreshStream(types, done) {
+  getOwnStream(types, 0, done);
+}
+
 function getCCList(done) {
   var items=[];
   var relations=[];
