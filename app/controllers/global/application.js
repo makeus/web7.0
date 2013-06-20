@@ -1,3 +1,15 @@
+(function(){
+	var origiclick = jQuery.fn.click;
+
+	jQuery.fn.click = function(e){
+		if(isSteroids()){
+			jQuery.fn.on.call(this, 'tap', e);
+		} else {
+			origiclick.apply( this, arguments );
+		}
+	}
+})();
+
 $(document).on('pageinit', function(){
 
 	$("#main").on('pageswitch', function(){
@@ -62,6 +74,12 @@ $(document).on('pageinit', function(){
 		$("*").css("max-width", "340px");
 	}
 });
+
+function click(funktio) {
+	if(isSteroids) {
+
+	}
+}
 
 function onBackButton(){
 	view.pop();
