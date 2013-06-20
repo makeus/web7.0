@@ -23,7 +23,7 @@ function initlogin() {
 		});
 	});
 
-	createDebugButtons();
+	//createDebugButtons();
 }
 
 
