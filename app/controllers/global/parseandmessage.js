@@ -238,7 +238,7 @@ function parseItem(item, userHash, type) {
   if(item.DL_id != null && item.DL_id != undefined && item.DL_id != "" && item.DL_id != item.from_DL_id) {
       entry += ">>> " + userHash[item.DL_id].name;
   }
-  entry += "</p></div>";
+  entry += "</p><p class='timeMsgCreated'>"+getTimeDiff(item.created)+"</p></div>";
   if(type == "cal" && item.time_from != "0000-00-00 00:00:00"){
     entry += "<p class='eventTime'>"+item.time_from+"</p>";
   }
