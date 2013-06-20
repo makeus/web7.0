@@ -24,6 +24,9 @@
       $.mobile.allowCrossDomainPages = true;
       $.support.cors = true;
       $.mobile.page.prototype.options.keepNative = "select, input, textarea";
+      $.event.special.swipe.horizontalDistanceThreshold = 60;
+      $.event.special.swipe.verticalDistanceThreshold = 90;
+      $.event.special.swipe.scrollSupressionThreshold = 20;
     });
   </script>
   <script src="../../components/jquery/jquery.mobile.js"></script>

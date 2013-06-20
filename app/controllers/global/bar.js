@@ -30,31 +30,31 @@ bar = {
 
 	initListeners: function() {
 		$("#ownPictureButton").off();
-		$("#ownPictureButton").click(function(){
+		$("#ownPictureButton").on('tap', function(){
 			view.push("frontpage");
 		});
 		$("#backButton").off();
-		$("#backButton").click(function(){
+		$("#backButton").on('tap', function(){
 			view.pop();
 		});
 		$("#barLogo").off();
-		$("#barLogo").click(function() {
+		$("#barLogo").on('tap', function() {
 			$( "#leftpanel" ).panel( "open" );
 		});
 		$("#relationsButton").off();
-		$("#relationsButton").click(function(){
+		$("#relationsButton").on('tap', function(){
 			$( "#rightpanel" ).panel( "open" );
 		});
 		$("#searchButton").off();
-		$("#searchButton").click(function() {
+		$("#searchButton").on('tap', function() {
    			view.push("search");
         });
         $("#settingsButton").off();
-        $("#settingsButton").click(function(){
+        $("#settingsButton").on('tap', function(){
         	bar.showSettingsList();
         });
         $("#logoutButton").off(),
-        $("#logoutButton").click(function(){
+        $("#logoutButton").on('tap', function(){
         	view.push("login");
         });
 	},
@@ -63,7 +63,7 @@ bar = {
 
 	showSettingsList: function(){
 		setTimeout(function(){
-			$("body").click(function(elem){
+			$("body").on('tap', function(elem){
 				if (!isSettingsList(elem)) {
 					bar.hideSettingsList();
 				}
@@ -73,7 +73,7 @@ bar = {
 		var x = $("#settingsButton").position().left;
 		$("#settingsList").css("left",x+"px");
 		$("#settingsButton").off();
-		$("#settingsButton").click(function(){
+		$("#settingsButton").on('tap', function(){
 			bar.hideSettingsList();
 			bar.hideConnectToMeList();
 		});
@@ -89,7 +89,7 @@ bar = {
 		$("body").off();
 		$("#settingsList").css("display","none");
 		$("#settingsButton").off();
-		$("#settingsButton").click(function(){
+		$("#settingsButton").on('tap', function(){
 			bar.showSettingsList();
 		});
 		bar.hideConnectToMeList();
@@ -99,7 +99,7 @@ bar = {
 
 	createConnectToMeButton: function() {
 		$("#connectToMeButton").off();
-		$("#connectToMeButton").click(function(){
+		$("#connectToMeButton").on('tap', function(){
         	bar.showConnectToMeList();
         });
 	},
@@ -111,11 +111,10 @@ bar = {
 	},
 	createConnectToMeList: function() {
 		var connectionTypes = ["-", "User", "Service provider", "Owner", "Child", "Parent", "Friend"];
-
 		$.each(connectionTypes, function(i, type) {
 			var id = type.replace(" ", "_");
 			$("#connectToMeList").append("<li id='"+id+"' ><div>"+type+"</div></li>");
-			$("#"+id).click(function() {
+			$("#"+id).on('tap', function() {
 				bar.hideSettingsList();
 				createRelation("me", getParameter("dlid"), type);
 			});
@@ -123,7 +122,7 @@ bar = {
 	},
 	showConnectToMeList: function() {
 		$("#connectToMeButton").off();
-		$("#connectToMeButton").click(function(){
+		$("#connectToMeButton").on('tap', function(){
         	bar.hideConnectToMeList();
         });
 
@@ -131,7 +130,7 @@ bar = {
 	},
 	hideConnectToMeList: function() {
 		$("#connectToMeButton").off();
-		$("#connectToMeButton").click(function(){
+		$("#connectToMeButton").on('tap', function(){
 			bar.showConnectToMeList();
 		});
 

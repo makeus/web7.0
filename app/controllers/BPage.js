@@ -85,8 +85,8 @@ function appendInto(element, text){
 }
 
 function setVisibilityOf(element, rowsContent){
-    if (rowsContent == ''){
-        $(element).hide();
+    if (rowsContent != ''){
+        $(element).show();
     }
     $(element).collapsible({refresh:true});
 }

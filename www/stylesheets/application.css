@@ -37,6 +37,10 @@ p {
   	word-wrap:break-word;
 }
 
+h1, h2, h3, p {
+	word-wrap:break-word;
+}
+
 
 #sendMessageBox {
 	padding: 6px;
@@ -66,7 +70,7 @@ div#message {
 	border: thin solid black;
 }
 
-div#message-hidden {
+div#message-hidden, div#form-hidden {
 	margin: 10px;
 	margin-bottom: 0;
 }
@@ -393,22 +397,22 @@ ul#thelist .eventElem p {
 
 .ui-panel {
 	position: fixed;
-	width: 22em;
+	width: 20em;
 	
 }
 
 .ui-panel-animate.ui-panel-position-left.ui-panel-display-overlay, .ui-panel-animate.ui-panel-position-left.ui-panel-display-push {
 	left: 0;
-	-webkit-transform: translate3d(-22em,0,0);
-	-moz-transform: translate3d(-22em,0,0);
-	transform: translate3d(-22em,0,0);
+	-webkit-transform: translate3d(-20em,0,0);
+	-moz-transform: translate3d(-20em,0,0);
+	transform: translate3d(-20em,0,0);
 }
 
 .ui-panel-animate.ui-panel-position-right.ui-panel-display-overlay, .ui-panel-animate.ui-panel-position-right.ui-panel-display-push {
 	right: 0;
-	-webkit-transform: translate3d(22em,0,0);
-	-moz-transform: translate3d(22em,0,0);
-	transform: translate3d(22em,0,0);
+	-webkit-transform: translate3d(20em,0,0);
+	-moz-transform: translate3d(20em,0,0);
+	transform: translate3d(20em,0,0);
 }
 
 .ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li {
@@ -681,31 +685,32 @@ ul#relationslist .emptyRelationImage {
 
 
 #bInfo span {
-   background: white;
- }
- 
- #bInfo img{
-   vertical-align: middle;
-   width: 15%;
-   margin: 10px;
- }
- 
- #bInfo div div {
-   display: inline block;
-   vertical-align: middle;
- 
- }
- 
- #bInfo div div h2 {
-   font size: 18px;
-   color: lightgray;
- }
- 
- .ui-collapsible-inset .ui-collapsible-heading .ui-btn {
-   background: #F7F7F7;
-   margin:  -1px;
-   border-radius: 0px;
- }
+	background: white;
+}
+
+#bInfo img{
+	vertical-align: middle;
+	width: 30%;
+	margin: 10px;
+	max-width: 150px;
+}
+
+#bInfo div div {
+	display: inline-block;
+	vertical-align: middle;
+	width: 60%;
+}
+
+#bInfo div div h2 {
+	font size: 18px;
+	color: lightgray;
+}
+
+.ui-collapsible-inset .ui-collapsible-heading .ui-btn {
+	background: #F7F7F7;
+	margin:  -1px;
+	border-radius: 0px;
+}
 
 #thelist + img {
 	display: block;

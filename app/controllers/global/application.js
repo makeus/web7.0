@@ -39,6 +39,20 @@ $(document).on('pageinit', function(){
 	
 	bar.init();
 	
+	jQuery( window ).on( "swiperight", function() {
+		if(getCurrent()['name'] != 'login') {
+			if($("#rightpanel").hasClass("ui-panel-closed")) {
+				$( "#leftpanel" ).panel( "open" );
+			}
+		}
+	});
+	jQuery( window ).on( "swipeleft", function() {
+		if(getCurrent()['name'] != 'login') {
+			if($("#leftpanel").hasClass("ui-panel-closed")) {
+				$( "#rightpanel" ).panel( "open" );
+			}
+		}
+	});
 
 	if(getCurrent() == undefined) {
 		view.push("login");
@@ -75,17 +89,6 @@ function appInit(){
 			sidebarsSetInfo(info);
 			updateUrls(dlid);
 			setEntityInformation(info);
-		});
-		
-		jQuery( window ).on( "swiperight", function() {
-			if($("#rightpanel").hasClass("ui-panel-closed")) {
-				$( "#leftpanel" ).panel( "open" );
-			}
-		});
-		jQuery( window ).on( "swipeleft", function() {
-			if($("#leftpanel").hasClass("ui-panel-closed")) {
-				$( "#rightpanel" ).panel( "open" );
-			}
 		});
 
 		setActive(getParameter('type'));
@@ -156,7 +159,7 @@ function getUserData(dlid,done, error){
 }
 
 function addLiListener(){
-    $(".listEL").click(function(){
+    $(".listEL").on('tap', function(){
         var id = $(this).attr('id');
         var uid = $(this).attr('uid');
         var listElement= $(this);
