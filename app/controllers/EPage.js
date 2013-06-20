@@ -70,7 +70,7 @@ function showRightForm(type){
 			$("#cc").listview().listview("refresh");
         }   
         $("#ccForm").collapsible({refresh:true});
-        $(".liCC").click(function(){
+        $(".liCC").on('tap', function(){
             //alert("asdf" + $(this).attr('class'));
             if ($(this).attr('class')!='checkCC'){
                 var checkID = $(this).attr('id');
@@ -89,10 +89,10 @@ function attachEvents(){
     $("#inputField").focus(function() {
         $("#form-hidden").show();
     });
-    $("#close").click(function(){
+    $("#close").on('tap', function(){
         $("#form-hidden").hide();
     });
-    $("#sendMessageBox").click(sendMessageClickEventEPage);
+    $("#sendMessageBox").on('tap', sendMessageClickEventEPage);
 }
 
 function getStreamUrl(offset,done) {

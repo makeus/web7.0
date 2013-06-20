@@ -93,6 +93,24 @@ function appInit(){
 		});
 
 		setActive(getParameter('type'));
+
+		/*var scrollTimer = 0;
+		$(window).scroll(function () {
+	        if (scrollTimer) {
+	            clearTimeout(scrollTimer);
+	        }
+	        scrollTimer = setTimeout(function(){
+	            if($(window).scrollTop() + $(window).height() > $(document).height() - 250) {
+	            	if(getCurrent().name == "frontpage") {
+	            		appendStreamF();
+	            	}
+	            	if(getCurrent().name == "EPage") {
+	            		appendStreamE();
+	            	}
+	                
+	            }
+	        }, 100);
+    	});*/
 		document.addEventListener("menuButton", onMenuButton, false);
 		document.addEventListener("backButton", onBackButton, false);
 	}
@@ -142,7 +160,7 @@ function getUserData(dlid,done, error){
 }
 
 function addLiListener(){
-    $(".listEL").click(function(){
+    $(".listEL").on('tap', function(){
         var id = $(this).attr('id');
         var uid = $(this).attr('uid');
         var listElement= $(this);
