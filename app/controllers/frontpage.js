@@ -22,23 +22,10 @@ function initfrontpage(){
         getOwnStream('message,cal,note',0,function(stream){
             $("#appTitle").text(getName());
             $("#thelist").append(stream.join(''));
+            scrollerInit();
             addLiListener();
             $("#thelist+img").hide();
             $("#nameAndTypeBar p:last-child").text("Infostream");
-            $("#scroller").iscrollview();
-            $(document).delegate("div.iscroll-wrapper", "iscroll_onpulldown" , function() {
-                refreshStream("message,cal,note", function(stream) {
-                    if(stream != null && stream != "") {
-                        $("#thelist").html(stream.join('') );
-                        $("#scroller").iscrollview("refresh");
-                        addLiListener();
-                    }
-                });
-            });
-            $(document).delegate("div.iscroll-wrapper", "iscroll_onpullup" , function() {
-                appendStreamF();
-                $("#scroller").iscrollview("refresh");
-            });        
         });
     }
      else {
