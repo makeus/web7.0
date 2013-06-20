@@ -58,9 +58,6 @@ bar = {
         	view.push("login");
         });
 	},
-
-
-
 	showSettingsList: function(){
 		setTimeout(function(){
 			$("body").click(function(elem){
@@ -81,9 +78,9 @@ bar = {
 		var dlid = getParameter("dlid");
 
 		if (getParameter("dlid") !== undefined)
-			showConnectToMeButton();
+			bar.showConnectToMeButton();
 		else
-			hideConnectToMeButton();
+			bar.hideConnectToMeButton();
 	},
 	hideSettingsList: function(){
 		$("body").off();
@@ -94,9 +91,6 @@ bar = {
 		});
 		bar.hideConnectToMeList();
 	},
-
-
-
 	createConnectToMeButton: function() {
 		$("#connectToMeButton").off();
 		$("#connectToMeButton").click(function(){
@@ -136,9 +130,6 @@ bar = {
 
 		$("#connectToMeList").hide();
 	},
-
-
-
 	showSearch: function(){
 		$("#searchArea").show();
 		$("#ownPictureButton").hide();

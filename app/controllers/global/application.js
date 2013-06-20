@@ -11,7 +11,6 @@
 })();
 
 $(document).on('pageinit', function(){
-
 	$("#main").on('pageswitch', function(){
 		$("#main *").off(); 
 		switch(getCurrent()['name']) {
@@ -75,10 +74,57 @@ $(document).on('pageinit', function(){
 	}
 });
 
-function click(funktio) {
-	if(isSteroids) {
+function getTimeDiff(sendedTime){
+    var date = sendedTime.replace(/-/g, '/');
+    var diff = Math.abs(new Date() - new Date(date));
+    var one_day = 1000*60*60*24;
+    var one_hour = 1000*60*60;
+    var one_minute = 1000*60;
+    var days = diff/one_day;
+    var vastaus = "";
+    if(days >= 30){
+        vastaus += Math.floor(days/30);
+        if (days>=60){
+            vastaus += " months ago";
+        } else {
+            vastaus += " month ago";
+        }
+        return vastaus;
+    }
+    if (days>=1){
 
-	}
+
+        vastaus += Math.floor(days);
+        if (days>=2){
+            vastaus += " days ago";
+        } else {
+            vastaus += " day ago";
+        }
+        return vastaus;
+    }
+
+    var hours = Math.floor(diff/one_hour);
+    if (hours>=1){
+        diff -= one_hour*hours;
+        vastaus += hours;
+        if (hours>=2){
+            vastaus += " hours ago";
+        } else {
+            vastaus += " hour ago";
+        }
+        return vastaus;
+    }
+
+    var minutes = Math.floor(diff/one_minute);
+    vastaus += minutes;
+
+    if (minutes>=2){
+         vastaus += " minutes ago.";
+    } else {
+        vastaus += " minute ago.";
+    }
+    
+    return vastaus;
 }
 
 function onBackButton(){
