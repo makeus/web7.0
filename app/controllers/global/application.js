@@ -47,8 +47,6 @@ $(document).on('pageinit', function(){
 	if(!isSteroids()) {
 		$("*").css("max-width", "340px");
 	}
-
-	createDebugButtons();
 });
 
 function onBackButton(){
