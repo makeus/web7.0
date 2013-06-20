@@ -35,7 +35,7 @@ function appendSearchCategory(item, category) {
 
 	if (!$("#searchResults" + category).length){$("#searchResults").append('<h1>' + category + '</h1><ul id="searchResults' + category + '" class="searchCategory"></ul>');}
 	$("#searchResults" + category).append(searchListParse(item));
-	$("#searchLink"+item.DL_id).click(function(){
+	$("#searchLink"+item.DL_id).on('tap', function(){
 		view.push("BPage", {'dlid':item.DL_id});
 	});
 }

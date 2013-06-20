@@ -18,7 +18,7 @@ function updateUrls(dlid) {
 	$.each(links, function(i, item) {
 		item['opts']['dlid'] = dlid;
 		$("#" + item['id']).unbind();
-		$("#" + item['id']).click(function() {
+		$("#" + item['id']).on('tap', function() {
 			$("#leftpanel").panel( "close" );
 			$("#rightpanel").panel( "close");
 			view.push(item['url'], item['opts']);

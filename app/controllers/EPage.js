@@ -14,8 +14,9 @@ function initEPage() {
             if(stream != null && stream != "") {
                 $("#thelist").append( stream.join('') );
                 addLiListener();
-                $("#thelist+img").hide();
+                
             }
+            $("#thelist+img").hide();
         });
     } else {
         alert("UNAUTHORISED");
@@ -69,14 +70,16 @@ function showRightForm(type){
 			$("#cc").listview().listview("refresh");
         }   
         $("#ccForm").collapsible({refresh:true});
-        $(".liCC").click(function(){
+        $(".liCC").on('tap', function(){
             //alert("asdf" + $(this).attr('class'));
             if ($(this).attr('class')!='checkCC'){
                 var checkID = $(this).attr('id');
                 if ($("#check_" + checkID).val(this).is(':checked')){
                     $("#check_" + checkID).prop("checked", false);
+                    $("#p_" + checkID).css('font-weight', 'normal');
                 } else {
                     $("#check_" + checkID).prop("checked", true);
+                    $("#p_" + checkID).css('font-weight', 'bold');
                 }
             } 
             //$("'#check_" + checkID + "'").attr('checked', true);
@@ -88,10 +91,10 @@ function attachEvents(){
     $("#inputField").focus(function() {
         $("#form-hidden").show();
     });
-    $("#close").click(function(){
+    $("#close").on('tap', function(){
         $("#form-hidden").hide();
     });
-    $("#sendMessageBox").click(sendMessageClickEventEPage);
+    $("#sendMessageBox").on('tap', sendMessageClickEventEPage);
 }
 
 function getStreamUrl(offset,done) {

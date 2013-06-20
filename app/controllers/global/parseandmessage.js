@@ -187,9 +187,9 @@ function parseRelations(string) {
 
 function parseCC(info) {
   
-  var entry = "<li class='liCC' id="+ info.DL_id+ "><p class='pCC'>" + info.name + "</p>"
+  var entry = "<li class='liCC' id="+ info.DL_id+ "><p id=p_"+ info.DL_id+ " class='pCC'>" + info.name + "</p>"
          + "<input class='checkCC' id=check_" +info.DL_id+" type='checkbox' name=" + info.DL_id     
-         +" value="+info.DL_id+" >";
+         +" value="+info.DL_id+">";
 
   if(info.img == "") {
     entry += "<img src='../../resources/images/tyhja.png' alt='' />";

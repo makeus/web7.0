@@ -2,7 +2,7 @@ function initfrontpage(){
 
     clearSavedStream();
 
-    $("#sendMessageBox").click(sendMessageClickEvent);
+    $("#sendMessageBox").on('tap', sendMessageClickEvent);
 
     setupPage({
         bar: true,
@@ -13,7 +13,7 @@ function initfrontpage(){
         $("#message-hidden").show();
     });
 
-    $("#close").click(function(){
+    $("#close").on('tap', function(){
         $("#message-hidden").hide();
     });
 
