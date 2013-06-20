@@ -1,3 +1,12 @@
+function clearAll(){
+	savedToken=null;
+	savedDL_id=null;
+	savedName=null;
+	savedStream=[];
+	savedImg=null;
+	savedRelations=null;
+}
+
 function setStatus(uusi) {
 	status = uusi;
 }
