@@ -28,7 +28,7 @@ function initRPage() {
 
 
 function appendRelationsList(dlid) {
-	var li = "<li>";
+	var li = "<li id=\"relationList" + dlid.DL_id + "\">";
 	if(dlid.img!=""){
 		li += '<img src="' + dlid.img + '"" alt="kuva"></img>';
 	}else{
@@ -43,7 +43,7 @@ function appendRelationsList(dlid) {
 
 	$("#relationslist").append(li);
 	
-	 $("li#relationList" + dlid.DL_id).click(function() {
-        view.push("EPage", {'dlid': dlid.DL_id});           //view.push("EPage", "index.html?dlid=" + dlid.DL_id);
+	 $("li#relationList" + dlid.DL_id + " img, li#relationList" + dlid.DL_id + " div").click(function() {
+        view.push("BPage", {'dlid': dlid.DL_id});           //view.push("EPage", "index.html?dlid=" + dlid.DL_id);
 	 });
 }

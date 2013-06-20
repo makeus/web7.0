@@ -39,6 +39,20 @@ $(document).on('pageinit', function(){
 	
 	bar.initListeners();
 	
+	jQuery( window ).on( "swiperight", function() {
+		if(getCurrent()['name'] != 'login') {
+			if($("#rightpanel").hasClass("ui-panel-closed")) {
+				$( "#leftpanel" ).panel( "open" );
+			}
+		}
+	});
+	jQuery( window ).on( "swipeleft", function() {
+		if(getCurrent()['name'] != 'login') {
+			if($("#leftpanel").hasClass("ui-panel-closed")) {
+				$( "#rightpanel" ).panel( "open" );
+			}
+		}
+	});
 
 	if(getCurrent() == undefined) {
 		view.push("login");
@@ -77,20 +91,8 @@ function appInit(){
 			updateUrls(dlid);
 			setEntityInformation(info);
 		});
-		
-		jQuery( window ).on( "swiperight", function() {
-			if($("#rightpanel").hasClass("ui-panel-closed")) {
-				$( "#leftpanel" ).panel( "open" );
-			}
-		});
-		jQuery( window ).on( "swipeleft", function() {
-			if($("#leftpanel").hasClass("ui-panel-closed")) {
-				$( "#rightpanel" ).panel( "open" );
-			}
-		});
 
 		setActive(getParameter('type'));
-
 		var scrollTimer = 0;
 		$(window).scroll(function () {
 	        if (scrollTimer) {

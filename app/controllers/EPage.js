@@ -14,8 +14,9 @@ function initEPage() {
             if(stream != null && stream != "") {
                 $("#thelist").append( stream.join('') );
                 addLiListener();
-                $("#thelist+img").hide();
+                
             }
+            $("#thelist+img").hide();
         });
     } else {
         alert("UNAUTHORISED");
