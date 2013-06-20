@@ -6,7 +6,7 @@ function initlogin() {
 	});
 	localStorage.clear();
 	
-	$("#loginButton").on('tap', function(){
+	$("#loginButton").click(function(){
 		$.mobile.showPageLoadingMsg();
 		var username = document.getElementById('loginUsername').value;
 		var password = document.getElementById('loginPassword').value;
@@ -63,7 +63,7 @@ function login(username, password,done){
 		});
 }
 function addStatusBar(){
-	$("#Adele_Vuohi").on('tap', function(){
+	$("#Adele_Vuohi").click(function(){
 		setTimeout(function(){
 		$("#statusBar").css("display","block");
 		$("#statusBar").css("width","1000");
