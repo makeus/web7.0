@@ -22,12 +22,13 @@ function initfrontpage(){
         getOwnStream('message,cal,note',0,function(stream){
             $("#appTitle").text(getName());
             $("#thelist").append(stream.join(''));
+            scrollerInit();
             addLiListener();
             $("#thelist+img").hide();
             $("#nameAndTypeBar p:last-child").text("Infostream");
-
-        });            
-    } else {
+        });
+    }
+     else {
         alert("UNAUTHORISED");
     }
     
