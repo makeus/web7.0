@@ -93,26 +93,27 @@ function appInit(){
 		});
 
 		setActive(getParameter('type'));
-		var scrollTimer = 0;
-		$(window).scroll(function () {
-	        if (scrollTimer) {
-	            clearTimeout(scrollTimer);
-	        }
-	        scrollTimer = setTimeout(function(){
-	            if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
-	            	if(getCurrent().name == "frontpage") {
-	            		appendStreamF();
-	            	}
-	            	if(getCurrent().name == "EPage") {
-	            		appendStreamE();
-	            	}
-	                
-	            }
-	        }, 100);
-    	});
 		document.addEventListener("menuButton", onMenuButton, false);
 		document.addEventListener("backButton", onBackButton, false);
 	}
+}
+
+function scrollerInit() {
+    $("#scroller").iscrollview();
+    $(document).delegate("div.iscroll-wrapper", "iscroll_onpulldown" , function() {
+        refreshStream("message,cal,note", function(stream) {
+            if(stream != null && stream != "") {
+                $("#thelist").html(stream.join('') );
+                $("#scroller").iscrollview("refresh");
+                addLiListener();
+            }
+        });
+    });
+    $(document).delegate("div.iscroll-wrapper", "iscroll_onpullup" , function() {
+        appendStreamF();
+        $("#scroller").iscrollview("refresh");
+    });
+    $("#scroller").iscrollview("refresh"); 	
 }
 
 

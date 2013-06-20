@@ -70,6 +70,18 @@ function showRightForm(type){
 			$("#cc").listview().listview("refresh");
         }   
         $("#ccForm").collapsible({refresh:true});
+        $(".liCC").click(function(){
+            //alert("asdf" + $(this).attr('class'));
+            if ($(this).attr('class')!='checkCC'){
+                var checkID = $(this).attr('id');
+                if ($("#check_" + checkID).val(this).is(':checked')){
+                    $("#check_" + checkID).prop("checked", false);
+                } else {
+                    $("#check_" + checkID).prop("checked", true);
+                }
+            } 
+            //$("'#check_" + checkID + "'").attr('checked', true);
+        });
     });
 }
 

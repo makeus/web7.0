@@ -130,6 +130,10 @@ function getOwnStream(types,offset,done) {
 
 }
 
+function refreshStream(types, done) {
+  getOwnStream(types, 0, done);
+}
+
 function getCCList(done) {
   var items=[];
   var relations=[];
@@ -183,19 +187,18 @@ function parseRelations(string) {
 
 function parseCC(info) {
   
-  var entry = "<li class='liCC' id="+ info.DL_id+ "><p class='pCC'>" +info.name+"</p><input class='checkCC' id=" +info.DL_id+" type='checkbox' name="
-         + info.DL_id
-         +" value="+info.DL_id+">";
+  var entry = "<li class='liCC' id="+ info.DL_id+ "><p class='pCC'>" + info.name + "</p>"
+         + "<input class='checkCC' id=check_" +info.DL_id+" type='checkbox' name=" + info.DL_id     
+         +" value="+info.DL_id+" >";
 
   if(info.img == "") {
-    entry += "<img src='../../resources/images/tyhja.png'";
+    entry += "<img src='../../resources/images/tyhja.png' alt='' />";
   }
   else {
-    entry +=  "<img src=" + info.img;
+    entry +=  "<img src='" + info.img + "' alt='' />";
   }
 
-  entry +=" alt='' />"
-         +"</input></li><span class='clear'></span>"; 
+  entry += "</input></li><span class='clear'></span>"; 
   return entry;
 }
 
