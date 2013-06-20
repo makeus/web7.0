@@ -31,14 +31,14 @@ function setCommentFocusEvent() {
 }
 
 function setLinkToSenderEvent(){
-    $(".commentWriter").on('tap', function(){
+    $(".commentWriter").click(function(){
         var dlid = $(this).attr('id');
         view.push("EPage", {'dlid': dlid});         //view.push("EPage", "index.html?dlid=" + dlid);
     });
 }
 
 function setAddCommentEvent(){
-    $(".addComment").on('tap', function(){
+    $(".addComment").click(function(){
         var comm = $(".commentArea").val();
         if (comm!=""){
             addCommentToMessage(iPageID, comm,function(){});
@@ -147,46 +147,5 @@ function getComments(info){
     $("#listOfComments").append(content);
 }
 
-function getTimeDiff(sendedTime){
-    var date = sendedTime.replace(/-/g, '/');
-    var diff = Math.abs(new Date() - new Date(date));
-    var one_day = 1000*60*60*24;
-    var one_hour = 1000*60*60;
-    var one_minute = 1000*60;
-    var days = diff/one_day;
-    var vastaus = "";
 
-    if (days>=1){
-        diff -= one_day*days;
-        vastaus += Math.floor(days);
-        if (days>=2){
-            vastaus += " days ago";
-        } else {
-            vastaus += " day ago";
-        }
-        return vastaus;
-    }
-
-    var hours = Math.floor(diff/one_hour);
-    if (hours>=1){
-        diff -= one_hour*hours;
-        vastaus += hours;
-        if (hours>=2){
-            vastaus += " hours and ";
-        } else {
-            vastaus += " hour and ";
-        }
-    }
-
-    var minutes = Math.floor(diff/one_minute);
-    vastaus += minutes;
-
-    if (minutes>=2){
-         vastaus += " minutes ago.";
-    } else {
-        vastaus += " minute ago.";
-    }
-    
-    return vastaus;
-}
 

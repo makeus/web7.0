@@ -43,7 +43,7 @@ function appendRelationsList(dlid) {
 
 	$("#relationslist").append(li);
 	
-	 $("li#relationList" + dlid.DL_id + " img, li#relationList" + dlid.DL_id + " div").on('tap', function() {
+	 $("li#relationList" + dlid.DL_id + " img, li#relationList" + dlid.DL_id + " div").click(function() {
         view.push("BPage", {'dlid': dlid.DL_id});           //view.push("EPage", "index.html?dlid=" + dlid.DL_id);
 	 });
 }
