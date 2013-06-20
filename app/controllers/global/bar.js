@@ -139,16 +139,6 @@ bar = {
 		$("#relationsButton").show();
 		$("#barLogo").show();
 		$("#settingsButton").show();
-	},
-
-	setValues: function() {
-		$("#bar").css("height", bar.height);
-		$("#main").css("margin-top", bar.height + bar.gap);
-
-		$("#logoArea").css("width", bar.button.width);
-		$("#searchArea").css("left", bar.button.width);
-		$("#searchArea").css("right", bar.button.width);
-		$("#buttonArea").css("width", bar.button.width);
 	}
 }
 

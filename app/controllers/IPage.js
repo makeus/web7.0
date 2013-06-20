@@ -155,9 +155,18 @@ function getTimeDiff(sendedTime){
     var one_minute = 1000*60;
     var days = diff/one_day;
     var vastaus = "";
-
+    if(days >= 30){
+        vastaus += Math.floor(days/30);
+        if (days>=60){
+            vastaus += " months ago";
+        } else {
+            vastaus += " month ago";
+        }
+        return vastaus;
+    }
     if (days>=1){
-        diff -= one_day*days;
+
+
         vastaus += Math.floor(days);
         if (days>=2){
             vastaus += " days ago";
@@ -172,10 +181,11 @@ function getTimeDiff(sendedTime){
         diff -= one_hour*hours;
         vastaus += hours;
         if (hours>=2){
-            vastaus += " hours and ";
+            vastaus += " hours ago";
         } else {
-            vastaus += " hour and ";
+            vastaus += " hour ago";
         }
+        return vastaus;
     }
 
     var minutes = Math.floor(diff/one_minute);
