@@ -5,9 +5,15 @@ bar = {
 		width: 80
 	},
 
+	init: function() {
+		bar.initListeners();
+		
+		bar.createConnectToMeButton();
+		bar.createConnectToMeList();
+	},
+
 	show: function() {
 		$("#bar").show();
-		//bar.setValues();
 	},
 
 	hide: function() {
@@ -23,8 +29,6 @@ bar = {
 	},
 
 	initListeners: function() {
-	
-
 		$("#ownPictureButton").off();
 		$("#ownPictureButton").click(function(){
 			view.push("frontpage");
@@ -49,8 +53,8 @@ bar = {
         $("#settingsButton").click(function(){
         	bar.showSettingsList();
         });
-        $("#settingsList :first-child").off(),
-        $("#settingsList :first-child").click(function(){
+        $("#logoutButton").off(),
+        $("#logoutButton").click(function(){
         	view.push("login");
         });
 	},
@@ -71,21 +75,15 @@ bar = {
 		$("#settingsButton").off();
 		$("#settingsButton").click(function(){
 			bar.hideSettingsList();
-			bar.hideRelationsList();
+			bar.hideConnectToMeList();
 		});
 		
-
 		var dlid = getParameter("dlid");
 
-		if (dlid !== undefined) {
-			$("#connectToMeButton").show();
-			$("#connectToMeButton").off();
-			$("#connectToMeButton").click(function(){
-	        	bar.showRelationsList();
-	        });
-		} else {
-			$("#connectToMeButton").hide();
-		}
+		if (getParameter("dlid") !== undefined)
+			showConnectToMeButton();
+		else
+			hideConnectToMeButton();
 	},
 	hideSettingsList: function(){
 		$("body").off();
@@ -94,32 +92,50 @@ bar = {
 		$("#settingsButton").click(function(){
 			bar.showSettingsList();
 		});
-		bar.hideRelationsList();
+		bar.hideConnectToMeList();
 	},
 
 
-	showRelationsList: function() {
+
+	createConnectToMeButton: function() {
 		$("#connectToMeButton").off();
 		$("#connectToMeButton").click(function(){
-        	bar.hideRelationsList();
+        	bar.showConnectToMeList();
         });
+	},
+	showConnectToMeButton: function() {
+		$("#connectToMeButton").show();
+	},
+	hideConnectToMeButton: function() {
+		$("#connectToMeButton").hide();
+	},
+	createConnectToMeList: function() {
+		var connectionTypes = ["-", "User", "Service provider", "Owner", "Child", "Parent", "Friend"];
 
-		var relations = ["-", "User", "Service provider", "Owner", "Child", "Parent", "Friend"];
-
-		$.each(relations, function(i, item) {
-			var id = item.replace(" ", "_");
-			$("#relationsList").append("<li id='"+id+"' ><div>"+item+"</div></li>");
+		$.each(connectionTypes, function(i, type) {
+			var id = type.replace(" ", "_");
+			$("#connectToMeList").append("<li id='"+id+"' ><div>"+type+"</div></li>");
 			$("#"+id).click(function() {
 				bar.hideSettingsList();
-				// Tähän relaatiofunktiohässäkkä
+				createRelation("me", getParameter("dlid"), type);
 			});
 		});
-
-		$("#relationsList").css("display", "table");
 	},
-	hideRelationsList: function() {
-		$("#relationsList").empty();
+	showConnectToMeList: function() {
 		$("#connectToMeButton").off();
+		$("#connectToMeButton").click(function(){
+        	bar.hideConnectToMeList();
+        });
+
+		$("#connectToMeList").show();
+	},
+	hideConnectToMeList: function() {
+		$("#connectToMeButton").off();
+		$("#connectToMeButton").click(function(){
+			bar.showConnectToMeList();
+		});
+
+		$("#connectToMeList").hide();
 	},
 
 
@@ -139,16 +155,6 @@ bar = {
 		$("#relationsButton").show();
 		$("#barLogo").show();
 		$("#settingsButton").show();
-	},
-
-	setValues: function() {
-		$("#bar").css("height", bar.height);
-		$("#main").css("margin-top", bar.height + bar.gap);
-
-		$("#logoArea").css("width", bar.button.width);
-		$("#searchArea").css("left", bar.button.width);
-		$("#searchArea").css("right", bar.button.width);
-		$("#buttonArea").css("width", bar.button.width);
 	}
 }
 

@@ -29,6 +29,8 @@
   <script src="../../components/jquery/jquery.mobile.js"></script>
   <script src="../../components/handlebars/handlebars.runtime.js"></script>
   <link rel="stylesheet" href="../../resources/font-awesome/css/font-awesome.min.css">
+
+
   <!-- our stuff -->
 
   <link rel="stylesheet" href="../../stylesheets/application.css" />
@@ -69,9 +71,9 @@
     <li><img id="barLogo" src="../../resources/images/digital_living_logo_small.png" /></li>
     <li><i class="icon-cog icon-2x" id="settingsButton"></i>
       <ul id="settingsList" data-role="listview" data-inset="true" data-display="overlay">
-        <li data-icon="false"><i class="icon-off"></i>Logout</li>
-        <li data-icon="false" id="connectToMeButton"><i class="icon-resize-small"></i>Connect to me</li>
-        <ul id="relationsList" data-role="listview" data-inset="true" data-display="overlay"></ul>
+        <li data-icon="false" id="logoutButton"><div><i class="icon-off"></i>Logout</div></li>
+        <li data-icon="false" id="connectToMeButton"><div><i class="icon-resize-small"></i>Connect to me<div></li>
+        <ul id="connectToMeList" data-role="listview" data-inset="true" data-display="overlay"></ul>
       </ul>
     </li>
     <li><div id="searchArea" hidden>

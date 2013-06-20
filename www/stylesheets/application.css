@@ -594,6 +594,7 @@ ul#relationslist .emptyRelationImage {
 }
 #settingsList {
 	display: none;
+	width: 8.0em;
 	position: absolute;
 	background: #333;
 	font-size: 1.5em;
@@ -601,17 +602,22 @@ ul#relationslist .emptyRelationImage {
 	padding: 5px;
 }
 #settingsList li {
+	width: 100%;
 	display: table-row;
 	text-align: left;
 }
 
-#relationsList {
+#connectToMeList {
 	display: none;
 	position: absolute;
 	background: #555;
-	font-size: 1.5em;
 	border: solid thin black;
 	padding: 5px;
+}
+
+#connectToMelist li {
+	display: table-row;
+	text-align: left;
 }
 
 #cc {

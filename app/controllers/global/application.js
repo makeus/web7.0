@@ -37,7 +37,7 @@ $(document).on('pageinit', function(){
 	leftbarCreateLinks();
 	rightbarCreateLinks();
 	
-	bar.initListeners();
+	bar.init();
 	
 
 	if(getCurrent() == undefined) {
@@ -48,6 +48,7 @@ $(document).on('pageinit', function(){
 		$("*").css("max-width", "340px");
 	}
 
+	createDebugButtons();
 });
 
 function onBackButton(){

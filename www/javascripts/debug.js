@@ -58,7 +58,12 @@ function createButton(info) {
 	button.css("background-color", randomColor());
 	button.css("padding", "10px");
 
+	button.click(function(){
+    	alert("jous");
+    });
+/*
 	button.click(function() {
+		console.log("JEE");
 		login(info.username, info.password, function() {
 			if (getStatus() == -1) {
 				$("#failLogin").removeAttr("hidden");
@@ -67,10 +72,11 @@ function createButton(info) {
 			} else if (getStatus() == 1) {
 				view.push("frontpage");
 			} else {
-				alert("ERROR " + res);
+				alert("ERROR");
 			}
 		});
 	});
+*/
 }
 
 function randomColor() {
