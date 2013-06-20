@@ -4,25 +4,28 @@ function setStatus(uusi) {
 function getStatus() {
   return status;
 }
-
+var savedToken;
 function saveToken(data){
-	localStorage.setItem('authtoken',data.authtoken);
-}
-function saveDL_id(data){
-	localStorage.setItem('DL_id',data.DL_id);
+	savedToken=data.authtoken;
 }
 function getToken(){
-	return localStorage.getItem('authtoken');
+	return savedToken;
 }
-function getDL_id(){
-	return localStorage.getItem('DL_id');
+var savedDL_id;
+function saveDL_id(data){
+	savedDL_id=data.DL_id;
 }
 
+function getDL_id(){
+	return savedDL_id;
+}
+
+var savedName;
 function saveName(data){
-	localStorage.setItem('name',data.name);
+	savedName=data.name;
 }
 function getName(){
-	return localStorage.getItem('name');
+	return savedName;
 }
 var savedStream=[];
 function saveStream(data){
@@ -34,24 +37,21 @@ function getSavedStream(){
 function clearSavedStream(){
 	savedStream=[];
 }
-function saveImage(url){
-	localStorage.setItem('image',url);
+var savedImg;
+function saveImage(data){
+	savedImg=data.img;
 }
 function getImage(){
-	return localStorage.getItem('image');
+	return savedImg;
 }
 
+var savedRelations;
 function saveRelations(relations) {
-	localStorage.setItem('relations', JSON.stringify(relations));
+	savedRelations = relations;
 }
 
 function getRelations() {
-	var relations = localStorage.getItem('relations');
-
-	if (relations !== "")
-		return $.parseJSON(relations);
-	else
-		return null;
+	return savedRelations;
 }
 
 function getRelation(dlid) {
