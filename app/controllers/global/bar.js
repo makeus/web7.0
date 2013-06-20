@@ -5,9 +5,15 @@ bar = {
 		width: 80
 	},
 
+	init: function() {
+		bar.initListeners();
+		
+		bar.createConnectToMeButton();
+		bar.createConnectToMeList();
+	},
+
 	show: function() {
 		$("#bar").show();
-		//bar.setValues();
 	},
 
 	hide: function() {
@@ -23,34 +29,32 @@ bar = {
 	},
 
 	initListeners: function() {
-	
-
 		$("#ownPictureButton").off();
-		$("#ownPictureButton").click(function(){
+		$("#ownPictureButton").on('tap', function(){
 			view.push("frontpage");
 		});
 		$("#backButton").off();
-		$("#backButton").click(function(){
+		$("#backButton").on('tap', function(){
 			view.pop();
 		});
 		$("#barLogo").off();
-		$("#barLogo").click(function() {
+		$("#barLogo").on('tap', function() {
 			$( "#leftpanel" ).panel( "open" );
 		});
 		$("#relationsButton").off();
-		$("#relationsButton").click(function(){
+		$("#relationsButton").on('tap', function(){
 			$( "#rightpanel" ).panel( "open" );
 		});
 		$("#searchButton").off();
-		$("#searchButton").click(function() {
+		$("#searchButton").on('tap', function() {
    			view.push("search");
         });
         $("#settingsButton").off();
-        $("#settingsButton").click(function(){
+        $("#settingsButton").on('tap', function(){
         	bar.showSettingsList();
         });
-        $("#settingsList :first-child").off(),
-        $("#settingsList :first-child").click(function(){
+        $("#logoutButton").off(),
+        $("#logoutButton").on('tap', function(){
         	view.push("login");
         });
 	},
@@ -59,7 +63,7 @@ bar = {
 
 	showSettingsList: function(){
 		setTimeout(function(){
-			$("body").click(function(elem){
+			$("body").on('tap', function(elem){
 				if (!isSettingsList(elem)) {
 					bar.hideSettingsList();
 				}
@@ -69,57 +73,68 @@ bar = {
 		var x = $("#settingsButton").position().left;
 		$("#settingsList").css("left",x+"px");
 		$("#settingsButton").off();
-		$("#settingsButton").click(function(){
+		$("#settingsButton").on('tap', function(){
 			bar.hideSettingsList();
-			bar.hideRelationsList();
+			bar.hideConnectToMeList();
 		});
 		
-
 		var dlid = getParameter("dlid");
 
-		if (dlid !== undefined) {
-			$("#connectToMeButton").show();
-			$("#connectToMeButton").off();
-			$("#connectToMeButton").click(function(){
-	        	bar.showRelationsList();
-	        });
-		} else {
-			$("#connectToMeButton").hide();
-		}
+		if (getParameter("dlid") !== undefined)
+			bar.showConnectToMeButton();
+		else
+			bar.hideConnectToMeButton();
 	},
 	hideSettingsList: function(){
 		$("body").off();
 		$("#settingsList").css("display","none");
 		$("#settingsButton").off();
-		$("#settingsButton").click(function(){
+		$("#settingsButton").on('tap', function(){
 			bar.showSettingsList();
 		});
-		bar.hideRelationsList();
+		bar.hideConnectToMeList();
 	},
 
 
-	showRelationsList: function() {
+
+	createConnectToMeButton: function() {
 		$("#connectToMeButton").off();
-		$("#connectToMeButton").click(function(){
-        	bar.hideRelationsList();
+		$("#connectToMeButton").on('tap', function(){
+        	bar.showConnectToMeList();
         });
-
-		var relations = ["-", "User", "Service provider", "Owner", "Child", "Parent", "Friend"];
-
-		$.each(relations, function(i, item) {
-			var id = item.replace(" ", "_");
-			$("#relationsList").append("<li id='"+id+"' ><div>"+item+"</div></li>");
-			$("#"+id).click(function() {
+	},
+	showConnectToMeButton: function() {
+		$("#connectToMeButton").show();
+	},
+	hideConnectToMeButton: function() {
+		$("#connectToMeButton").hide();
+	},
+	createConnectToMeList: function() {
+		var connectionTypes = ["-", "User", "Service provider", "Owner", "Child", "Parent", "Friend"];
+		$.each(connectionTypes, function(i, type) {
+			var id = type.replace(" ", "_");
+			$("#connectToMeList").append("<li id='"+id+"' ><div>"+type+"</div></li>");
+			$("#"+id).on('tap', function() {
 				bar.hideSettingsList();
-				// Tähän relaatiofunktiohässäkkä
+				createRelation("me", getParameter("dlid"), type);
 			});
 		});
-
-		$("#relationsList").css("display", "table");
 	},
-	hideRelationsList: function() {
-		$("#relationsList").empty();
+	showConnectToMeList: function() {
 		$("#connectToMeButton").off();
+		$("#connectToMeButton").on('tap', function(){
+        	bar.hideConnectToMeList();
+        });
+
+		$("#connectToMeList").show();
+	},
+	hideConnectToMeList: function() {
+		$("#connectToMeButton").off();
+		$("#connectToMeButton").on('tap', function(){
+			bar.showConnectToMeList();
+		});
+
+		$("#connectToMeList").hide();
 	},
 
 
@@ -139,16 +154,6 @@ bar = {
 		$("#relationsButton").show();
 		$("#barLogo").show();
 		$("#settingsButton").show();
-	},
-
-	setValues: function() {
-		$("#bar").css("height", bar.height);
-		$("#main").css("margin-top", bar.height + bar.gap);
-
-		$("#logoArea").css("width", bar.button.width);
-		$("#searchArea").css("left", bar.button.width);
-		$("#searchArea").css("right", bar.button.width);
-		$("#buttonArea").css("width", bar.button.width);
 	}
 }
 

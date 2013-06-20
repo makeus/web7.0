@@ -27,7 +27,7 @@ function createDebugButtons() {
 		username: "kristian.pulkkinen@cs.helsinki.fi",
 		password: "stalin"
 	});
-
+	
 	createButton({
 		name: "Sampo",
 		username: "sampo.laurila@gmail.com",
@@ -51,13 +51,13 @@ function createButton(info) {
 	var id = info.name.replace(" ", "_");
 
 	$("#main").append("<button id='"+id+"'>"+info.name+"</button>");
-
+	
 	var button = $("#"+id);
 	button.css("font-weight", "bolder");
 	button.css("color", randomColor());
 	button.css("background-color", randomColor());
 	button.css("padding", "10px");
-
+	
 	button.click(function() {
 		login(info.username, info.password, function() {
 			if (getStatus() == -1) {
