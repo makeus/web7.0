@@ -75,8 +75,10 @@ function showRightForm(type){
                 var checkID = $(this).attr('id');
                 if ($("#check_" + checkID).val(this).is(':checked')){
                     $("#check_" + checkID).prop("checked", false);
+                    $("#p_" + checkID).css('font-weight', 'normal');
                 } else {
                     $("#check_" + checkID).prop("checked", true);
+                    $("#p_" + checkID).css('font-weight', 'bold');
                 }
             } 
             //$("'#check_" + checkID + "'").attr('checked', true);
