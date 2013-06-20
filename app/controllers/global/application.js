@@ -36,7 +36,10 @@ $(document).on('pageinit', function(){
 
 	leftbarCreateLinks();
 	rightbarCreateLinks();
-	clearSavedStream();
+	if(getCurrent().name == "IPage") {
+	    clearSavedStream();
+	}
+	
 	bar.initListeners();
 	
 
