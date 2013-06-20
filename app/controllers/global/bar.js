@@ -25,7 +25,6 @@ bar = {
 	initListeners: function() {
 	
 
-		$("#ownPictureButton").attr("src",getImage());
 		$("#ownPictureButton").off();
 		$("#ownPictureButton").click(function(){
 			view.push("frontpage");
