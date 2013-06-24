@@ -118,7 +118,7 @@ function attachEvents(){
         $("#message-hidden").show();
         $(".listEL:first-child").off();
     });
-    $("#close").click(function(){
+    $(".closelink").click(function(){
         $("#message-hidden").hide();
         $("#inputField").blur();
         addLiListener();
