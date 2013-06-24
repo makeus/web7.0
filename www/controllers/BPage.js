@@ -52,7 +52,7 @@ function appendImageAndUsername(info){
 
     var image = "";
     if(info.img == "") {
-        image = '../../resources/images/tyhja.png';
+        image = '../resources/images/tyhja.png';
     } else {
         image = info.img
     }
@@ -125,7 +125,3 @@ function appendLinks(info){
     rowsContent += appendInto("#infoHomePage", wordFrom(info.home_page));
     setVisibilityOf("#contact", rowsContent);
  }
-
-
-
-

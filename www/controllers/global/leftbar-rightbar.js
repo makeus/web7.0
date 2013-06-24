@@ -3,7 +3,7 @@ var links = [{}];
 function sidebarsSetInfo(info) {
 	var image = "";
     if(info.img == "") {
-        image = '../../resources/images/tyhja.png';
+        image = '../resources/images/tyhja.png';
     } else {
         image = info.img
     }

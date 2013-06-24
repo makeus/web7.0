@@ -25,7 +25,7 @@ function searchListParse(item){
 	if(item.img!=""){
 		ret += '<img class="searchImages" src="'+item.img+'"" alt="kuva"></img>';
 	}else{
-		ret += '<img class="emptySearchImages" src="'+'../../resources/images/tyhja.png'+'"" alt="kuva"></img>';
+		ret += '<img class="emptySearchImages" src="'+'../resources/images/tyhja.png'+'"" alt="kuva"></img>';
 	}
 	ret += '<p>'+item.name+'</p>'+'</li>';
 	return ret;

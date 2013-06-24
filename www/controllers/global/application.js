@@ -68,9 +68,6 @@ function getTimeDiff(sendedTime){
     var one_day = 1000*60*60*24;
     var one_hour = 1000*60*60;
     var one_minute = 1000*60;
-    var d = new Date()
-	var n = d.getTimezoneOffset() * 1000 * 60;
-	diff+=n;
     var days = diff/one_day;
     var vastaus = "";
     if(days >= 30){
@@ -115,11 +112,7 @@ function getTimeDiff(sendedTime){
         vastaus += " minute ago.";
     }
     
-    if(minutes>0){
-    	return vastaus;
-	}else {
-		return "just now.";
-	}
+    return vastaus;
 }
 
 function onBackButton(){
