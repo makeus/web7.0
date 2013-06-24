@@ -116,10 +116,13 @@ function changeCheckedStatus(checkID){
 
 function attachEvents(){
     $("#inputField").focus(function() {
-        $("#form-hidden").show();
+        $("#message-hidden").show();
+        $(".listEL:first-child").off();
     });
-    $("#close").click(function(){
-        $("#form-hidden").hide();
+    $(".closelink").click(function(){
+        $("#message-hidden").hide();
+        $("#inputField").blur();
+        addLiListener();
     });
     $("#sendMessageBox").click(sendMessageClickEventEPage);
 }

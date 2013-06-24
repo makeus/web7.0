@@ -77,7 +77,7 @@ bar = {
 		
 		var dlid = getParameter("dlid");
 
-		if (getParameter("dlid") !== undefined)
+		if (dlid !== undefined && dlid !== getDL_id())
 			bar.showConnectToMeButton();
 		else
 			bar.hideConnectToMeButton();

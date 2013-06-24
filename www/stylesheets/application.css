@@ -15,6 +15,7 @@ body {
 
 * {
   	-webkit-user-select: none; 
+  	-webkit-touch-callout:none;
 
   	
    /* Disable selection/Copy of UIWebView when tapping for a long time */
@@ -37,10 +38,6 @@ p {
   	word-wrap:break-word;
 }
 
-h1, h2, h3, p {
-	word-wrap:break-word;
-}
-
 
 #sendMessageBox {
 	padding: 6px;
@@ -57,12 +54,26 @@ h1, h2, h3, p {
 	cursor: hand; cursor: pointer;
 }
 
-#closelink {
-	width: 100%;
+.closelink {
+	background: #F7F7F7;
 	text-align: center;
+	margin-left: -10px;
+	margin-right: -10px;
+	padding: 0;
+}
+
+#message-hidden .closelink:first-child {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+#message-hidden .closelink:last-child {
 	margin-bottom: 0;
-	margin-left: 0;
-	margin-right: 0;
+	margin-top: 10px;
+}
+
+select {
+	background: white;
 }
 
 div#message {
@@ -72,6 +83,7 @@ div#message {
 
 div#message-hidden, div#form-hidden {
 	margin: 10px;
+	margin-top: 0;
 	margin-bottom: 0;
 }
 
@@ -113,16 +125,11 @@ div#message-shown > input {
 	border-radius: 5px;
 }
 
-#loginsection {
-}
 
-div#message-hidden > label, div #message-hidden > input {
+div#message-hidden label, div#message-hidden input, div#message-hidden textarea,  {
 	margin-top: 8px;
 	margin: 1px;
-	width: 80%;
 }
-
-
 
 section#searchResults {
 	padding: 0;
@@ -485,7 +492,7 @@ section#commentArea > textarea {
 	margin-bottom: 0;
 }
 
-form.ui-listview-filter {
+.ui-collapsible-content .ui-listview-filter, form.ui-listview-filter {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	background: white;
@@ -533,12 +540,15 @@ ul#relationslist li {
 
 ul#relationslist li h2 {
 	font-size: 15px;
-	word-wrap: break-word;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: initial;
 }
 
 ul#relationslist li h3 {
 	font-size: 13px;
 	color: lightgray;
+	margin: .6em 0;
 }
 
 
@@ -710,6 +720,7 @@ ul#relationslist .emptyRelationImage {
 	width: 30%;
 	margin: 10px;
 	max-width: 150px;
+	border: thin solid gray;
 }
 
 #bInfo div div {
@@ -733,6 +744,17 @@ ul#relationslist .emptyRelationImage {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+
+#relationMessage {
+	margin: 20px;
+}
+
+#thelist h3, #relationMessage h3 {
+	text-align: center;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	margin: 5px;
 }
 
 #bar li div#searchArea {

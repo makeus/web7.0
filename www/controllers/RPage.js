@@ -12,20 +12,26 @@ function initRPage() {
     if(type == null) {
         type = "user";
     }
+
+
+    var checked = false;
+
     getInfo(dlid, function(items){
 		var relations = parseRelations(items.relations);
-		var exists = false;
+		
 		$.each(relations, function(i, item) {
 			getInfo(item.dlid, function(info) {
 				if(info.type == type){
 					appendRelationsList(info);
-					exists = true;
+					checked = true;
+				}
+				if(i == relations.length -1) {
+					if(!checked) {
+    					$("#main div").replaceWith("<section id=\"relationMessage\"><h3>The stream is empty</h3><h3>no relations were found!</h3></section>"); 
+					}
 				}
 			});
 		});
-		if (!exists){
-			  $("#relationslist").replaceWith('<hr></hr><h3>The stream is empty</h3><h3>no ' + type + 's were found!</h3>'); 
-		}
 
         $("#relationslist").listview().listview("refresh");
 	});
@@ -44,12 +50,12 @@ function appendRelationsList(dlid) {
 	li += "<h2>" + dlid.name + "</h2>";
 	li += "<h3>" + dlid.type + "</p>";
     li += "</div>"
-	li += "<i id='delete" + dlid.DL_id + "' class=\"icon-remove\" ></i>";      // TÄHÄN POISTO KUNHAN SEMMOINEN TEHDÄÄN
+	// li += "<i id='delete" + dlid.DL_id + "' class=\"icon-remove\" ></i>";      // TÄHÄN POISTO KUNHAN SEMMOINEN TEHDÄÄN
 	li += "</li>";
 
 	$("#relationslist").append(li);
 	
-	 $("li#relationList" + dlid.DL_id + " img, li#relationList" + dlid.DL_id + " div").click(function() {
+	 $("li#relationList" + dlid.DL_id).click(function() {
         view.push("BPage", {'dlid': dlid.DL_id});           //view.push("EPage", "index.html?dlid=" + dlid.DL_id);
 	 });
 }
