@@ -236,6 +236,7 @@ function getUserData(dlid,done, error){
 }
 
 function addLiListener(){
+	$(".listEL").off();
     $(".listEL").click(function(){
         var id = $(this).attr('id');
         var uid = $(this).attr('uid');
