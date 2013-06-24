@@ -1,10 +1,3 @@
-function isSteroids() {
-	if (navigator.userAgent.indexOf("AppGyverSteroids") !== -1)
-		return true;
-	else
-		return false;
-}
-
 function printDebugInfo() {
 	console.log("Name:  "+getName());
 	console.log("DL_id: "+getDL_id())

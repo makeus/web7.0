@@ -450,7 +450,12 @@ function isToken() {
 	return (getToken() != null) && (getToken() != undefined);
 }
 
-
+function isSteroids() {
+	if (navigator.userAgent.indexOf("AppGyverSteroids") !== -1)
+		return true;
+	else
+		return false;
+}
 
 
 // function downloadFile(dlUrl){
