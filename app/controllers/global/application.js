@@ -70,9 +70,7 @@ function getTimeDiff(sendedTime){
     var one_minute = 1000*60;
     var d = new Date()
 	var n = d.getTimezoneOffset() * 1000 * 60;
-	console.log(diff);
 	diff+=n;
-	console.log(diff);
     var days = diff/one_day;
     var vastaus = "";
     if(days >= 30){
