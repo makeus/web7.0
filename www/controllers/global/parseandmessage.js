@@ -192,7 +192,7 @@ function parseCC(info) {
          +" value="+info.DL_id+">";
 
   if(info.img == "") {
-    entry += "<img src='../../resources/images/tyhja.png' alt='' />";
+    entry += "<img src='../resources/images/tyhja.png' alt='' />";
   }
   else {
     entry +=  "<img src='" + info.img + "' alt='' />";
@@ -227,7 +227,7 @@ function parseItem(item, userHash, type) {
   var entry = "<li class='listEL' id='" +item.id+ "' uid='"+item.from_DL_id+"'>"
               + "<section  class='"+sectionClass+"' >";
   if(userHash[item.from_DL_id].img == "") {
-    entry += "<img src='../../resources/images/tyhja.png'";
+    entry += "<img src='../resources/images/tyhja.png'";
   }
   else {
     entry +=  "<img src=" + userHash[item.from_DL_id].img;

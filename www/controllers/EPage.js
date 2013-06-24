@@ -6,15 +6,16 @@ function initEPage() {
         barBackButton: false
     });
 
-    
-    showRightForm(getParameter("type"));
+    var streamType = getStreamType();
+    showRightForm(streamType);
     attachEvents();
     if(isToken()) {
         getStreamUrl(0,function(stream){
             if(stream != null && stream != "") {
                 $("#thelist").append( stream.join('') );
                 addLiListener();
-                
+            } else {
+                $("#thelist").append('<h3>The stream is empty</h3><h3>no ' + streamType + 's were found!</h3>');
             }
             $("#thelist+img").hide();
         });
@@ -32,6 +33,18 @@ function initEPage() {
 
 var offset=0;
 var intheend = false;
+
+function getStreamType(){
+    var t = getParameter('type');
+    if (t==undefined){
+        return 'message';
+    } 
+    if (t=='cal'){
+        return 'event';
+    }
+    return t;
+}
+
 function appendStreamE(){
     offset += 15;
     if(!intheend) {
@@ -43,48 +56,61 @@ function appendStreamE(){
              } else {
                 $("#thelist").append( stream.join('') );
                 addLiListener();
-
             }
         });
     }
 }
 
 function showRightForm(type){
-    if(type=="cal") {
+    cleanAllForms()
+    insertRightForm(type);
+    insertCCList();
+}
+
+function insertRightForm(type){
+    if(type=="event") {
         $("#message").replaceWith($("#cal").show());
-        $("#msg").remove();
-        $("#not").remove();
     } else if(type=="note"){
         $("#message").replaceWith($("#not").show());
-        $("#cal").remove();
-        $("#msg").remove();
     } else {
         $("#message").replaceWith($("#msg").show());
-        $("#cal").remove();
-        $("#not").remove();
     }
-    
+}
+
+function cleanAllForms(){
+    $("#not").remove();
+    $("#cal").remove();
+    $("#msg").remove();
+}
+
+function insertCCList(){
     getCCList(function(data) {
         if(data != undefined && data != "") {
             $("#cc").append(data.join(''));
-			$("#cc").listview().listview("refresh");
+            $("#cc").listview().listview("refresh");
         }   
         $("#ccForm").collapsible({refresh:true});
-        $(".liCC").click(function(){
-            //alert("asdf" + $(this).attr('class'));
-            if ($(this).attr('class')!='checkCC'){
-                var checkID = $(this).attr('id');
-                if ($("#check_" + checkID).val(this).is(':checked')){
-                    $("#check_" + checkID).prop("checked", false);
-                    $("#p_" + checkID).css('font-weight', 'normal');
-                } else {
-                    $("#check_" + checkID).prop("checked", true);
-                    $("#p_" + checkID).css('font-weight', 'bold');
-                }
-            } 
-            //$("'#check_" + checkID + "'").attr('checked', true);
-        });
+        setListenerToCCList();
     });
+}
+
+function setListenerToCCList(){
+     $(".liCC").click(function(){
+        if ($(this).attr('class')!='checkCC'){
+            var checkID = $(this).attr('id');
+            changeCheckedStatus(checkID);
+        } 
+    });
+}
+
+function changeCheckedStatus(checkID){
+    if ($("#check_" + checkID).val(this).is(':checked')){
+        $("#check_" + checkID).prop("checked", false);
+        $("#p_" + checkID).css('font-weight', 'normal');
+    } else {
+        $("#check_" + checkID).prop("checked", true);
+        $("#p_" + checkID).css('font-weight', 'bold');
+    }
 }
 
 function attachEvents(){
@@ -117,7 +143,7 @@ function sendMessageClickEventEPage() {
         if(subject == "") {
             return;
         }
-
+        
         if(getParameter("type")=="cal") {
             saveTask(subject);
         } else if(getParameter("type")=="note"){
