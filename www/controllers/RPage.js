@@ -12,23 +12,26 @@ function initRPage() {
     if(type == null) {
         type = "user";
     }
+    var exists;
     getInfo(dlid, function(items){
 		var relations = parseRelations(items.relations);
-		var exists = false;
+		exists = false;
 		$.each(relations, function(i, item) {
 			getInfo(item.dlid, function(info) {
 				if(info.type == type){
-					appendRelationsList(info);
 					exists = true;
+					$("#emptyMessage").hide();
+					appendRelationsList(info);	
 				}
 			});
 		});
-		if (!exists){
-			  $("#relationslist").replaceWith('<hr></hr><h3>The stream is empty</h3><h3>no ' + type + 's were found!</h3>'); 
-		}
 
         $("#relationslist").listview().listview("refresh");
 	});
+	if (!exists){
+        	//alert();
+			$("#relationslist").append("<section id='emptyMessage'><hr></hr><h3>The stream is empty</h3><h3>no " + type + "s were found!</h3></section>"); 
+	}
 
 }
 
@@ -44,7 +47,7 @@ function appendRelationsList(dlid) {
 	li += "<h2>" + dlid.name + "</h2>";
 	li += "<h3>" + dlid.type + "</p>";
     li += "</div>"
-	li += "<i id='delete" + dlid.DL_id + "' class=\"icon-remove\" ></i>";      // TÄHÄN POISTO KUNHAN SEMMOINEN TEHDÄÄN
+	// li += "<i id='delete" + dlid.DL_id + "' class=\"icon-remove\" ></i>";      // TÄHÄN POISTO KUNHAN SEMMOINEN TEHDÄÄN
 	li += "</li>";
 
 	$("#relationslist").append(li);
