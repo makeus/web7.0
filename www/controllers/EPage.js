@@ -55,7 +55,8 @@ function appendStreamE(){
                 $("#thelist+img").hide();
              } else {
                 $("#thelist").append( stream.join('') );
-                addLiListener();
+                scroll_object.iscrollview("refresh");
+                addLiListener(); 
             }
         });
     }
@@ -118,7 +119,7 @@ function attachEvents(){
         $("#message-hidden").show();
         $(".listEL:first-child").off();
     });
-    $("#close").click(function(){
+    $(".closelink").click(function(){
         $("#message-hidden").hide();
         $("#inputField").blur();
         addLiListener();

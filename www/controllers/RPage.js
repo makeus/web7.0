@@ -12,26 +12,29 @@ function initRPage() {
     if(type == null) {
         type = "user";
     }
-    var exists;
+
+
+    var checked = false;
+
     getInfo(dlid, function(items){
 		var relations = parseRelations(items.relations);
-		exists = false;
+		
 		$.each(relations, function(i, item) {
 			getInfo(item.dlid, function(info) {
 				if(info.type == type){
-					exists = true;
-					$("#emptyMessage").hide();
-					appendRelationsList(info);	
+					appendRelationsList(info);
+					checked = true;
+				}
+				if(i == relations.length -1) {
+					if(!checked) {
+    					$("#main div").replaceWith("<section id=\"relationMessage\"><h3>The stream is empty</h3><h3>no relations were found!</h3></section>"); 
+					}
 				}
 			});
 		});
 
         $("#relationslist").listview().listview("refresh");
 	});
-	if (!exists){
-        	//alert();
-			$("#relationslist").append("<section id='emptyMessage'><hr></hr><h3>The stream is empty</h3><h3>no " + type + "s were found!</h3></section>"); 
-	}
 
 }
 
@@ -52,7 +55,7 @@ function appendRelationsList(dlid) {
 
 	$("#relationslist").append(li);
 	
-	 $("li#relationList" + dlid.DL_id + " img, li#relationList" + dlid.DL_id + " div").click(function() {
+	 $("li#relationList" + dlid.DL_id).click(function() {
         view.push("BPage", {'dlid': dlid.DL_id});           //view.push("EPage", "index.html?dlid=" + dlid.DL_id);
 	 });
 }

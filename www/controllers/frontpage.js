@@ -14,7 +14,7 @@ function initfrontpage(){
         $(".listEL:first-child").off();
     });
 
-    $("#close").click(function(){
+    $(".closelink").click(function(){
         $("#message-hidden").hide();
         $("#inputField").blur();
         addLiListener();
@@ -52,6 +52,7 @@ function appendStreamF(){
                     $("#thelist+img").hide();
                 } else {
                     $("#thelist").append(stream.join(''));
+                    scroll_object.iscrollview("refresh");
                     addLiListener();  
                 }
         });

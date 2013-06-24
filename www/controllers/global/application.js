@@ -170,44 +170,45 @@ function appInit(){
 
 		setActive(getParameter('type'));
 
-		/*var scrollTimer = 0;
-		$(window).scroll(function () {
-	        if (scrollTimer) {
-	            clearTimeout(scrollTimer);
-	        }
-	        scrollTimer = setTimeout(function(){
-	            if($(window).scrollTop() + $(window).height() > $(document).height() - 250) {
-	            	if(getCurrent().name == "frontpage") {
-	            		appendStreamF();
-	            	}
-	            	if(getCurrent().name == "EPage") {
-	            		appendStreamE();
-	            	}
-	                
-	            }
-	        }, 100);
-    	});*/
 		document.addEventListener("menuButton", onMenuButton, false);
 		document.addEventListener("backButton", onBackButton, false);
 	}
 }
 
 function scrollerInit() {
-    $("#scroller").iscrollview();
+    var scroll_object = $("#scroller");
+    scroll_object.iscrollview();
     $(document).delegate("div.iscroll-wrapper", "iscroll_onpulldown" , function() {
-        refreshStream("message,cal,note", function(stream) {
-            if(stream != null && stream != "") {
-                $("#thelist").html(stream.join('') );
-                $("#scroller").iscrollview("refresh");
-                addLiListener();
-            }
-        });
+    	if(getCurrent().name == "frontpage") {
+	        getOwnStream("message,cal,note", 0, function(stream) {
+	            if(stream != null && stream != "") {
+	                $("#thelist").html(stream.join('') );
+	                scroll_object.iscrollview("refresh");
+	                addLiListener();
+	                offset=0;
+	            }
+	        });
+	    }
+	    if(getCurrent().name == "EPage") {
+	        getStreamUrl(0, function(stream) {
+	            if(stream != null && stream != "") {
+	                $("#thelist").html(stream.join('') );
+	                scroll_object.iscrollview("refresh");
+	                addLiListener();
+	                offset=0;
+	            }
+	        });
+
+	    }
     });
     $(document).delegate("div.iscroll-wrapper", "iscroll_onpullup" , function() {
-        appendStreamF();
-        $("#scroller").iscrollview("refresh");
-    });
-    $("#scroller").iscrollview("refresh"); 	
+        if(getCurrent().name == "frontpage") {
+        	appendStreamF();
+        }
+        if(getCurrent().name == "EPage") {
+        	appendStreamE();
+        }
+    });	
 }
 
 

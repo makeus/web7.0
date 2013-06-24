@@ -38,10 +38,6 @@ p {
   	word-wrap:break-word;
 }
 
-h1, h2, h3, p {
-	word-wrap:break-word;
-}
-
 
 #sendMessageBox {
 	padding: 6px;
@@ -58,12 +54,26 @@ h1, h2, h3, p {
 	cursor: hand; cursor: pointer;
 }
 
-#closelink {
-	width: 100%;
+.closelink {
+	background: #F7F7F7;
 	text-align: center;
+	margin-left: -10px;
+	margin-right: -10px;
+	padding: 0;
+}
+
+#message-hidden .closelink:first-child {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+#message-hidden .closelink:last-child {
 	margin-bottom: 0;
-	margin-left: 0;
-	margin-right: 0;
+	margin-top: 10px;
+}
+
+select {
+	background: white;
 }
 
 div#message {
@@ -73,6 +83,7 @@ div#message {
 
 div#message-hidden, div#form-hidden {
 	margin: 10px;
+	margin-top: 0;
 	margin-bottom: 0;
 }
 
@@ -114,16 +125,11 @@ div#message-shown > input {
 	border-radius: 5px;
 }
 
-#loginsection {
-}
 
-div#message-hidden > label, div #message-hidden > input {
+div#message-hidden label, div#message-hidden input, div#message-hidden textarea,  {
 	margin-top: 8px;
 	margin: 1px;
-	width: 80%;
 }
-
-
 
 section#searchResults {
 	padding: 0;
@@ -534,12 +540,15 @@ ul#relationslist li {
 
 ul#relationslist li h2 {
 	font-size: 15px;
-	word-wrap: break-word;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: initial;
 }
 
 ul#relationslist li h3 {
 	font-size: 13px;
 	color: lightgray;
+	margin: .6em 0;
 }
 
 
@@ -737,15 +746,18 @@ ul#relationslist .emptyRelationImage {
 	margin-right: auto;
 }
 
-#thelist h3 {
+
+#relationMessage {
+	margin: 20px;
+}
+
+#thelist h3, #relationMessage h3 {
 	text-align: center;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	margin: 5px;
 }
 
 #bar li div#searchArea {
 	padding-top: 10px;
 	padding-right: 30px;
-}
-#emptyMessage div{
-	width:100%;
 }
