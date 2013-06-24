@@ -746,3 +746,6 @@ ul#relationslist .emptyRelationImage {
 	padding-top: 10px;
 	padding-right: 30px;
 }
+#emptyMessage div{
+	width:100%;
+}
