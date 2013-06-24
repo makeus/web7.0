@@ -78,9 +78,9 @@ function insertRightForm(type){
 }
 
 function cleanAllForms(){
-    $("#not").remove();
-    $("#cal").remove();
-    $("#msg").remove();
+    $("#not").hide();
+    $("#cal").hide();
+    $("#msg").hide();
 }
 
 function insertCCList(){
