@@ -14,13 +14,19 @@ function initRPage() {
     }
     getInfo(dlid, function(items){
 		var relations = parseRelations(items.relations);
-
+		var exists = false;
 		$.each(relations, function(i, item) {
 			getInfo(item.dlid, function(info) {
-				if(info.type == type)
+				if(info.type == type){
 					appendRelationsList(info);
+					exists = true;
+				}
 			});
 		});
+		if (!exists){
+			  $("#relationslist").replaceWith('<hr></hr><h3>The stream is empty</h3><h3>no ' + type + 's were found!</h3>'); 
+		}
+
         $("#relationslist").listview().listview("refresh");
 	});
 
