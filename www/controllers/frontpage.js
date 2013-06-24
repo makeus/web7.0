@@ -12,9 +12,6 @@ function initfrontpage(){
     $("#inputField").focus(function() {
         $("#message-hidden").show();
         $(".listEL:first-child").off();
-        $(".listEL:first-child").click(function(){
-            $("#close").click();
-        });
     });
 
     $("#close").click(function(){

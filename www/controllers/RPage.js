@@ -44,7 +44,7 @@ function appendRelationsList(dlid) {
 	li += "<h2>" + dlid.name + "</h2>";
 	li += "<h3>" + dlid.type + "</p>";
     li += "</div>"
-	li += "<i id='delete" + dlid.DL_id + "' class=\"icon-remove\" ></i>";      // TÄHÄN POISTO KUNHAN SEMMOINEN TEHDÄÄN
+	// li += "<i id='delete" + dlid.DL_id + "' class=\"icon-remove\" ></i>";      // TÄHÄN POISTO KUNHAN SEMMOINEN TEHDÄÄN
 	li += "</li>";
 
 	$("#relationslist").append(li);

@@ -28,7 +28,7 @@ view = {
 
 	pop: function() {
 		if(previous['name'] == 'login' && isSteroids()) {
-			navigator.device.exitApp();
+			return;
 		}
 
 		current = previous;
