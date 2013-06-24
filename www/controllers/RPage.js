@@ -32,7 +32,7 @@ function appendRelationsList(dlid) {
 	if(dlid.img!=""){
 		li += '<img src="' + dlid.img + '"" alt="kuva"></img>';
 	}else{
-		li += '<img class=\"emptyRelationImage\" src="'+'../../resources/images/tyhja.png'+'"" alt="kuva"></img>';
+		li += '<img class=\"emptyRelationImage\" src="'+'../resources/images/tyhja.png'+'"" alt="kuva"></img>';
 	}
     li += "<div>"
 	li += "<h2>" + dlid.name + "</h2>";
