@@ -2,11 +2,17 @@
 	var origiclick = jQuery.fn.click;
 
 	jQuery.fn.click = function(e){
-		if(isSteroids()){
-			jQuery.fn.on.call(this, 'tap', e);
-		} else {
+
+		// if(isSteroids()){
+		// 	if(arguments.length < 1) {
+		// 		jQuery.fn.trigger.apply(this, ['tap']);
+		// 	} else {
+		// 		var arr = ['tap', arguments[0]];
+		// 		jQuery.fn.on.apply(this, arr);
+		// 	}
+		// } else {
 			origiclick.apply( this, arguments );
-		}
+		// }
 	}
 })();
 
@@ -223,6 +229,7 @@ function getUserData(dlid,done, error){
 }
 
 function addLiListener(){
+	$(".listEL").off();
     $(".listEL").click(function(){
         var id = $(this).attr('id');
         var uid = $(this).attr('uid');
