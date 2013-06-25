@@ -146,7 +146,6 @@ function getCCList(done) {
   var relations = getRelations();
 
   if(relations == null) {
-    console.log("haloo olen tyhmä");
     done(items);
   } else {
     var dlids = [];

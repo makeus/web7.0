@@ -16,7 +16,10 @@
 	}
 })();
 
+var theList;
+
 $(document).on('pageinit', function(){
+
 	$("#main").on('pageswitch', function(){
 		$("#main *").off(); 
 		switch(getCurrent()['name']) {
@@ -152,6 +155,8 @@ function onMenuButton(){
 
 }
 
+var theList;
+
 function appInit(){
 
 	if(isToken()) {
@@ -186,7 +191,7 @@ function scrollerInit() {
     	if(getCurrent().name == "frontpage") {
 	        getOwnStream("message,cal,note", 0, function(stream) {
 	            if(stream != null && stream != "") {
-	                $("#thelist").html(stream.join('') );
+	                theList.html(stream.join('') );
 	                scroll_object.iscrollview("refresh");
 	                addLiListener();
 	                offset=0;
@@ -196,7 +201,7 @@ function scrollerInit() {
 	    if(getCurrent().name == "EPage") {
 	        getStreamUrl(0, function(stream) {
 	            if(stream != null && stream != "") {
-	                $("#thelist").html(stream.join('') );
+	                theList.html(stream.join('') );
 	                scroll_object.iscrollview("refresh");
 	                addLiListener();
 	                offset=0;

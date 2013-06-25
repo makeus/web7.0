@@ -1801,10 +1801,10 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
       this._triggerWidget("onpulldownreset", e);
       },
 
-    /*_pullUpSetStateReset: function(e) {
+    _pullUpSetStateReset: function(e) {
         this._pullSetStateReset(this.$pullUp, this.options.pullUpResetText);
       this._triggerWidget("onpullupreset", e);
-      },*/
+      },
 
     // Set a pull block to pulled state
     _pullSetStatePulled: function($pull, text) {
@@ -1817,10 +1817,10 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
       this._triggerWidget("onpulldownpulled", e);
       },
 
-    /*_pullUpSetStatePulled: function (e) {
+    _pullUpSetStatePulled: function (e) {
         this._pullSetStatePulled(this.$pullUp, this.options.pullUpPulledText);
       this._triggerWidget("onpulluppulled", e);
-      },*/
+      },
 
     // Set a pull block to the loading state
     _pullSetStateLoading: function($pull, text) {
@@ -1833,10 +1833,10 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
       this._triggerWidget("onpulldownloading", e);
       },
 
-    /*_pullUpSetStateLoading: function(e) {
+    _pullUpSetStateLoading: function(e) {
         this._pullSetStateLoading(this.$pullUp, this.options.pullUpLoadingText);
       this._triggerWidget("onpulluploading", e);
-     },*/
+     },
 
     _pullOnRefresh: function (e) {
       // It's debatable if this is the right place to do this. On one hand, it might be best
@@ -1897,13 +1897,12 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
       },
 
     _pullOnScrollEnd: function (e) {
-      console.log("scroll end");
       if (this._pullDownIsPulled(e)) {
           this._pullDownSetStateLoading(e);
         this._triggerWidget("onpulldown", e);
         }
       else if (this._pullUpIsPulled(e)) {
-        console.log("pulled up");
+        this._pullDownSetStateLoading(e);
         this._triggerWidget("onpullup", e);
         }
       }

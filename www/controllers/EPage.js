@@ -10,12 +10,14 @@ function initEPage() {
     showRightForm(streamType);
     attachEvents();
     if(isToken()) {
+        theList = $("#thelist");
         getStreamUrl(0,function(stream){
             if(stream != null && stream != "") {
-                $("#thelist").append( stream.join('') );
+                theList.append( stream.join('') );
+                scrollerInit();
                 addLiListener();
             } else {
-                $("#thelist").append('<h3>The stream is empty</h3><h3>no ' + streamType + 's were found!</h3>');
+                theList.append('<h3>The stream is empty</h3><h3>no ' + streamType + 's were found!</h3>');
             }
             $("#thelist+img").hide();
         });
@@ -54,7 +56,7 @@ function appendStreamE(){
                 intheend = true;
                 $("#thelist+img").hide();
              } else {
-                $("#thelist").append( stream.join('') );
+                theList.append( stream.join('') );
                 scroll_object.iscrollview("refresh");
                 addLiListener(); 
             }
@@ -173,7 +175,7 @@ function saveTask(subject){
         $.mobile.showPageLoadingMsg();
         setTimeout(function() {
             getStreamUrl(0, function(stream){
-                $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                theList.html(stream.join(''));
                 resetMessageFieldsEPage();
                 addLiListener();
                 $.mobile.hidePageLoadingMsg();
@@ -190,7 +192,7 @@ function saveMessage(subject){
         $.mobile.showPageLoadingMsg();
         setTimeout(function() {
             getStreamUrl(0, function(stream){
-                $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                theList.html(stream.join(''));
                 resetMessageFieldsEPage();
                 addLiListener();
                 $.mobile.hidePageLoadingMsg();
@@ -209,7 +211,7 @@ function saveNote(subject){
         $.mobile.showPageLoadingMsg();
         setTimeout(function() {
             getStreamUrl(0, function(stream){
-                $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                theList.html(stream.join(''));
                 resetMessageFieldsEPage();
                 addLiListener();
                 $.mobile.hidePageLoadingMsg();
