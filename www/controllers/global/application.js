@@ -15,7 +15,6 @@
 		// }
 	}
 })();
-
 $(document).on('pageinit', function(){
 	$("#main").on('pageswitch', function(){
 		$("#main *").off(); 
@@ -79,6 +78,8 @@ $(document).on('pageinit', function(){
 		$("*").css("max-width", "340px");
 	}
 });
+
+
 
 function getTimeDiff(sendedTime){
     var date = sendedTime.replace(/-/g, '/');
