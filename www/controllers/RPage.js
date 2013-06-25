@@ -20,11 +20,17 @@ function initRPage() {
     getInfo(dlid, function(items){
 		var relations = parseRelations(items.relations);
 		var dlids = "";
+		var dlidsArr = [];
+		var ind=0;
 		$.each(relations,function(i,item){
-			dlids += item.dlid + ",";
+			if($.inArray(item.dlid,dlidsArr)){
+				dlidsArr[ind]=item.dlid;
+				ind++;
+			}
 		});
-		dlids=dlids.slice(0,-1);
+		dlids=dlidsArr.join();
 		getUserArray(dlids,function(userArr){
+			console.log(userArr);
 			$.each(userArr,function(i,item){
 				if(item.type == type){
 					appendRelationsList(item);
