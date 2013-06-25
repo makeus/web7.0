@@ -448,6 +448,11 @@ li.active {
 	background: #555;
 }
 
+li.active p {
+	color: lightgray;
+	text-shadow: none;
+}
+
 #entityinfo {
 	text-align: center;
 	font-family: Helvetica, Arial, sans-serif

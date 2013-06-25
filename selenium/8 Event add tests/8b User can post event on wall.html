@@ -72,8 +72,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>waitForElementPresent</td>
-	<td>id=inputField</td>
+	<td>click</td>
+	<td>css=#index footer</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
 	<td></td>
 </tr>
 <tr>
@@ -83,12 +88,12 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>id=sendMessageBox</td>
+	<td>css=#message footer</td>
 	<td></td>
 </tr>
 <tr>
 	<td>pause</td>
-	<td>1000</td>
+	<td>4000</td>
 	<td></td>
 </tr>
 <tr>
@@ -135,8 +140,8 @@ var x = "Date: " + day + " " + months[month] + " " + year + " New selenium test 
 var d = new Date();
 
 var a=document.getElementById('myTable');
-a.rows[14].cells[2].innerHTML=x;
-a.rows[22].cells[1].innerHTML=x;
+a.rows[15].cells[2].innerHTML=x;
+a.rows[23].cells[1].innerHTML=x;
 </script>
 </body>
 </html>

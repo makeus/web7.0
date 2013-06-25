@@ -71,7 +71,7 @@ $(document).ready(function(){
 		$("*").css("max-width", "340px");
 	}
 
-	$("#index footer a").click(function() {
+	$("#index footer").click(function() {
 		$.mobile.changePage( "#message", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
 	});
 
@@ -250,6 +250,17 @@ function addLiListener(){
         var uid = $(this).attr('uid');
         var listElement= $(this);
         view.push("IPage", {'iPageID': id, 'uid': uid}); 
+    });
+
+    $(".listEL").mousedown(function() {
+    	$(this).addClass("active");
+    });
+
+    $(".listEL").mouseup(function() {
+    	$(this).removeClass("active");
+    });
+    $(".listEL").mouseout(function() {
+    	$(this).removeClass("active");
     });
 }
 
