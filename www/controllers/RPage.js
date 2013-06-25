@@ -23,14 +23,13 @@ function initRPage() {
 		var dlidsArr = [];
 		var ind=0;
 		$.each(relations,function(i,item){
-			if($.inArray(item.dlid,dlidsArr)){
+			if($.inArray(item.dlid,dlidsArr)==-1){
 				dlidsArr[ind]=item.dlid;
 				ind++;
 			}
 		});
 		dlids=dlidsArr.join();
 		getUserArray(dlids,function(userArr){
-			console.log(userArr);
 			$.each(userArr,function(i,item){
 				if(item.type == type){
 					appendRelationsList(item);
