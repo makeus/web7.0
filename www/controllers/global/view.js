@@ -16,18 +16,13 @@ view = {
 		$("#main :last-child").ready(function() {
 			$("#main").trigger('pageswitch');
 		});
-
-		
-		// if (isSteroids()) {
-		// 	var webView = createWebView(name, page);
-		// 	steroids.layers.push(webView);
-		// } else {
-		// 	win.go(name, page);
-		// }
 	},
 
 	pop: function() {
 		if(previous['name'] == 'login' && isSteroids()) {
+			return;
+		}
+		if(current['name'] == 'login'){
 			return;
 		}
 
@@ -38,11 +33,6 @@ view = {
 		$("#main :last-child").ready(function() {
 			$("#main").trigger('pageswitch');
 		});
-
-		// if (isSteroids())
-		// 	steroids.layers.pop();
-		// else
-		// 	win.back();
 	},
 
 	preload: function(webView) {

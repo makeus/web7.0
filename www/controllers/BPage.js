@@ -16,7 +16,6 @@ function initBPage() {
         });
 
         getUserData(bPageID,function(userInfo){
-            //console.log(userInfo);
             parseBasicInfoPage(userInfo);
         }, function(){
             $("#userData").hide();

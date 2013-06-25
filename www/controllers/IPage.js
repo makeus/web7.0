@@ -34,7 +34,7 @@ function setCommentFocusEvent() {
 function setLinkToSenderEvent(){
     $(".commentWriter").click(function(){
         var dlid = $(this).attr('id');
-        view.push("EPage", {'dlid': dlid});         //view.push("EPage", "index.html?dlid=" + dlid);
+        view.push("EPage", {'dlid': dlid});         
     });
 }
 

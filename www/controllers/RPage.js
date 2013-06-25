@@ -19,11 +19,15 @@ function initRPage() {
 
     getInfo(dlid, function(items){
 		var relations = parseRelations(items.relations);
-		
-		$.each(relations, function(i, item) {
-			getInfo(item.dlid, function(info) {
-				if(info.type == type){
-					appendRelationsList(info);
+		var dlids = "";
+		$.each(relations,function(i,item){
+			dlids += item.dlid + ",";
+		});
+		dlids=dlids.slice(0,-1);
+		getUserArray(dlids,function(userArr){
+			$.each(userArr,function(i,item){
+				if(item.type == type){
+					appendRelationsList(item);
 					checked = true;
 				}
 				if(i == relations.length -1) {
@@ -33,7 +37,6 @@ function initRPage() {
 				}
 			});
 		});
-
         $("#relationslist").listview().listview("refresh");
 	});
 
@@ -51,12 +54,11 @@ function appendRelationsList(dlid) {
 	li += "<h2>" + dlid.name + "</h2>";
 	li += "<h3>" + dlid.type + "</p>";
     li += "</div>"
-	// li += "<i id='delete" + dlid.DL_id + "' class=\"icon-remove\" ></i>";      // TÄHÄN POISTO KUNHAN SEMMOINEN TEHDÄÄN
 	li += "</li>";
 
 	$("#relationslist").append(li);
 	
 	 $("li#relationList" + dlid.DL_id).click(function() {
-        view.push("BPage", {'dlid': dlid.DL_id});           //view.push("EPage", "index.html?dlid=" + dlid.DL_id);
+        view.push("BPage", {'dlid': dlid.DL_id});           
 	 });
 }

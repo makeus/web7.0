@@ -8,9 +8,6 @@ function initsearch() {
 
 	$("#searchInput").focus();
 
-
-	//tähän tilalle history() kun hölmöydet on korjattu restistä
-	//eli ei koskaan!
 	historyTemp(function(data){
 		updateSearchResults(data);
 	});

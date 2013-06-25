@@ -2,21 +2,12 @@
 	var origiclick = jQuery.fn.click;
 
 	jQuery.fn.click = function(e){
-
-		// if(isSteroids()){
-		// 	if(arguments.length < 1) {
-		// 		jQuery.fn.trigger.apply(this, ['tap']);
-		// 	} else {
-		// 		var arr = ['tap', arguments[0]];
-		// 		jQuery.fn.on.apply(this, arr);
-		// 	}
-		// } else {
-			origiclick.apply( this, arguments );
-		// }
+		origiclick.apply( this, arguments );
 	}
 })();
 
 $(document).ready(function(){
+
 	$("#main").on('pageswitch', function(){
 		$("#main *").off(); 
 		switch(getCurrent()['name']) {
@@ -86,6 +77,8 @@ $(document).ready(function(){
 		$.mobile.changePage( "#index", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
 	});
 });
+
+
 
 function getTimeDiff(sendedTime){
     var date = sendedTime.replace(/-/g, '/');
@@ -181,44 +174,49 @@ function appInit(){
 		showRightForm(streamType);
 		attachEvents();
 
-		/*var scrollTimer = 0;
-		$(window).scroll(function () {
-	        if (scrollTimer) {
-	            clearTimeout(scrollTimer);
-	        }
-	        scrollTimer = setTimeout(function(){
-	            if($(window).scrollTop() + $(window).height() > $(document).height() - 250) {
-	            	if(getCurrent().name == "frontpage") {
-	            		appendStreamF();
-	            	}
-	            	if(getCurrent().name == "EPage") {
-	            		appendStreamE();
-	            	}
-	                
-	            }
-	        }, 100);
-    	});*/
 		document.addEventListener("menuButton", onMenuButton, false);
 		document.addEventListener("backButton", onBackButton, false);
+
 	}
 }
 
+var scroll_object;
+
 function scrollerInit() {
-    $("#scroller").iscrollview();
+
+    scroll_object = $("#scroller");
+    scroll_object.iscrollview();
     $(document).delegate("div.iscroll-wrapper", "iscroll_onpulldown" , function() {
-        refreshStream("message,cal,note", function(stream) {
-            if(stream != null && stream != "") {
-                $("#thelist").html(stream.join('') );
-                $("#scroller").iscrollview("refresh");
-                addLiListener();
-            }
-        });
+    	if(getCurrent().name == "frontpage") {
+	        getOwnStream("message,cal,note", 0, function(stream) {
+	            if(stream != null && stream != "") {
+	                $("#thelist").html(stream.join('') );
+	                scroll_object.iscrollview("refresh");
+	                addLiListener();
+	                offset=0;
+	            }
+	        });
+	    }
+	    if(getCurrent().name == "EPage") {
+	        getStreamUrl(0, function(stream) {
+	            if(stream != null && stream != "") {
+	                $("#thelist").html(stream.join('') );
+	                scroll_object.iscrollview("refresh");
+	                addLiListener();
+	                offset=0;
+	            }
+	        });
+
+	    }
     });
     $(document).delegate("div.iscroll-wrapper", "iscroll_onpullup" , function() {
-        appendStreamF();
-        $("#scroller").iscrollview("refresh");
-    });
-    $("#scroller").iscrollview("refresh"); 	
+        if(getCurrent().name == "frontpage") {
+        	appendStreamF();
+        }
+        if(getCurrent().name == "EPage") {
+        	appendStreamE();
+        }
+    });	
 }
 
 function setEntityInformation(dlid){
@@ -239,7 +237,6 @@ function getUserData(dlid,done, error){
         },
         error);
 	} else {
-		//console.log("rtrtrtrtr");
 		done(info);
 	}
 }
@@ -250,7 +247,7 @@ function addLiListener(){
         var id = $(this).attr('id');
         var uid = $(this).attr('uid');
         var listElement= $(this);
-        view.push("IPage", {'iPageID': id, 'uid': uid});  		//view.push("IPage", "index.html?iPageID=" + id +"&uid=" + uid);
+        view.push("IPage", {'iPageID': id, 'uid': uid}); 
     });
 }
 
@@ -464,9 +461,14 @@ function isToken() {
 	return (getToken() != null) && (getToken() != undefined);
 }
 
+function isSteroids() {
+	if (navigator.userAgent.indexOf("AppGyverSteroids") !== -1)
+		return true;
+	else
+		return false;
+}
 
-
-
+//ei toimi, en tiedä miksi, en poista koska tätä voi viellä tarvita, ehkä joskus
 // function downloadFile(dlUrl){
 //         window.requestFileSystem(
 //                      LocalFileSystem.PERSISTENT, 0, 

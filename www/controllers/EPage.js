@@ -53,7 +53,8 @@ function appendStreamE(){
                 $("#thelist+img").hide();
              } else {
                 $("#thelist").append( stream.join('') );
-                addLiListener();
+                scroll_object.iscrollview("refresh");
+                addLiListener(); 
             }
         });
     }

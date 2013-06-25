@@ -1150,11 +1150,11 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
   // bottomOffset to the height of that element. If user
   // specified a bottomOffset option, use that instead, though.
   //--------------------------------------------------------
-  _setBottomOffsetForPullUp: function() {
+  /*_setBottomOffsetForPullUp: function() {
     if (this.$pullUp.length && !this.options.bottomOffset) {
       this.options.bottomOffset = this.$pullUp.outerHeight(true);
       }
-    },
+    },*/
 
    _removeWrapperPadding: function() {
      var $wrapper = this.$wrapper;
@@ -1507,7 +1507,7 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
   _addSpacers: function() {
     if(this.options.addSpacers) {
       this.$scrollerContent.before( $( '<div class="' + this.options.topSpacerClass + '"></div>' ) );
-      this.$scrollerContent.after( $( '<div class="' + this.options.bottomSpacerClass + '"></div>' ) );
+  /*    this.$scrollerContent.after( $( '<div class="' + this.options.bottomSpacerClass + '"></div>' ) );*/
     }
   },
 
@@ -1577,8 +1577,8 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
     // Find pull elements, if present
     this.$pullDown = $("." + this.options.pullDownClass, this.$scroller);
     this._modifyPullDown();
-    this.$pullUp = $("." + this.options.pullUpClass, this.$scroller);
-    this._modifyPullUp();
+    /*this.$pullUp = $("." + this.options.pullUpClass, this.$scroller);
+    this._modifyPullUp();*/
 
     this._modifyWrapper(); // Various changes to the wrapper
 
@@ -1586,7 +1586,7 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
     this._bindPage("pagebeforeshow", this._pageBeforeShowFunc);
 
     this._setTopOffsetForPullDown();  // If there's a pull-down, set the top offset
-    this._setBottomOffsetForPullUp(); // If there's a pull-up, set the bottom offset
+    //this._setBottomOffsetForPullUp(); // If there's a pull-up, set the bottom offset
     this._resizeWrapper();             // Resize the wrapper to fill available space
     this._addScrollerPadding();        // Put back padding removed from wrapper
     this.$scrollerContent = this.$scroller.find("." + this.options.scrollerContentClass);
@@ -1771,7 +1771,7 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
 
     // Is pull-up in "pulled" state?
     _pullUpIsPulled: function () {
-      return this.$pullUp.length && this.$pullUp.hasClass(this.options.pullPulledClass);
+      return this.y() - this.maxScrollY() < 100;
       },
 
     // Replace the text in a pull block
@@ -1801,10 +1801,10 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
       this._triggerWidget("onpulldownreset", e);
       },
 
-    _pullUpSetStateReset: function(e) {
+    /*_pullUpSetStateReset: function(e) {
         this._pullSetStateReset(this.$pullUp, this.options.pullUpResetText);
       this._triggerWidget("onpullupreset", e);
-      },
+      },*/
 
     // Set a pull block to pulled state
     _pullSetStatePulled: function($pull, text) {
@@ -1817,10 +1817,10 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
       this._triggerWidget("onpulldownpulled", e);
       },
 
-    _pullUpSetStatePulled: function (e) {
+    /*_pullUpSetStatePulled: function (e) {
         this._pullSetStatePulled(this.$pullUp, this.options.pullUpPulledText);
       this._triggerWidget("onpulluppulled", e);
-      },
+      },*/
 
     // Set a pull block to the loading state
     _pullSetStateLoading: function($pull, text) {
@@ -1833,10 +1833,10 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
       this._triggerWidget("onpulldownloading", e);
       },
 
-    _pullUpSetStateLoading: function(e) {
+    /*_pullUpSetStateLoading: function(e) {
         this._pullSetStateLoading(this.$pullUp, this.options.pullUpLoadingText);
       this._triggerWidget("onpulluploading", e);
-     },
+     },*/
 
     _pullOnRefresh: function (e) {
       // It's debatable if this is the right place to do this. On one hand, it might be best
@@ -1849,7 +1849,7 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
 
       // Reset pull blocks to their initial state
       if (this.$pullDown.length) { this._pullDownSetStateReset(e); }
-      if (this.$pullUp.length)   { this._pullUpSetStateReset(e); }
+      /*if (this.$pullUp.length)   { this._pullUpSetStateReset(e); }*/
       },
 
     _pullOnScrollMove: function (e) {
@@ -1879,7 +1879,7 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
           }
         }
 
-     if (this.$pullUp.length) {
+     /*if (this.$pullUp.length) {
           pullUpIsPulled = this._pullUpIsPulled();
           pullUpHeight = this.options.bottomOffset;
           pullUpPast = pullUpHeight / 2;
@@ -1892,17 +1892,18 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
           this._pullUpSetStateReset(e);
           this.maxScrollY(this.wrapperH() - this.scrollerH() + this.minScrollY() + pullUpHeight);
           }
-       }
+       }*/
 
       },
 
     _pullOnScrollEnd: function (e) {
+      console.log("scroll end");
       if (this._pullDownIsPulled(e)) {
           this._pullDownSetStateLoading(e);
         this._triggerWidget("onpulldown", e);
         }
       else if (this._pullUpIsPulled(e)) {
-          this._pullUpSetStateLoading(e);
+        console.log("pulled up");
         this._triggerWidget("onpullup", e);
         }
       }
