@@ -7,9 +7,6 @@ function initEPage() {
         footer: true
     });
 
-    var streamType = getStreamType();
-    showRightForm(streamType);
-    attachEvents();
     if(isToken()) {
         theList = $("#thelist");
         getStreamUrl(0,function(stream){
@@ -18,7 +15,7 @@ function initEPage() {
                 scrollerInit();
                 addLiListener();
             } else {
-                theList.append('<h3>The stream is empty</h3><h3>no ' + streamType + 's were found!</h3>');
+                theList.append('<li><h3>The stream is empty</h3><h3>no ' + getStreamType() + 's were found!</h3></li>');
             }
             $("#thelist+img").hide();
         });
@@ -65,18 +62,3 @@ function appendStreamE(){
     }
 }
 
-function showRightForm(type){
-    cleanAllForms()
-    insertRightForm(type);
-    insertCCList();
-}
-
-function insertRightForm(type){
-    if(type=="event") {
-        $("#message").replaceWith($("#cal").show());
-    } else if(type=="note"){
-        $("#message").replaceWith($("#not").show());
-    } else {
-        $("#message").replaceWith($("#msg").show());
-    }
-}

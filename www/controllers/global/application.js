@@ -8,6 +8,8 @@
 
 var theList;
 
+$(document).ready(function(){
+
 	$("#main").on('pageswitch', function(){
 		$("#main *").off(); 
 		switch(getCurrent()['name']) {
@@ -151,8 +153,6 @@ function onMenuButton(){
 	}
 
 }
-
-var theList;
 
 function appInit(){
 
