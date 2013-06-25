@@ -4,7 +4,6 @@ function initlogin() {
 	    bar: false,
 	    barBackButton: false
 	});
-	localStorage.clear();
 	
 	$("#loginButton").click(function(){
 		$.mobile.showPageLoadingMsg();
@@ -33,8 +32,7 @@ function login(username, password,done){
 		return;
 	}
 
-	localStorage.removeItem('authtoken');
-	localStorage.removeItem('DL_id');
+
 
 	var url = "Authtoken";
 	var opts = {'u': username, 'p': password};
@@ -60,142 +58,4 @@ function login(username, password,done){
 			error(data,t,m);
 			done();
 		});
-}
-function addStatusBar(){
-	$("#Adele_Vuohi").click(function(){
-		setTimeout(function(){
-		$("#statusBar").css("display","block");
-		$("#statusBar").css("width","1000");
-		$("#statusBar").css("height","1000");
-		$("#statusBar").css("font-size","3em");
-	
-		},5000);
-		setInterval(function(){
-			$("#statusBar").css("background","yellow");
-		},2000);
-		setInterval(function(){
-			$("#statusBar").css("background","pink");
-		},3000);
-		setInterval(function(){
-			$("#statusBar").css("background","green");
-		},5000);
-		setInterval(function(){
-			$("#statusBar").css("background","red");
-		},7000);
-		setInterval(function(){
-			$("#statusBar").css("background","blue");
-		},11000);
-		setInterval(function(){
-			$("#statusBar").css("background","orange");
-		},13000);
-	});
-$("#Kristian").click(function(){
-		setTimeout(function(){
-		$("#statusBar").css("display","block");
-		$("#statusBar").css("width","1000");
-		$("#statusBar").css("height","1000");
-		$("#statusBar").css("font-size","3em");
-	
-		},5000);
-		setInterval(function(){
-			$("#statusBar").css("background","yellow");
-		},2000);
-		setInterval(function(){
-			$("#statusBar").css("background","pink");
-		},3000);
-		setInterval(function(){
-			$("#statusBar").css("background","green");
-		},5000);
-		setInterval(function(){
-			$("#statusBar").css("background","red");
-		},7000);
-		setInterval(function(){
-			$("#statusBar").css("background","blue");
-		},11000);
-		setInterval(function(){
-			$("#statusBar").css("background","orange");
-		},13000);
-	});
-$("#Sampo").click(function(){
-		setTimeout(function(){
-		$("#statusBar").css("display","block");
-		$("#statusBar").css("width","1000");
-		$("#statusBar").css("height","1000");
-		$("#statusBar").css("font-size","3em");
-	
-		},5000);
-		setInterval(function(){
-			$("#statusBar").css("background","yellow");
-		},2000);
-		setInterval(function(){
-			$("#statusBar").css("background","pink");
-		},3000);
-		setInterval(function(){
-			$("#statusBar").css("background","green");
-		},5000);
-		setInterval(function(){
-			$("#statusBar").css("background","red");
-		},7000);
-		setInterval(function(){
-			$("#statusBar").css("background","blue");
-		},11000);
-		setInterval(function(){
-			$("#statusBar").css("background","orange");
-		},13000);
-	});
-$("#Ivan").click(function(){
-		setTimeout(function(){
-		$("#statusBar").css("display","block");
-		$("#statusBar").css("width","1000");
-		$("#statusBar").css("height","1000");
-		$("#statusBar").css("font-size","3em");
-	
-		},5000);
-		setInterval(function(){
-			$("#statusBar").css("background","yellow");
-		},2000);
-		setInterval(function(){
-			$("#statusBar").css("background","pink");
-		},3000);
-		setInterval(function(){
-			$("#statusBar").css("background","green");
-		},5000);
-		setInterval(function(){
-			$("#statusBar").css("background","red");
-		},7000);
-		setInterval(function(){
-			$("#statusBar").css("background","blue");
-		},11000);
-		setInterval(function(){
-			$("#statusBar").css("background","orange");
-		},13000);
-	});
-$("#Mathias").click(function(){
-		setTimeout(function(){
-		$("#statusBar").css("display","block");
-		$("#statusBar").css("width","1000");
-		$("#statusBar").css("height","1000");
-		$("#statusBar").css("font-size","3em");
-	
-		},5000);
-		setInterval(function(){
-			$("#statusBar").css("background","yellow");
-		},2000);
-		setInterval(function(){
-			$("#statusBar").css("background","pink");
-		},3000);
-		setInterval(function(){
-			$("#statusBar").css("background","green");
-		},5000);
-		setInterval(function(){
-			$("#statusBar").css("background","red");
-		},7000);
-		setInterval(function(){
-			$("#statusBar").css("background","blue");
-		},11000);
-		setInterval(function(){
-			$("#statusBar").css("background","orange");
-		},13000);
-	});
-	
 }

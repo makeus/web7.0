@@ -2,17 +2,7 @@
 	var origiclick = jQuery.fn.click;
 
 	jQuery.fn.click = function(e){
-
-		// if(isSteroids()){
-		// 	if(arguments.length < 1) {
-		// 		jQuery.fn.trigger.apply(this, ['tap']);
-		// 	} else {
-		// 		var arr = ['tap', arguments[0]];
-		// 		jQuery.fn.on.apply(this, arr);
-		// 	}
-		// } else {
-			origiclick.apply( this, arguments );
-		// }
+		origiclick.apply( this, arguments );
 	}
 })();
 $(document).on('pageinit', function(){
@@ -236,7 +226,6 @@ function getUserData(dlid,done, error){
         },
         error);
 	} else {
-		//console.log("rtrtrtrtr");
 		done(info);
 	}
 }
@@ -247,7 +236,7 @@ function addLiListener(){
         var id = $(this).attr('id');
         var uid = $(this).attr('uid');
         var listElement= $(this);
-        view.push("IPage", {'iPageID': id, 'uid': uid});  		//view.push("IPage", "index.html?iPageID=" + id +"&uid=" + uid);
+        view.push("IPage", {'iPageID': id, 'uid': uid}); 
     });
 }
 
@@ -463,7 +452,7 @@ function isSteroids() {
 		return false;
 }
 
-
+//ei toimi, en tiedä miksi, en poista koska tätä voi viellä tarvita, ehkä joskus
 // function downloadFile(dlUrl){
 //         window.requestFileSystem(
 //                      LocalFileSystem.PERSISTENT, 0, 
