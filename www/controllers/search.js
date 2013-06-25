@@ -2,14 +2,12 @@ function initsearch() {
 	setupPage({
 		bar: true,
 		barBackButton: true,
-		searchPage: true
+		searchPage: true,
+		footer: false
 	});
 
 	$("#searchInput").focus();
 
-
-	//tähän tilalle history() kun hölmöydet on korjattu restistä
-	//eli ei koskaan!
 	historyTemp(function(data){
 		updateSearchResults(data);
 	});

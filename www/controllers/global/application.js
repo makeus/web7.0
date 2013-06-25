@@ -2,23 +2,11 @@
 	var origiclick = jQuery.fn.click;
 
 	jQuery.fn.click = function(e){
-
-		// if(isSteroids()){
-		// 	if(arguments.length < 1) {
-		// 		jQuery.fn.trigger.apply(this, ['tap']);
-		// 	} else {
-		// 		var arr = ['tap', arguments[0]];
-		// 		jQuery.fn.on.apply(this, arr);
-		// 	}
-		// } else {
-			origiclick.apply( this, arguments );
-		// }
+		origiclick.apply( this, arguments );
 	}
 })();
 
 var theList;
-
-$(document).on('pageinit', function(){
 
 	$("#main").on('pageswitch', function(){
 		$("#main *").off(); 
@@ -77,11 +65,20 @@ $(document).on('pageinit', function(){
 	if(getCurrent() == undefined) {
 		view.push("login");
 	}
-
 	if(!isSteroids()) {
 		$("*").css("max-width", "340px");
 	}
+
+	$("#index footer a").click(function() {
+		$.mobile.changePage( "#message", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
+	});
+
+	$("#message header a").click(function() {
+		$.mobile.changePage( "#index", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
+	});
 });
+
+
 
 function getTimeDiff(sendedTime){
     var date = sendedTime.replace(/-/g, '/');
@@ -167,13 +164,17 @@ function appInit(){
 			dlid = getDL_id();
 		}
 		getInfo(dlid,function(info){
-
 			sidebarsSetInfo(info);
 			updateUrls(dlid);
 			setEntityInformation(info);
 		});
 
 		setActive(getParameter('type'));
+	
+		
+		var streamType = getStreamType();
+		showRightForm(streamType);
+		attachEvents();
 
 		document.addEventListener("menuButton", onMenuButton, false);
 		document.addEventListener("backButton", onBackButton, false);
@@ -220,8 +221,6 @@ function scrollerInit() {
     });	
 }
 
-
-
 function setEntityInformation(dlid){
 		$("#nameAndTypeBar img").attr("src",dlid.img);	
 }
@@ -240,7 +239,6 @@ function getUserData(dlid,done, error){
         },
         error);
 	} else {
-		//console.log("rtrtrtrtr");
 		done(info);
 	}
 }
@@ -251,7 +249,7 @@ function addLiListener(){
         var id = $(this).attr('id');
         var uid = $(this).attr('uid');
         var listElement= $(this);
-        view.push("IPage", {'iPageID': id, 'uid': uid});  		//view.push("IPage", "index.html?iPageID=" + id +"&uid=" + uid);
+        view.push("IPage", {'iPageID': id, 'uid': uid}); 
     });
 }
 
@@ -307,6 +305,11 @@ function setupPage(settings) {
 		bar.showSearch();
 	}else{
 		bar.hideSearch();
+	}
+	if(settings.footer) {
+		footer.show();
+	} else {
+		footer.hide();
 	}
 }
 
@@ -467,7 +470,7 @@ function isSteroids() {
 		return false;
 }
 
-
+//ei toimi, en tiedä miksi, en poista koska tätä voi viellä tarvita, ehkä joskus
 // function downloadFile(dlUrl){
 //         window.requestFileSystem(
 //                      LocalFileSystem.PERSISTENT, 0, 

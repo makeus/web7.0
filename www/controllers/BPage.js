@@ -3,10 +3,10 @@ function initBPage() {
 
     setupPage({
         bar: true,
-        barBackButton: false
+        barBackButton: false,
+        footer: false
     });
     
-    setupPage({bar : true, barBackButton : true});
 
     if(isToken()) {
         setbPageID(getParameter("dlid"));
@@ -16,7 +16,6 @@ function initBPage() {
         });
 
         getUserData(bPageID,function(userInfo){
-            //console.log(userInfo);
             parseBasicInfoPage(userInfo);
         }, function(){
             $("#userData").hide();

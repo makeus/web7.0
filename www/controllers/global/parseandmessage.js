@@ -117,7 +117,22 @@ function getStream(opts,done){
     });
 }
 
+function getStreamUrl(offset,done) {
+  	if (getCurrent().name == 'frontpage') {
+  		getOwnStream('message, note, cal', 0, done);
+  	} else {
+      var type = getParameter("type");
+      var dlid = getParameter("dlid");
+      if(type == undefined) {
+          type = "message";
+      }
+      if(dlid == undefined) {
+          dlid = getDL_id();
+      }
+      getOtherStream(type,dlid,offset,done);
+    }
 
+}
 
 function getOtherStream(types,dlid,offset,done) {
     var opts = {'uid': getDL_id(), 'auth': getToken(), 'offset': offset, 'limit': 15, 'types': types+',', 'dlid':dlid};
