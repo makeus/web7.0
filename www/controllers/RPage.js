@@ -18,11 +18,15 @@ function initRPage() {
 
     getInfo(dlid, function(items){
 		var relations = parseRelations(items.relations);
-		
-		$.each(relations, function(i, item) {
-			getInfo(item.dlid, function(info) {
-				if(info.type == type){
-					appendRelationsList(info);
+		var dlids = "";
+		$.each(relations,function(i,item){
+			dlids += item.dlid + ",";
+		});
+		dlids=dlids.slice(0,-1);
+		getUserArray(dlids,function(userArr){
+			$.each(userArr,function(i,item){
+				if(item.type == type){
+					appendRelationsList(item);
 					checked = true;
 				}
 				if(i == relations.length -1) {
@@ -32,6 +36,23 @@ function initRPage() {
 				}
 			});
 		});
+		
+
+
+
+		// $.each(relations, function(i, item) {
+		// 	getInfo(item.dlid, function(info) {
+		// 		if(info.type == type){
+		// 			appendRelationsList(info);
+		// 			checked = true;
+		// 		}
+		// 		if(i == relations.length -1) {
+		// 			if(!checked) {
+  //   					$("#main div").replaceWith("<section id=\"relationMessage\"><h3>The stream is empty</h3><h3>no relations were found!</h3></section>"); 
+		// 			}
+		// 		}
+		// 	});
+		// });
 
         $("#relationslist").listview().listview("refresh");
 	});
