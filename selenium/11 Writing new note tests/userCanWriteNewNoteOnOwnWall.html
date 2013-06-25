@@ -62,18 +62,28 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>css=#index footer</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=inputField</td>
 	<td>text here</td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>id=sendMessageBox</td>
+	<td>css=#message footer</td>
 	<td></td>
 </tr>
 <tr>
 	<td>pause</td>
-	<td>1000</td>
+	<td>2000</td>
 	<td></td>
 </tr>
 <tr>
@@ -114,8 +124,8 @@ var x = "Date: " + day + " " + months[month] + " " + year + " new selenium note 
 var d = new Date();
 
 var a=document.getElementById('myTable');
-a.rows[11].cells[2].innerHTML=x;
-a.rows[18].cells[1].innerHTML=x;
+a.rows[13].cells[2].innerHTML=x;
+a.rows[20].cells[1].innerHTML=x;
 </script>
 </body>
 </html>

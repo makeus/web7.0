@@ -6,6 +6,8 @@
 	}
 })();
 
+var theList;
+
 $(document).ready(function(){
 
 	$("#main").on('pageswitch', function(){
@@ -69,7 +71,7 @@ $(document).ready(function(){
 		$("*").css("max-width", "340px");
 	}
 
-	$("#index footer a").click(function() {
+	$("#index footer").click(function() {
 		$.mobile.changePage( "#message", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
 	});
 
@@ -190,7 +192,7 @@ function scrollerInit() {
     	if(getCurrent().name == "frontpage") {
 	        getOwnStream("message,cal,note", 0, function(stream) {
 	            if(stream != null && stream != "") {
-	                $("#thelist").html(stream.join('') );
+	                theList.html(stream.join('') );
 	                scroll_object.iscrollview("refresh");
 	                addLiListener();
 	                offset=0;
@@ -200,7 +202,7 @@ function scrollerInit() {
 	    if(getCurrent().name == "EPage") {
 	        getStreamUrl(0, function(stream) {
 	            if(stream != null && stream != "") {
-	                $("#thelist").html(stream.join('') );
+	                theList.html(stream.join('') );
 	                scroll_object.iscrollview("refresh");
 	                addLiListener();
 	                offset=0;
@@ -248,6 +250,17 @@ function addLiListener(){
         var uid = $(this).attr('uid');
         var listElement= $(this);
         view.push("IPage", {'iPageID': id, 'uid': uid}); 
+    });
+
+    $(".listEL").mousedown(function() {
+    	$(this).addClass("active");
+    });
+
+    $(".listEL").mouseup(function() {
+    	$(this).removeClass("active");
+    });
+    $(".listEL").mouseout(function() {
+    	$(this).removeClass("active");
     });
 }
 
