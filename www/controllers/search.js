@@ -2,7 +2,8 @@ function initsearch() {
 	setupPage({
 		bar: true,
 		barBackButton: true,
-		searchPage: true
+		searchPage: true,
+		footer: false
 	});
 
 	$("#searchInput").focus();

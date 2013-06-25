@@ -76,25 +76,6 @@ select {
 	background: white;
 }
 
-div#message {
-	margin: 10px;
-	border: thin solid black;
-}
-
-div#message-hidden, div#form-hidden {
-	margin: 10px;
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
-div#message-shown > input {
-	font-size: 13px;
-	border-left: 0;
-	border-top: 0;
-	margin: 0;
-	margin-left: 0;
-}
-
 #faillogin {
 	color: red;
 }
@@ -580,8 +561,8 @@ ul#relationslist .emptyRelationImage {
 	display: table;
 	border-bottom: thin solid black;
 	position: fixed;
-
 }
+
 #bar li {
     display: table-cell;
     text-align: center;
@@ -760,4 +741,25 @@ ul#relationslist .emptyRelationImage {
 #bar li div#searchArea {
 	padding-top: 10px;
 	padding-right: 30px;
+}
+
+#message footer, #index footer {
+	background: #333;
+	height: 40px;
+	bottom: 0;
+}
+
+#message footer i {
+	color: #bbb;
+	text-shadow: none;
+}
+
+#message footer h1, #index footer h1 {
+	margin: 5px;
+}
+
+#message header i, #message header h1 {
+	color: #bbb;
+	margin-top: 16px;
+	text-shadow: none;
 }

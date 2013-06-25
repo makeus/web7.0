@@ -32,6 +32,7 @@
       $.event.special.swipe.horizontalDistanceThreshold = 60;
       $.event.special.swipe.verticalDistanceThreshold = 90;
       $.event.special.swipe.scrollSupressionThreshold = 20;
+	  $.mobile.pushStateEnabled = false;
     });
   </script>
   <script src="../components/jquery/jquery.mobile.js"></script>
@@ -51,9 +52,11 @@
   <script src="../controllers/global/data.js"></script>
   <script src="../controllers/global/rest.js"></script>
   <script src="../controllers/global/bar.js"></script>
+  <script src="../controllers/global/footer.js"></script>
   <script src="../controllers/global/leftbar-rightbar.js"></script>
   <script src="../controllers/global/view.js"></script>
   <script src="../controllers/global/parseandmessage.js"></script>
+  <script src="../controllers/global/activityform.js"></script>
   <script src="../controllers/global/iscroll.js"></script>
   <script src="../controllers/global/jquery.mobile.iscrollview.js"></script>  
 
@@ -74,60 +77,126 @@
 
 <body>
 
-  <div id="bar" data-position="fixed" data-role="header" data-theme="p" data-dom-cache="true" data-tap-toggle="false">
-    <li><i class="icon-angle-left icon-3x" id="backButton"></i></li>
-    <li><img id="barLogo" src="../resources/images/digital_living_logo_small.png" /></li>
-    <li><i class="icon-cog icon-2x" id="settingsButton"></i>
-      <ul id="settingsList" data-role="listview" data-inset="true" data-display="overlay">
-        <li data-icon="false" id="logoutButton"><div><i class="icon-off"></i>Logout</div></li>
-        <li data-icon="false" id="connectToMeButton"><div><i class="icon-resize-small"></i>Connect to me<div></li>
-        <ul id="connectToMeList" data-role="listview" data-inset="true" data-display="overlay"></ul>
-      </ul>
-    </li>
-    <li><div id="searchArea" hidden>
-      <input type="text" id="searchInput" placeholder="Search"/>
-    </div></li>
-    <li><img id="ownPictureButton" src="../resources/images/tyhja.png"></img></li>
-    <li><i class="icon-search icon-2x" id="searchButton"></i></li>
-    <li><i class="icon-reorder icon-2x" id="relationsButton"></i></li>
-  </div>
  
-  <div data-role="panel" id="leftpanel" data-theme="g" data-display="overlay" data-dom-cache="true">
-    <div class="bar_info" data-theme="g">
-      <img class="bar_img"></img>
-      <div class="bar_name_role">
-        <h1 class="bar_name"></h1>
-        <h2 class="bar_role"></h2>
-      </div>
-    </div>
-    <ul data-role="listview" data-theme="g" id="linklistleft"></ul>
-  </div>
+	<div data-role="page" id="index">
+	  <div id="bar" data-position="fixed" data-role="header" data-theme="p" data-dom-cache="true" data-tap-toggle="false">
+		<li><i class="icon-angle-left icon-3x" id="backButton"></i></li>
+		<li><img id="barLogo" src="../resources/images/digital_living_logo_small.png" /></li>
+		<li><i class="icon-cog icon-2x" id="settingsButton"></i>
+		  <ul id="settingsList" data-role="listview" data-inset="true" data-display="overlay">
+			<li data-icon="false" id="logoutButton"><div><i class="icon-off"></i>Logout</div></li>
+			<li data-icon="false" id="connectToMeButton"><div><i class="icon-resize-small"></i>Connect to me<div></li>
+			<ul id="connectToMeList" data-role="listview" data-inset="true" data-display="overlay"></ul>
+		  </ul>
+		</li>
+		<li><div id="searchArea" hidden>
+		  <input type="text" id="searchInput" placeholder="Search"/>
+		</div></li>
+		<li><img id="ownPictureButton" src="../resources/images/tyhja.png"></img></li>
+		<li><i class="icon-search icon-2x" id="searchButton"></i></li>
+		<li><i class="icon-reorder icon-2x" id="relationsButton"></i></li>
+	  </div>
+	 
+	  <div data-role="panel" id="leftpanel" data-theme="g" data-display="overlay" data-dom-cache="true">
+		<div class="bar_info" data-theme="g">
+		  <img class="bar_img"></img>
+		  <div class="bar_name_role">
+			<h1 class="bar_name"></h1>
+			<h2 class="bar_role"></h2>
+		  </div>
+		</div>
+		<ul data-role="listview" data-theme="g" id="linklistleft"></ul>
+	  </div>
 
-  <div data-role="panel" id="rightpanel" data-position="right" data-theme="g" data-display="overlay" data-dom-cache="true">
-    <div class="bar_info" data-theme="g">
-      <div class="bar_name_role">
-        <h1 class="bar_name"></h1>
-        <h2 class="bar_role"></h2>
-      </div>
-      <img class="bar_img"></img>
-    </div>
-    <ul data-role="listview" data-theme="g" id="linklistright" ></ul>
-  </div>
+	  <div data-role="panel" id="rightpanel" data-position="right" data-theme="g" data-display="overlay" data-dom-cache="true">
+		<div class="bar_info" data-theme="g">
+		  <div class="bar_name_role">
+			<h1 class="bar_name"></h1>
+			<h2 class="bar_role"></h2>
+		  </div>
+		  <img class="bar_img"></img>
+		</div>
+		<ul data-role="listview" data-theme="g" id="linklistright" ></ul>
+	  </div>
+  
 
-    
-   <!-- <div data-role="header" id="header" data-theme="c">
-    <a href="#leftpanel" id="headerimg" class="ui-btn-left" ><img id="headerimg2" src="http://88.114.122.139:8080/job/web7.0/ws/dist/resources/images/logo-login.jpg" alt=""></a>
-    <div id="searchdiv">
-      <input type="search" name="search" id="searchInput" value="" data-mini="true" data-inline="true" />
-    </div>
-    <div class="ui-btn-right">
-      <a href="#" data-role="button" data-icon="home" data-iconpos="notext" data-rel="dialog">View</a>
-      <a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-rel="dialog">Menu</a>
-    </div>   
-    </div> -->
+	  <div class="padding0" data-role="content" id="main">
+	  </div>
 
-  <div class="padding0" data-role="content" id="main">
-  </div>
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
+      <h1><a data-ajax="false"><i class="icon-edit icon-2x"></i></a></h1>
+    </footer>
+	  
+	</div>  
+	
+	<div class="padding0" data-role="page" id="message">
+				
+		<header id="bar" data-position="fixed" data-role="header" data-theme="p" data-dom-cache="true" data-tap-toggle="false">
+			<a href="#index" data-role="none" class="ui-btn-left" data-ajax="false">
+				<i class="icon-angle-left icon-3x" ></i>
+				<img id="barLogo" src="../resources/images/digital_living_logo_small.png" />
+			</a>
+			<h1>New Message</h1>
 
+		</header>
+		
+		<div data-role="content">
+			<input type="text" id="inputField" placeholder="Leave a message here"/>
+			
+			<div data-role="fieldcontain">
+			  <label for="privacy">Privacy:</label>
+			  <select id="privacy">
+  				<option value="read" selected>Public</option>
+  				<option value="owner">Private</option>
+			  </select>
+			</div>
+			
+			<div data-role="fieldcontain">
+			  <div id='ccForm' data-role="collapsible">
+  				<h2 class="ui-collapsible-heading">CC</h2>
+  				<ul id="cc" data-role="listview" data-filter="true">
+  				</ul>
+			  </div>
+			</div>
+
+			<div data-role="fieldcontain" id="cal">
+			  <label for ="date_from">Date from:</label>
+			  <input type="date" name="date_from" id="date_from"></input>
+			  <label for ="time_from">Time (hh:mm)</label>
+			  <input type="time" name="time_from" id="time_from"></input>
+			  
+			  <label for ="date_to">Date to:</label>
+			  <input type="date" name="date_to" id="date_to"></input>
+			  <label for="time_to">Time (hh:mm)</label>
+			  <input type="time" name="time_to" id="time_to"></input>
+			  
+			  <label for ="location">Location:</label>
+			  <input type="text" id="location" placeholder="location"></input>
+			</div>
+
+			<div data-role="fieldcontain" id="not">
+			  <label for ="dDate">Deadline:</label><br/>
+			  <input type="date" name="date_to" id="dDate" style="width:40%;" placeholder="dd.mm.yyyy"></input>
+			  <input type="time" name="time_to" id="dTime" style="width:40%;" placeholder="hh:mm"></input>
+			</div>
+
+			<div data-role="fieldcontain">
+				<label for="linkField">Link</label>
+				<input type="url" id="linkField" placeholder="http://"/>
+			</div>
+			<div data-role="fieldcontain">
+				<label for="contentField">Long Content</label>
+				<textarea id="contentField"></textarea>
+			</div>
+		</div>
+
+		<footer data-role="footer" data-position="fixed" id="sendMessagefooter" data-tap-toggle="false">
+			<h1><i class="icon-plus-sign-alt icon-2x"></i></h1>
+		</footer>
+		
+  
+	</div>
+	
+	
 </body>
 </html>
