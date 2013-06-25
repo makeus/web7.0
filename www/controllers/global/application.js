@@ -172,11 +172,15 @@ function appInit(){
 
 		document.addEventListener("menuButton", onMenuButton, false);
 		document.addEventListener("backButton", onBackButton, false);
+
 	}
 }
 
+var scroll_object;
+
 function scrollerInit() {
-    var scroll_object = $("#scroller");
+
+    scroll_object = $("#scroller");
     scroll_object.iscrollview();
     $(document).delegate("div.iscroll-wrapper", "iscroll_onpulldown" , function() {
     	if(getCurrent().name == "frontpage") {
