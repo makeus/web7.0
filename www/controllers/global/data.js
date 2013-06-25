@@ -76,6 +76,10 @@ function getRelation(dlid) {
 	return null;
 }
 
+function addRelation(dlid, type) {
+	console.log(savedRelations);
+}
+
 function isRelated() {
 	if (getRelation(getParameter("dlid")) !== null)
 		return true;
