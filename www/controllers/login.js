@@ -2,7 +2,8 @@ function initlogin() {
 
 	setupPage({
 	    bar: false,
-	    barBackButton: false
+	    barBackButton: false,
+	    footer: false
 	});
 	
 	$("#loginButton").click(function(){

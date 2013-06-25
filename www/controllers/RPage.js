@@ -1,7 +1,8 @@
 function initRPage() {
 	setupPage({
         bar: true,
-        barBackButton: false
+        barBackButton: false,
+        footer: false
     });
 
 	var dlid = getParameter("dlid");

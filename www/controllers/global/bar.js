@@ -14,10 +14,12 @@ bar = {
 
 	show: function() {
 		$("#bar").show();
+		$("#index footer").show();
 	},
 
 	hide: function() {
 		$("#bar").hide();
+		$("#index footer").hide();
 		$("#main").css("top", 0);
 	},
 

@@ -2,7 +2,8 @@ var iPageID;
 function initIPage() {
     setupPage({
         bar:true,
-        barBackButton:true
+        barBackButton:true,
+        footer: false
     });
 
     if(isToken()&&getParameter("iPageID")) {

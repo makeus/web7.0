@@ -2,25 +2,12 @@ function initfrontpage(){
 
     clearSavedStream();
 
-    $("#sendMessageBox").click(sendMessageClickEvent);
-
     setupPage({
         bar: true,
-        barBackButton: false
+        barBackButton: false,
+        footer: true
     });
     
-    $("#inputField").focus(function() {
-        $("#message-hidden").show();
-        $(".listEL:first-child").off();
-    });
-
-    $(".closelink").click(function(){
-        $("#message-hidden").hide();
-        $("#inputField").blur();
-        addLiListener();
-    });
-
-
     if(isToken()) {
         getOwnStream('message,cal,note',0,function(stream){
             $("#appTitle").text(getName());
@@ -58,39 +45,4 @@ function appendStreamF(){
         });
     }
 }
-
-
-function sendMessageClickEvent() {
-    if(isToken()) {
-        var subject = $("#inputField").val();
-        var link = $("#linkField").val();
-
-        if(subject == "") {
-            return;
-        }
-        addMessage(getDL_id(), getDL_id(), subject, link,null,null,function(){
-            $.mobile.showPageLoadingMsg();
-            setTimeout(function() {
-                getOwnStream('message,cal,note', 0, function(stream){
-                    $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
-                    resetMessageFields();
-                    addLiListener();
-                    $.mobile.hidePageLoadingMsg();
-                });
-            }, 2000)
-
-        });
-    } else {
-        alert("UNAUTHORISED");
-    }
-}
-
-function resetMessageFields() {
-    $("#inputField").val("");
-    $("#linkField").val("");
-    $("#message-hidden").hide();
-}
-
-
-
 

@@ -3,10 +3,10 @@ function initBPage() {
 
     setupPage({
         bar: true,
-        barBackButton: false
+        barBackButton: false,
+        footer: false
     });
     
-    setupPage({bar : true, barBackButton : true});
 
     if(isToken()) {
         setbPageID(getParameter("dlid"));
