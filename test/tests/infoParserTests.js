@@ -52,7 +52,7 @@ asyncTest( "parseItemtest item,hash,type found", function() {
         };
     var type=item[0].type;
 
-    var expected ="<li class='listEL' id='1234' uid='1234'><section  class='eventElem' ><img src=goats-picture.gif alt='pic' /><div class='unandmsg'><div class='sendandre'><p class='user_name'>Adele Vuohi>>> A deli goat</p><p class='timeMsgCreated'>1 month ago</p></div><section class='message_content'><p class='subject'>message</p><p class='content'>message_body</section></div></section></li>";
+    var expected ="<li class='listEL' id='1234' uid='1234'><section  class='eventElem' ><img src=goats-picture.gif alt='pic' /><div class='unandmsg'><div class='sendandre'><p class='user_name'>Adele Vuohi>>> A deli goat</p><p class='timeMsgCreated'>one month ago</p></div><section class='message_content'><p class='subject'>message</p><p class='content'>message_body</section></div></section></li>";
     start();
     equal(parseItem(item[0], userHash, type), expected);
 });
