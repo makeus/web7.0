@@ -9,8 +9,73 @@
 var theList;
 
 $(document).ready(function(){
+	setPageSwitcher();
+	setAllBars();
+    checkCurrentUser();
+	setUpMaxWidth();
+	setActionOnFooterClick();
+	setActionOnHeaderClick();
+});
 
-	$("#main").on('pageswitch', function(){
+function checkCurrentUser(){
+	if(getCurrent() == undefined) {
+		view.push("login");
+	}
+}
+
+function setUpMaxWidth(){
+	if(!isSteroids()) {
+		$("*").css("max-width", "340px");
+	}
+}
+function setAllBars(){
+	$("#linklistleft").empty();
+	$("#linklistright").empty();
+
+	leftbarCreateLinks();
+	setActionOnSwipeLeft();
+
+	rightbarCreateLinks();
+	setActionOnSwipeRight();
+
+	bar.init();
+}
+
+function setActionOnFooterClick(){
+	$("#index footer").click(function() {
+		$.mobile.changePage( "#message", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
+	});
+}
+
+function setActionOnHeaderClick(){
+	$("#message header a").click(function() {
+		resetMessageFieldsEPage();
+		$.mobile.changePage( "#index", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
+	});
+}
+
+function setActionOnSwipeRight(){
+	jQuery( window ).on( "swiperight", function() {
+		if(getCurrent()['name'] != 'login') {
+			if($("#rightpanel").hasClass("ui-panel-closed")) {
+				$( "#leftpanel" ).panel( "open" );
+			}
+		}
+	});
+}
+
+function setActionOnSwipeLeft(){
+	jQuery( window ).on( "swipeleft", function() {
+		if(getCurrent()['name'] != 'login') {
+			if($("#leftpanel").hasClass("ui-panel-closed")) {
+				$( "#rightpanel" ).panel( "open" );
+			}
+		}
+	});
+}
+
+function setPageSwitcher(){
+		$("#main").on('pageswitch', function(){
 		$("#main *").off(); 
 		switch(getCurrent()['name']) {
 			case "login":
@@ -37,49 +102,8 @@ $(document).ready(function(){
 			default:
 		}
 		appInit();
-
 	});
-
-	$("#linklistleft").empty();
-	$("#linklistright").empty();
-
-	leftbarCreateLinks();
-	rightbarCreateLinks();
-	
-	bar.init();
-	
-	jQuery( window ).on( "swiperight", function() {
-		if(getCurrent()['name'] != 'login') {
-			if($("#rightpanel").hasClass("ui-panel-closed")) {
-				$( "#leftpanel" ).panel( "open" );
-			}
-		}
-	});
-	jQuery( window ).on( "swipeleft", function() {
-		if(getCurrent()['name'] != 'login') {
-			if($("#leftpanel").hasClass("ui-panel-closed")) {
-				$( "#rightpanel" ).panel( "open" );
-			}
-		}
-	});
-
-	if(getCurrent() == undefined) {
-		view.push("login");
-	}
-	if(!isSteroids()) {
-		$("*").css("max-width", "340px");
-	}
-
-	$("#index footer").click(function() {
-		$.mobile.changePage( "#message", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
-	});
-
-	$("#message header a").click(function() {
-		resetMessageFieldsEPage();
-		$.mobile.changePage( "#index", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
-	});
-
-});
+}
 
 function inMonths(diff){
 	var one_month = 1000*60*60*24*30;
