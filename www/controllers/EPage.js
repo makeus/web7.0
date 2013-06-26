@@ -37,9 +37,6 @@ function showStream(){
     });
 }
 
-var offset=0;
-var intheend = false;
-
 function getStreamType(){
     var t = getParameter('type');
     if (t==undefined) return 'message';
@@ -47,22 +44,5 @@ function getStreamType(){
     if (t=='cal') return 'event';
           
     return t;
-}
-
-function appendStreamE(){
-    offset += 15;
-    if(!intheend) {
-        $("#thelist+img").show();
-        getStreamUrl(offset,function(stream){
-            if((stream.length < 1) || (!stream)) {
-                intheend = true;
-                $("#thelist+img").hide();
-             } else {
-                theList.append( stream.join('') );
-                scroll_object.iscrollview("refresh");
-                addLiListener(); 
-            }
-        });
-    }
 }
 

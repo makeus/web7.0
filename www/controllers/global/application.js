@@ -250,17 +250,19 @@ function scrollerInit() {
 	    }
     });
     $(document).delegate("div.iscroll-wrapper", "iscroll_onpullup" , function() {
-        if(getCurrent().name == "frontpage") {
-        	appendStreamF();
-        }
-        if(getCurrent().name == "EPage") {
-        	appendStreamE();
-        }
+        appendStream();
     });	
 }
 
 function setEntityInformation(dlid){
 		$("#nameAndTypeBar img").attr("src",dlid.img);	
+}
+
+function whenToLoadMore() {
+	if($(theList).children().length < 15) {
+        return false;
+    }
+    return scroll_object.iscrollview("y") - scroll_object.iscrollview("maxScrollY") < 100;
 }
 
 function getUserData(dlid,done, error){
@@ -280,6 +282,34 @@ function getUserData(dlid,done, error){
 		done(info);
 	}
 }
+
+var offset=0;
+var intheend = false;
+var onChange = false;
+
+function appendStream(){
+
+
+    if((!intheend) && (!onChange)) {
+
+    	offset += 15;
+        $("#thelist + div + img").show();
+        onChange = true;
+        getStreamUrl(offset,function(stream){
+            if((stream.length < 1) || (!stream)) {
+                intheend = true;
+                $("#thelist + div + img").hide();
+             } else {
+                theList.append( stream.join('') );
+                scroll_object.iscrollview("refresh");
+                addLiListener(); 
+            }
+            onChange = false;
+        });
+    }
+}
+
+
 
 function addLiListener(){
 	$(".listEL").off();

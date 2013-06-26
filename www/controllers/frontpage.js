@@ -29,23 +29,3 @@ function showOwnStream(){
         $("#nameAndTypeBar p:last-child").text("Infostream");
     });
 }
-
-var offset=0;
-var intheend = false;
-function appendStreamF(){
-    offset += 15;
-    if(!intheend) {
-        $("#thelist+img").show();
-        getOwnStream('message,cal,note',offset,function(stream){
-                if((stream.length < 1) || (!stream)) {
-                    intheend = true;
-                    $("#thelist+img").hide();
-                } else {
-                    theList.append(stream.join(''));
-                    scroll_object.iscrollview("refresh");
-                    addLiListener();  
-                }
-        });
-    }
-}
-
