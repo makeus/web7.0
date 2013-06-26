@@ -398,7 +398,7 @@ function setActivityCompleted(completed, done) {
 }
 
 function createRelation(dl_id_from, dl_id_to, role, done) {
-	if (role == null || role === "(default)")
+	if (role == null)
 		role = "";
 
 	var url = "addrelation";
