@@ -22,7 +22,7 @@ function initfrontpage(){
      else {
         alert("UNAUTHORISED");
     }
-    
+    insertCCList();
     offset = 0;
     intheend = 0;
 }

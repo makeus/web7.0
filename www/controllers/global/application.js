@@ -76,10 +76,12 @@ $(document).ready(function(){
 	});
 
 	$("#message header a").click(function() {
+		resetMessageFieldsEPage();
 		$.mobile.changePage( "#index", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
 	});
-});
 
+
+});
 
 
 function getTimeDiff(sendedTime){
