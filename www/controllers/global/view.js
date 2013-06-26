@@ -86,9 +86,6 @@ function getParameter(name) {
 	return variables[name] || undefined;
 }
 
-
-
-// Do not use this
 win = {
 	go: function(name, page) {
 		var path = "../"+name+"/"+page;

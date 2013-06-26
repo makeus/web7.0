@@ -33,8 +33,6 @@ function login(username, password,done){
 		return;
 	}
 
-
-
 	var url = "Authtoken";
 	var opts = {'u': username, 'p': password};
 

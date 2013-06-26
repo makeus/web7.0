@@ -48,7 +48,6 @@ function parseBasicInfoPage(info){
 
 
 function appendImageAndUsername(info){
-
     var image = "";
     if(info.img == "") {
         image = '../resources/images/tyhja.png';
@@ -60,12 +59,14 @@ function appendImageAndUsername(info){
     $("#Username").text(info.name); 
     $("#Role").text(info.type);
 }
+
 function wordFrom(a){
     if (a==undefined){
         return "-";
     } 
     return a;
 }
+
 function textFrom(a,b,c){
     if (a==undefined && b == undefined && c==undefined){
         return "-";
@@ -116,6 +117,7 @@ function appendLinks(info){
     rowsContent += appendInto("#infoLinkpage", wordFrom(info.linkedin_page));
     setVisibilityOf("#links", rowsContent);
 }
+
  function appendContact(info){
     var rowsContent = appendInto("#infoPhone", wordFrom(info.phone));
     $("#infoEmail").attr('href', 'mailto:' + info.email);

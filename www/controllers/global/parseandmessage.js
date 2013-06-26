@@ -89,9 +89,6 @@ function getStream(opts,done){
       if(getStatus()!=1 || stream=="" || stream.responseText=="") {
         done(items);
       } else {
-        /*
-        Capture unique dlids from stream for retrieval of user data.
-        */
         $.each(stream, function(i, item) {
               dlids.push(item.DL_id);
               dlids.push(item.from_DL_id);
@@ -99,21 +96,17 @@ function getStream(opts,done){
 
         dlids = $.unique(dlids);
 
-        //Retrieve user data
         getUserArray(dlids.join(),function(json){
 
           userHash=myHash(json, userHash);
 
-          //parse and push each json entry into its own <li> block
-          $.each(stream, function(i, item) {
+        $.each(stream, function(i, item) {
                 items.push(parseItem(item, userHash, item.type));
           });
 
           done(items);
         });
       }     
-    //append <li> blocks to appropriate container
-      
     });
 }
 
@@ -199,8 +192,7 @@ function parseRelations(string) {
   return relations;
 }
 
-function parseCC(info) {
-  
+function parseCC(info) { 
   var entry = "<li  id="+ info.DL_id+ "><p id=p_"+ info.DL_id+ " class='pCC'>" + info.name + "</p>"
          + "<input class='checkCC' id=check_" +info.DL_id+" type='checkbox' name=" + info.DL_id     
          +" value="+info.DL_id+">";
@@ -211,7 +203,6 @@ function parseCC(info) {
   else {
     entry +=  "<img src='" + info.img + "' alt='' />";
   }
-
   entry += "</input><span class='clear'></span></li>"; 
   return entry;
 }
@@ -223,9 +214,6 @@ function myHash(json, hash) {
 
     return hash;
 }
-
-
-
 
 function parseItem(item, userHash, type) {
 

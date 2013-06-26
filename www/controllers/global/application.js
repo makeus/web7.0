@@ -28,6 +28,7 @@ function setUpMaxWidth(){
 		$("*").css("max-width", "340px");
 	}
 }
+
 function setAllBars(){
 	$("#linklistleft").empty();
 	$("#linklistright").empty();
@@ -126,6 +127,7 @@ function inDays(diff){
     }
     return '';
 }
+
 function inWeeks(diff){
 	var one_week = 1000*60*60*24*7;
 	var weeks = Math.floor(diff/one_week);
@@ -156,6 +158,7 @@ function minutesAgo(diff){
 	
 	return '0 minutes ago'; 
 }
+
 function getTimeDiffMili(sendedTime){
 	var date = sendedTime.replace(/-/g, '/');    
     var d = new Date();
@@ -183,6 +186,7 @@ function getTimeDiff(sendedTime){
 function onBackButton(){
 	view.pop();
 }
+
 function onMenuButton(){
 	if($("#settingsList").css("display")=="table")
 		bar.hideSettingsList();
@@ -221,7 +225,6 @@ function appInit(){
 var scroll_object;
 
 function scrollerInit() {
-
     scroll_object = $("#scroller");
     scroll_object.iscrollview();
     $(document).delegate("div.iscroll-wrapper", "iscroll_onpulldown" , function() {
@@ -512,42 +515,3 @@ function isSteroids() {
 	else
 		return false;
 }
-
-//ei toimi, en tiedä miksi, en poista koska tätä voi viellä tarvita, ehkä joskus
-// function downloadFile(dlUrl){
-//         window.requestFileSystem(
-//                      LocalFileSystem.PERSISTENT, 0, 
-//                      function onFileSystemSuccess(fileSystem) {
-//                      	        	alert("1");
-
-//                      fileSystem.root.getFile(
-//                                  "dummy.html", {create: true, exclusive: false}, 
-//                                  function gotFileEntry(fileEntry){
-//                                  	                     	        	alert("2");
-
-//                                  var sPath = fileEntry.fullPath.replace("dummy.html","");
-//                                  var fileTransfer = new FileTransfer();
-//                                  fileEntry.remove();
-//  								alert("5");
-//                                  fileTransfer.download(
-//                                            encodeURI(dlUrl),
-//                                            sPath + "theFile"+dlUrl.slice(-4),
-//                                            function(theFile) {
-//                                            	                     	        	alert("3");
-
-//                                            console.log("download complete: " + theFile.toURI());
-//                                            saveImage(theFile.toURI());
-//                                            alert(theFile.toURI());
-//                                            },
-//                                            function(error) {
-//                                            	                     	        	alert("4");
-
-//                                            console.log("download error source " + error.source);
-//                                            console.log("download error target " + error.target);
-//                                            console.log("upload error code: " + error.code);
-//                                            },true
-//                                            );
-//                                  });
-//                      });
- 
-//     }

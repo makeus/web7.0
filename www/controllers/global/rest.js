@@ -60,8 +60,6 @@ function success(data) {
 function error(data, t, m) {
 	if(t == "timeout") {
 		alert("TIMEOUT");
-	} else {
-		console.log("ERROR " + t + ": " + m);
-	}
+	} 
 	status = data.status;
 }
