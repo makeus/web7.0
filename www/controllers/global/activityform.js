@@ -4,8 +4,8 @@ var headers = ["New Task", "New To-Do Note", "New Message"];
 function showRightForm(type){
     cleanAllForms()
     insertRightForm(type);
-	changeHeadlin(type);
-    insertCCList();
+	changeHeader(type);
+
 }
 
 function cleanAllForms(){
@@ -14,7 +14,7 @@ function cleanAllForms(){
 }
 
 
-function changeHeadlin(type) {
+function changeHeader(type) {
     var header = $("#message header h1");
     header.text("New Message");
     $.each(types, function(i, item) {
@@ -35,17 +35,19 @@ function insertRightForm(type){
 
 function insertCCList(){
     getCCList(function(data) {
-        if(data != undefined && data != "") {
-            $("#ccForm").replaceWith("<div id='ccForm' data-role=\"collapsible\"><h2 class=\"ui-collapsible-heading\">CC</h2><ul id=\"cc\" data-role=\"listview\" data-filter=\"true\"></ul></div>");
-            $("#cc").append(data.join(''));
+        var list = $("#ccForm ul");
+        if(data) {
+            list.append(data.join(''));
+            $("#ccForm").collapsible({refresh:true});
+             setListenerToCCList();
+        } else {
+            $("#ccForm").remove();
         }   
-        $("#ccForm").collapsible({refresh:true});
-        setListenerToCCList();
     });
 }
 
 function setListenerToCCList(){
-     $(".liCC").click(function(){
+     $("#cc li").click(function(){
         if ($(this).attr('class')!='checkCC'){
             var checkID = $(this).attr('id');
             changeCheckedStatus(checkID);
@@ -151,8 +153,7 @@ function saveNote(subject){
     var privacy = $("#privacy").val();
     var deadline = ""+ $("#dDate").val() + " " + $("#dTime").val();  
     var ccList = getSelectedCC();
-    var content = $("#additional").val();
-    var ccList = getSelectedCC();
+    var content = $("#contentField").val();
 
     addNote(getParameter("dlid"), getDL_id(), subject, content, deadline, ccList, function(){
         $.mobile.showPageLoadingMsg();
