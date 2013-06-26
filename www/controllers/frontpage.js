@@ -1,7 +1,6 @@
 function initfrontpage(){
-
     clearSavedStream();
-
+    
     setupPage({
         bar: true,
         barBackButton: false,
@@ -9,20 +8,24 @@ function initfrontpage(){
     });
     
     if(isToken()) {
-        getOwnStream('message,cal,note',0,function(stream){
-            $("#appTitle").text(getName());
-            theList = $("#thelist");
-            theList.append(stream.join(''));
-            scrollerInit();
-            addLiListener();
-            $("#thelist + div + img").hide();
-            $("#nameAndTypeBar p:last-child").text("Infostream");
-        });
+        showOwnStream();    
+        insertCCList();
+        offset = 0;
+        intheend = 0;
     }
      else {
         alert("UNAUTHORISED");
     }
-    
-    offset = 0;
-    intheend = false;
+}
+
+function showOwnStream(){
+    getOwnStream('message,cal,note',0,function(stream){
+        $("#appTitle").text(getName());
+        theList = $("#thelist");
+        theList.append(stream.join(''));
+        scrollerInit();
+        addLiListener();
+        $("#thelist+img").hide();
+        $("#nameAndTypeBar p:last-child").text("Infostream");
+    });
 }

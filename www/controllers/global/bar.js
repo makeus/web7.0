@@ -106,6 +106,7 @@ bar = {
 		$("#connectToMeButton").hide();
 	},
 	createConnectToMeList: function() {
+		// connectionTypes[x][0] shown on website, connectionTypes[x][1] used in REST request
 		var connectionTypes = [
 			["(default)", ""],
 			["User", "user"],
@@ -115,19 +116,19 @@ bar = {
 			["Parent", "parent"],
 			["Friend", "friend"]];
 
-		$.each(connectionTypes, function(i, type) {
-			$("#connectToMeList").append("<li id='connectionType"+i+"' ><div>"+type[0]+"</div></li>");
+		for (var i=0; i<connectionTypes.length; ++i) {
+			$("#connectToMeList").append("<li id='connectionType"+i+"' ><div>"+connectionTypes[i][0]+"</div></li>");
 			
 			$("#connectionType"+i).click(function() {
 				bar.hideSettingsList();
 				
-				createRelation(getDL_id(), getParameter("dlid"), type[1], function() {
-					getInfo(getDL_id(),function(data){
+				createRelation(getDL_id(), getParameter("dlid"), connectionTypes[i][1], function() {
+					getInfo(getDL_id(), function(data){
 						saveRelations(parseRelations(data.relations));
 					}, true);
 				});
 			});
-		});
+		};
 	},
 	showConnectToMeList: function() {
 		$("#connectToMeButton").off();

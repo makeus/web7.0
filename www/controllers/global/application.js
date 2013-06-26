@@ -9,8 +9,74 @@
 var theList;
 
 $(document).ready(function(){
+	setPageSwitcher();
+	setAllBars();
+    checkCurrentUser();
+	setUpMaxWidth();
+	setActionOnFooterClick();
+	setActionOnHeaderClick();
+});
 
-	$("#main").on('pageswitch', function(){
+function checkCurrentUser(){
+	if(getCurrent() == undefined) {
+		view.push("login");
+	}
+}
+
+function setUpMaxWidth(){
+	if(!isSteroids()) {
+		$("*").css("max-width", "340px");
+	}
+}
+
+function setAllBars(){
+	$("#linklistleft").empty();
+	$("#linklistright").empty();
+
+	leftbarCreateLinks();
+	setActionOnSwipeLeft();
+
+	rightbarCreateLinks();
+	setActionOnSwipeRight();
+
+	bar.init();
+}
+
+function setActionOnFooterClick(){
+	$("#index footer").click(function() {
+		$.mobile.changePage( "#message", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
+	});
+}
+
+function setActionOnHeaderClick(){
+	$("#message header a").click(function() {
+		resetMessageFieldsEPage();
+		$.mobile.changePage( "#index", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
+	});
+}
+
+function setActionOnSwipeRight(){
+	jQuery( window ).on( "swiperight", function() {
+		if(getCurrent()['name'] != 'login') {
+			if($("#rightpanel").hasClass("ui-panel-closed")) {
+				$( "#leftpanel" ).panel( "open" );
+			}
+		}
+	});
+}
+
+function setActionOnSwipeLeft(){
+	jQuery( window ).on( "swipeleft", function() {
+		if(getCurrent()['name'] != 'login') {
+			if($("#leftpanel").hasClass("ui-panel-closed")) {
+				$( "#rightpanel" ).panel( "open" );
+			}
+		}
+	});
+}
+
+function setPageSwitcher(){
+		$("#main").on('pageswitch', function(){
 		$("#main *").off(); 
 		switch(getCurrent()['name']) {
 			case "login":
@@ -35,129 +101,101 @@ $(document).ready(function(){
 				initsearch();
 				break;
 			default:
-				console.log("default initiated");
 		}
 		appInit();
-
 	});
+}
 
-	$("#linklistleft").empty();
-	$("#linklistright").empty();
+function inMonths(diff){
+	var one_month = 1000*60*60*24*30;
+	var months = Math.floor(diff/one_month);
+    if (months>=2){
+    	return '' + months + ' ago';
+    } else if (months>=1){
+    	return 'one month ago';
+    }
+    return ''
+}
 
-	leftbarCreateLinks();
-	rightbarCreateLinks();
+function inDays(diff){
+	var one_day = 1000*60*60*24;
+	var days = Math.floor(diff/one_day);
+    if (days>=2){
+         return '' + days + ' days ago';
+    } else if (days>=1) {
+        return "one day ago";
+    }
+    return '';
+}
+
+function inWeeks(diff){
+	var one_week = 1000*60*60*24*7;
+	var weeks = Math.floor(diff/one_week);
+    if (weeks>=2){
+         return '' + weeks + ' weeks ago';
+    } 
+    return '';
+}
+
+function inHoursAndMinutes(diff){
+	var one_hour = 1000*60*60;
+    var hours = Math.floor(diff/one_hour);
+    var timeRemain = diff - (one_hour*hours);
+    var vastaus= '';
+    if (hours>=2){
+        vastaus += hours + " hours ";
+    } else if (hours>=1){
+        vastaus = "one hour ";
+    }
+    return vastaus + minutesAgo(timeRemain);
+}
+
+function minutesAgo(diff){
+	var one_minute = 1000*60;
+	var minutes = Math.floor(diff/one_minute);
+	if (minutes>=2) return '' + minutes + ' minutes ago';
+	if (minutes>=1) return 'one minute ago';
 	
-	bar.init();
-	
-	jQuery( window ).on( "swiperight", function() {
-		if(getCurrent()['name'] != 'login') {
-			if($("#rightpanel").hasClass("ui-panel-closed")) {
-				$( "#leftpanel" ).panel( "open" );
-			}
-		}
-	});
-	jQuery( window ).on( "swipeleft", function() {
-		if(getCurrent()['name'] != 'login') {
-			if($("#leftpanel").hasClass("ui-panel-closed")) {
-				$( "#rightpanel" ).panel( "open" );
-			}
-		}
-	});
+	return '0 minutes ago'; 
+}
 
-	if(getCurrent() == undefined) {
-		view.push("login");
-	}
-	if(!isSteroids()) {
-		$("*").css("max-width", "340px");
-	}
+function getTimeDiffMili(sendedTime){
+	var date = sendedTime.replace(/-/g, '/');    
+    var d = new Date();
+    var diff = Math.abs(d - new Date(date));   
+	var n = d.getTimezoneOffset() * 1000 * 60;
 
-	$("#index footer").click(function() {
-		$.mobile.changePage( "#message", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
-	});
-
-	$("#message header a").click(function() {
-		resetMessageFieldsEPage();
-		$.mobile.changePage( "#index", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
-	});
-
-
-});
-
+	return (diff + n);
+}
 
 function getTimeDiff(sendedTime){
-    var date = sendedTime.replace(/-/g, '/');
-    var diff = Math.abs(new Date() - new Date(date));
-    var one_day = 1000*60*60*24;
-    var one_hour = 1000*60*60;
-    var one_minute = 1000*60;
-    var d = new Date()
-	var n = d.getTimezoneOffset() * 1000 * 60;
-	diff+=n;
-    var days = diff/one_day;
-    var vastaus = "";
-    if(days >= 30){
-        vastaus += Math.floor(days/30);
-        if (days>=60){
-            vastaus += " months ago";
-        } else {
-            vastaus += " month ago";
-        }
-        return vastaus;
-    }
-    if (days>=1){
-
-
-        vastaus += Math.floor(days);
-        if (days>=2){
-            vastaus += " days ago";
-        } else {
-            vastaus += " day ago";
-        }
-        return vastaus;
-    }
-
-    var hours = Math.floor(diff/one_hour);
-    if (hours>=1){
-        diff -= one_hour*hours;
-        vastaus += hours;
-        if (hours>=2){
-            vastaus += " hours ago";
-        } else {
-            vastaus += " hour ago";
-        }
-        return vastaus;
-    }
-
-    var minutes = Math.floor(diff/one_minute);
-    vastaus += minutes;
-
-    if (minutes>=2){
-         vastaus += " minutes ago.";
-    } else {
-        vastaus += " minute ago.";
-    }
-    
-    if(minutes>0){
-    	return vastaus;
-	}else {
-		return "just now.";
-	}
+	var diff = getTimeDiffMili(sendedTime);
+	
+	var months = inMonths(diff);
+	if (months !='') return months;
+	
+	var weeks = inWeeks(diff);
+	if (weeks !='') return weeks;
+	
+	var days = inDays(diff);
+	if (days !='') return days;
+	
+	return inHoursAndMinutes(diff);
 }
 
 function onBackButton(){
 	view.pop();
 }
+
 function onMenuButton(){
 	if($("#settingsList").css("display")=="table")
 		bar.hideSettingsList();
 	else{
 		bar.showSettingsList();
 	}
-
 }
 
 function appInit(){
-
 	if(isToken()) {
 		
 		var	dlid = getParameter('dlid');
@@ -187,7 +225,6 @@ function appInit(){
 var scroll_object;
 
 function scrollerInit() {
-
     scroll_object = $("#scroller");
     scroll_object.iscrollview();
     $(document).delegate("div.iscroll-wrapper", "iscroll_onpulldown" , function() {
@@ -430,7 +467,7 @@ function setActivityCompleted(completed, done) {
 }
 
 function createRelation(dl_id_from, dl_id_to, role, done) {
-	if (role == null || role === "(default)")
+	if (role == null)
 		role = "";
 
 	var url = "addrelation";
@@ -508,42 +545,3 @@ function isSteroids() {
 	else
 		return false;
 }
-
-//ei toimi, en tiedä miksi, en poista koska tätä voi viellä tarvita, ehkä joskus
-// function downloadFile(dlUrl){
-//         window.requestFileSystem(
-//                      LocalFileSystem.PERSISTENT, 0, 
-//                      function onFileSystemSuccess(fileSystem) {
-//                      	        	alert("1");
-
-//                      fileSystem.root.getFile(
-//                                  "dummy.html", {create: true, exclusive: false}, 
-//                                  function gotFileEntry(fileEntry){
-//                                  	                     	        	alert("2");
-
-//                                  var sPath = fileEntry.fullPath.replace("dummy.html","");
-//                                  var fileTransfer = new FileTransfer();
-//                                  fileEntry.remove();
-//  								alert("5");
-//                                  fileTransfer.download(
-//                                            encodeURI(dlUrl),
-//                                            sPath + "theFile"+dlUrl.slice(-4),
-//                                            function(theFile) {
-//                                            	                     	        	alert("3");
-
-//                                            console.log("download complete: " + theFile.toURI());
-//                                            saveImage(theFile.toURI());
-//                                            alert(theFile.toURI());
-//                                            },
-//                                            function(error) {
-//                                            	                     	        	alert("4");
-
-//                                            console.log("download error source " + error.source);
-//                                            console.log("download error target " + error.target);
-//                                            console.log("upload error code: " + error.code);
-//                                            },true
-//                                            );
-//                                  });
-//                      });
- 
-//     }

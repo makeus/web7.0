@@ -31,16 +31,6 @@ view = {
 			$("#main").trigger('pageswitch');
 		});
 	},
-
-	preload: function(webView) {
-		webView.preload({}, {
-			onSuccess: function() {}
-		});
-	},
-
-	pushPreloaded: function(webView) {
-		steroids.layers.push(webView);
-	}
 }
 
 
@@ -53,4 +43,5 @@ function getParameter(name) {
 		return undefined;
 	}
 	return current['variables'][name] || undefined;
+
 }

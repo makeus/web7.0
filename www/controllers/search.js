@@ -83,10 +83,7 @@ function processResult(searchWord,done){
 	search(searchWord,function(result){
 		if(searchWordCheck==searchWord){
 			updateSearchResults(result);
-		} else {
-			console.log("NO!!!!!!!!");
-		}
-
+		} 
 		done();
 	});
 }
