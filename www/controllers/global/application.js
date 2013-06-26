@@ -6,6 +6,8 @@
 	}
 })();
 
+var theList;
+
 $(document).ready(function(){
 
 	$("#main").on('pageswitch', function(){
@@ -192,7 +194,7 @@ function scrollerInit() {
     	if(getCurrent().name == "frontpage") {
 	        getOwnStream("message,cal,note", 0, function(stream) {
 	            if(stream != null && stream != "") {
-	                $("#thelist").html(stream.join('') );
+	                theList.html(stream.join('') );
 	                scroll_object.iscrollview("refresh");
 	                addLiListener();
 	                offset=0;
@@ -202,7 +204,7 @@ function scrollerInit() {
 	    if(getCurrent().name == "EPage") {
 	        getStreamUrl(0, function(stream) {
 	            if(stream != null && stream != "") {
-	                $("#thelist").html(stream.join('') );
+	                theList.html(stream.join('') );
 	                scroll_object.iscrollview("refresh");
 	                addLiListener();
 	                offset=0;
@@ -275,12 +277,12 @@ function getMessageInfo(id){
 	return itemR;
 }
 
-function getInfo(dl_id,done){
+function getInfo(dl_id,done,update){
 	var info = getInfoCache(dl_id);
-	if(!info) {
+	if(!info || update) {
 		var opts={'dl_id':dl_id,'auth':getToken(),'uid':getDL_id()};
 	    var url="dlid"
-	    var info=rest(opts,url,
+	    rest(opts,url,
 	        function(data) {
 	            result = data;
 	            success(data);
@@ -398,12 +400,8 @@ function setActivityCompleted(completed, done) {
 }
 
 function createRelation(dl_id_from, dl_id_to, role, done) {
-	if (dl_id_from == null || dl_id_from === "me")
-		dl_id_from = getDL_id();
-
-	if (role == null)
+	if (role == null || role === "(default)")
 		role = "";
-
 
 	var url = "addrelation";
 

@@ -106,13 +106,26 @@ bar = {
 		$("#connectToMeButton").hide();
 	},
 	createConnectToMeList: function() {
-		var connectionTypes = ["-", "User", "Service provider", "Owner", "Child", "Parent", "Friend"];
+		var connectionTypes = [
+			["(default)", ""],
+			["User", "user"],
+			["Service provider", "provider"],
+			["Owner", "owner"],
+			["Child", "child"],
+			["Parent", "parent"],
+			["Friend", "friend"]];
+
 		$.each(connectionTypes, function(i, type) {
-			var id = type.replace(" ", "_");
-			$("#connectToMeList").append("<li id='"+id+"' ><div>"+type+"</div></li>");
-			$("#"+id).click(function() {
+			$("#connectToMeList").append("<li id='connectionType"+i+"' ><div>"+type[0]+"</div></li>");
+			
+			$("#connectionType"+i).click(function() {
 				bar.hideSettingsList();
-				createRelation("me", getParameter("dlid"), type);
+				
+				createRelation(getDL_id(), getParameter("dlid"), type[1], function() {
+					getInfo(getDL_id(),function(data){
+						saveRelations(parseRelations(data.relations));
+					}, true);
+				});
 			});
 		});
 	},
@@ -162,4 +175,11 @@ function isSettingsList(elem) {
 		target = target.parentElement;
 	}
 	return false;
+}
+
+function createId(type) {
+	var id = type.replace(" ", "_");
+	id = id.replace("(", "");
+	id = id.replace(")", "");
+	return id;
 }

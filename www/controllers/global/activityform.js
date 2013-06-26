@@ -115,7 +115,8 @@ function saveTask(subject){
         $.mobile.showPageLoadingMsg();
         setTimeout(function() {
             getStreamUrl(0, function(stream){
-                $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                theList.html(stream.join(''));
+                scroll_object.iscrollview("refresh");
                 resetMessageFieldsEPage();
                 addLiListener();
                 $.mobile.changePage("#index");
@@ -139,7 +140,8 @@ function saveMessage(subject){
         $.mobile.showPageLoadingMsg();
         setTimeout(function() {
             getStreamUrl(0, function(stream){
-                $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                theList.html(stream.join(''));
+                scroll_object.iscrollview("refresh");
                 resetMessageFieldsEPage();
                 addLiListener();
                 $.mobile.changePage("#index");
@@ -159,7 +161,8 @@ function saveNote(subject){
         $.mobile.showPageLoadingMsg();
         setTimeout(function() {
             getStreamUrl(0, function(stream){
-                $("#thelist").replaceWith("<ul id='thelist'>" + stream.join('') + "</ul>");
+                theList.html(stream.join(''));
+                scroll_object.iscrollview("refresh");
                 resetMessageFieldsEPage();
                 addLiListener();
                 $.mobile.changePage("#index");

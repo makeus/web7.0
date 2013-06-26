@@ -11,7 +11,8 @@ function initfrontpage(){
     if(isToken()) {
         getOwnStream('message,cal,note',0,function(stream){
             $("#appTitle").text(getName());
-            $("#thelist").append(stream.join(''));
+            theList = $("#thelist");
+            theList.append(stream.join(''));
             scrollerInit();
             addLiListener();
             $("#thelist+img").hide();
@@ -38,7 +39,7 @@ function appendStreamF(){
                     intheend = true;
                     $("#thelist+img").hide();
                 } else {
-                    $("#thelist").append(stream.join(''));
+                    theList.append(stream.join(''));
                     scroll_object.iscrollview("refresh");
                     addLiListener();  
                 }
