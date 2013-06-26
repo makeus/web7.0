@@ -17,7 +17,7 @@ function initEPage() {
             } else {
                 theList.append('<li><h3>The stream is empty</h3><h3>no ' + getStreamType() + 's were found!</h3></li>');
             }
-            $("#thelist+img").hide();
+            $("#thelist + div + img").hide();
         });
     } else {
         alert("UNAUTHORISED");
@@ -31,9 +31,6 @@ function initEPage() {
     intheend = false;
 }
 
-var offset=0;
-var intheend = false;
-
 function getStreamType(){
     var t = getParameter('type');
     if (t==undefined){
@@ -43,22 +40,5 @@ function getStreamType(){
         return 'event';
     }
     return t;
-}
-
-function appendStreamE(){
-    offset += 15;
-    if(!intheend) {
-        $("#thelist+img").show();
-        getStreamUrl(offset,function(stream){
-            if((stream.length < 1) || (!stream)) {
-                intheend = true;
-                $("#thelist+img").hide();
-             } else {
-                theList.append( stream.join('') );
-                scroll_object.iscrollview("refresh");
-                addLiListener(); 
-            }
-        });
-    }
 }
 

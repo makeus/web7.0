@@ -57,6 +57,10 @@ function success(data) {
 	}
 }
 
+/*
+* Näitä erroreita aiheuttavat ns. tarkoituksella mm. liian iso offset streamin haussa ja basic infon hakeminen
+*/
+
 function error(data, t, m) {
 	if(t == "timeout") {
 		alert("TIMEOUT");

@@ -722,7 +722,7 @@ ul#relationslist .emptyRelationImage {
 	border-radius: 0px;
 }
 
-#thelist + img {
+#thelist + div + img {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;

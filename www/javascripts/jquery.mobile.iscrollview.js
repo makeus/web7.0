@@ -1771,7 +1771,7 @@ function jqmIscrollviewRemoveLayerXYProps(e) {
 
     // Is pull-up in "pulled" state?
     _pullUpIsPulled: function () {
-      return this.y() - this.maxScrollY() < 100;
+        return whenToLoadMore();
       },
 
     // Replace the text in a pull block
