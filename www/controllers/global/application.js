@@ -75,16 +75,16 @@ $(document).ready(function(){
 	});
 
 	$("#message header a").click(function() {
+		resetMessageFieldsEPage();
 		$.mobile.changePage( "#index", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
 	});
-});
 
 function inMonths(diff){
 	var one_month = 1000*60*60*24*30;
 	var months = Math.floor(diff/one_month);
-    if (months>=2){
+    if (months>=2) {
     	return '' + months + ' ago';
-    } else if (months>=1){
+    } else if (months>=1) {
     	return 'one month ago';
     }
     return ''
@@ -407,7 +407,7 @@ function setActivityCompleted(completed, done) {
 }
 
 function createRelation(dl_id_from, dl_id_to, role, done) {
-	if (role == null || role === "(default)")
+	if (role == null)
 		role = "";
 
 	var url = "addrelation";
