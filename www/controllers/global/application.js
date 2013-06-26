@@ -35,7 +35,6 @@ $(document).ready(function(){
 				initsearch();
 				break;
 			default:
-				console.log("default initiated");
 		}
 		appInit();
 
@@ -80,66 +79,78 @@ $(document).ready(function(){
 	});
 });
 
+function inMonths(diff){
+	var one_month = 1000*60*60*24*30;
+	var months = Math.floor(diff/one_month);
+    if (months>=2){
+    	return '' + months + ' ago';
+    } else if (months>=1){
+    	return 'one month ago';
+    }
+    return ''
+}
+function inDays(diff){
+	var one_day = 1000*60*60*24;
+	var days = Math.floor(diff/one_day);
+    if (days>=2){
+         return '' + days + ' days ago';
+    } else if (days>=1) {
+        return "one day ago";
+    }
+    return '';
+}
+function inWeeks(diff){
+	var one_week = 1000*60*60*24*7;
+	var weeks = Math.floor(diff/one_week);
+    if (weeks>=2){
+         return '' + weeks + ' weeks ago';
+    } 
+    return '';
+}
 
+function inHoursAndMinutes(diff){
+	var one_hour = 1000*60*60;
+    var hours = Math.floor(diff/one_hour);
+    var timeRemain = diff - (one_hour*hours);
+    var vastaus= '';
+    if (hours>=2){
+        vastaus += hours + " hours ";
+    } else if (hours>=1){
+        vastaus = "one hour ";
+    }
+    return vastaus + minutesAgo(timeRemain);
+}
+
+function minutesAgo(diff){
+	var one_minute = 1000*60;
+	var minutes = Math.floor(diff/one_minute);
+	if (minutes>=2) return '' + minutes + ' minutes ago';
+	if (minutes>=1) return 'one minute ago';
+	
+	return '0 minutes ago'; 
+}
+function getTimeDiffMili(sendedTime){
+	var date = sendedTime.replace(/-/g, '/');    
+    var d = new Date();
+    var diff = Math.abs(d - new Date(date));   
+	var n = d.getTimezoneOffset() * 1000 * 60;
+
+	return (diff + n);
+}
 
 function getTimeDiff(sendedTime){
-    var date = sendedTime.replace(/-/g, '/');
-    var diff = Math.abs(new Date() - new Date(date));
-    var one_day = 1000*60*60*24;
-    var one_hour = 1000*60*60;
-    var one_minute = 1000*60;
-    var d = new Date()
-	var n = d.getTimezoneOffset() * 1000 * 60;
-	diff+=n;
-    var days = diff/one_day;
-    var vastaus = "";
-    if(days >= 30){
-        vastaus += Math.floor(days/30);
-        if (days>=60){
-            vastaus += " months ago";
-        } else {
-            vastaus += " month ago";
-        }
-        return vastaus;
-    }
-    if (days>=1){
-
-
-        vastaus += Math.floor(days);
-        if (days>=2){
-            vastaus += " days ago";
-        } else {
-            vastaus += " day ago";
-        }
-        return vastaus;
-    }
-
-    var hours = Math.floor(diff/one_hour);
-    if (hours>=1){
-        diff -= one_hour*hours;
-        vastaus += hours;
-        if (hours>=2){
-            vastaus += " hours ago";
-        } else {
-            vastaus += " hour ago";
-        }
-        return vastaus;
-    }
-
-    var minutes = Math.floor(diff/one_minute);
-    vastaus += minutes;
-
-    if (minutes>=2){
-         vastaus += " minutes ago.";
-    } else {
-        vastaus += " minute ago.";
-    }
-    
-    if(minutes>0){
-    	return vastaus;
-	}else {
-		return "just now.";
-	}
+	var diff = getTimeDiffMili(sendedTime);
+	
+	var months = inMonths(diff);
+	if (months !='') return months;
+	
+	var weeks = inWeeks(diff);
+	if (weeks !='') return weeks;
+	
+	var days = inDays(diff);
+	if (days !='') return days;
+	
+	return inHoursAndMinutes(diff);
 }
 
 function onBackButton(){
@@ -151,11 +162,9 @@ function onMenuButton(){
 	else{
 		bar.showSettingsList();
 	}
-
 }
 
 function appInit(){
-
 	if(isToken()) {
 		
 		var	dlid = getParameter('dlid');

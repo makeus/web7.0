@@ -101,6 +101,20 @@ function resetMessageFieldsEPage() {
     $("#message div input, #message div select, #message div textarea").val("");
 }
 
+function showTheList(){
+    setTimeout(function() {
+        getStreamUrl(0, function(stream){
+            theList.html(stream.join(''));
+            scroll_object.iscrollview("refresh");
+            resetMessageFieldsEPage();
+            addLiListener();
+            $.mobile.changePage("#index");
+            $.mobile.hidePageLoadingMsg();
+            
+        });
+    }, 2000);
+}
+
 function saveTask(subject){
     var link = $("#linkField").val();
     var content = $("#contentField").val();
@@ -111,17 +125,7 @@ function saveTask(subject){
 
     addEvent(getParameter("dlid"), getDL_id(), subject, link, content, time_from, time_to, location, null, ccList, function(){
         $.mobile.showPageLoadingMsg();
-        setTimeout(function() {
-            getStreamUrl(0, function(stream){
-                theList.html(stream.join(''));
-                scroll_object.iscrollview("refresh");
-                resetMessageFieldsEPage();
-                addLiListener();
-                $.mobile.changePage("#index");
-				$.mobile.hidePageLoadingMsg();
-				
-            });
-        }, 2000);
+        showTheList();
     });
 }
 
@@ -136,16 +140,7 @@ function saveMessage(subject){
 	}
     addMessage(to_dl_id, getDL_id(), subject, link, content, ccList, function(){
         $.mobile.showPageLoadingMsg();
-        setTimeout(function() {
-            getStreamUrl(0, function(stream){
-                theList.html(stream.join(''));
-                scroll_object.iscrollview("refresh");
-                resetMessageFieldsEPage();
-                addLiListener();
-                $.mobile.changePage("#index");
-                $.mobile.hidePageLoadingMsg();
-            });
-        }, 2000);
+        showTheList();
     });
 }
 
@@ -158,16 +153,7 @@ function saveNote(subject){
 
     addNote(getParameter("dlid"), getDL_id(), subject, content, deadline, ccList, function(){
         $.mobile.showPageLoadingMsg();
-        setTimeout(function() {
-            getStreamUrl(0, function(stream){
-                theList.html(stream.join(''));
-                scroll_object.iscrollview("refresh");
-                resetMessageFieldsEPage();
-                addLiListener();
-                $.mobile.changePage("#index");
-                $.mobile.hidePageLoadingMsg();
-            });
-        }, 2000);
+        showTheList();
     });
 }
 
