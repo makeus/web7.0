@@ -43,10 +43,9 @@ function leftbarCreateLinks() {
 	links[0] = {'type': "Messages", 'id':'linklistleftMessages', 'url':'EPage', 'icon' : "<i class=\"icon-envelope\"></i>", 'opts' : {'type' : 'message'}};
 	links[1] = {'type': "Tasks", 'id':'linklistleftTasks', 'url':'EPage', 'icon' : "<i class=\"icon-calendar\"></i>", 'opts' : {'type' : 'cal'}};
 	links[2] = {'type': "Notes", 'id':'linklistleftNotes', 'url':'EPage', 'icon' : "<i class=\"icon-edit\"></i>", 'opts' : {'type' : 'note'}};
-	links[3] = {'type': "Files", 'id':'linklistleftFiles', 'url':'EPage', 'icon' : "<i class=\"icon-file-alt\"></i>", 'opts' : {}};
-	links[4] = {'type': "Basic-Info", 'id':'linklistleftBasic-Info', 'url':'BPage', 'icon' : "<i class=\"icon-user\"></i>", 'opts' : {}};
-
-	for(var i = 0; i<5; i++) {
+	links[3] = {'type': "Basic-Info", 'id':'linklistleftBasic-Info', 'url':'BPage', 'icon' : "<i class=\"icon-user\"></i>", 'opts' : {}};
+// links[4] = {'type': "Files", 'id':'linklistleftFiles', 'url':'EPage', 'icon' : "<i class=\"icon-file-alt\"></i>", 'opts' : {}};
+	for(var i = 0; i<4; i++) {
 		$("#linklistleft").append("<li id='" + links[i]['id'] + "'><a>" + links[i]['icon'] + "\t" + links[i]['type'] + "</a></li>");
 	}
 	$("#linklistleft").listview("refresh");
@@ -56,15 +55,15 @@ function rightbarCreateLinks() {
 
 	$("#linklistright").listview();
 
-	links[5] = {'type': "Users", 'id':'linklistrightUsers', 'url':'RPage', 'icon' : "<i class=\"icon-user\"></i>", 'opts' : {'type' : 'user'}};
-	links[6] = {'type': "Groups", 'id':'linklistrightGroups', 'url':'RPage', 'icon' : "<i class=\"icon-group\"></i>", 'opts' : {'type' : 'group'}};
-	links[7] = {'type': "Places", 'id':'linklistrightPlaces', 'url':'RPage', 'icon' : "<i class=\"icon-map-marker\"></i>", 'opts' : {'type' : 'space'}};
-	links[8] = {'type': "Things", 'id':'linklistrightThings', 'url':'RPage', 'icon' : "<i class=\"icon-barcode\"></i>", 'opts' : {'type' : 'thing'}};
-	links[9] = {'type': "Animals", 'id':'linklistrightAnimals', 'url':'RPage', 'icon' : "<i class=\"icon-github-sign\"></i>", 'opts' : {'type' : 'animal'}};
-	links[10] = {'type': "Projects", 'id':'linklistrightProjects', 'url':'RPage', 'icon' : "<i class=\"icon-briefcase\"></i>", 'opts' : {'type' : 'project'}};
-	links[11] = {'type': "Contracts", 'id':'linklistrightContracts', 'url':'RPage', 'icon' : "<i class=\"icon-legal\"></i>", 'opts' : {'type' : 'contract'}};
+	links[4] = {'type': "Users", 'id':'linklistrightUsers', 'url':'RPage', 'icon' : "<i class=\"icon-user\"></i>", 'opts' : {'type' : 'user'}};
+	links[5] = {'type': "Groups", 'id':'linklistrightGroups', 'url':'RPage', 'icon' : "<i class=\"icon-group\"></i>", 'opts' : {'type' : 'group'}};
+	links[6] = {'type': "Places", 'id':'linklistrightPlaces', 'url':'RPage', 'icon' : "<i class=\"icon-map-marker\"></i>", 'opts' : {'type' : 'space'}};
+	links[7] = {'type': "Things", 'id':'linklistrightThings', 'url':'RPage', 'icon' : "<i class=\"icon-barcode\"></i>", 'opts' : {'type' : 'thing'}};
+	links[8] = {'type': "Animals", 'id':'linklistrightAnimals', 'url':'RPage', 'icon' : "<i class=\"icon-github-sign\"></i>", 'opts' : {'type' : 'animal'}};
+	links[9] = {'type': "Projects", 'id':'linklistrightProjects', 'url':'RPage', 'icon' : "<i class=\"icon-briefcase\"></i>", 'opts' : {'type' : 'project'}};
+	links[10] = {'type': "Contracts", 'id':'linklistrightContracts', 'url':'RPage', 'icon' : "<i class=\"icon-legal\"></i>", 'opts' : {'type' : 'contract'}};
 
-	for(var i = 5; i<12; i++) {
+	for(var i = 4; i<11; i++) {
 		$("#linklistright").append("<li class=\"ui-btn-icon-left rightlinklistitem\"  id='" + links[i]['id'] + "'><a>" + links[i]['type'] + "\t" + links[i]['icon'] + "</a></li>");
 	}
 

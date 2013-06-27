@@ -28,12 +28,12 @@ function showStream(){
     getStreamUrl(0,function(stream){
         if(stream != null && stream != "") {
             theList.append( stream.join('') );
-            scrollerInit();
             addLiListener();
         } else {
             theList.append('<li><h3>The stream is empty</h3><h3>no ' + getStreamType() + 's were found!</h3></li>');
         }
-        $("#thelist+img").hide();
+        scrollerInit();
+        $("#thelist + div + img").hide();
     });
 }
 

@@ -25,7 +25,7 @@ function showOwnStream(){
         theList.append(stream.join(''));
         scrollerInit();
         addLiListener();
-        $("#thelist+img").hide();
+        $("#thelist + div + img").hide();
         $("#nameAndTypeBar p:last-child").text("Infostream");
     });
 }

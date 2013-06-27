@@ -193,6 +193,10 @@ section#searchResults > h1 {
 	width:100%;
 }
 
+.sendandre p {
+	margin-bottom: 0;
+}
+
 .sendandre .user_name{
 	vertical-align: middle;
 	display: inline-block;
@@ -203,7 +207,6 @@ p.timeMsgCreated{
 	display: inline;
 	float:right;
 	color: grey;
-	margin:0;
 }
 
 ul#thelist li {

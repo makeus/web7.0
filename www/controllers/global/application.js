@@ -202,18 +202,24 @@ function appInit(){
 		if (dlid==undefined){
 			dlid = getDL_id();
 		}
+
+
+
 		getInfo(dlid,function(info){
 			sidebarsSetInfo(info);
 			updateUrls(dlid);
 			setEntityInformation(info);
-		});
 
-		setActive(getParameter('type'));
-	
+		});
 		
+		setActive(getParameter('type'));
+		
+
 		var streamType = getStreamType();
 		showRightForm(streamType);
 		attachEvents();
+
+		
 
 		document.addEventListener("menuButton", onMenuButton, false);
 		document.addEventListener("backButton", onBackButton, false);

@@ -49,7 +49,7 @@ bar = {
 		});
 		$("#searchButton").off();
 		$("#searchButton").click(function() {
-   			view.push("search");
+   			view.push("search", {'dlid' : getParameter('dlid')});
         });
         $("#settingsButton").off();
         $("#settingsButton").click(function(){

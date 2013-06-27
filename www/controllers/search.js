@@ -11,6 +11,8 @@ function initsearch() {
 	historyTemp(function(data){
 		updateSearchResults(data);
 	});
+
+
 	$("#searchInput").bind('input',function(){
 		timedSearch($("#searchInput").val(),function(){});
 	});
