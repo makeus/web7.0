@@ -121,9 +121,9 @@ function inDays(diff){
 	var one_day = 1000*60*60*24;
 	var days = Math.floor(diff/one_day);
     if (days>=2){
-         return '' + days + ' days ago';
+         return '' + days + ' days';
     } else if (days>=1) {
-        return "one day ago";
+        return "1 day";
     }
     return '';
 }
@@ -132,7 +132,7 @@ function inWeeks(diff){
 	var one_week = 1000*60*60*24*7;
 	var weeks = Math.floor(diff/one_week);
     if (weeks>=2){
-         return '' + weeks + ' weeks ago';
+         return '' + weeks + ' weeks';
     } 
     return '';
 }
@@ -141,8 +141,8 @@ function inHours(diff){
 	var one_hour = 1000*60*60;
     var hours = Math.floor(diff/one_hour);
     var timeRemain = diff - (one_hour*hours);
-    if (hours>=2) return '' + hours + " hours ago";
-    if (hours>=1) return "one hour ago";
+    if (hours>=2) return '' + hours + " hours";
+    if (hours>=1) return "1 hour";
 
     return '';
 }
@@ -150,9 +150,8 @@ function inHours(diff){
 function inMinutes(diff){
 	var one_minute = 1000*60;
 	var minutes = Math.floor(diff/one_minute);
-	if (minutes>=2) return '' + minutes + ' minutes ago';
-	if (minutes>=1) return 'one minute ago';
-	return '0 minutes ago'; 
+	if (minutes>=2) return '' + minutes + ' minutes';
+    return '1 minunte';
 }
 
 function getTimeDiffMili(sendedTime){
@@ -231,7 +230,7 @@ var scroll_object;
 
 function scrollerInit() {
     scroll_object = $("#scroller");
-    scroll_object.iscrollview();
+    scroll_object.iscrollview({'hScroll' : false, 'hScrollbar' : false, 'vScrollbar' : false});
     $(document).delegate("div.iscroll-wrapper", "iscroll_onpulldown" , function() {
     	if(getCurrent().name == "frontpage") {
 	        getOwnStream("message,cal,note", 0, function(stream) {
