@@ -137,25 +137,21 @@ function inWeeks(diff){
     return '';
 }
 
-function inHoursAndMinutes(diff){
+function inHours(diff){
 	var one_hour = 1000*60*60;
     var hours = Math.floor(diff/one_hour);
     var timeRemain = diff - (one_hour*hours);
-    var vastaus= '';
-    if (hours>=2){
-        vastaus += hours + " hours ";
-    } else if (hours>=1){
-        vastaus = "one hour ";
-    }
-    return vastaus + minutesAgo(timeRemain);
+    if (hours>=2) return '' + hours + " hours ago";
+    if (hours>=1) return "one hour ago";
+
+    return '';
 }
 
-function minutesAgo(diff){
+function inMinutes(diff){
 	var one_minute = 1000*60;
 	var minutes = Math.floor(diff/one_minute);
 	if (minutes>=2) return '' + minutes + ' minutes ago';
 	if (minutes>=1) return 'one minute ago';
-	
 	return '0 minutes ago'; 
 }
 
@@ -179,8 +175,11 @@ function getTimeDiff(sendedTime){
 	
 	var days = inDays(diff);
 	if (days !='') return days;
-	
-	return inHoursAndMinutes(diff);
+	 
+	var hours = inHours(diff);
+	if (hours != '') return hours;
+
+	return inMinutes(diff);
 }
 
 function onBackButton(){
