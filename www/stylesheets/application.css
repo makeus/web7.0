@@ -768,3 +768,10 @@ ul#relationslist .emptyRelationImage {
 	margin-top: 16px;
 	text-shadow: none;
 }
+
+.iscroll-pull-label {
+	display: block;
+	text-align: center;
+	font-size: 16px;
+	vertical-align: middle;
+}
