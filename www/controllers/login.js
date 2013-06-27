@@ -22,7 +22,8 @@ function initlogin() {
 
 		});
 	});
-	createDebugButtons();
+	
+//	createDebugButtons();
 }
 
 
