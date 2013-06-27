@@ -1,49 +1,29 @@
-function printDebugInfo() {
-	console.log("Name:  "+getName());
-	console.log("DL_id: "+getDL_id())
-	console.log("Token: "+getToken());
-	console.log("Image: "+getImage());
-	console.log("Relations:")
-	console.log(getRelations());
-}
-
-
+// You can implement login buttons on login screen by calling
+//   createDebugButtons() in initLogin() at controllers/login.js
 function createDebugButtons() {
-	createButton({
-		name: "Adele Vuohi",
-		username: "adele.vuohi@gmail.com",
-		password: "vuori"
-	});
+	// To create login button use createButton() with object
+	//   parameter which contains buttonName, username, password.
+	//
+	// (buttonName can be anything)
+
+	/* Example:
 
 	createButton({
-		name: "Kristian",
-		username: "kristian.pulkkinen@cs.helsinki.fi",
-		password: "stalin"
+		buttonName: "Pekka Pouta",
+		username: "pekka.pouta@mail.com",
+		password: "pekkaonparas"
 	});
+
+	*/
+
 	
-	createButton({
-		name: "Sampo",
-		username: "sampo.laurila@gmail.com",
-		password: "vuohi3"
-	});
-
-	createButton({
-		name: "Mathias",
-		username: "mathias.keus@helsinki.fi",
-		password: "pf6sg4ai"
-	});
-	createButton({
-		name: "Ivan",
-		username: "ivan.tadic014@gmail.com",
-		password: "roki014"
-	});
 }
 
 
 function createButton(info) {
-	var id = info.name.replace(" ", "_");
+	var id = info.buttonName.replace(" ", "_");
 
-	$("#main").append("<button id='"+id+"'>"+info.name+"</button>");
+	$("#main").append("<button id='"+id+"'>"+info.buttonName+"</button>");
 	
 	var button = $("#"+id);
 	button.css("font-weight", "bolder");
