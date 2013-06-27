@@ -22,7 +22,8 @@ function initlogin() {
 
 		});
 	});
-	
+
+//	More info about createDebugButtons() at javascripts/debug.js
 //	createDebugButtons();
 }
 
