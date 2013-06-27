@@ -23,6 +23,7 @@ function showRelatedList(dlid, type){
 				ind++;
 			}
 		});
+		console.log(relations);
 		dlids=dlidsArr.join();
 		getUserArray(dlids,function(userArr){
 			$.each(userArr,function(i,item){
@@ -30,7 +31,7 @@ function showRelatedList(dlid, type){
 					appendRelationsList(item);
 					checked = true;
 				}
-				if(i == relations.length -1) {
+				if(i == userArr.length -1) {
 					if(!checked) {
     					$("#main div").replaceWith("<section id=\"relationMessage\"><h3>The stream is empty</h3><h3>no relations were found!</h3></section>"); 
 					}

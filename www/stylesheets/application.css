@@ -195,7 +195,8 @@ section#searchResults > h1 {
 
 .sendandre .user_name{
 	vertical-align: middle;
-	display: inline;
+	display: inline-block;
+	max-width: 60%;
 }
 p.timeMsgCreated{
 	vertical-align: middle;

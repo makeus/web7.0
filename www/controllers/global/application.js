@@ -317,8 +317,9 @@ function addLiListener(){
     $(".listEL").click(function(){
         var id = $(this).attr('id');
         var uid = $(this).attr('uid');
+        var dlid = getParameter('dlid');
         var listElement= $(this);
-        view.push("IPage", {'iPageID': id, 'uid': uid}); 
+        view.push("IPage", {'dlid':dlid, 'iPageID': id, 'uid': uid}); 
     });
 
     $(".listEL").mousedown(function() {
