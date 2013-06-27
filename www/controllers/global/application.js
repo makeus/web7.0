@@ -231,7 +231,7 @@ var scroll_object;
 
 function scrollerInit() {
     scroll_object = $("#scroller");
-    scroll_object.iscrollview();
+    scroll_object.iscrollview({'hScroll' : false, 'hScrollbar' : false, 'vScrollbar' : false});
     $(document).delegate("div.iscroll-wrapper", "iscroll_onpulldown" , function() {
     	if(getCurrent().name == "frontpage") {
 	        getOwnStream("message,cal,note", 0, function(stream) {
