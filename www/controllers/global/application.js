@@ -36,15 +36,22 @@ function setAllBars(){
 
 function setActionOnFooterClick(){
 	$("#index footer").click(function() {
-		document.removeEventListener("menuButton");
-		document.removeEventListener("backButton");
+		document.removeEventListener("menuButton", onMenuButton, false);
+		document.removeEventListener("backButton", onBackButton, false);
+		document.addEventListener("backButton", changeBackToIndex, false);
 		$.mobile.changePage( "#message", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
 	});
+}
+
+function changeBackToIndex(){
+	resetMessageFieldsEPage();
+	$.mobile.changePage( "#index", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
 }
 
 function setActionOnHeaderClick(){
 	$("#message header a").click(function() {
 		resetMessageFieldsEPage();
+		document.removeEventListener("backButton", onBackButton, false);
 		document.addEventListener("menuButton", onMenuButton, false);
 		document.addEventListener("backButton", onBackButton, false);
 		$.mobile.changePage( "#index", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
@@ -210,7 +217,9 @@ function appInit(){
 		var streamType = getStreamType();
 		showRightForm(streamType);
 		attachEvents();
-
+		
+		document.removeEventListener("menuButton", onMenuButton, false);
+		document.removeEventListener("backButton", onBackButton, false);
 		document.addEventListener("menuButton", onMenuButton, false);
 		document.addEventListener("backButton", onBackButton, false);
 
