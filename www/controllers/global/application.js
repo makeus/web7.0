@@ -1,11 +1,3 @@
-(function(){
-	var origiclick = jQuery.fn.click;
-
-	jQuery.fn.click = function(e){
-		origiclick.apply( this, arguments );
-	}
-})();
-
 var theList;
 
 $(document).ready(function(){
@@ -44,6 +36,8 @@ function setAllBars(){
 
 function setActionOnFooterClick(){
 	$("#index footer").click(function() {
+		document.removeEventListener("menuButton");
+		document.removeEventListener("backButton");
 		$.mobile.changePage( "#message", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
 	});
 }
@@ -51,6 +45,8 @@ function setActionOnFooterClick(){
 function setActionOnHeaderClick(){
 	$("#message header a").click(function() {
 		resetMessageFieldsEPage();
+		document.addEventListener("menuButton", onMenuButton, false);
+		document.addEventListener("backButton", onBackButton, false);
 		$.mobile.changePage( "#index", {transition: "none", changeHash: false , showLoadMsg: true, allowSamePageTransition: true});
 	});
 }
@@ -202,8 +198,6 @@ function appInit(){
 			dlid = getDL_id();
 		}
 
-
-
 		getInfo(dlid,function(info){
 			sidebarsSetInfo(info);
 			updateUrls(dlid);
@@ -212,13 +206,10 @@ function appInit(){
 		});
 		
 		setActive(getParameter('type'));
-		
 
 		var streamType = getStreamType();
 		showRightForm(streamType);
 		attachEvents();
-
-		
 
 		document.addEventListener("menuButton", onMenuButton, false);
 		document.addEventListener("backButton", onBackButton, false);
