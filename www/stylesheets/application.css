@@ -275,8 +275,8 @@ ul#thelist .eventElem p {
 /* IPage */
 
 #ipageMessage {
-	border: thin solid #D3D3D3;
-	margin:10px;
+	border: thin solid #bbb;
+	margin:-3px;
 }
 
 #messageContent > img {
@@ -301,16 +301,20 @@ ul#thelist .eventElem p {
 }
 
 #ipageComments {
-	margin: 10px;
-	border:thin solid grey;
+	margin: -1px;
 }
 
 #listOfComments {
 	list-style: none;
 }
 
-#listOfComments > li {
+#listOfComments li {
 	margin:10px;
+	border-top: solid thin LightGray;
+}
+
+#listOfComments li:first-child {
+	border-top: 0;
 }
 
 #ipageContent {
@@ -331,6 +335,7 @@ ul#thelist .eventElem p {
 
 #completeMarker {
 	padding: 5px;
+	margin-bottom: 10px;
 }
 
 #completeMarker > label {
@@ -342,14 +347,16 @@ ul#thelist .eventElem p {
 
 
 .commentWriter{
+	font-size: 0.8em;
+	font-weight: bolder;
 	display:inline-block;
 	vertical-align: top;
+	margin-bottom: 0px;
 }
 .commentText{
-	display:inline-block;
+	display:block;
 	vertical-align: middle;
-	margin-left: 1%;
-	width: 69%;
+	margin-bottom: 10px;
 }
 .commentTime{
 	font-size: 0.8em;
@@ -476,6 +483,7 @@ li.active p {
 
 section#commentArea {
 	margin: 10px;
+	margin-top: 15px;
 }
 
 section#commentArea > textarea {
@@ -512,7 +520,6 @@ ul#relationslist i {
 
 ul#relationslist li:first-child, ul#relationslist .ui-first-child {
 	border-top: 0;
-
 }
 
 ul#relationslist li:last-child, ul#relationslist .ui-last-child {
